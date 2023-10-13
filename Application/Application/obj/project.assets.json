@@ -1,45 +1,82 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccess.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../DataAccess/DataAccess.csproj",
+      "msbuildProject": "../DataAccess/DataAccess.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "DataAccess >= 1.0.0",
+      "Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\vlada\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\tothl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
+      "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj"
+            },
+            "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -67,7 +104,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\tothl\\.dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="995bc964-40ac-4920-a47a-b983305fab78" name="Changes" comment="" />
+    <list default="true" id="995bc964-40ac-4920-a47a-b983305fab78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Application/Logic/TransferLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/Controllers/TransferController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Application.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/Application.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApplicationAPI/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/DTOs/TransferRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/DTOs/TransferResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Models/TransactionInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Application.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/ApplicationAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/Class1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Application.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Application.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/Application.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/Application.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationAPI/obj/Debug/net7.0/Application.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +47,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2Wf6bW1EFfVFCPuPSTzFSWRIJCs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,14 +60,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Application__Layer__totlevi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\vlada\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\vlada\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\vlada\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\tothl\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\tothl\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\tothl\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -43,11 +84,23 @@
       <option name="presentableId" value="Default" />
       <updated>1697111359258</updated>
       <workItem from="1697111361432" duration="18000" />
+      <workItem from="1697113425801" duration="3936000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
