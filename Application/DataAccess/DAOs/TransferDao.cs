@@ -9,7 +9,7 @@ public class TransferDAO : ITransferDAO
     {
         //HTTP request to the java DB
 
-        
+        //or no success 
         var result = new TransferResultDTO { Success = true, Message = "Money transferred successfully." };
 
         return result;
@@ -17,6 +17,11 @@ public class TransferDAO : ITransferDAO
 
     public string GetRecipientInfo( int accountNumber)
     {
-        //reach db get the name with accountnumber
+        //reach db get the name based on accountnumber
+    }
+
+    public string GetSenderInfo(int accountNumber)
+    {
+        //reach db get senders info based on accountnumber
     }
 }

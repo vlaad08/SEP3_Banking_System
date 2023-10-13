@@ -12,14 +12,13 @@ public class TransferValidation
         _transferDAO = transferDAO;
     }
 
-    public bool ValidateRecipient(TransferRequestDTO transferRequest)
+    public bool ValidateRequest(TransferRequestDTO transferRequest)
     {
-        // Placeholder for validation logic
-        // Query the Java server's REST API to get recipient information based on the account number
         var recipientInfo = _transferDAO.GetRecipientInfo(transferRequest.RecipientAccountNumber);
-
-        // Check if the retrieved information matches the request
+        var senderInfo = _transferDAO.GetSenderInfo(transferRequest.SenderAccountNumber);
+        
         return recipientInfo != null &&
-               recipientInfo.RecipientName == transferRequest.RecipientName;
+               recipientInfo.RecipientName == transferRequest.RecipientName &&
+               senderInfo.GetBalance >= transferRequest.Amount;
     }
 }

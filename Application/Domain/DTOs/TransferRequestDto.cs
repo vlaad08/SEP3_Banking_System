@@ -6,4 +6,5 @@ public class TransferRequestDTO
     public string RecipientName { get; set; }
     public string RecipientAccountNumber { get; set; }
     public string Message { get; set; }
+    public string SenderAccountNumber { get; set; }
 }

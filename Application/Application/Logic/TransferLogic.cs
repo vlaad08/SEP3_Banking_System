@@ -6,20 +6,21 @@ namespace Application.Logic;
 
 public class TransferLogic : ITransferLogic
 {
-    private readonly ITransferDAO _transferDAO;  
+    private readonly ITransferDAO _transferDTO;  
 
-    public TransferLogic(ITransferDAO transferDAO)
+    public TransferLogic(ITransferDAO transferDTO)
     {
-        _transferDAO = transferDAO;
+        _transferDTO = transferDTO;
     }
 
     public TransferResultDTO TransferMoney(TransferRequestDTO transferRequest)
     {
-        //validation should look at DB see if acc number and name are matching
+        TransferValidation.ValidateRequest(transferRequest);
         
         //transfer logic should happen here
-        
-        
+
+        return null;
+
     }
     
     
