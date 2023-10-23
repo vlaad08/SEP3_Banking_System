@@ -10,45 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="995bc964-40ac-4920-a47a-b983305fab78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/DaoInterfaces/ITransferValidationDAO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferValidation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Server/TCPServer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/DAOs/ValidateDao.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/DataContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/FileContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net7.0/DataAccess.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net7.0/DataAccess.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/DaoInterfaces/ITransferDAO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/DaoInterfaces/ITransferDAO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Logic/TransferLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Logic/TransferLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Logic/TransferValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Logic/TransferValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/DAOs/TransferDao.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/DAOs/TransferDao.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/DAOs/UserDao.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/DAOs/UserDao.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/DataAccess.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/DataAccess.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/DataAccess.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/Debug/net7.0/DataAccess.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net7.0/DataAccess.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/DTOs/TransferResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/TransferResponseDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Models/TransactionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Models/TransferInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/Controllers/TransferController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/Controllers/TransferController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferValidation.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +106,7 @@
       <workItem from="1697111361432" duration="18000" />
       <workItem from="1697113425801" duration="3936000" />
       <workItem from="1697786424322" duration="2268000" />
-      <workItem from="1698046406198" duration="8852000" />
+      <workItem from="1698046406198" duration="9150000" />
     </task>
     <servers />
   </component>

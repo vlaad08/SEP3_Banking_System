@@ -33,7 +33,7 @@ public class TransferValidation : ITransferValidation //IM fucked in the head iv
         
     }
 
-    public async Task<TransferInfo> GetAsync()
+    public async Task<TransferInfo> GetAsync(TransferResultDTO transferResultDto)
     {
         
     }
