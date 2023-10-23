@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="995bc964-40ac-4920-a47a-b983305fab78" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/LogicInterfaces/ITransferValidation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Logic/TransferValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Logic/TransferValidation.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,7 @@
       <workItem from="1697111361432" duration="18000" />
       <workItem from="1697113425801" duration="3936000" />
       <workItem from="1697786424322" duration="2268000" />
-      <workItem from="1698046406198" duration="9150000" />
+      <workItem from="1698046406198" duration="10119000" />
     </task>
     <servers />
   </component>

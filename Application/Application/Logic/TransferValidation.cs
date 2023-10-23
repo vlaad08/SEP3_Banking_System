@@ -30,12 +30,12 @@ public class TransferValidation : ITransferValidation //IM fucked in the head iv
 
     public async Task<TransferInfo> CreateAsync(TransferRequestDTO transferRequestDto)
     {
-        
+        return null;
     }
 
     public async Task<TransferInfo> GetAsync(TransferResultDTO transferResultDto)
     {
-        
+        return null;
     }
 
 }
