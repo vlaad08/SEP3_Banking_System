@@ -3,6 +3,7 @@ namespace Domain.Models;
 
 public class User
 {
+    //not much done for the user but i need to have the object cuz the transfers have senders and recipients
     public int UserId { get; set; }
     public string UserName { get; set; }
     public string AccountNumber { get; set; }

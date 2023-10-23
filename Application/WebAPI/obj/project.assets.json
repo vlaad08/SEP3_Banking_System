@@ -112,7 +112,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "DataAccess": "1.0.0",
           "Domain": "1.0.0"
         },
         "compile": {
@@ -126,6 +125,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Application": "1.0.0",
           "Domain": "1.0.0"
         },
         "compile": {

@@ -1,0 +1,5 @@
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.AssemblyInfo.cs
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.csproj.CoreCompileInputs.cache

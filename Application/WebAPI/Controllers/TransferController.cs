@@ -1,4 +1,5 @@
-﻿using Application.LogicInterfaces;
+﻿using Application.Logic;
+using Application.LogicInterfaces;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Application.Controllers;
 public class TransferController : ControllerBase
 {
     private readonly ITransferLogic _transferLogic;
+    private TransferValidation _transferValidation;
 
     public TransferController(ITransferLogic transferLogic)
     {
@@ -19,10 +21,13 @@ public class TransferController : ControllerBase
     public IActionResult TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
             //should validate somehow
+            //we have the validation shit
+            _transferValidation.ValidateRequest(transferRequest);
         
         var result = _transferLogic.TransferMoney(transferRequest);
         
-       //should return ok or not ok
+       //should return ok or not ok which is the 
+       return null;
     }
     
    
