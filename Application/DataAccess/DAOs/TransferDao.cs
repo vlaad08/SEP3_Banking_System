@@ -27,7 +27,7 @@ public class TransferDAO : ITransferDAO
     public string GetSenderInfo(int accountNumber)
     {
         //reach db get senders info based on accountnumber
-        //probably should do some json deseriliaze magic
+        //probably should do some json deseriliaze magic or parseint
         string info = "";
         return info;
     }

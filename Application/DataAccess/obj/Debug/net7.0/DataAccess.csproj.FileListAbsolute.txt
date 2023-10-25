@@ -3,3 +3,15 @@ C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\De
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.AssemblyInfoInputs.cache
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.AssemblyInfo.cs
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\DataAccess.deps.json
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\DataAccess.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\DataAccess.pdb
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\Application.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\Domain.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\Application.pdb
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\bin\Debug\net7.0\Domain.pdb
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.csproj.CopyComplete
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\refint\DataAccess.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\DataAccess.pdb
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DataAccess\obj\Debug\net7.0\ref\DataAccess.dll

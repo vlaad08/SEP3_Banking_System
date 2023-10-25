@@ -16,7 +16,7 @@ public class TransferLogic : ITransferLogic
 
     public TransferResultDTO TransferMoney(TransferRequestDTO transferRequest)
     {
-        TransferValidation.ValidateRequest(transferRequest);
+        //TransferValidation.ValidateRequest(transferRequest);
         
         //transfer logic should happen here
         //it tells the server to reach db and use ig a change balance method to change

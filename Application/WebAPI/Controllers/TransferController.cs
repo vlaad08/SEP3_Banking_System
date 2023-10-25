@@ -17,12 +17,12 @@ public class TransferController : ControllerBase
         _transferLogic = transferLogic;
     }
 
-    [HttpPost]
+    [HttpPost,Route("Transfer")]
     public IActionResult TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
             //should validate somehow
             //we have the validation shit
-            _transferValidation.ValidateRequest(transferRequest);
+        _transferValidation.ValidateRequest(transferRequest);
         
         var result = _transferLogic.TransferMoney(transferRequest);
         

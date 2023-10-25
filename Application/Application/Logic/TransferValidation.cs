@@ -26,8 +26,11 @@ public class TransferValidation : ITransferValidation //IM fucked in the head iv
         return recipientInfo != null &&
                recipientInfo.RecipientName == transferRequest.RecipientName &&
                senderInfo.GetBalance >= transferRequest.Amount;
+        return false;
     }
+    
 
+    //once again im dumasfuck the validaterequest should be async ill get to it or if i dont ull just read this 
     public async Task<TransferInfo> CreateAsync(TransferRequestDTO transferRequestDto)
     {
         return null;
