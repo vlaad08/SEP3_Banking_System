@@ -9,25 +9,22 @@ namespace Application.Controllers;
 [Route("api/[controller]")]
 public class TransferController : ControllerBase
 {
-    private readonly ITransferLogic _transferLogic;
-    private TransferValidation _transferValidation;
+    private readonly ITransferLogic transferLogic;
+    //private TransferValidation _transferValidation;
 
     public TransferController(ITransferLogic transferLogic)
     {
-        _transferLogic = transferLogic;
+        this.transferLogic = transferLogic;
     }
 
     [HttpPost,Route("Transfer")]
-    public IActionResult TransferMoney([FromBody] TransferRequestDTO transferRequest)
+    public async void TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
             //should validate somehow
             //we have the validation shit
-        _transferValidation.ValidateRequest(transferRequest);
+        //_transferValidation.ValidateRequest(transferRequest);
         
-        var result = _transferLogic.TransferMoney(transferRequest);
-        
-       //should return ok or not ok which is the 
-       return null;
+        var result = transferLogic.TransferMoney(transferRequest);
     }
     
    

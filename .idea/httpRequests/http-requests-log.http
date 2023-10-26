@@ -1,0 +1,312 @@
+POST http://localhost:8080/transactions/
+Content-Type: application/json
+Content-Length: 37
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"id_1":"K", "id_2": "O","amount": 3}
+
+###
+
+POST http://localhost:8080/transactions/
+Content-Type: application/json
+Content-Length: 37
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"id_1":"K", "id_2": "O","amount": 3}
+
+###
+
+POST http://localhost:8080/transactions/
+Content-Type: application/json
+Content-Length: 37
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"id_1":"K", "id_2": "O","amount": 3}
+
+###
+
+POST http://localhost:8080/transactions/
+Content-Type: application/json
+Content-Length: 37
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"id_1":"K", "id_2": "O","amount": 3}
+
+<> 2023-10-25T233155.404.json
+
+###
+
+POST http://localhost:8080/transactions/
+Content-Type: application/json
+Content-Length: 37
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"id_1":"K", "id_2": "O","amount": 3}
+
+<> 2023-10-25T233054.404.json
+
+###
+
+POST http://localhost:7788/transactions
+Content-Type: text/plain
+Content-Length: 2
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+hh
+
+<> 2023-10-25T160109.404.json
+
+###
+
+GET http://localhost:7788
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-25T160031.404.json
+
+###
+
+POST http://localhost:7788/transactions
+Content-Type: text/plain
+Content-Length: 4
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+buzi
+
+<> 2023-10-25T155718.404.json
+
+###
+
+POST http://localhost:7788/transactions
+Content-Type: text/plain
+Content-Length: 4
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+buzi
+
+<> 2023-10-25T155657.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: text/plain
+Content-Length: 4
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+buzi
+
+<> 2023-10-25T155557.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: text/plain
+Content-Length: 14
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+"sadfasdfasdf"
+
+<> 2023-10-25T155239.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: text/plain
+Content-Length: 14
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+"sadfasdfasdf"
+
+<> 2023-10-25T154745.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: text/plain
+Content-Length: 12
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"value": 2}
+
+<> 2023-10-25T154735.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: text/plain
+Content-Length: 12
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"value": 2}
+
+<> 2023-10-25T154717.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 12
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"value": 2}
+
+<> 2023-10-25T154406.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 16
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"key": "value"}
+
+<> 2023-10-25T154051.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 16
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"key": "value"}
+
+<> 2023-10-25T153653.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+{"key": "value"}
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-25T153612.400.html
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+{"key": "value"}
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-25T153559.400.html
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+{"key": "value"}
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-25T153545.400.html
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 16
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"key": "value"}
+
+<> 2023-10-25T153152.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 16
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"key": "value"}
+
+<> 2023-10-25T153125.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"": ""}
+
+<> 2023-10-25T153058.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"": ""}
+
+<> 2023-10-25T153044.404.json
+
+###
+
+POST http://localhost:7788/transactions/1
+Content-Type: application/json
+Content-Length: 8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{"": ""}
+
+<> 2023-10-25T153030.404.json
+
+###
+

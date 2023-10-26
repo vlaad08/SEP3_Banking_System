@@ -2,17 +2,18 @@ using Application.DaoInterfaces;
 using Application.LogicInterfaces;
 using Domain.DTOs;
 using Domain.Models;
-
+/*
 namespace Application.Logic;
 
 public class TransferValidation : ITransferValidation //IM fucked in the head ive been using the class w/out any interfaces so DAO IDAO ILOGIC
 {
+    /*
     //ADD ASYNC!!!!
-    private readonly ITransferDAO _transferDAO;
+    private readonly ITransferDAO transferDAO;
 
     public TransferValidation(ITransferDAO transferDAO)
     {
-        _transferDAO = transferDAO;
+        this.transferDAO = transferDAO;
     }
 
     //this monstorsity below is supposed to check if the transaction can happen
@@ -20,8 +21,8 @@ public class TransferValidation : ITransferValidation //IM fucked in the head iv
     //the senders balance is bigger than equal to the amount wish to be transferred
     public bool ValidateRequest(TransferRequestDTO transferRequest)
     {
-        var recipientInfo = _transferDAO.GetRecipientInfo(transferRequest.RecipientAccountNumber);
-        var senderInfo = _transferDAO.GetSenderInfo(transferRequest.SenderAccountNumber);
+        var recipientInfo = transferDAO.GetRecipientInfo(transferRequest.RecipientAccountNumber);
+        var senderInfo = transferDAO.GetSenderInfo(transferRequest.SenderAccountNumber);
         
         return recipientInfo != null &&
                recipientInfo.RecipientName == transferRequest.RecipientName &&
@@ -42,3 +43,4 @@ public class TransferValidation : ITransferValidation //IM fucked in the head iv
     }
 
 }
+*/
