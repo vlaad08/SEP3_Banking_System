@@ -13,6 +13,12 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped<IAuthService, JwtAuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 
+builder.Services.AddScoped(
+    sp => 
+        new HttpClient { 
+            BaseAddress = new Uri("http://localhost:5054") 
+        }
+);
 
 AuthorizationPolicies.AddPolicies(builder.Services);
 

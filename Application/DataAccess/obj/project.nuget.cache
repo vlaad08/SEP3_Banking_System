@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UgJhybE7Vi4bMjim5p8YAx3TC2wl4gUnUSxEuo2YORf0HJh10q2z2hkhYQqk3sxgmgXOhdRVSe+n1iPiCdInTA==",
+  "dgSpecHash": "13HtNG+J2WjwXx7tFXuTzTW2+XOvb6Dnr5QueDGd5PKJcsHH9lX0g0U13W01ToMIZZTra9KORSoiai4kq4mPcQ==",
   "success": true,
-  "projectFilePath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
