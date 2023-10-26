@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{C077DD3C-495E-4BE8-8F66-0D83EEB39918}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{7619D8E6-74EA-4291-878E-9F5A6358B4E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csproj", "{6BF5048E-EAFC-4C80-AD44-C0E3CF8EC25A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +12,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C077DD3C-495E-4BE8-8F66-0D83EEB39918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C077DD3C-495E-4BE8-8F66-0D83EEB39918}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C077DD3C-495E-4BE8-8F66-0D83EEB39918}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C077DD3C-495E-4BE8-8F66-0D83EEB39918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7619D8E6-74EA-4291-878E-9F5A6358B4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7619D8E6-74EA-4291-878E-9F5A6358B4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7619D8E6-74EA-4291-878E-9F5A6358B4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7619D8E6-74EA-4291-878E-9F5A6358B4E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF5048E-EAFC-4C80-AD44-C0E3CF8EC25A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF5048E-EAFC-4C80-AD44-C0E3CF8EC25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF5048E-EAFC-4C80-AD44-C0E3CF8EC25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF5048E-EAFC-4C80-AD44-C0E3CF8EC25A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

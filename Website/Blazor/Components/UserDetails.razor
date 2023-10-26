@@ -1,0 +1,30 @@
+
+<!-- User information: Full name + the account balance
+    +Buttons for making a new transfer -->
+
+
+<div class="box">
+    <div class="box-info">
+        <p class="balance">@Balance DKK</p>
+    </div>
+    <div class="box-transfer">
+        <button class="transferButton" @onclick="NewTransfer">New Transfer</button>
+    </div>
+</div>
+
+
+
+@code {
+    
+    [Parameter]public string? Balance { get; set; }
+
+
+   
+    [Inject] private NavigationManager Navigation { get; set; }
+
+    private void NewTransfer()
+    {
+        Navigation.NavigateTo("/transfer");
+    }
+    
+}

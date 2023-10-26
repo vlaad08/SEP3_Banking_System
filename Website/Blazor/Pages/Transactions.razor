@@ -1,0 +1,33 @@
+@page "/transactions"
+@attribute [Authorize]
+<PageTitle>Transactions</PageTitle>
+
+<!-- Maybe have a search bar over here, to look for some transactions made to/from a specific person/merchant -->
+
+<div class="content">
+    <input type="text" >
+    
+    <div>
+        @if (@transactions?.Count == 0)
+        {
+            <div>
+                <p >You have not made any transactions</p>
+            </div>
+        }
+        else if (@transactions != null)
+        {
+            foreach (string i in @transactions)
+            {
+                <p>@i</p>
+            }
+        }
+    </div>
+</div>
+
+@code{
+
+    public List<string>? transactions; 
+
+    
+    //add the code to request the list
+}
