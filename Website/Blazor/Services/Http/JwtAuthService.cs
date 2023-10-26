@@ -14,33 +14,6 @@ public class JwtAuthService : IAuthService
     public static string? Jwt { get; private set; } = "";
 
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; } = null!;
-
-    public async Task testTransfer()
-    {
-        TransferDto transfer = new TransferDto()
-        {
-            Amount = 100,
-            SenderAccountNumber = "318049189031",
-            Message = "FUCK",
-            RecipientAccountNumber = "149868761241"
-        };
-
-        string transferJson = JsonSerializer.Serialize(transfer);
-        Console.WriteLine(transferJson);
-        StringContent content = new(transferJson, Encoding.UTF8, "application/json");
-        Console.WriteLine(content);
-        HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transfer/Transfer", content);
-        
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new Exception("fuck you");
-        }
-
-        ClaimsPrincipal principal = CreateClaimsPrincipal();
-
-        OnAuthStateChanged.Invoke(principal);
-    }
-    
     
     public async Task LoginAsync(string email, string password)
     {

@@ -35,7 +35,7 @@
     </Authorized>
 </AuthorizeView>
 
-        <button @onclick="testTransfer" style="font-size: 200px">Test Transfer </button>
+        
 
 
 @code {
@@ -66,17 +66,5 @@
         }
     }
 
-    private async Task testTransfer()
-    {
-        try
-        {
-            await authService.testTransfer();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Fuck you but in blazor" + e);
-            throw;
-        }
-    }
 
 }

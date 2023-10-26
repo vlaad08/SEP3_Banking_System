@@ -30,16 +30,16 @@ public class TransactionController {
     /** Endpoint to make the transaction in the database **/
     @PostMapping("transactions/")
     public synchronized void transfer(@RequestBody String transferDto) {
-        System.out.println(transferDto);
-        // HashMap<String,Object> map = createHash(transferDto);
-        // List<String> keys = new ArrayList<>(map.keySet());
-        // List<Object> values = new ArrayList<>(map.values());
-        // String senderAccount_id= (String) values.get(0);
-        // String recipientAccount_id= (String) values.get(1);
-        // double amount= Double.parseDouble((String) values.get(2));
-        // String message = (String) values.get(3);
-        // System.out.println(senderAccount_id+" "+recipientAccount_id );
-        // connection.transfer(senderAccount_id,recipientAccount_id,amount,message);
+         System.out.println(transferDto);
+         HashMap<String,Object> map = createHash(transferDto);
+         List<String> keys = new ArrayList<>(map.keySet());
+         List<Object> values = new ArrayList<>(map.values());
+         String senderAccount_id= (String) values.get(0);
+         String recipientAccount_id= (String) values.get(1);
+         double amount= Double.parseDouble((String) values.get(2));
+         String message = (String) values.get(3);
+         System.out.println(senderAccount_id+" "+recipientAccount_id );
+         connection.transfer(senderAccount_id,recipientAccount_id,amount,message);
 
         /*
          * String id_1 = transferDto.getId_1();

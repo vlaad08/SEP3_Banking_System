@@ -23,7 +23,7 @@ public class TransferController : ControllerBase
             //should validate somehow
             //we have the validation shit
         //_transferValidation.ValidateRequest(transferRequest);
-        
+        Console.WriteLine("transferRequest");
         var result = transferLogic.TransferMoney(transferRequest);
     }
     
