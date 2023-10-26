@@ -1,10 +1,13 @@
-namespace Domain.DTOs;
+using System.Runtime.Serialization;
 
-public class TransferRequestDTO
+namespace Domain.DTOs
 {
-    public decimal Amount { get; set; }
-    public string RecipientName { get; set; }
-    public int RecipientAccountNumber { get; set; }
-    public string Message { get; set; }
-    public int SenderAccountNumber { get; set; }
+    public class TransferRequestDTO
+    {
+        public decimal Amount { get; set; }
+        public string RecipientName { get; set; }
+        public int RecipientAccountNumber { get; set; }
+        public string Message { get; set; }
+        public int SenderAccountNumber { get; set; }
+    }
 }

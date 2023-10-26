@@ -6,15 +6,15 @@ namespace DataAccess.DAOs;
 
 public class TransferDAO : ITransferDAO
 {
-    //private readonly FileContext _fileContext;
-    private readonly FileContext _fileContext;
-    public TransferResultDTO TransferMoney(TransferRequestDTO transferRequest)
+    private IDataBaseAccess dataBaseAccess;
+    public TransferDAO(IDataBaseAccess dataBaseAccess)
     {
-        //HTTP request to the java DB
-        //or no success 
-        var result = new TransferResultDTO { Success = true, Message = "Money transferred successfully." };
+        this.dataBaseAccess = dataBaseAccess;
+    }
 
-        return result;
+    public async Task TransferMoney(TransferRequestDTO transferRequest)
+    {
+        dataBaseAccess.MakeTransfer(transferRequest);
     }
 
     public string GetRecipientInfo( int accountNumber)
@@ -30,26 +30,6 @@ public class TransferDAO : ITransferDAO
         //probably should do some json deseriliaze magic or parseint
         string info = "";
         return info;
-    }
-
-    public Task<TransferInfo> CreateAsync(TransferInfo transferInfo)
-    {
-        int id = 1;
-        if (_fileContext.Transfers.Any())
-        {
-            id = _fileContext.Transfers.Max(t => t.Id);
-            id++;
-        }
-        transferInfo.Id = id;
-        _fileContext.Transfers.Add(transferInfo);
-        _fileContext.SaveChanges();
-        return Task.FromResult(transferInfo);
-    }
-
-    public async Task<IEnumerable<TransferInfo>> GetAsync()
-    {
-        IEnumerable<TransferInfo> transfers = _fileContext.Transfers.AsEnumerable();
-        return transfers;
     }
     
 }

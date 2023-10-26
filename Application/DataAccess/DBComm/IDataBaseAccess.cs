@@ -4,6 +4,6 @@ namespace Application.DaoInterfaces;
 
 public interface IDataBaseAccess
 {
-    TransferResultDTO /*or gson*/ MakeTransfer(TransferRequestDTO transfer);
+    Task MakeTransfer(TransferRequestDTO transfer);
     
 }
