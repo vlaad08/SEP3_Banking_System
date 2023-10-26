@@ -1,0 +1,67 @@
+.box[b-vtfvhyjmbz] {
+    height: auto;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    background-color: rgb(27, 27, 27);
+    color: white;
+    flex-direction: column;
+}
+
+.box-info[b-vtfvhyjmbz]{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+}
+
+.balance[b-vtfvhyjmbz] {
+    text-align: left;
+    width: 49%;
+    font-size: calc(16px + 0.4vw);
+}
+
+.box-transfer[b-vtfvhyjmbz]{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(20, 20, 20);
+}
+
+.transferButton[b-vtfvhyjmbz]{
+    text-decoration: none;
+    align-self: flex-end;
+    justify-self: flex-end;
+    height: auto;
+    padding: 2%;
+    color: white;
+    background-color: rgb(27, 27, 27);
+    border: none;
+    border-left: 1px solid rgb(20, 20, 20);
+    transition: 0.2s;
+    width: 100%;
+}
+
+.transferButton:hover[b-vtfvhyjmbz] {
+    background-color: #420000;
+    transition: 0.2s;
+}
+
+
+@media (min-width: 641px) {
+    .box[b-vtfvhyjmbz]{
+        width: 50%;
+    }
+    .transferButton[b-vtfvhyjmbz]{
+        width: 25%;
+    }
+}
+
+@media (max-width: 640px) {
+    .box[b-vtfvhyjmbz]{
+        width: 98%;
+    }
+    .transferButton[b-vtfvhyjmbz]{
+        width: 50%;
+    }
+}

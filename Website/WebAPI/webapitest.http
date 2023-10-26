@@ -1,0 +1,22 @@
+
+POST https://localhost:7168/Auth/login
+Content-Type: application/json
+
+{ "Email" : "totlevente@gmail.com", "Password" : "melegvagiok" }
+
+###
+
+GET https://localhost:7168/test/authorized
+
+###
+
+
+GET https://localhost:7168/test/authorized
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI0ZDk4MDczZi1iNGNhLTQyMGMtOTUwMC04MzNmYjE3OTJlZTYiLCJpYXQiOiIxMC8xOS8yMDIzIDY6MDQ6MjkgUE0iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDbGllbnQiLCJleHAiOjE2OTc3NDIyNjksImlzcyI6IkpXVEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSldUU2VydmljZUJsYXpvcldhc21DbGllbnQifQ.2hzuYRL7MfMTYrGrT0rHch_5biIGeDpTVH-oN1_YHuYDJJ1QQCzoLzbC7NPDhCvbEB824IJFL--U0qx2OSVyRw
+
+
+###
+POST http://172.20.10.4:5054/api/Transfer/Transfer
+Content-Type: application/json
+
+{"amount" :  200, "recipientName" :  "MuieBleaga", "recipientAccountNumber" :  1, "message" :  "sugi pula", "senderAccountNumber" :  0}

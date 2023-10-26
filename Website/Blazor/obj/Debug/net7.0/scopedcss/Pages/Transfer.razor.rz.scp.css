@@ -1,0 +1,55 @@
+.content[b-8knyd3924t]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.card[b-8knyd3924t]{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 1rem;
+    width: 40rem;
+    color: white;
+}
+
+.card div[b-8knyd3924t] {
+    padding: 1rem;
+}
+
+.submitButton[b-8knyd3924t]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+button[b-8knyd3924t] {
+    background-color: inherit;
+    width: calc(20% + 20px);
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover[b-8knyd3924t] {
+    transition: 0.2s ease-in-out;
+    background-color: #420000;;
+    cursor: pointer;
+}
+
+input[b-8knyd3924t] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 100%;
+}
+
+label[b-8knyd3924t] {
+    display: block;
+    margin-bottom: 0.5rem;
+}

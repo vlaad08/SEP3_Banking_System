@@ -1,0 +1,44 @@
+@page "/transfer"
+@attribute [Authorize]
+@inject NavigationManager navMgr
+<PageTitle>Transfer</PageTitle>
+
+<div class="content">
+    
+    <div class="card">
+        <div>
+            <label>Your account number: </label>
+            <input type="text" >
+        </div>
+        <div>
+            <label>Receiver's account number: </label>
+            <input type="text" >
+        </div>
+        <div>
+            <label>Amount: </label>
+            <input type="number" placeholder="Amount in Danish Krone" >
+        </div>
+        <div>
+            <label>Message for receiver: </label>
+            <input type="text">
+        </div>
+        <div class="submitButton">
+             <button @onclick="Create">Submit transfer</button>
+        </div>
+    </div>
+
+</div>
+@code {
+    
+    
+    
+    private async Task Create()
+    {
+        
+    }
+    private void GoOn()
+    {
+        navMgr.NavigateTo("/Transactions");
+    }
+    
+}

@@ -1,0 +1,96 @@
+.box{
+    margin-top: 5%;
+    height: auto;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    background-color: rgb(27, 27, 27);
+    color: white;
+    flex-direction: column;
+}
+
+.box-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 0 0 2%;
+}
+
+.optionsText {
+    text-align: center;
+    font-size: calc(18px + 0.3vh);
+    width: 50%;
+    justify-self: flex-start;
+}
+
+.optionsButton {
+    color: white;
+    background-color: inherit;
+    border: none;
+    width: 20%;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+    justify-self: flex-end;
+}
+
+.optionsButton:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: 0.2s;
+}
+
+.transactions-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(20, 20, 20);
+    padding: 2%;
+    margin: 0;
+}
+
+.box-transactions{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transactionsButton{
+    color: white;
+    border: none;
+    background-color: inherit;
+    transition: 0.2s ease-in-out;
+    padding: 2%;
+    font-size: calc(15px + 0.4vh);
+}
+
+.transactionsButton:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: 0.2s;
+}
+
+.empty-block{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyText{
+    font-size: calc(14px + 00.3vh);
+    color: grey;
+    margin: 0;
+    padding: 2%;
+}
+
+@media (min-width: 641px) {
+    .box{
+        width: 50%;
+    }
+}
+
+@media (max-width: 640px) {
+    .box{
+        width: 98%;
+    }
+}
