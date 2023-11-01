@@ -1,4 +1,4 @@
-.box[b-dpjxzb1cre]{
+.box[b-j9zj3dox54]{
     margin-top: 5%;
     height: auto;
     display: flex;
@@ -9,21 +9,21 @@
     flex-direction: column;
 }
 
-.box-options[b-dpjxzb1cre]{
+.box-options[b-j9zj3dox54]{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2% 0 0 2%;
 }
 
-.optionsText[b-dpjxzb1cre] {
+.optionsText[b-j9zj3dox54] {
     text-align: center;
     font-size: calc(18px + 0.3vh);
     width: 50%;
     justify-self: flex-start;
 }
 
-.optionsButton[b-dpjxzb1cre] {
+.optionsButton[b-j9zj3dox54] {
     color: white;
     background-color: inherit;
     border: none;
@@ -33,12 +33,12 @@
     justify-self: flex-end;
 }
 
-.optionsButton:hover[b-dpjxzb1cre]{
+.optionsButton:hover[b-j9zj3dox54]{
     background-color: rgba(255, 255, 255, 0.1);
     transition: 0.2s;
 }
 
-.transactions-list[b-dpjxzb1cre]{
+.transactions-list[b-j9zj3dox54]{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -48,14 +48,14 @@
     margin: 0;
 }
 
-.box-transactions[b-dpjxzb1cre]{
+.box-transactions[b-j9zj3dox54]{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.transactionsButton[b-dpjxzb1cre]{
+.transactionsButton[b-j9zj3dox54]{
     color: white;
     border: none;
     background-color: inherit;
@@ -64,19 +64,19 @@
     font-size: calc(15px + 0.4vh);
 }
 
-.transactionsButton:hover[b-dpjxzb1cre]{
+.transactionsButton:hover[b-j9zj3dox54]{
     background-color: rgba(255, 255, 255, 0.1);
     transition: 0.2s;
 }
 
-.empty-block[b-dpjxzb1cre]{
+.empty-block[b-j9zj3dox54]{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.emptyText[b-dpjxzb1cre]{
+.emptyText[b-j9zj3dox54]{
     font-size: calc(14px + 00.3vh);
     color: grey;
     margin: 0;
@@ -84,13 +84,13 @@
 }
 
 @media (min-width: 641px) {
-    .box[b-dpjxzb1cre]{
+    .box[b-j9zj3dox54]{
         width: 50%;
     }
 }
 
 @media (max-width: 640px) {
-    .box[b-dpjxzb1cre]{
+    .box[b-j9zj3dox54]{
         width: 98%;
     }
 }

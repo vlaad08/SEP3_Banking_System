@@ -17,3 +17,18 @@
         </article>
     </main>
 </div>
+
+@code
+{
+    private async Task Try()
+    {
+        Console.WriteLine("fuck");
+    }
+    
+    protected override async void OnInitialized()
+    {
+        Task.Delay(100);
+        Console.WriteLine(111);
+        await Try();
+    }
+}
