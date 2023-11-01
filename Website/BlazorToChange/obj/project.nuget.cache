@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Prs/lf5zwg+2qZX2m2OBSWplT4R5fu4YMmv4vLTy+hW2S/ehDHDa6UbusNFlYM4UFmg5jZuRLQRfRute75a/FA==",
+  "dgSpecHash": "TplckSXpG97qUkg7oZmr9D9FIIo66BkYeVX3YYAiC4n1IpLs9PdNiKnmqbC7MwRuVs6GSpfmZwEiET/vysxpsw==",
   "success": true,
-  "projectFilePath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+  "projectFilePath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/BlazorToChange.csproj",
   "expectedPackageFiles": [
     "/Users/IHSSAN/.nuget/packages/microsoft.aspnetcore.authorization/7.0.13/microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
     "/Users/IHSSAN/.nuget/packages/microsoft.aspnetcore.metadata/7.0.13/microsoft.aspnetcore.metadata.7.0.13.nupkg.sha512",

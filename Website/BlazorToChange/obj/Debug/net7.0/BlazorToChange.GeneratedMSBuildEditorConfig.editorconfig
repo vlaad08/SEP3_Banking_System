@@ -1,0 +1,89 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BlazorToChange
+build_property.RootNamespace = BlazorToChange
+build_property.ProjectDir = /Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-9rpjxm8ed7
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-y0nbow6tsg
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/LoginButtons.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW5CdXR0b25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-gjwvnm9owi
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-bn5sr8jurz
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/Transactions.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-n47rm69ic2
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/Transfer.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNmZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-bidkg91x5n
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Components/RecentTransactions.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9SZWNlbnRUcmFuc2FjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-3rdzobtsbf
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Components/UserDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Vc2VyRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-64rjuphpb5
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-nj5hxava7p
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-b77g659ywa
+
+[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/BlazorToChange/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

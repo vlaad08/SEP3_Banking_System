@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{1E54B95D-48A1-4D17-BAD0-6F6687047EE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csproj", "{7608D558-E5D2-418F-B8EB-A468E6DD9068}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorToChange", "BlazorToChange\BlazorToChange.csproj", "{7608D558-E5D2-418F-B8EB-A468E6DD9068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
