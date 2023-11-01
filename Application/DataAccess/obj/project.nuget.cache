@@ -1,8 +1,28 @@
 {
   "version": 2,
-  "dgSpecHash": "UgJhybE7Vi4bMjim5p8YAx3TC2wl4gUnUSxEuo2YORf0HJh10q2z2hkhYQqk3sxgmgXOhdRVSe+n1iPiCdInTA==",
+  "dgSpecHash": "UJsVz0S3szh6I/QVyi5DbQWRD9BUeDSLxptLwtpsQLY9uffzi0LVDaSMgqS5ncY30Og/cU+fNEzxP9bsN020yw==",
   "success": true,
-  "projectFilePath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc\\2.46.6\\grpc.2.46.6.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.core\\2.46.6\\grpc.core.2.46.6.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.core.api\\2.59.0-pre1\\grpc.core.api.2.59.0-pre1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.core.testing\\2.46.6\\grpc.core.testing.2.46.6.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.net.client\\2.59.0-pre1\\grpc.net.client.2.59.0-pre1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.net.clientfactory\\2.59.0-pre1\\grpc.net.clientfactory.2.59.0-pre1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.net.common\\2.59.0-pre1\\grpc.net.common.2.59.0-pre1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpc.tools\\2.59.0\\grpc.tools.2.59.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\grpcwebsocketbridge.aspnetcore\\1.2.2\\grpcwebsocketbridge.aspnetcore.1.2.2.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.http\\6.0.0\\microsoft.extensions.http.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
