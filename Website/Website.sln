@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorToChange", "BlazorToChange\BlazorToChange.csproj", "{7608D558-E5D2-418F-B8EB-A468E6DD9068}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csproj", "{2D5C1ED5-84DF-4BF3-8D4B-E35440A22FD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7608D558-E5D2-418F-B8EB-A468E6DD9068}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7608D558-E5D2-418F-B8EB-A468E6DD9068}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7608D558-E5D2-418F-B8EB-A468E6DD9068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5C1ED5-84DF-4BF3-8D4B-E35440A22FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5C1ED5-84DF-4BF3-8D4B-E35440A22FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5C1ED5-84DF-4BF3-8D4B-E35440A22FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5C1ED5-84DF-4BF3-8D4B-E35440A22FD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
