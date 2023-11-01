@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lAvAvU9dH3on/gNuGI+CSbaetDMeovc08qvmNLQ4Fw3r9W9KIOdhEzjhPIGMUgJ2Qh3xjhyDgoiCE3Qcr9Bx5g==",
+  "dgSpecHash": "DhBRsExeqTFn/YjT6UVrtt3qY+hrSMTOS2iysD/WZRoz8z8tY4U7hVsKFUQVDpmG2xUC/xdaQxuUhCov5MRjFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
   "expectedPackageFiles": [
@@ -32,7 +32,7 @@
     "C:\\Users\\vlada\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\vlada\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\vlada\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\vlada\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.10\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.10.nupkg.sha512"
+    "C:\\Users\\vlada\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.13\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.13.nupkg.sha512"
   ],
   "logs": []
 }
