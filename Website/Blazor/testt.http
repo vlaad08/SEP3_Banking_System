@@ -1,4 +1,0 @@
-POST http://localhost:5054/api/Transfer/Transfer
-Content-Type: application/json
-
-{"Amount":100,"SenderAccountNumber":"318049189031","Message":"FUCK","RecipientAccountNumber":"149868761241"}

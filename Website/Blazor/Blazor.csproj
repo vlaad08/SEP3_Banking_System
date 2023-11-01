@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
@@ -7,31 +7,33 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.13" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Components\RecentTransactions.razor" />
-      <AdditionalFiles Include="Components\UserDetails.razor" />
-    </ItemGroup>
-
-
-
-    <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
-	</ItemGroup>
-
-
+    </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\sample-data\" />
+      <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\_Host.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Pages\FetchData.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Index.razor" />
+      <_ContentIncludedByDefault Remove="Shared\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Shared\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Shared\SurveyPrompt.razor" />
     </ItemGroup>
-    
 
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Home.razor" />
+      <AdditionalFiles Include="Pages\Index.razor" />
+      <AdditionalFiles Include="Pages\LoginButtons.razor" />
+      <AdditionalFiles Include="Pages\Settings.razor" />
+      <AdditionalFiles Include="Pages\Transactions.razor" />
+      <AdditionalFiles Include="Pages\Transfer.razor" />
+      <AdditionalFiles Include="Shared\MainLayout.razor" />
+      <AdditionalFiles Include="Shared\NavMenu.razor" />
+    </ItemGroup>
 
-
-
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.13" />
+    </ItemGroup>
 
 </Project>
