@@ -4,7 +4,7 @@ using System.Text.Json;
 using Application.DaoInterfaces;
 using Domain.DTOs;
 using Grpc.Core;
-using Grpc.Net.Client
+using Grpc.Net.Client;
 using Grpc.Net.ClientFactory;
 
 namespace DataAccess.DBComm;
