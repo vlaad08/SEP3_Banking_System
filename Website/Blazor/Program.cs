@@ -15,7 +15,7 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped(
     sp => 
         new HttpClient { 
-            BaseAddress = new Uri("https://localhost:7257") 
+            BaseAddress = new Uri("https://localhost:7168") 
         }
 );
 

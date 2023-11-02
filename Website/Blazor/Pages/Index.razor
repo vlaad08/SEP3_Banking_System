@@ -3,38 +3,39 @@
 @inject IAuthService authService
 @inject NavigationManager navMgr
 
-<AuthorizeView>
-    <NotAuthorized>
-        <div class="card">
-            <h3>Please login</h3>
-            <div class="field">
-                <label>Email:</label>
-                <input type="text" @bind="email" @onkeydown="Login"/>
-            </div>
-            <div class="field">
-                <label style="text-align: center">Password:</label>
-                <input type="password" @bind="password" @onkeydown="Login"/>
-            </div>
-            @if (!string.IsNullOrEmpty(errorLabel))
-            {
-                <div class="field">
-                    <label style="color: red">
-                        @errorLabel
-                    </label>
-                </div>
-            }
-            <div class="field">
-                <button class="loginbtn" @onclick="LoginAsync">Log in</button>
-            </div>
-        </div>
-    </NotAuthorized>
-    <Authorized>
-        <div class="card">
-            <h3>Hello, @context.User.Identity.Name</h3>
-        </div>
-    </Authorized>
-</AuthorizeView>
 
+<div class="indexBody">
+    <div class="content">
+    <AuthorizeView>
+        <NotAuthorized>
+            <div class="card">
+                <h1>Access Account</h1>
+                <div class="field">
+                    <input type="text" @bind="email" @onkeydown="Login" placeholder="Email"/>
+                </div>
+                <div class="field">
+                    <input type="password" @bind="password" @onkeydown="Login" placeholder="Password"/>
+                </div>
+                @if (!string.IsNullOrEmpty(errorLabel))
+                {
+                    <div class="field">
+                        <label style="color: red">
+                            @errorLabel
+                        </label>
+                    </div>
+                }
+                <button class="loginbtn" @onclick="LoginAsync">Log in <span class="loginArrow">></span></button>
+                <button class="registerbtn">Need an account?</button>
+            </div>
+        </NotAuthorized>
+        <Authorized>
+            <div class="card">
+                <h3>Hello, @context.User.Identity.Name</h3>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+    </div>
+</div>
         
 
 
