@@ -42,6 +42,14 @@
               "target": "Package",
               "version": "[2.46.6, )"
             },
+            "Grpc.AspNetCore.Server.ClientFactory": {
+              "target": "Package",
+              "version": "[2.59.0-pre1, )"
+            },
+            "Grpc.AspNetCore.Server.Reflection": {
+              "target": "Package",
+              "version": "[2.59.0-pre1, )"
+            },
             "Grpc.Core": {
               "target": "Package",
               "version": "[2.46.6, )"
@@ -49,6 +57,10 @@
             "Grpc.Core.Testing": {
               "target": "Package",
               "version": "[2.46.6, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.59.0-pre1, )"
             },
             "Grpc.Net.ClientFactory": {
               "target": "Package",
@@ -63,6 +75,10 @@
             "GrpcWebSocketBridge.AspNetCore": {
               "target": "Package",
               "version": "[1.2.2, )"
+            },
+            "io.Grpc.Sap": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             }
           },
           "imports": [

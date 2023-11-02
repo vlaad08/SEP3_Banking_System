@@ -25,23 +25,21 @@ public class DataBaseAccess : IDataBaseAccess
 
     public async Task MakeTransfer(TransferRequestDTO request)
     {
-        String json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //String json = JsonSerializer.Serialize(request);
+        //var content = new StringContent(json, Encoding.UTF8, "application/json");
         //HttpResponseMessage message = await rest.PostAsync("transactions/",content);
         
         if (message.IsSuccessStatusCode)
         {
             // Request was successful, handle the response if needed
-            string responseContent = await message.Content.ReadAsStringAsync();
-            Console.WriteLine("Response Content: " + responseContent);
+            //string responseContent = await message.Content.ReadAsStringAsync();
+            //Console.WriteLine("Response Content: " + responseContent);
         }
         else
         {
             
         }
-
         {   
-            // Handle errors here
             Console.WriteLine("Error: " + message.StatusCode);
         }
     }
