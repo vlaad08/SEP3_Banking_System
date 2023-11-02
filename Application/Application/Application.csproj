@@ -12,22 +12,5 @@
     </ItemGroup>
 
 
-    <ItemGroup>
-      <PackageReference Include="Grpc" Version="2.46.6" />
-      <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.59.0-pre1" />
-      <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.59.0-pre1" />
-      <PackageReference Include="Grpc.Core" Version="2.46.6" />
-      <PackageReference Include="Grpc.Core.Testing" Version="2.46.6" />
-      <PackageReference Include="Grpc.Net.Client" Version="2.59.0-pre1" />
-      <PackageReference Include="Grpc.Net.ClientFactory" Version="2.59.0-pre1" />
-      <PackageReference Include="Grpc.Tools" Version="2.59.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="GrpcWebSocketBridge.AspNetCore" Version="1.2.2" />
-      <PackageReference Include="io.Grpc.Sap" Version="1.0.3" />
-    </ItemGroup>
-
-
 
 </Project>

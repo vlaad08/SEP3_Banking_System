@@ -3,9 +3,9 @@ using System.Text;
 using System.Text.Json;
 using Application.DaoInterfaces;
 using Domain.DTOs;
-using Grpc.Core;
-using Grpc.Net.Client;
-using Grpc.Net.ClientFactory;
+//using Grpc.Core;
+//using Grpc.Net.Client;
+//using Grpc.Net.ClientFactory;
 
 namespace DataAccess.DBComm;
 
@@ -13,13 +13,13 @@ public class DataBaseAccess : IDataBaseAccess
 {
     //private HttpClient rest=new HttpClient();
     
-    private readonly GrpcChannel channel;
+    //private readonly GrpcChannel channel;
     //private readonly TransferService./* proto file generates this's name*/ client;
 
     public DataBaseAccess()
     {
         //rest.BaseAddress = new Uri("http://localhost:8080");
-        channel = GrpcChannel.ForAddress("http://localhost:8080"); 
+        //channel = GrpcChannel.ForAddress("http://localhost:8080"); 
         //client = new TransferService.TransferServiceClient(channel);
     }
 
