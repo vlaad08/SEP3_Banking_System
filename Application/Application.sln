@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{FE906D9D-8F55-4B72-9F4C-A3A0705B321F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grpc", "Grpc\Grpc.csproj", "{7E869EAF-9E0A-41C9-B9D3-8D79B0524251}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseComm", "DatabaseComm\DatabaseComm.csproj", "{7E869EAF-9E0A-41C9-B9D3-8D79B0524251}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

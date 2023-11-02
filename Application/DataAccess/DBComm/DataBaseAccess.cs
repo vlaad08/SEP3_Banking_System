@@ -3,9 +3,9 @@ using System.Text;
 using System.Text.Json;
 using Application.DaoInterfaces;
 using Domain.DTOs;
-//using Grpc.Core;
-//using Grpc.Net.Client;
-//using Grpc.Net.ClientFactory;
+//using DatabaseComm.Core;
+//using DatabaseComm.Net.Client;
+//using DatabaseComm.Net.ClientFactory;
 
 namespace DataAccess.DBComm;
 

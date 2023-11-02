@@ -1,0 +1,5 @@
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.AssemblyReference.cache
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfoInputs.cache
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfo.cs
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.CoreCompileInputs.cache
