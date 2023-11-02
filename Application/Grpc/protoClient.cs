@@ -8,15 +8,15 @@ public class protoClient
 {
     static async Task Main(string[] args)
     {
-        using var channel = GrpcChannel.ForAddress("http://localhost:9090");
+        using var channel = GrpcChannel.ForAddress("localhost");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var transferRequest = new TransferRequest
         {
-            SenderAccountId = "aaaabbbbccccdddd",
-            RecipientAccountId = "aaaabbbbddddcccc",
-            Balance = 200,
-            Message = "-"
+            SenderAccountId = "kaka",
+            RecipientAccountId = "pisi",
+            Balance = 69,
+            Message = "kula"
         };
 
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
