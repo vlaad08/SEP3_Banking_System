@@ -18,13 +18,13 @@ public class TransferController : ControllerBase
     }
 
     [HttpPost,Route("Transfer")]
-    public /*async*/ void TransferMoney([FromBody] TransferRequestDTO transferRequest)
+    public async void TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
             //should validate somehow
             //we have the validation shit
         //_transferValidation.ValidateRequest(transferRequest);
         Console.WriteLine("transferRequest");
-        var result = /*await*/ transferLogic.TransferMoney(transferRequest);
+        await transferLogic.TransferMoney(transferRequest);
     }
     
    

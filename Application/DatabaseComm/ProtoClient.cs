@@ -4,17 +4,15 @@ using Grpc.Net.Client;
 
 namespace Grpc;
 
-public class ProtoClient : IGrpcClient
+public class ProtoClient:IGrpcClient
 {
-    private DatabaseService.DatabaseServiceClient databaseClient = null;
-
-    public ProtoClient()
-    {
-        Connect();
-    }
+    public static async Task Main(string[] args) {}
+    
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
-        Connect();
+        string serverAddress = "10.154.212.94:9090";
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var transferRequest = new TransferRequest
         {
             SenderAccountId = transferRequestDto.SenderAccountNumber,
@@ -22,16 +20,7 @@ public class ProtoClient : IGrpcClient
             Balance = transferRequestDto.Amount,
             Message = transferRequestDto.Message
         };
-
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
-
-        Console.WriteLine(transferResponse.Resp);
     }
-
-    public void Connect()
-    {
-        string serverAddress = "10.154.212.94:9090";
-        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
-        databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-    }
+    
 }
