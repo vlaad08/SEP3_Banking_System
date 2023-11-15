@@ -1,22 +1,18 @@
 package Database.TestClient;
 
-import Database.DatabaseServiceGrpc;
-import Database.TransferRequest;
-import Database.TransferResponse;
+import Database.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 public class Client {
     public static void main(String[] args) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("10.154.212.94",9090).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost",9090).usePlaintext().build();
         DatabaseServiceGrpc.DatabaseServiceBlockingStub databaseStub = DatabaseServiceGrpc.newBlockingStub(managedChannel);
-        TransferRequest transferRequest = TransferRequest.newBuilder()
-                .setSenderAccountId("bbbbaaaaccccdddd")
-                .setRecipientAccountId("aaaabbbbccccdddd")
-                .setBalance(200)
-                .setMessage("-")
+
+        AccountCheckRequest request = AccountCheckRequest.newBuilder()
+                .setRecipientAccountId("sdfas")
                 .build();
-        TransferResponse transferResponse = databaseStub.transfer(transferRequest);
-        System.out.println(transferResponse.getResp());
+        AccountCheckResponse response = databaseStub.checkAccount(request);
+        System.out.println(response.getRecipientAccountId());
     }
 }
