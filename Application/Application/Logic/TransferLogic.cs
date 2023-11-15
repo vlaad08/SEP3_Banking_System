@@ -7,7 +7,6 @@ namespace Application.Logic;
 
 public class TransferLogic : ITransferLogic
 {
-    //ADD ASYNC!!!!!
     private readonly ITransferDAO transferDao;
 
     public TransferLogic(ITransferDAO transferDAO)
@@ -15,15 +14,26 @@ public class TransferLogic : ITransferLogic
         this.transferDao = transferDAO;
     }
 
+    private bool ValidateTransfer(TransferRequestDTO transferRequest)
+    {   //mybe async?
+        if (transferDao.GetBalanceByAccountNumber(transferRequest.SenderAccountNumber) >= transferRequest.Amount &&
+            transferDao.GetAccountNumberByAccountNumber(transferRequest.RecipientAccountNumber)
+                .Equals(transferRequest.RecipientAccountNumber))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public async Task TransferMoney(TransferRequestDTO transferRequest)
     {
-        //TransferValidation.ValidateRequest(transferRequest);
-        
-        //transfer logic should happen here
-        //it tells the server to reach db and use ig a change balance method to change
-        //balance by transfer amount on the two accounts
-        //public void changeBalance(int accNumber, int amount) and then amount could be negative
-        transferDao.TransferMoney(transferRequest);
+        if (ValidateTransfer(transferRequest))
+        {
+           transferDao.TransferMoney(transferRequest);
+        }
     }
     
     

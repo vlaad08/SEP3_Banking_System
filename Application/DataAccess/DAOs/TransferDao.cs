@@ -16,20 +16,18 @@ public class TransferDAO : ITransferDAO
     {
         dataBaseAccess.MakeTransfer(transferRequest);
     }
-
-    public string GetRecipientInfo( int accountNumber)
+    
+    public double GetBalanceByAccountNumber(string accountNumber)
     {
-        //reach db get the name based on accountnumber w/DBserver
-        string info = "";
-        return info;
+        double balance = 0.0;
+        return balance;
     }
 
-    public string GetSenderInfo(int accountNumber)
+    public string GetAccountNumberByAccountNumber(string accountNumber)
     {
-        //reach db get senders info based on accountnumber
-        //probably should do some json deseriliaze magic or parseint
-        string info = "";
-        return info;
+        string accNum = "";
+        return accNum;
     }
+    
     
 }

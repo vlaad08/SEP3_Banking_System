@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {}
+    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/obj/",
+        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

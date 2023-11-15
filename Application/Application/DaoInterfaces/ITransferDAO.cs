@@ -6,6 +6,7 @@ namespace Application.DaoInterfaces;
 public interface ITransferDAO
 {
     Task TransferMoney(TransferRequestDTO transferRequest);
-    string GetRecipientInfo(int accountNumber);
-    string GetSenderInfo(int accountNumber);
+    double GetBalanceByAccountNumber(string accountNumber);
+    string GetAccountNumberByAccountNumber(string accountNumber);
+
 }
