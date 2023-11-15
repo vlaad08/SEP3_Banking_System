@@ -14,5 +14,11 @@ public class Client {
                 .build();
         AccountCheckResponse response = databaseStub.checkAccount(request);
         System.out.println(response.getRecipientAccountId());
+
+        BalanceCheckRequest request1 = BalanceCheckRequest.newBuilder()
+                .setAccountId("aaaabbbbccccdddd")
+                .build();
+        BalanceCheckResponse response1 = databaseStub.checkBalance(request1);
+        System.out.println(response1.getBalance());
     }
 }

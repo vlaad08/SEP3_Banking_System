@@ -38,14 +38,16 @@ public class SQLConnection implements SQLConnectionInterface{
     }
     /** Database query method, to make the query for the available balance for the given account_id**/
     @Override
-    public double getBalanceById(String account_id) throws SQLException {
+    public double checkBalance(String account_id) throws SQLException {
         double balance=0;
         try (Connection connection= getConnection())
         {
             PreparedStatement statement=connection.prepareStatement("SELECT balance FROM account WHERE account_id=?;");
             statement.setString(1,account_id);
             ResultSet result = statement.executeQuery();
-            balance=result.getDouble("balance");
+            if (result.next()) {
+                balance = result.getDouble("balance");
+            }
         }
         return balance;
     }
