@@ -1,20 +1,23 @@
 ﻿using Domain.DTOs;
 using Application.DaoInterfaces;
 using Domain.Models;
+using Grpc;
 
 namespace DataAccess.DAOs;
 
 public class TransferDAO : ITransferDAO
 {
-    private IDataBaseAccess dataBaseAccess;
-    public TransferDAO(IDataBaseAccess dataBaseAccess)
+    //private readonly IDataBaseAccess dataBaseAccess;
+    private readonly IGrpcClient _grpcClient;
+    public TransferDAO(IGrpcClient grpcClient)
     {
-        this.dataBaseAccess = dataBaseAccess;
+        this._grpcClient = grpcClient;
     }
 
-    public async Task TransferMoney(TransferRequestDTO transferRequest)
+    public async Task TransferMoney(TransferRequestDTO transferRequestDto)
     {
-        dataBaseAccess.MakeTransfer(transferRequest);
+        Console.WriteLine("DAO");
+       await  _grpcClient.MakeTransfer(transferRequestDto);
     }
 
     public string GetRecipientInfo( int accountNumber)

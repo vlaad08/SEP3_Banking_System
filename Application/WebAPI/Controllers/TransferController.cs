@@ -24,7 +24,7 @@ public class TransferController : ControllerBase
             //we have the validation shit
         //_transferValidation.ValidateRequest(transferRequest);
         Console.WriteLine("transferRequest");
-        var result = transferLogic.TransferMoney(transferRequest);
+        await transferLogic.TransferMoney(transferRequest);
     }
     
    

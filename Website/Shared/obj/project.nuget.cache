@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "VpLfyZlV5CevXKa6mpkPrGtfNCyY0N+bMsNkMZOU98s0e2WZo0c6imrgyiaJ6t9znTkDuhVCsEjUEfRUWNI1AA==",
+  "dgSpecHash": "TsYiNKyGwAnFxiLjoEan7yTxGeWUbnR3/JRalehu+bqzKUs3SJiobQfuj8j1dPKby+JsG4ObOdfAn9rApsMCKQ==",
   "success": true,
-  "projectFilePath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+  "projectFilePath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj",
   "expectedPackageFiles": [
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.aspnetcore.authorization/7.0.12/microsoft.aspnetcore.authorization.7.0.12.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.aspnetcore.metadata/7.0.12/microsoft.aspnetcore.metadata.7.0.12.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.1/microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.extensions.options/7.0.1/microsoft.extensions.options.7.0.1.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.12\\microsoft.aspnetcore.authorization.7.0.12.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.12\\microsoft.aspnetcore.metadata.7.0.12.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
+    "C:\\Users\\tothl\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

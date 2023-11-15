@@ -18,7 +18,7 @@ public class TransferLogic : ITransferLogic
     public async Task TransferMoney(TransferRequestDTO transferRequest)
     {
         //TransferValidation.ValidateRequest(transferRequest);
-        
+        Console.WriteLine("Logic");
         //transfer logic should happen here
         //it tells the server to reach db and use ig a change balance method to change
         //balance by transfer amount on the two accounts
