@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {}
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"

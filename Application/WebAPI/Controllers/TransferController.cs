@@ -10,6 +10,7 @@ namespace Application.Controllers;
 public class TransferController : ControllerBase
 {
     private readonly ITransferLogic transferLogic;
+    //private TransferValidation _transferValidation;
 
     public TransferController(ITransferLogic transferLogic)
     {
@@ -19,11 +20,12 @@ public class TransferController : ControllerBase
     [HttpPost,Route("Transfer")]
     public async void TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
+            //should validate somehow
+            //we have the validation shit
+        //_transferValidation.ValidateRequest(transferRequest);
         Console.WriteLine("transferRequest");
         var result = transferLogic.TransferMoney(transferRequest);
     }
-    
-    
     
    
 }

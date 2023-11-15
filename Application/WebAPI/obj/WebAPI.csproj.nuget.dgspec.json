@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
+        "outputPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj"
               }
             }
           }
@@ -61,14 +61,14 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -83,11 +83,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj"
               }
             }
           }
@@ -121,14 +121,14 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -174,14 +174,14 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
+        "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -196,14 +196,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Application\\Application.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\tothl\\Desktop\\untitled_folder\\untitled folder\\Domain\\Domain.csproj"
               }
             }
           }
