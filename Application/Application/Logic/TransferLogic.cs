@@ -15,15 +15,33 @@ public class TransferLogic : ITransferLogic
         this.transferDao = transferDAO;
     }
 
+    private Task<bool> ValidateTransfer(TransferRequestDTO transferRequestDto)
+    {
+        if (transferDao.GetAccountNumberByAccountNumber(transferRequestDto.RecipientAccountNumber).Result.Equals(transferRequestDto.RecipientAccountNumber))
+        {
+            if (transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber).Result >= transferRequestDto.Amount)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                throw new Exception("There is not sufficient balance to make the transaction!");
+            }
+        }
+        else
+        {
+            throw new Exception("The account number does not exist!");
+        }
+       
+        
+    }
+
     public async Task TransferMoney(TransferRequestDTO transferRequest)
     {
-        //TransferValidation.ValidateRequest(transferRequest);
-        
-        //transfer logic should happen here
-        //it tells the server to reach db and use ig a change balance method to change
-        //balance by transfer amount on the two accounts
-        //public void changeBalance(int accNumber, int amount) and then amount could be negative
-        transferDao.TransferMoney(transferRequest);
+        if (ValidateTransfer(transferRequest).Result)
+        {
+            await transferDao.TransferMoney(transferRequest);
+        }
     }
     
     

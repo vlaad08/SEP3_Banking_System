@@ -57,18 +57,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj": {
+    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj",
-        "projectName": "DataAccess",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj",
+        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+        "projectName": "DatabaseComm",
+        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
         "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/obj/",
+        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
@@ -101,6 +101,22 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.25.0, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.58.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.59.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -117,7 +133,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -170,7 +186,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -199,8 +215,8 @@
               "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
                 "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj"
               },
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DataAccess/DataAccess.csproj"
+              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
+                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj"
               },
               "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
                 "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
@@ -218,11 +234,15 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
-              "version": "[7.0.9, )"
+              "version": "[6.5.0, )"
             },
-            "Swashbuckle.AspNetCore": {
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.5.0, )"
             }
@@ -246,7 +266,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }

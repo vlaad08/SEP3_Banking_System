@@ -49,4 +49,19 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return balance;
     }
+
+    @Override
+    public String checkAccountId(String account_id) throws SQLException {
+        String recipientAccount_id = "-";
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT account_id FROM account WHERE account_id = ?;");
+            statement.setString(1, account_id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                recipientAccount_id = result.getString("account_id");
+            }
+        }
+        return recipientAccount_id;
+    }
 }

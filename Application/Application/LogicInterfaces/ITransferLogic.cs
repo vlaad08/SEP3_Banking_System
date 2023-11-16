@@ -7,4 +7,5 @@ public interface ITransferLogic
 {
     Task TransferMoney(TransferRequestDTO transferRequest);
     
+    
 }

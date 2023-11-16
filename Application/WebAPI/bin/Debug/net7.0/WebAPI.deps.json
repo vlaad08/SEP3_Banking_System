@@ -11,44 +11,65 @@
           "Application": "1.0.0",
           "DataAccess": "1.0.0",
           "Domain": "1.0.0",
-          "Microsoft.AspNetCore.OpenApi": "7.0.9",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Swashbuckle.AspNetCore.Swagger": "6.5.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
         },
         "runtime": {
           "WebAPI.dll": {}
         }
       },
-      "Microsoft.AspNetCore.OpenApi/7.0.9": {
+      "Google.Protobuf/3.25.0": {
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.25.0.0",
+            "fileVersion": "3.25.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/2.58.0": {
+        "runtime": {
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.58.0.0"
+          }
+        }
+      },
+      "Grpc.Net.Client/2.58.0": {
         "dependencies": {
-          "Microsoft.OpenApi": "1.4.3"
+          "Grpc.Net.Common": "2.58.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
         },
         "runtime": {
-          "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "assemblyVersion": "7.0.9.0",
-            "fileVersion": "7.0.923.32110"
+          "lib/net7.0/Grpc.Net.Client.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.58.0.0"
           }
         }
       },
-      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
-      "Microsoft.OpenApi/1.4.3": {
+      "Grpc.Net.Common/2.58.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "2.58.0"
+        },
+        "runtime": {
+          "lib/net7.0/Grpc.Net.Common.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.58.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {},
+      "Microsoft.OpenApi/1.2.3": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "assemblyVersion": "1.4.3.0",
-            "fileVersion": "1.4.3.0"
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
           }
-        }
-      },
-      "Swashbuckle.AspNetCore/6.5.0": {
-        "dependencies": {
-          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
-          "Swashbuckle.AspNetCore.Swagger": "6.5.0",
-          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
-          "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
         }
       },
       "Swashbuckle.AspNetCore.Swagger/6.5.0": {
         "dependencies": {
-          "Microsoft.OpenApi": "1.4.3"
+          "Microsoft.OpenApi": "1.2.3"
         },
         "runtime": {
           "lib/net7.0/Swashbuckle.AspNetCore.Swagger.dll": {
@@ -87,10 +108,21 @@
       "DataAccess/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
+          "DatabaseComm": "1.0.0",
           "Domain": "1.0.0"
         },
         "runtime": {
           "DataAccess.dll": {}
+        }
+      },
+      "DatabaseComm/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Google.Protobuf": "3.25.0",
+          "Grpc.Net.Client": "2.58.0"
+        },
+        "runtime": {
+          "DatabaseComm.dll": {}
         }
       },
       "Domain/1.0.0": {
@@ -106,33 +138,47 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.AspNetCore.OpenApi/7.0.9": {
+    "Google.Protobuf/3.25.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5kBnHntQTJqmYV66Khdl9OJ/j2Pw8cOKj8kNQuLCpfCsPbSijp334Vaad3vaGnG9Wpgq/VbSUSRxZOoroOe8zQ==",
-      "path": "microsoft.aspnetcore.openapi/7.0.9",
-      "hashPath": "microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512"
+      "sha512": "sha512-pIEkH1IqZV1iK8J5MYdG1kOyY0EoQLB6yEKvBq12RYNtvGXwCvnQg5zQsFmcqAEPtIZvSqPozIbUZaEd5a2gCg==",
+      "path": "google.protobuf/3.25.0",
+      "hashPath": "google.protobuf.3.25.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
+    "Grpc.Core.Api/2.58.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
-      "path": "microsoft.extensions.apidescription.server/6.0.5",
-      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
+      "sha512": "sha512-OhYRghAdlxCc0YKRzqvlbDo1sJq1urHDw8T1OClbKbMbnN/zPzITni4Mzcm3HjSaCjKDgssGE1PuOCHZ6G3G0w==",
+      "path": "grpc.core.api/2.58.0",
+      "hashPath": "grpc.core.api.2.58.0.nupkg.sha512"
     },
-    "Microsoft.OpenApi/1.4.3": {
+    "Grpc.Net.Client/2.58.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
-      "path": "microsoft.openapi/1.4.3",
-      "hashPath": "microsoft.openapi.1.4.3.nupkg.sha512"
+      "sha512": "sha512-nSbBT9X6+eHEivqbkSOuexNeDO7oNzBMCC/kjj3Ah8Tlqd/EmG8K1A4+ZMqz9O8eHjYlPaOZflnWZfRuK5ECdg==",
+      "path": "grpc.net.client/2.58.0",
+      "hashPath": "grpc.net.client.2.58.0.nupkg.sha512"
     },
-    "Swashbuckle.AspNetCore/6.5.0": {
+    "Grpc.Net.Common/2.58.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
-      "path": "swashbuckle.aspnetcore/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.6.5.0.nupkg.sha512"
+      "sha512": "sha512-l+mQbPjRSB3nVjppKCULWnG/3Uj/GYDvhDo4yUTwz3v22zaKz8cGpQu6Svu2+DkCpdX5gemBK9HY6bksyNbZLQ==",
+      "path": "grpc.net.common/2.58.0",
+      "hashPath": "grpc.net.common.2.58.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.OpenApi/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
+      "path": "microsoft.openapi/1.2.3",
+      "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/6.5.0": {
       "type": "package",
@@ -161,6 +207,11 @@
       "sha512": ""
     },
     "DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DatabaseComm/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

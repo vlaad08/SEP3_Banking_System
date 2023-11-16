@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files=true;
+
+package Database;
+
+service DatabaseService{
+    rpc Transfer(TransferRequest) returns (TransferResponse){};
+    rpc CheckAccount(AccountCheckRequest) returns (AccountCheckResponse){};
+    rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
+}
+message TransferRequest{
+    string senderAccount_id = 1;
+    string recipientAccount_id =2;
+    double balance = 3;
+    string message = 4;
+}
+
+message TransferResponse{
+    string resp = 1;
+}
+
+message AccountCheckRequest
+{
+    string recipientAccount_id = 1;
+}
+message AccountCheckResponse{
+    string recipientAccount_id = 1;
+}
+
+message BalanceCheckRequest{
+    string account_id = 1;
+}
+message BalanceCheckResponse{
+    double balance = 1;
+}

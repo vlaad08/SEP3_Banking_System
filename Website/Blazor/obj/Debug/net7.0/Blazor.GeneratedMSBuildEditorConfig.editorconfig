@@ -9,61 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Blazor
 build_property.RootNamespace = Blazor
-build_property.ProjectDir = /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/
+build_property.ProjectDir = C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Website\Blazor\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor
+build_property.MSBuildProjectDirectory = C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Website\Blazor
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Components/RecentTransactions.razor]
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Components/RecentTransactions.razor]
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9SZWNlbnRUcmFuc2FjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSZWNlbnRUcmFuc2FjdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = b-j9zj3dox54
+build_metadata.AdditionalFiles.CssScope = b-dpjxzb1cre
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Components/UserDetails.razor]
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Components/UserDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Vc2VyRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVc2VyRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = b-o1ibr4neq7
+build_metadata.AdditionalFiles.CssScope = b-vtfvhyjmbz
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/App.razor]
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/_Imports.razor]
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-kocgbznukq
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-6me2utdfn1
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-yc7mlmln1x
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ci4vf3jic1
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/LoginButtons.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW5CdXR0b25zLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-sejvdau62l
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/LoginButtons.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5CdXR0b25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-8pweul6p7d
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Settings.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-twdoeqsa9b
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hbjkjnrvj8
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Transactions.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNhY3Rpb25zLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-2rc8x72get
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Transactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-pxs5efj3sx
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Transfer.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNmZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-ka0uien0w6
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Pages/Transfer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNmZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8knyd3924t
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-qt6tgh2907
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-r0yqwuvdyg
 
-[/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-32xpj7b96w
+[C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-6hj6azdo60
