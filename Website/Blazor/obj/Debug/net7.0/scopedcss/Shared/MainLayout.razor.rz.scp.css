@@ -13,6 +13,10 @@ main[b-r0yqwuvdyg] {
     background-size: cover;
 }
 
+.sidebar[b-r0yqwuvdyg]{
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+}
 
 
 .top-row[b-r0yqwuvdyg] {
@@ -63,7 +67,6 @@ main[b-r0yqwuvdyg] {
 
     .sidebar[b-r0yqwuvdyg] {
         left: 0;
-        backdrop-filter: blur(10px);
         width: 100%;
         position: sticky;
         top: 0;
