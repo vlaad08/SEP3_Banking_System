@@ -1,11 +1,10 @@
 package Database.DAOs;
 
 import Database.DAOs.Interfaces.TransactionDaoInterface;
-import Database.DTOs.CheckAccountIdDTO;
+import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.TransferRequestDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
-import Database.TransferRequest;
 
 import java.sql.SQLException;
 
@@ -26,8 +25,13 @@ public class TransactionDao implements TransactionDaoInterface
     }
 
     @Override
-    public String checkAccountId(CheckAccountIdDTO checkAccountIdDTO) throws SQLException {
-        return connection.checkAccountId(checkAccountIdDTO.getSrecipientAcoount_id());
+    public String checkAccountId(CheckAccountDTO checkAccountIdDTO) throws SQLException {
+        return connection.checkAccountId(checkAccountIdDTO.getRecipientAccount_id());
+    }
+
+    @Override
+    public double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException {
+        return connection.checkBalance(checkAccountDTO.getRecipientAccount_id());
     }
 
 

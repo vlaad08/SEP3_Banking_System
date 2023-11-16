@@ -2,7 +2,7 @@ package Database.Server;
 
 import Database.*;
 import Database.DAOs.TransactionDao;
-import Database.DTOs.CheckAccountIdDTO;
+import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.TransferRequestDTO;
 import io.grpc.stub.StreamObserver;
 
@@ -23,15 +23,29 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
 
     @Override
     public void checkAccount(AccountCheckRequest request, StreamObserver<AccountCheckResponse> responseObserver) {
-        CheckAccountIdDTO checkBalanceDTO = new CheckAccountIdDTO(request.getRecipientAccountId());
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO(request.getRecipientAccountId());
         String recipientAccount_id;
         try {
-            recipientAccount_id = transactionDao.checkAccountId(checkBalanceDTO);
+            recipientAccount_id = transactionDao.checkAccountId(checkAccountDTO);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         AccountCheckResponse response = AccountCheckResponse.newBuilder().setRecipientAccountId(recipientAccount_id).build();
-        System.out.println(response);
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void checkBalance(BalanceCheckRequest request, StreamObserver<BalanceCheckResponse> responseObserver)
+    {
+        CheckAccountDTO checkBalanceDTO = new CheckAccountDTO(request.getAccountId());
+        double balance;
+        try {
+            balance = transactionDao.checkBalance(checkBalanceDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        BalanceCheckResponse response = BalanceCheckResponse.newBuilder().setBalance(balance).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

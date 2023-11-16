@@ -21,6 +21,6 @@ public class AccountController {
     @GetMapping("/account/{account_id}")
     public synchronized double getBalance(@PathVariable String account_id) throws SQLException
     {
-        return connection.getBalanceById(account_id);
+        return connection.checkBalance(account_id);
     }
 }

@@ -4,6 +4,6 @@ import java.sql.SQLException;
 
 public interface SQLConnectionInterface {
     void transfer(String id_1, String id_2, double amount, String message);
-    double getBalanceById(String account_id) throws SQLException;
+    double checkBalance(String account_id) throws SQLException;
     String checkAccountId(String account_id) throws SQLException;
 }
