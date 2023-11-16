@@ -1,11 +1,10 @@
 .page[b-r0yqwuvdyg] {
     position: relative;
     display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(180deg, rgb(34, 34, 34) 0%, #420000 70%);
+    background-image: url("./images/LoginBackground.png");
     height: 100vh;
     background-size: cover;
-    background-repeat: no-repeat;
+    flex-direction: row;
 }
 
 main[b-r0yqwuvdyg] {
@@ -14,9 +13,11 @@ main[b-r0yqwuvdyg] {
     background-size: cover;
 }
 
-.sidebar[b-r0yqwuvdyg] {
-    left: 20%;
+.sidebar[b-r0yqwuvdyg]{
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
 }
+
 
 .top-row[b-r0yqwuvdyg] {
     background-color: #f7f7f7;
@@ -25,6 +26,7 @@ main[b-r0yqwuvdyg] {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
     .top-row a[b-r0yqwuvdyg], .top-row .btn-link[b-r0yqwuvdyg] {
@@ -37,7 +39,20 @@ main[b-r0yqwuvdyg] {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (min-width: 1001px) {
+    .sidebar[b-r0yqwuvdyg]{
+        position: relative;
+        left: 20%;
+        width: 300px;
+    }
+}
+
+@media (max-width: 1000px) {
+    
+
+    .page[b-r0yqwuvdyg]{
+        flex-direction: column;
+    }
     .top-row:not(.auth)[b-r0yqwuvdyg] {
         display: none;
     }
@@ -49,16 +64,10 @@ main[b-r0yqwuvdyg] {
     .top-row a[b-r0yqwuvdyg], .top-row .btn-link[b-r0yqwuvdyg] {
         margin-left: 0;
     }
-}
-
-@media (min-width: 641px) {
-    .page[b-r0yqwuvdyg] {
-        flex-direction: row;
-    }
 
     .sidebar[b-r0yqwuvdyg] {
-        width: 250px;
-        height: 100vh;
+        left: 0;
+        width: 100%;
         position: sticky;
         top: 0;
     }
@@ -74,3 +83,5 @@ main[b-r0yqwuvdyg] {
         padding-right: 1.5rem !important;
     }
 }
+ 
+

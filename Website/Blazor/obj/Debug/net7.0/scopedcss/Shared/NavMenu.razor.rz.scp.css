@@ -19,6 +19,10 @@
     top: -2px;
 }
 
+.logOutBtn[b-6hj6azdo60]{
+    justify-self: flex-end;
+}
+
 .nav-item[b-6hj6azdo60] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
@@ -68,8 +72,12 @@
     border-radius: 50%;
 }
 
-
-@media (min-width: 641px) {
+@media (min-width: 1000px) {
+    .top-row[b-6hj6azdo60]{
+        width: 100%;
+    }
+    
+    
     .navbar-toggler[b-6hj6azdo60] {
         display: none;
     }
@@ -80,14 +88,7 @@
     }
     
     .nav-scrollable[b-6hj6azdo60] {
-        /* Allow sidebar to scroll for tall menus */
-        height: 100vh;
-        overflow-y: auto;
-    }
-    
-    .container-fluid[b-6hj6azdo60]
-    {
-        justify-content: flex-start;
+        
     }
     
 }
@@ -95,13 +96,14 @@
 @media (max-width: 640px) {
     .container-fluid[b-6hj6azdo60]{
         padding: 0;
-        justify-content: space-evenly;
     }
     .top-row[b-6hj6azdo60]{
         width: 100%;
     }
     .userName[b-6hj6azdo60]{
         margin-left: 1%;
+    }
+    .navbar-toggler[b-6hj6azdo60]{
     }
     
 }

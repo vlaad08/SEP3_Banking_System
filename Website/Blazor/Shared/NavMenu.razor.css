@@ -19,6 +19,10 @@
     top: -2px;
 }
 
+.logOutBtn{
+    justify-self: flex-end;
+}
+
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
@@ -68,8 +72,12 @@
     border-radius: 50%;
 }
 
-
-@media (min-width: 641px) {
+@media (min-width: 1000px) {
+    .top-row{
+        width: 100%;
+    }
+    
+    
     .navbar-toggler {
         display: none;
     }
@@ -80,14 +88,7 @@
     }
     
     .nav-scrollable {
-        /* Allow sidebar to scroll for tall menus */
-        height: 100vh;
-        overflow-y: auto;
-    }
-    
-    .container-fluid
-    {
-        justify-content: flex-start;
+        
     }
     
 }
@@ -95,13 +96,14 @@
 @media (max-width: 640px) {
     .container-fluid{
         padding: 0;
-        justify-content: space-evenly;
     }
     .top-row{
         width: 100%;
     }
     .userName{
         margin-left: 1%;
+    }
+    .navbar-toggler{
     }
     
 }

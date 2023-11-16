@@ -1,15 +1,36 @@
 ﻿@inherits LayoutComponentBase
+@attribute [Authorize]
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Blazor</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+    
+    <AuthorizeView>
+        <div class="sidebar">
+            <NavMenu/>
+        </div>
+        
+    </AuthorizeView>
 
     <main>
+
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+@code
+{
+    private async Task Try()
+    {
+        Console.WriteLine("fuck");
+    }
+    
+    protected override async void OnInitialized()
+    {
+        Task.Delay(100);
+        Console.WriteLine(111);
+        await Try();
+    }
+}

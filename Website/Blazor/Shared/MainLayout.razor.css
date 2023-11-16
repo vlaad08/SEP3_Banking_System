@@ -1,11 +1,10 @@
 .page {
     position: relative;
     display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(180deg, rgb(34, 34, 34) 0%, #420000 70%);
+    background-image: url("./images/LoginBackground.png");
     height: 100vh;
     background-size: cover;
-    background-repeat: no-repeat;
+    flex-direction: row;
 }
 
 main {
@@ -14,9 +13,11 @@ main {
     background-size: cover;
 }
 
-.sidebar {
-    left: 20%;
+.sidebar{
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
 }
+
 
 .top-row {
     background-color: #f7f7f7;
@@ -25,6 +26,7 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
     .top-row a, .top-row .btn-link {
@@ -37,7 +39,20 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (min-width: 1001px) {
+    .sidebar{
+        position: relative;
+        left: 20%;
+        width: 300px;
+    }
+}
+
+@media (max-width: 1000px) {
+    
+
+    .page{
+        flex-direction: column;
+    }
     .top-row:not(.auth) {
         display: none;
     }
@@ -49,16 +64,10 @@ main {
     .top-row a, .top-row .btn-link {
         margin-left: 0;
     }
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
 
     .sidebar {
-        width: 250px;
-        height: 100vh;
+        left: 0;
+        width: 100%;
         position: sticky;
         top: 0;
     }
@@ -74,3 +83,5 @@ main {
         padding-right: 1.5rem !important;
     }
 }
+ 
+
