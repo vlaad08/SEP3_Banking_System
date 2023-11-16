@@ -15,15 +15,27 @@ public class TransferLogic : ITransferLogic
         this.transferDao = transferDAO;
     }
 
+    private Task<bool> ValidateTransfer(TransferRequestDTO transferRequestDto)
+    {
+        if (transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber).Result >=
+            transferRequestDto.Amount &&
+            transferDao.GetAccountNumberByAccountNumber(transferRequestDto.RecipientAccountNumber).Result
+                .Equals(transferRequestDto.RecipientAccountNumber))
+        {
+            return Task.FromResult(true);
+        }
+        else
+        {
+            return Task.FromResult(false);
+        }
+    }
+
     public async Task TransferMoney(TransferRequestDTO transferRequest)
     {
-        //TransferValidation.ValidateRequest(transferRequest);
-        Console.WriteLine("Logic");
-        //transfer logic should happen here
-        //it tells the server to reach db and use ig a change balance method to change
-        //balance by transfer amount on the two accounts
-        //public void changeBalance(int accNumber, int amount) and then amount could be negative
-        transferDao.TransferMoney(transferRequest);
+        if (ValidateTransfer(transferRequest).Result)
+        {
+            await transferDao.TransferMoney(transferRequest);
+        }
     }
     
     

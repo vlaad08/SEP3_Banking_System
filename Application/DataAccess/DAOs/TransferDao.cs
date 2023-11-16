@@ -7,7 +7,6 @@ namespace DataAccess.DAOs;
 
 public class TransferDAO : ITransferDAO
 {
-    //private readonly IDataBaseAccess dataBaseAccess;
     private readonly IGrpcClient _grpcClient;
     public TransferDAO(IGrpcClient grpcClient)
     {
@@ -15,24 +14,21 @@ public class TransferDAO : ITransferDAO
     }
 
     public async Task TransferMoney(TransferRequestDTO transferRequestDto)
-    {
-        Console.WriteLine("DAO");
-       await  _grpcClient.MakeTransfer(transferRequestDto);
+    { 
+        Console.WriteLine("DAO TransferMoney");
+        await  _grpcClient.MakeTransfer(transferRequestDto);
     }
 
-    public string GetRecipientInfo( int accountNumber)
+    public async Task<double> GetBalanceByAccountNumber(string accountNumber)
     {
-        //reach db get the name based on accountnumber w/DBserver
-        string info = "";
-        return info;
+        double balance = await _grpcClient.GetBalanceByAccountNumber(accountNumber);
+        return balance;
     }
 
-    public string GetSenderInfo(int accountNumber)
+    public async Task<string> GetAccountNumberByAccountNumber(string accountNumber)
     {
-        //reach db get senders info based on accountnumber
-        //probably should do some json deseriliaze magic or parseint
-        string info = "";
-        return info;
+        string account = await _grpcClient.GetAccountNumberByAccountNumber(accountNumber);
+        return account;
+        
     }
-    
 }

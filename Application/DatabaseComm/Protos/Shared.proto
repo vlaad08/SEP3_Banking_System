@@ -6,6 +6,8 @@ package Database;
 
 service DatabaseService{
     rpc Transfer(TransferRequest) returns (TransferResponse){};
+    rpc CheckAccount(AccountCheckRequest) returns (AccountCheckResponse){};
+    rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -16,4 +18,19 @@ message TransferRequest{
 
 message TransferResponse{
     string resp = 1;
+}
+
+message AccountCheckRequest
+{
+    string recipientAccount_id = 1;
+}
+message AccountCheckResponse{
+    string recipientAccount_id = 1;
+}
+
+message BalanceCheckRequest{
+    string account_id = 1;
+}
+message BalanceCheckResponse{
+    double balance = 1;
 }
