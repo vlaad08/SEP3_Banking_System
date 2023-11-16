@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ak48cSAta6gQAeQeCSnIgCOntDc8CXE52K7MzjxEHtOqR9FTyFdxdfb6J/KNP7cFFWbJRRi36BwBwkvh2pPKNA==",
+  "dgSpecHash": "U84/yFfSuf/PPxonccBmpR3QZZcaHEMG4IJ2FG0pFAXC9jMKHvB6HFQX5CC89O7eHs/ITk63r7hY4LZBqXAk8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
+  "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\blazor\\Blazor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vlada\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.13\\microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
     "C:\\Users\\vlada\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.13\\microsoft.aspnetcore.metadata.7.0.13.nupkg.sha512",

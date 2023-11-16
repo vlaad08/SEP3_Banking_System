@@ -9,7 +9,7 @@
       "WebAPI/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "DataAccess": "1.0.0",
+          "DatabaseComm": "1.0.0",
           "Domain": "1.0.0",
           "Swashbuckle.AspNetCore.Swagger": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
@@ -105,18 +105,9 @@
           "Application.dll": {}
         }
       },
-      "DataAccess/1.0.0": {
-        "dependencies": {
-          "Application": "1.0.0",
-          "DatabaseComm": "1.0.0",
-          "Domain": "1.0.0"
-        },
-        "runtime": {
-          "DataAccess.dll": {}
-        }
-      },
       "DatabaseComm/1.0.0": {
         "dependencies": {
+          "Application": "1.0.0",
           "Domain": "1.0.0",
           "Google.Protobuf": "3.25.0",
           "Grpc.Net.Client": "2.58.0"
@@ -202,11 +193,6 @@
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
     },
     "Application/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,3 +1,32 @@
+/* _content/Blazor/Components/Notification.razor.rz.scp.css */
+.notification-content[b-tzo2c5zty5]{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+}
+
+
+
+.notification-box[b-tzo2c5zty5]{
+    display: flex;
+    width: 300px;
+    height: auto;
+    color: white;
+    padding: 2%;
+    flex-direction: row;
+}
+
+.notification-content button[b-tzo2c5zty5]{
+    align-self: flex-end;
+}
+
+.ConfirmationBox[b-tzo2c5zty5]{
+    background-color: green;
+}
+
+.ErrorBox[b-tzo2c5zty5]{
+    background-color: darkred;
+}
 /* _content/Blazor/Components/RecentTransactions.razor.rz.scp.css */
 .box[b-dpjxzb1cre]{
     margin-top: 5%;
