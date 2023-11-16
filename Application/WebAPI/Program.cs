@@ -2,7 +2,6 @@ using Application.DaoInterfaces;
 using Application.Logic;
 using Application.LogicInterfaces;
 using DataAccess.DAOs;
-using DataAccess.DBComm;
 using Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,9 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITransferLogic, TransferLogic>();
 builder.Services.AddScoped<ITransferDAO, TransferDAO>();
-builder.Services.AddScoped<IDataBaseAccess, DataBaseAccess>();
-builder.Services.AddScoped<IGrpcClient,ProtoClient>();
-
+builder.Services.AddScoped<IGrpcClient, ProtoClient>();
 
 var app = builder.Build();
 

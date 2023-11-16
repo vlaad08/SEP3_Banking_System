@@ -17,17 +17,23 @@ public class TransferLogic : ITransferLogic
 
     private Task<bool> ValidateTransfer(TransferRequestDTO transferRequestDto)
     {
-        if (transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber).Result >=
-            transferRequestDto.Amount &&
-            transferDao.GetAccountNumberByAccountNumber(transferRequestDto.RecipientAccountNumber).Result
-                .Equals(transferRequestDto.RecipientAccountNumber))
+        if (transferDao.GetAccountNumberByAccountNumber(transferRequestDto.RecipientAccountNumber).Result.Equals(transferRequestDto.RecipientAccountNumber))
         {
-            return Task.FromResult(true);
+            if (transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber).Result >= transferRequestDto.Amount)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                throw new Exception("There is not sufficient balance to make the transaction!");
+            }
         }
         else
         {
-            return Task.FromResult(false);
+            throw new Exception("The account number does not exist!");
         }
+       
+        
     }
 
     public async Task TransferMoney(TransferRequestDTO transferRequest)

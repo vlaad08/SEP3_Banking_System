@@ -10,7 +10,7 @@ public class ProtoClient:IGrpcClient
     
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
-        string serverAddress = "10.154.212.48:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
@@ -26,7 +26,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<double> GetBalanceByAccountNumber(string accountNumber)
     {
-        string serverAddress = "10.154.212.48:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
@@ -41,7 +41,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<string> GetAccountNumberByAccountNumber(string accountNumber)
     {
-        string serverAddress = "10.154.212.48:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
