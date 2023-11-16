@@ -16,11 +16,18 @@ public class TransferController : ControllerBase
         this.transferLogic = transferLogic;
     }
 
-    [HttpPost,Route("Transfer")]
-    public async void TransferMoney([FromBody] TransferRequestDTO transferRequest)
+    [HttpPost, Route("Transfer")]
+    public async Task<IActionResult> TransferMoney([FromBody] TransferRequestDTO transferRequest)
     {
-        Console.WriteLine("transferRequest controller");
-        await transferLogic.TransferMoney(transferRequest);
+        try
+        {
+            await transferLogic.TransferMoney(transferRequest);
+            return Ok("Transfer successful");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
     
    

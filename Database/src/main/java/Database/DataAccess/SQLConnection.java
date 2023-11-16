@@ -22,20 +22,53 @@ public class SQLConnection implements SQLConnectionInterface{
     /** Database manipulator method, to make the transfer in the database with the given details**/
     @Override
     public void transfer(String id_1, String id_2, double amount, String message) {
-        Timestamp now= Timestamp.valueOf(LocalDateTime.now());
-        try (Connection connection = getConnection())
-        {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) VALUES (?,?,?,?,?);");
-            statement.setTimestamp(1,now);
-            statement.setDouble(2,amount);
-            statement.setString(3,message);
-            statement.setString(4,id_1);
-            statement.setString(5,id_2);
-            statement.execute();
+        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement updateStatement1 = connection.prepareStatement(
+                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+
+                updateStatement1.setDouble(1, amount);
+                updateStatement1.setString(2, id_2);
+                updateStatement1.executeUpdate();
+
+                try (PreparedStatement updateStatement2 = connection.prepareStatement(
+                        "UPDATE account SET balance = balance - ? WHERE account_id = ?")) {
+
+                    updateStatement2.setDouble(1, amount);
+                    updateStatement2.setString(2, id_1);
+                    updateStatement2.executeUpdate();
+
+                    try (PreparedStatement insertStatement = connection.prepareStatement(
+                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                    "VALUES (?, ?, ?, ?, ?)")) {
+
+                        insertStatement.setTimestamp(1, now);
+                        insertStatement.setDouble(2, amount);
+                        insertStatement.setString(3, message);
+                        insertStatement.setString(4, id_1);
+                        insertStatement.setString(5, id_2);
+                        insertStatement.executeUpdate();
+
+                        connection.commit();
+                    } catch (SQLException e) {
+                        connection.rollback();
+                        throw new RuntimeException("Error executing insert statement", e);
+                    }
+                } catch (SQLException e) {
+                    connection.rollback();
+                    throw new RuntimeException("Error executing second update statement", e);
+                }
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing first update statement", e);
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error opening/closing connection", e);
         }
     }
+
     /** Database query method, to make the query for the available balance for the given account_id**/
     @Override
     public double checkBalance(String account_id) throws SQLException {

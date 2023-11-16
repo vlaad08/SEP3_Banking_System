@@ -6,6 +6,4 @@ namespace Application.LogicInterfaces;
 public interface ITransferLogic
 {
     Task TransferMoney(TransferRequestDTO transferRequest);
-    
-    
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EHiafQ+kzNen1+GEE2PTiTz+c9/MOBz43yNg9fMVZbXTktWiIXkII96F/furEgJaKwMJlIj2LPuvc+lxGCgUlA==",
+  "dgSpecHash": "ce5/Ge+/VwJTo/cZqVnikJXtQKnr8BjZfOgAsl4c326BQ6z5/o0+PIHUpLjksi/K3UQvBXrIfUH9/iwDSFEm5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+  "projectFilePath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

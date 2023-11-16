@@ -17,15 +17,22 @@ public class TransactionService : ITransactionService
             Amount = amount,
             Message = message,
         };
-
-        string transferJson = JsonSerializer.Serialize(transfer);
-        Console.WriteLine(transferJson);
-        StringContent content = new(transferJson, Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transfer/Transfer", content);
-        string m = await response.Content.ReadAsStringAsync();
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            throw new Exception(m);
+            string transferJson = JsonSerializer.Serialize(transfer);
+            Console.WriteLine(transferJson);
+            StringContent content = new(transferJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("https://localhost:7257/api/Transfer/Transfer", content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+            Console.WriteLine("Transfer successful");
+        }
+        catch (Exception e)
+        { 
+            throw new Exception($"Transfer failed: {e.Message}");
         }
     }
 }
