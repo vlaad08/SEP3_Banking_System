@@ -22,27 +22,37 @@
     font-size: calc(16px + 0.4vw);
 }
 
-.box-transfer[b-vtfvhyjmbz]{
+.box-buttons[b-vtfvhyjmbz]{
     display: flex;
     flex-direction: column;
     border: 1px solid rgb(20, 20, 20);
+    width: 20%;
+    padding: 10px;
 }
 
-.transferButton[b-vtfvhyjmbz]{
+.buttons-content[b-vtfvhyjmbz]{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.userDetailsButton[b-vtfvhyjmbz]{
     text-decoration: none;
     align-self: flex-end;
     justify-self: flex-end;
     height: auto;
     padding: 2%;
     color: white;
-    background-color: rgb(27, 27, 27);
+    background-color: transparent;
     border: none;
-    border-left: 1px solid rgb(20, 20, 20);
     transition: 0.2s;
     width: 100%;
 }
 
-.transferButton:hover[b-vtfvhyjmbz] {
+.box-buttons:hover[b-vtfvhyjmbz] {
     background-color: #420000;
     transition: 0.2s;
 }
@@ -52,7 +62,7 @@
     .box[b-vtfvhyjmbz]{
         width: 50%;
     }
-    .transferButton[b-vtfvhyjmbz]{
+    .box-buttons[b-vtfvhyjmbz]{
         width: 25%;
     }
 }
@@ -61,7 +71,7 @@
     .box[b-vtfvhyjmbz]{
         width: 98%;
     }
-    .transferButton[b-vtfvhyjmbz]{
+    .box-buttons[b-vtfvhyjmbz]{
         width: 50%;
     }
 }

@@ -1,0 +1,27 @@
+@page "/deposit"
+@attribute [Authorize]
+
+<div class="content">
+    
+    <div class="card">
+        <div>
+            <label>Card number: </label>
+            <input type="text" @bind="accountNumber" >
+        </div>
+        <div>
+            <label>Amount: </label>
+            <input type="number" placeholder="Amount in Danish Krone" @bind="amount">
+        </div>
+        <div class="submitButton">
+            <button>Top Up</button>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private string accountNumber;
+    private double amount;
+    
+    
+}

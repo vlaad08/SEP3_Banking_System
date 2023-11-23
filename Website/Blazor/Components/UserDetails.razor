@@ -7,8 +7,13 @@
     <div class="box-info">
         <p class="balance">@Balance DKK</p>
     </div>
-    <div class="box-transfer">
-        <button class="transferButton" @onclick="NewTransfer">New Transfer</button>
+    <div class="buttons-content">
+        <div class="box-buttons">
+            <button class="userDetailsButton" @onclick="NewTransfer">New Transfer</button>
+        </div>
+        <div class="box-buttons">
+            <button class="userDetailsButton" @onclick="Deposit">Deposit</button>
+        </div>
     </div>
 </div>
 
@@ -26,5 +31,9 @@
     {
         Navigation.NavigateTo("/transfer");
     }
-    
+
+    private void Deposit()
+    {
+        Navigation.NavigateTo("/deposit");
+    }
 }

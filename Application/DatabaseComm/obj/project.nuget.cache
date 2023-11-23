@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "JAs4ZJTPQTbIo1KzNIzTZRN56nGxNGWJl+xwwTNsr1QXoQsx9M5yCUUX0xiEGl1sQhhSGma++wqdrAZTVrBlwg==",
+  "dgSpecHash": "iJRbKaPztqEj6L6xPI47buFFK4n1krKx4cHDz10gIxv33WgyqcL1KnMOU02EFar2GE19DmfgBSrAqPVu/d+sbQ==",
   "success": true,
-  "projectFilePath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+  "projectFilePath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
   "expectedPackageFiles": [
-    "/Users/AgostonBabicz/.nuget/packages/google.protobuf/3.25.0/google.protobuf.3.25.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/grpc.core.api/2.58.0/grpc.core.api.2.58.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/grpc.net.client/2.58.0/grpc.net.client.2.58.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/grpc.net.common/2.58.0/grpc.net.common.2.58.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/grpc.tools/2.59.0/grpc.tools.2.59.0.nupkg.sha512",
-    "/Users/AgostonBabicz/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+    "C:\\Users\\vlada\\.nuget\\packages\\google.protobuf\\3.25.0\\google.protobuf.3.25.0.nupkg.sha512",
+    "C:\\Users\\vlada\\.nuget\\packages\\grpc.core.api\\2.58.0\\grpc.core.api.2.58.0.nupkg.sha512",
+    "C:\\Users\\vlada\\.nuget\\packages\\grpc.net.client\\2.58.0\\grpc.net.client.2.58.0.nupkg.sha512",
+    "C:\\Users\\vlada\\.nuget\\packages\\grpc.net.common\\2.58.0\\grpc.net.common.2.58.0.nupkg.sha512",
+    "C:\\Users\\vlada\\.nuget\\packages\\grpc.tools\\2.59.0\\grpc.tools.2.59.0.nupkg.sha512",
+    "C:\\Users\\vlada\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
