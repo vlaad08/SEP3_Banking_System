@@ -5,7 +5,7 @@ using Domain.DTOs;
 using Grpc;
 using Moq;
 
-namespace Transfer.Tests;
+namespace Tests.Transfer.Tests;
 
 public class TransferTests
 {
@@ -95,10 +95,10 @@ public class TransferTests
         };
 
         var grpcClientMock = new Mock<IGrpcClient>();
-        var transferDAO = new TransferDAO(grpcClientMock.Object);
+        var transferDao = new TransferDAO(grpcClientMock.Object);
 
         // Act
-        await transferDAO.TransferMoney(transferRequestDto);
+        await transferDao.TransferMoney(transferRequestDto);
 
         // Assert
         grpcClientMock.Verify(c => c.MakeTransfer(transferRequestDto), Times.Once);
@@ -115,10 +115,10 @@ public class TransferTests
         grpcClientMock.Setup(c => c.GetBalanceByAccountNumber(accountNumber))
             .ReturnsAsync(expectedBalance);
 
-        var transferDAO = new TransferDAO(grpcClientMock.Object);
+        var transferDao = new TransferDAO(grpcClientMock.Object);
 
         // Act
-        var result = await transferDAO.GetBalanceByAccountNumber(accountNumber);
+        var result = await transferDao.GetBalanceByAccountNumber(accountNumber);
 
         // Assert
         Assert.IsType<double>(result);
@@ -137,10 +137,10 @@ public class TransferTests
         grpcClientMock.Setup(c => c.GetAccountNumberByAccountNumber(accountNumber))
             .ReturnsAsync(expectedAccount);
 
-        var transferDAO = new TransferDAO(grpcClientMock.Object);
+        var transferDao = new TransferDAO(grpcClientMock.Object);
 
         // Act
-        var result = await transferDAO.GetAccountNumberByAccountNumber(accountNumber);
+        var result = await transferDao.GetAccountNumberByAccountNumber(accountNumber);
 
         // Assert
         Assert.IsType<string>(result);
