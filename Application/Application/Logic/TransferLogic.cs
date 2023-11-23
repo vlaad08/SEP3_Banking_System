@@ -9,7 +9,6 @@ namespace Application.Logic;
 
 public class TransferLogic : ITransferLogic
 {
-    //ADD ASYNC!!!!!
     private readonly ITransferDAO transferDao;
 
     public TransferLogic(ITransferDAO transferDAO)
@@ -26,8 +25,12 @@ public class TransferLogic : ITransferLogic
 
         if (await transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber) < transferRequestDto.Amount)
         {
-            Console.WriteLine(transferDao.GetBalanceByAccountNumber(transferRequestDto.SenderAccountNumber));
             throw new Exception("There is not sufficient balance to make the transaction!");
+        }
+
+        if ((await transferDao.GetTransferAmountsByDayForUser(transferRequestDto.SenderAccountNumber)+transferRequestDto.Amount)>= 200000)
+        {
+            throw new Exception("You have reached your daily limit!");
         }
     }   
 

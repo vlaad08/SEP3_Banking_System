@@ -53,4 +53,18 @@ public class ProtoClient:IGrpcClient
         var response = await databaseClient.CheckAccountAsync(request);
         return response.RecipientAccountId;
     }
+
+    public async Task<double> DailyCheck(string accountNumber)
+    {
+        string serverAddress = "localhost:9090";
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+
+        var request = new DailyCheckRequest()
+        {
+            AccountId = accountNumber
+        };
+        var response = await databaseClient.DailyCheckTransactionsAsync(request);
+        return response.Amount;
+    }
 }

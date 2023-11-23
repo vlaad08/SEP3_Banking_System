@@ -57,6 +57,10 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.BalanceCheckRequest> __Marshaller_Database_BalanceCheckRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.BalanceCheckRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.BalanceCheckResponse> __Marshaller_Database_BalanceCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.BalanceCheckResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.DailyCheckRequest> __Marshaller_Database_DailyCheckRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.DailyCheckResponse> __Marshaller_Database_DailyCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse> __Method_Transfer = new grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse>(
@@ -81,6 +85,14 @@ namespace Database {
         "CheckBalance",
         __Marshaller_Database_BalanceCheckRequest,
         __Marshaller_Database_BalanceCheckResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.DailyCheckRequest, global::Database.DailyCheckResponse> __Method_DailyCheckTransactions = new grpc::Method<global::Database.DailyCheckRequest, global::Database.DailyCheckResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DailyCheckTransactions",
+        __Marshaller_Database_DailyCheckRequest,
+        __Marshaller_Database_DailyCheckResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -174,6 +186,26 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.BalanceCheckResponse> CheckBalanceAsync(global::Database.BalanceCheckRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_CheckBalance, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.DailyCheckResponse DailyCheckTransactions(global::Database.DailyCheckRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DailyCheckTransactions(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.DailyCheckResponse DailyCheckTransactions(global::Database.DailyCheckRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DailyCheckTransactions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.DailyCheckResponse> DailyCheckTransactionsAsync(global::Database.DailyCheckRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DailyCheckTransactionsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.DailyCheckResponse> DailyCheckTransactionsAsync(global::Database.DailyCheckRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DailyCheckTransactions, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

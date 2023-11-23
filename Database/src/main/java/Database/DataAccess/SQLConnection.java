@@ -99,4 +99,23 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return recipientAccount_id;
     }
+
+    @Override
+    public double dailyCheck(String account_id) throws SQLException {
+        double amount = 0;
+        try (Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT SUM(amount)\n" +
+                    "FROM transactions\n" +
+                    "WHERE senderAccount_id = ?\n" +
+                    "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;");
+            statement.setString(1,account_id);
+            ResultSet result = statement.executeQuery();
+            if (result.next())
+            {
+                amount = result.getDouble("sum");
+            }
+        }
+        return amount;
+    }
 }

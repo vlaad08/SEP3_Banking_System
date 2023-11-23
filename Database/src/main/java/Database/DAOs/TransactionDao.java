@@ -7,6 +7,7 @@ import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class TransactionDao implements TransactionDaoInterface
 {
@@ -32,6 +33,11 @@ public class TransactionDao implements TransactionDaoInterface
     @Override
     public double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException {
         return connection.checkBalance(checkAccountDTO.getRecipientAccount_id());
+    }
+
+    @Override
+    public double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException {
+        return connection.dailyCheck(checkAccountDTO.getRecipientAccount_id());
     }
 
 
