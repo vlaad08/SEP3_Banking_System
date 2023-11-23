@@ -11,99 +11,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49075d6b-b8d8-45ac-b3b7-ecb8f21e8023" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test/Test.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/GlobalUsings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/TransferTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/obj/PrimeService.Tests.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/obj/PrimeService.Tests.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/obj/PrimeService.Tests.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Transfer.Tests/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Debug/net7.0/Test.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Test.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Test.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/Test.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/GlobalUsings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/Transfer.Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/TransferTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/obj/Transfer.Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/obj/Transfer.Tests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/obj/Transfer.Tests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Transfer.Tests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net7.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/unit-testing-using-dotnet-test/unit-testing-using-dotnet-test.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Application.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Logic/TransferLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Logic/TransferLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Application.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net7.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/Application.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/ref/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/ref/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net7.0/refint/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net7.0/refint/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Application.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/DatabaseComm.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/DatabaseComm.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/DatabaseComm.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/DatabaseComm.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/bin/Debug/net7.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/DatabaseComm.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/12fbc7ffe642ca7e_Shared.protodep" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/12fbc7ffe642ca7e_Shared.protodep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/DatabaseComm.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/Shared.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/Shared.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/SharedGrpc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/SharedGrpc.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net7.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net7.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net7.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net7.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Test/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +160,7 @@
       <workItem from="1700058461725" duration="980000" />
       <workItem from="1700136525129" duration="398000" />
       <workItem from="1700728489785" duration="1313000" />
-      <workItem from="1700729888231" duration="9966000" />
+      <workItem from="1700729888231" duration="10837000" />
     </task>
     <servers />
   </component>
