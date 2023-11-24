@@ -1,5 +1,8 @@
 @page "/deposit"
+@using Blazor.Services.Http
 @attribute [Authorize]
+@inject NavigationManager navMgr
+@inject ITransactionService transactioService
 
 <div class="content">
     
@@ -13,7 +16,7 @@
             <input type="number" placeholder="Amount in Danish Krone" @bind="amount">
         </div>
         <div class="submitButton">
-            <button>Top Up</button>
+            <button @onclick="Create">Top Up</button>
         </div>
     </div>
 </div>
@@ -23,5 +26,15 @@
     private string accountNumber;
     private double amount;
     
-    
+    private async Task Create()
+    {
+        try
+        {
+            await transactioService.deposit(accountNumber, amount);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
 }
