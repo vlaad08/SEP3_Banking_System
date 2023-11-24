@@ -1,6 +1,8 @@
-﻿namespace Application.DaoInterfaces;
+﻿using Domain.DTOs;
 
-public class IDepositDAO
+namespace Application.DaoInterfaces;
+
+public interface IDepositDAO
 {
-    
+    Task DepositMoney(DepositRequestDTO depositRequestDto);
 }

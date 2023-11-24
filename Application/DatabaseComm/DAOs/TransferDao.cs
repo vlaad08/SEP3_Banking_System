@@ -14,7 +14,8 @@ public class TransferDAO : ITransferDAO
     }
 
     public async Task TransferMoney(TransferRequestDTO transferRequestDto)
-    { 
+    {
+        Console.WriteLine("DAO");
         Console.WriteLine("DAO TransferMoney");
         await  grpcClient.MakeTransfer(transferRequestDto);
     }

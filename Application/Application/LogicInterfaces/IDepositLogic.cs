@@ -1,6 +1,8 @@
-﻿namespace Application.LogicInterfaces;
+﻿using Domain.DTOs;
 
-public class IDepositLogic
+namespace Application.LogicInterfaces;
+
+public interface IDepositLogic
 {
-    
+    Task DepositMoney(DepositRequestDTO depositRequestDto);
 }

@@ -15,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITransferLogic, TransferLogic>();
 builder.Services.AddScoped<ITransferDAO, TransferDAO>();
 builder.Services.AddScoped<IGrpcClient, ProtoClient>();
+builder.Services.AddScoped<IDepositLogic, DepositLogic>();
+builder.Services.AddScoped<IDepositDAO, DepositDao>();
 
 var app = builder.Build();
 
