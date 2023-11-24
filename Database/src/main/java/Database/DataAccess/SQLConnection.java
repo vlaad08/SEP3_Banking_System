@@ -1,8 +1,12 @@
 package Database.DataAccess;
 
+import Database.User;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLConnection implements SQLConnectionInterface{
     private static SQLConnection instance;
@@ -131,5 +135,24 @@ public class SQLConnection implements SQLConnectionInterface{
             statement.executeUpdate();
         }
 
+    }
+
+    @Override
+    public List<User> getUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT email, password\n" +
+                    "FROM \"user\"");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+            {
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                User user = User.newBuilder().setEmail(email).setPassword(password).build();
+                users.add(user);
+            }
+        }
+        return users;
     }
 }

@@ -1,7 +1,9 @@
 package Database.Server;
 
 import Database.*;
+import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
+import Database.DAOs.LoginDao;
 import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
@@ -9,12 +11,12 @@ import Database.DTOs.TransferRequestDTO;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
+    LoginDaoInterface loginDao = new LoginDao();
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         System.out.println("TRANSFER");
@@ -83,6 +85,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         DepositResponse response = DepositResponse.newBuilder().setResp("Deposit happened").build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+    }
+    @Override
+    public void loginValidation(LoginValidationRequest request, StreamObserver<LoginValidationResponse> responseObserver) {
+        try
+        {
+            List<User> users = loginDao.getUsers();
+            LoginValidationResponse response = LoginValidationResponse.newBuilder().addAllUsers(users).build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

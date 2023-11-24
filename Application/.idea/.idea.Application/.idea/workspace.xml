@@ -11,6 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49075d6b-b8d8-45ac-b3b7-ecb8f21e8023" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/Application/DaoInterfaces/IUserLoginDao.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/DatabaseComm/DAOs/UserLoginDao.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Application/.idea/workspace.xml" afterDir="false" />
@@ -96,8 +97,31 @@
       <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.restore.info" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseComm/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net7.0/Domain.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/Debug/net7.0/Blazor.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Blazor/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/Debug/net7.0/Shared.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/project.packagespec.json" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Website/Shared/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/../Website/Shared/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +132,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+<<<<<<< Updated upstream
     <setting file="file://$PROJECT_DIR$/Application/Logic/AuthLogic.cs" root0="FORCE_HIGHLIGHTING" />
+=======
+    <setting file="file://$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/Shared.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DatabaseComm/obj/Debug/net7.0/Protos/SharedGrpc.cs" root0="FORCE_HIGHLIGHTING" />
+>>>>>>> Stashed changes
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -118,6 +147,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -128,6 +158,18 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> Stashed changes
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
@@ -219,8 +261,12 @@
       <workItem from="1700751010729" duration="1142000" />
       <workItem from="1700826012326" duration="2174000" />
       <workItem from="1700828340239" duration="2063000" />
+<<<<<<< Updated upstream
       <workItem from="1700832724478" duration="5740000" />
       <workItem from="1700838570579" duration="3219000" />
+=======
+      <workItem from="1700832688737" duration="53000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
