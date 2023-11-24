@@ -61,6 +61,10 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.DailyCheckRequest> __Marshaller_Database_DailyCheckRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.DailyCheckResponse> __Marshaller_Database_DailyCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.DepositRequest> __Marshaller_Database_DepositRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DepositRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.DepositResponse> __Marshaller_Database_DepositResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DepositResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse> __Method_Transfer = new grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse>(
@@ -93,6 +97,14 @@ namespace Database {
         "DailyCheckTransactions",
         __Marshaller_Database_DailyCheckRequest,
         __Marshaller_Database_DailyCheckResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.DepositRequest, global::Database.DepositResponse> __Method_Deposit = new grpc::Method<global::Database.DepositRequest, global::Database.DepositResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Deposit",
+        __Marshaller_Database_DepositRequest,
+        __Marshaller_Database_DepositResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -206,6 +218,26 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.DailyCheckResponse> DailyCheckTransactionsAsync(global::Database.DailyCheckRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DailyCheckTransactions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.DepositResponse Deposit(global::Database.DepositRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Deposit(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.DepositResponse Deposit(global::Database.DepositRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Deposit, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.DepositResponse> DepositAsync(global::Database.DepositRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DepositAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.DepositResponse> DepositAsync(global::Database.DepositRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Deposit, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
