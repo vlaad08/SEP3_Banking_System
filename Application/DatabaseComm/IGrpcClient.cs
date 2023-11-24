@@ -1,4 +1,6 @@
+using Database;
 using Domain.DTOs;
+using Shared.DTOs;
 
 namespace Grpc;
 
@@ -9,4 +11,5 @@ public interface IGrpcClient
    Task<string> GetAccountNumberByAccountNumber(string accountNumber);
    Task<double> DailyCheck(string accountNumber);
    Task MakeDeposit(DepositRequestDTO depositRequestDto);
+   Task<List<global::Shared.Models.User>> GetAllUserInfo();
 }

@@ -10,6 +10,8 @@ service DatabaseService{
     rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
     rpc DailyCheckTransactions(DailyCheckRequest) returns (DailyCheckResponse);
     rpc Deposit(DepositRequest) returns (DepositResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc LoginValidation(LoginValidationRequest) returns (LoginValidationResponse);
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -52,4 +54,31 @@ message DepositRequest
 message DepositResponse
 {
     string resp = 1;
+}
+message LoginRequest
+{
+    string email = 1;
+    string password = 2;
+}
+message LoginResponse
+{
+    string email = 1;
+    string firstName = 2;
+    string middleName = 3;
+    string lastName = 4;
+    string password = 5;
+    string token = 6;
+}
+message LoginValidationRequest
+{
+
+}
+message LoginValidationResponse
+{
+    repeated User users = 1;
+}
+message User
+{
+    string email = 1;
+    string password = 2;
 }

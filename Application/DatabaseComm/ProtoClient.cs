@@ -1,6 +1,8 @@
+using System.Collections;
 using Database;
 using Domain.DTOs;
 using Grpc.Net.Client;
+using Shared.DTOs;
 
 namespace Grpc;
 
@@ -81,5 +83,36 @@ public class ProtoClient:IGrpcClient
             
         };
         var response = await databaseClient.DepositAsync(request);
+    }
+
+    public async Task<List<global::Shared.Models.User>> GetAllUserInfo()
+    {
+        string serverAddress = "10.154.212.41:9090";
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+
+        var request = new LoginValidationRequest()
+        {
+        };
+
+        var response = await databaseClient.LoginValidationAsync(request);
+        List<global::Shared.Models.User> users = new List<global::Shared.Models.User>();
+        foreach (var responseUser in response.Users)
+        {
+            global::Shared.Models.User user = new global::Shared.Models.User()
+            {
+                Email = responseUser.Email,
+                Password = responseUser.Password
+            };
+            users.Add(user);
+        }
+
+        foreach (var VARIABLE in users)
+        {
+            Console.WriteLine(VARIABLE.Email);
+            
+        }
+
+        return users;
     }
 }

@@ -113,3 +113,8 @@ C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\obj\Debug\n
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\obj\Debug\net7.0\Tests.pdb
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\obj\Debug\net7.0\Tests.genruntimeconfig.cache
 C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\obj\Debug\net7.0\ref\Tests.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\tothl\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
