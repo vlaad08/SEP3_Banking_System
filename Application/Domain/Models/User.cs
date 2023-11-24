@@ -1,19 +1,16 @@
-namespace Domain.Models;
-
+namespace Shared.Models;
 
 public class User
 {
-    //not much done for the user but i need to have the object cuz the transfers have senders and recipients
-    public int UserId { get; set; }
-    public string UserName { get; set; }
-    public string AccountNumber { get; set; }
-    public decimal Balance { get; set; }
-    
-    public User(int userId, string userName, string accountNumber, decimal balance)
-    {
-        UserId = userId;
-        UserName = userName;
-        AccountNumber = accountNumber;
-        Balance = balance;
-    }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? MiddleName { get; set; }
+    public string? Email { get; set; }
+    public string? Role { get; set; }
+    public double Money { get; set; }
+    public string? Password { get; set; }
+
+    public string? Picture { get; set; }
+
+ 
 }
