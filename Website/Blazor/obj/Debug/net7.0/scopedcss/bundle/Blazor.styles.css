@@ -149,27 +149,37 @@
     font-size: calc(16px + 0.4vw);
 }
 
-.box-transfer[b-vtfvhyjmbz]{
+.box-buttons[b-vtfvhyjmbz]{
     display: flex;
     flex-direction: column;
     border: 1px solid rgb(20, 20, 20);
+    width: 20%;
+    padding: 10px;
 }
 
-.transferButton[b-vtfvhyjmbz]{
+.buttons-content[b-vtfvhyjmbz]{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.userDetailsButton[b-vtfvhyjmbz]{
     text-decoration: none;
     align-self: flex-end;
     justify-self: flex-end;
     height: auto;
     padding: 2%;
     color: white;
-    background-color: rgb(27, 27, 27);
+    background-color: transparent;
     border: none;
-    border-left: 1px solid rgb(20, 20, 20);
     transition: 0.2s;
     width: 100%;
 }
 
-.transferButton:hover[b-vtfvhyjmbz] {
+.box-buttons:hover[b-vtfvhyjmbz] {
     background-color: #420000;
     transition: 0.2s;
 }
@@ -179,7 +189,7 @@
     .box[b-vtfvhyjmbz]{
         width: 50%;
     }
-    .transferButton[b-vtfvhyjmbz]{
+    .box-buttons[b-vtfvhyjmbz]{
         width: 25%;
     }
 }
@@ -188,9 +198,66 @@
     .box[b-vtfvhyjmbz]{
         width: 98%;
     }
-    .transferButton[b-vtfvhyjmbz]{
+    .box-buttons[b-vtfvhyjmbz]{
         width: 50%;
     }
+}
+/* _content/Blazor/Pages/Deposit.razor.rz.scp.css */
+.content[b-nea9afi7k9]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.card[b-nea9afi7k9]{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 1rem;
+    width: 40rem;
+    color: white;
+}
+
+.card div[b-nea9afi7k9] {
+    padding: 1rem;
+}
+
+input[b-nea9afi7k9] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 100%;
+}
+
+label[b-nea9afi7k9] {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.submitButton[b-nea9afi7k9]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+button[b-nea9afi7k9] {
+    background-color: inherit;
+    width: calc(30% + 20px);
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover[b-nea9afi7k9] {
+    transition: 0.2s ease-in-out;
+    background-color: #420000;;
+    cursor: pointer;
 }
 /* _content/Blazor/Pages/Home.razor.rz.scp.css */
 .content[b-6me2utdfn1]{

@@ -22,7 +22,7 @@ public class TransactionService : ITransactionService
             string transferJson = JsonSerializer.Serialize(transfer);
             Console.WriteLine(transferJson);
             StringContent content = new(transferJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://localhost:7257/api/Transfer/Transfer", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transfer/Transfer", content);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -34,5 +34,34 @@ public class TransactionService : ITransactionService
         { 
             throw new Exception($"Transfer failed: {e.Message}");
         }
+    }
+
+    public async Task deposit(string accountNumber, double amount)
+    {
+        DepositDto deposit = new DepositDto()
+        {
+            accountNumber = accountNumber,
+            Amount = amount
+        };
+
+        try
+        {
+            string depositJson = JsonSerializer.Serialize(deposit);
+            StringContent content = new(depositJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage =
+                await client.PostAsync("http://localhost:5054/api/Transfer/Deposit", content);
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+
+            Console.WriteLine("Deposit works");
+        }
+        catch (Exception e)
+        {
+            throw new Exception($"Deposit failed: {e.Message}");
+        }
+
     }
 }

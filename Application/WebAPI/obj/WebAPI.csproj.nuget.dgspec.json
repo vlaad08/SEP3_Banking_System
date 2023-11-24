@@ -1,33 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
               }
             }
           }
@@ -61,33 +68,40 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
         "projectName": "DatabaseComm",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
-        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\obj\\",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
               }
             }
           }
@@ -137,22 +151,29 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -170,6 +191,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -190,36 +217,43 @@
         }
       }
     },
-    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj"
               },
-              "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
               }
             }
           }
@@ -234,6 +268,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[6.5.0, )"
