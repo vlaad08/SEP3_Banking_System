@@ -12,7 +12,6 @@ import java.util.List;
 public class TransactionDao implements TransactionDaoInterface
 {
     SQLConnectionInterface connection;
-
     {
         try {
             connection = SQLConnection.getInstance();
