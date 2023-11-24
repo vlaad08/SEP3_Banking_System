@@ -29,6 +29,18 @@ public class TransferController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    
-   
+
+    [HttpPost, Route("Deposit")]
+    public async Task<IActionResult> DepositMoney([FromBody] DepositRequestDTO depositRequest)
+    {
+        try
+        {
+            await transferLogic.DepositMoney(depositRequest);
+            return Ok("Deposit succesful");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);;
+        }
+    }
 }
