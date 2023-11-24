@@ -36,11 +36,11 @@ public class TransactionService : ITransactionService
         }
     }
 
-    public async Task deposit(string accountNumber, double amount)
+    public async Task deposit(string toppedUpAccountNumber, double amount)
     {
         DepositDto deposit = new DepositDto()
         {
-            accountNumber = accountNumber,
+            ToppedUpAccountNumer = toppedUpAccountNumber,
             Amount = amount
         };
 
