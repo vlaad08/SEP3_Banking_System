@@ -9,6 +9,7 @@ service DatabaseService{
   rpc CheckAccount(AccountCheckRequest) returns (AccountCheckResponse){};
   rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
   rpc DailyCheckTransactions(DailyCheckRequest) returns (DailyCheckResponse);
+  rpc Deposit(DepositRequest) returns (DepositResponse);
 }
 message TransferRequest{
   string senderAccount_id = 1;
@@ -42,4 +43,13 @@ message DailyCheckRequest
 message DailyCheckResponse
 {
   double amount = 1;
+}
+message DepositRequest
+{
+  string account_id = 1;
+  double amount = 2;
+}
+message DepositResponse
+{
+  string resp = 1;
 }

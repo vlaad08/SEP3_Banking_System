@@ -7,4 +7,5 @@ public interface SQLConnectionInterface {
     double checkBalance(String account_id) throws SQLException;
     String checkAccountId(String account_id) throws SQLException;
     double dailyCheck(String account_id)throws SQLException;
+    void deposit(String account_id, double amount) throws SQLException;
 }

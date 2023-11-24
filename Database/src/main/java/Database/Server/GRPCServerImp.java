@@ -4,6 +4,7 @@ import Database.*;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
+import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
 import io.grpc.stub.StreamObserver;
 
@@ -16,6 +17,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
+        System.out.println("TRANSFER");
         TransferRequestDTO transferRequestDTO = new TransferRequestDTO(request.getSenderAccountId(), request.getRecipientAccountId(),request.getBalance(),request.getMessage());
         transactionDao.makeTransfer(transferRequestDTO);
         String resp = "Transfer happened";
@@ -61,11 +63,24 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         try
         {
             amount = transactionDao.dailyCheck(checkAccountDTO);
-            System.out.println(amount);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         DailyCheckResponse response = DailyCheckResponse.newBuilder().setAmount(amount).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void deposit(DepositRequest request, StreamObserver<DepositResponse> responseObserver) {
+        try
+        {
+            DepositRequestDTO depositRequestDTO = new DepositRequestDTO(request.getAccountId(), request.getAmount());
+            transactionDao.makeDeposit(depositRequestDTO);
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DepositResponse response = DepositResponse.newBuilder().setResp("Deposit happened").build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

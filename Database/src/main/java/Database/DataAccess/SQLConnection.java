@@ -118,4 +118,18 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return amount;
     }
+
+    @Override
+    public void deposit(String account_id, double amount) throws SQLException {
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE banking_system.account\n" +
+                    "SET balance = balance + ?\n" +
+                    "WHERE account_id = ?");
+            statement.setDouble(1, amount);
+            statement.setString(2, account_id);
+            statement.executeUpdate();
+        }
+
+    }
 }

@@ -2,6 +2,7 @@ package Database.DAOs;
 
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DTOs.CheckAccountDTO;
+import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
@@ -37,6 +38,11 @@ public class TransactionDao implements TransactionDaoInterface
     @Override
     public double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException {
         return connection.dailyCheck(checkAccountDTO.getRecipientAccount_id());
+    }
+
+    @Override
+    public void makeDeposit(DepositRequestDTO depositRequestDTO) throws SQLException {
+        connection.deposit(depositRequestDTO.getAccount_id(), depositRequestDTO.getAmount());
     }
 
 
