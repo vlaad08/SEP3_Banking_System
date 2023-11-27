@@ -16,7 +16,15 @@
     padding: 2%;
 }
 
+.account-dropdown {
+    display: inline-block;
+    margin-left: 10px; /* Or any other spacing you prefer */
+    vertical-align: middle;
+}
+
+
 .balance {
+    display: inline;
     text-align: left;
     width: 49%;
     font-size: calc(16px + 0.4vw);

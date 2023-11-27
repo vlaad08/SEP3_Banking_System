@@ -5,7 +5,15 @@
 
 <div class="box">
     <div class="box-info">
-        <p class="balance">@Balance DKK</p>
+        <div>
+            <p class="balance">@Balance DKK</p>
+            <p>@accountType</p>
+        </div>
+        <select @onchange="OnAccountTypeChanged">
+            <option value="personal">Personal Account</option>
+            <option value="savings">Savings Account</option>
+            <option value="business">Business Account</option>
+        </select>
     </div>
     <div class="buttons-content">
         <div class="box-buttons">
@@ -23,17 +31,28 @@
     
     [Parameter]public string? Balance { get; set; }
 
-
    
     [Inject] private NavigationManager Navigation { get; set; }
+    
+    private string accountType = "Personal Account"; // Default account type
 
-    private void NewTransfer()
-    {
-        Navigation.NavigateTo("/transfer");
-    }
+    private void NewTransfer() => Navigation.NavigateTo("/transfer");
+    private void Deposit() => Navigation.NavigateTo("/deposit");
 
-    private void Deposit()
+    private void OnAccountTypeChanged(ChangeEventArgs e)
     {
-        Navigation.NavigateTo("/deposit");
+        var selectedType = e.Value?.ToString();
+        switch (selectedType)
+        {
+            case "personal":
+                accountType = "Personal Account";
+                break;
+            case "savings":
+                accountType = "Savings Account";
+                break;
+            case "business":
+                accountType = "Business Account";
+                break;
+        }
     }
 }
