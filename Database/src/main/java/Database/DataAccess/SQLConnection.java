@@ -22,7 +22,7 @@ public class SQLConnection implements SQLConnectionInterface{
         return instance;
     }
     Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","1945");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","password");
     }
     /** Database manipulator method, to make the transfer in the database with the given details**/
     @Override
@@ -154,6 +154,7 @@ public class SQLConnection implements SQLConnectionInterface{
                 String middleName = resultSet.getString("middlename");
                 String lastName = resultSet.getString("lastname");
                 String role = resultSet.getString("role");
+
                 User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setMiddleName(middleName).
                 setLastName(lastName).setRole(role).build();
                 users.add(user);
@@ -170,7 +171,7 @@ public class SQLConnection implements SQLConnectionInterface{
                     "FROM account a JOIN \"user\" u ON a.user_id = u.user_id;";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next());
+                while (resultSet.next())
                 {
                     String accountNumber = resultSet.getString("account_id");
                     String ownerName = resultSet.getString("firstname") + " " + resultSet.getString("lastname");
