@@ -73,6 +73,10 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.LoginValidationRequest> __Marshaller_Database_LoginValidationRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LoginValidationRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.LoginValidationResponse> __Marshaller_Database_LoginValidationResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LoginValidationResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.AllAccountsInfoRequest> __Marshaller_Database_AllAccountsInfoRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AllAccountsInfoRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.AllAccountsInfoResponse> __Marshaller_Database_AllAccountsInfoResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AllAccountsInfoResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse> __Method_Transfer = new grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse>(
@@ -129,6 +133,14 @@ namespace Database {
         "LoginValidation",
         __Marshaller_Database_LoginValidationRequest,
         __Marshaller_Database_LoginValidationResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.AllAccountsInfoRequest, global::Database.AllAccountsInfoResponse> __Method_AllAccountsInfo = new grpc::Method<global::Database.AllAccountsInfoRequest, global::Database.AllAccountsInfoResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AllAccountsInfo",
+        __Marshaller_Database_AllAccountsInfoRequest,
+        __Marshaller_Database_AllAccountsInfoResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -302,6 +314,54 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.LoginValidationResponse> LoginValidationAsync(global::Database.LoginValidationRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_LoginValidation, null, options, request);
+      }
+      /// <summary>
+      ///TODO account number name balnce to c# as a List
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AllAccountsInfoResponse AllAccountsInfo(global::Database.AllAccountsInfoRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AllAccountsInfo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///TODO account number name balnce to c# as a List
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AllAccountsInfoResponse AllAccountsInfo(global::Database.AllAccountsInfoRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AllAccountsInfo, null, options, request);
+      }
+      /// <summary>
+      ///TODO account number name balnce to c# as a List
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AllAccountsInfoResponse> AllAccountsInfoAsync(global::Database.AllAccountsInfoRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AllAccountsInfoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///TODO account number name balnce to c# as a List
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AllAccountsInfoResponse> AllAccountsInfoAsync(global::Database.AllAccountsInfoRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AllAccountsInfo, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

@@ -6,4 +6,5 @@ namespace Application.LogicInterfaces;
 public interface IAuthLogic
 {
     Task<User> Login(UserLoginRequestDto userLoginRequestDto);
+    Task<List<AccountsInfo>> GetAccounts();
 }

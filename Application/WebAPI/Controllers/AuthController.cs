@@ -1,12 +1,14 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using Application.LogicInterfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
 using WebAPI.Services;
+using AccountsInfo = Database.AccountsInfo;
 
 
 namespace WebApi.Controllers;
@@ -37,8 +39,8 @@ public class AuthController : ControllerBase
      try
      {
          User user = await _authLogic.Login(userLoginRequestDto);
-
-         //this gives back a User?? can put that into jwt does that make login?
+         List<Domain.Models.AccountsInfo> accountsInfos = await _authLogic.GetAccounts();
+         user.AccountsInfos = accountsInfos;    
          string token = GenerateJwt(user);
          return Ok(token);
      }
@@ -78,6 +80,8 @@ public class AuthController : ControllerBase
 
          string fullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
 
+         string list = JsonSerializer.Serialize(user.AccountsInfos);
+         Console.WriteLine(list);
          Console.WriteLine(user.Role);
          
          var claims = new[]
@@ -87,7 +91,7 @@ public class AuthController : ControllerBase
              new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
              new Claim(ClaimTypes.Role, user.Role),
              new Claim(ClaimTypes.Name, fullName),
-             new Claim("Amount", user.Money.ToString()),
+             new Claim("Accounts", list)
          };
          
          return claims.ToList();

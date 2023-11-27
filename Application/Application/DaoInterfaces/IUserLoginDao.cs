@@ -6,4 +6,5 @@ namespace Application.DaoInterfaces;
 public interface IUserLoginDao
 {
     Task<List<User>> GetAllUserDataForValidation();
+    Task<List<AccountsInfo>> GetAccounts();
 }

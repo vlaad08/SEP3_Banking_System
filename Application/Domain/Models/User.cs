@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Domain.Models;
 
 public class User
@@ -9,7 +11,7 @@ public class User
     public string? Role { get; set; }
     public double? Money { get; set; }
     public string? Password { get; set; }
-    
+    public List<AccountsInfo> AccountsInfos { get; set; }
 
- 
+
 }

@@ -61,8 +61,12 @@ public class AuthLogic : IAuthLogic
     }
     public async Task<User> Login(UserLoginRequestDto userLoginRequestDto)
     {
-       
         return await ValidateUser(userLoginRequestDto);
+    }
+
+    public async Task<List<AccountsInfo>> GetAccounts()
+    {
+        return await userLoginDao.GetAccounts();
     }
    
 

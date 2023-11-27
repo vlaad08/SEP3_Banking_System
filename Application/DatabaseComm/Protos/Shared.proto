@@ -12,6 +12,8 @@ service DatabaseService{
     rpc Deposit(DepositRequest) returns (DepositResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
     rpc LoginValidation(LoginValidationRequest) returns (LoginValidationResponse);
+    rpc AllAccountsInfo(AllAccountsInfoRequest) returns (AllAccountsInfoResponse);
+    //TODO account number name balnce to c# as a List
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -85,4 +87,19 @@ message User
     string middleName = 4;
     string lastName = 5;
     string role = 6;
+}
+message AllAccountsInfoRequest
+{
+
+}
+message AllAccountsInfoResponse
+{
+    repeated AccountsInfo accountInfo = 1;
+}
+message AccountsInfo
+{
+    string accountNumber = 1;
+    string ownerName = 2;
+    double accountBalance = 3;
+    string accountType = 4;
 }
