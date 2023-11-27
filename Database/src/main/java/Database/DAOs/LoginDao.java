@@ -1,5 +1,6 @@
 package Database.DAOs;
 
+import Database.AccountsInfo;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
@@ -21,4 +22,10 @@ public class LoginDao implements LoginDaoInterface {
     public List<User> getUsers() throws SQLException {
         return connection.getUsers();
     }
+
+    @Override
+    public List<AccountsInfo> getAccountsInfo() throws SQLException{
+        return connection.getAccountsInfo();
+    }
+
 }

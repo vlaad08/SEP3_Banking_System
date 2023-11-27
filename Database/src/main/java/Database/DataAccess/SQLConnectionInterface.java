@@ -1,5 +1,6 @@
 package Database.DataAccess;
 
+import Database.AccountsInfo;
 import Database.User;
 
 import java.sql.SQLException;
@@ -12,4 +13,5 @@ public interface SQLConnectionInterface {
     double dailyCheck(String account_id)throws SQLException;
     void deposit(String account_id, double amount) throws SQLException;
     List<User> getUsers() throws SQLException;
+    List<AccountsInfo> getAccountsInfo() throws SQLException;
 }

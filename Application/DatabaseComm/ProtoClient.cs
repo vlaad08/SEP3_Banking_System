@@ -1,8 +1,10 @@
 using System.Collections;
 using Database;
 using Domain.DTOs;
+using Domain.Models;
 using Grpc.Net.Client;
 using Shared.DTOs;
+using AccountsInfo = Database.AccountsInfo;
 
 namespace Grpc;
 
@@ -111,5 +113,32 @@ public class ProtoClient:IGrpcClient
             users.Add(user);
         }
         return users;
+    }
+
+    public async Task<List<AccountsInfo>> getAllAccountsInfo()
+    {
+        string serverAddress = "localhost:9090";
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        
+        var request = new AllAccountsInfoRequest()
+        {
+        };
+
+        var response = await databaseClient.AllAccountsInfoAsync(request);
+        List<AccountsInfo> accountsInfos = new List<AccountsInfo>();
+        foreach (var responseInfo in accountsInfos)
+        {
+            AccountsInfo accountInfo = new AccountsInfo()
+            {
+                AccountNumber = responseInfo.AccountNumber,
+                OwnerName = responseInfo.OwnerName,
+                AccountBalance = responseInfo.AccountBalance,
+                AccountType = responseInfo.AccountType
+            };
+            accountsInfos.Add(accountInfo);
+        }
+
+        return accountsInfos;
     }
 }
