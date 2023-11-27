@@ -1,5 +1,6 @@
 package Database.DataAccess;
 
+import Database.AccountsInfo;
 import Database.User;
 
 import java.sql.*;
@@ -153,6 +154,7 @@ public class SQLConnection implements SQLConnectionInterface{
                 String middleName = resultSet.getString("middlename");
                 String lastName = resultSet.getString("lastname");
                 String role = resultSet.getString("role");
+
                 User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setMiddleName(middleName).
                 setLastName(lastName).setRole(role).build();
                 users.add(user);
@@ -160,4 +162,28 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return users;
     }
+
+    @Override
+    public List<AccountsInfo> getAccountsInfo() throws SQLException {
+        List<AccountsInfo> accountsInfoList = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            String query = "SELECT a.account_id, u.firstname, u.lastname, a.balance, a.account_type " +
+                    "FROM account a JOIN \"user\" u ON a.user_id = u.user_id;";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next())
+                {
+                    String accountNumber = resultSet.getString("account_id");
+                    String ownerName = resultSet.getString("firstname") + " " + resultSet.getString("lastname");
+                    double accountBalance = resultSet.getDouble("balance");
+                    String accountType = resultSet.getString("account_type");
+
+                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber).setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType).build();
+                    accountsInfoList.add(accountsInfo);
+                }
+            }
+        }
+        return accountsInfoList;
+    }
+
 }

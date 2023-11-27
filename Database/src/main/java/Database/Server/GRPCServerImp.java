@@ -1,6 +1,13 @@
 package Database.Server;
 
 import Database.*;
+import Database.AccountCheckRequest;
+import Database.AccountCheckResponse;
+import Database.AccountsInfo;
+import Database.AllAccountsInfoRequest;
+import Database.AllAccountsInfoResponse;
+import Database.BalanceCheckRequest;
+import Database.BalanceCheckResponse;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
@@ -8,6 +15,16 @@ import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
+import Database.DailyCheckRequest;
+import Database.DailyCheckResponse;
+import Database.DatabaseServiceGrpc;
+import Database.DepositRequest;
+import Database.DepositResponse;
+import Database.LoginValidationRequest;
+import Database.LoginValidationResponse;
+import Database.TransferRequest;
+import Database.TransferResponse;
+import Database.User;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.SQLException;
@@ -97,7 +114,22 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+    @Override
+    public void allAccountsInfo(AllAccountsInfoRequest request, StreamObserver<AllAccountsInfoResponse> responseStreamObserver)
+    {
+        try
+        {
+            List<AccountsInfo> accInfo = loginDao.getAccountsInfo();
+            AllAccountsInfoResponse response = AllAccountsInfoResponse.newBuilder().addAllAccountInfo(accInfo).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch(SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

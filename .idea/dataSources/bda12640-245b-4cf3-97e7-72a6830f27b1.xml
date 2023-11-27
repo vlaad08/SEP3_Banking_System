@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <IntrospectionStateNumber>1675</IntrospectionStateNumber>
@@ -4317,9 +4317,9 @@ false Zulu
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>49243</ObjectId>
-      <RefColNames>user_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1672</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>user_id</RefKeyColNames>
       <RefTableId>49229</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4388,9 +4388,9 @@ false Zulu
       <ColNames>senderaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>49255</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1674</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>49238</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4399,9 +4399,9 @@ false Zulu
       <ColNames>recipientaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>49260</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1674</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>49238</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
