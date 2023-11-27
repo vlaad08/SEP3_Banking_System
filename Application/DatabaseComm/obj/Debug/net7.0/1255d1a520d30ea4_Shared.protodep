@@ -1,2 +1,0 @@
-obj/Debug/net7.0/Protos/Shared.cs \
-obj/Debug/net7.0/Protos/SharedGrpc.cs: Protos/Shared.proto

@@ -35,7 +35,9 @@ public class AuthController : ControllerBase
  {
      try
      {
-         User user = await _authLogic.Login(userLoginRequestDto); //this gives back a User?? can put that into jwt does that make login?
+         User user = await _authLogic.Login(userLoginRequestDto);
+
+         //this gives back a User?? can put that into jwt does that make login?
          string token = GenerateJwt(user);
          return Ok(token);
      }

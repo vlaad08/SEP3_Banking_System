@@ -12,7 +12,7 @@ public class ProtoClient:IGrpcClient
     
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
@@ -28,7 +28,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<double> GetBalanceByAccountNumber(string accountNumber)
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
@@ -43,7 +43,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<string> GetAccountNumberByAccountNumber(string accountNumber)
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
@@ -58,7 +58,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<double> DailyCheck(string accountNumber)
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
@@ -72,7 +72,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task MakeDeposit(DepositRequestDTO depositRequestDto)
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
@@ -87,7 +87,7 @@ public class ProtoClient:IGrpcClient
 
     public async Task<List<global::Shared.Models.User>> GetAllUserInfo()
     {
-        string serverAddress = "10.154.212.41:9090";
+        string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
@@ -102,17 +102,14 @@ public class ProtoClient:IGrpcClient
             global::Shared.Models.User user = new global::Shared.Models.User()
             {
                 Email = responseUser.Email,
-                Password = responseUser.Password
+                Password = responseUser.Password,
+                FirstName = responseUser.FirstName,
+                MiddleName = responseUser.MiddleName,
+                LastName = responseUser.LastName,
+                Role = responseUser.Role
             };
             users.Add(user);
         }
-
-        foreach (var VARIABLE in users)
-        {
-            Console.WriteLine(VARIABLE.Email);
-            
-        }
-
         return users;
     }
 }

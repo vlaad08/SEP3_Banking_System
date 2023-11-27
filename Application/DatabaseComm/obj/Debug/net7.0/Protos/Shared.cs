@@ -41,20 +41,22 @@ namespace Database {
             "CgptaWRkbGVOYW1lGAMgASgJEhAKCGxhc3ROYW1lGAQgASgJEhAKCHBhc3N3",
             "b3JkGAUgASgJEg0KBXRva2VuGAYgASgJIhgKFkxvZ2luVmFsaWRhdGlvblJl",
             "cXVlc3QiOAoXTG9naW5WYWxpZGF0aW9uUmVzcG9uc2USHQoFdXNlcnMYASAD",
-            "KAsyDi5EYXRhYmFzZS5Vc2VyIicKBFVzZXISDQoFZW1haWwYASABKAkSEAoI",
-            "cGFzc3dvcmQYAiABKAkynwQKD0RhdGFiYXNlU2VydmljZRJDCghUcmFuc2Zl",
-            "chIZLkRhdGFiYXNlLlRyYW5zZmVyUmVxdWVzdBoaLkRhdGFiYXNlLlRyYW5z",
-            "ZmVyUmVzcG9uc2UiABJPCgxDaGVja0FjY291bnQSHS5EYXRhYmFzZS5BY2Nv",
-            "dW50Q2hlY2tSZXF1ZXN0Gh4uRGF0YWJhc2UuQWNjb3VudENoZWNrUmVzcG9u",
-            "c2UiABJPCgxDaGVja0JhbGFuY2USHS5EYXRhYmFzZS5CYWxhbmNlQ2hlY2tS",
-            "ZXF1ZXN0Gh4uRGF0YWJhc2UuQmFsYW5jZUNoZWNrUmVzcG9uc2UiABJTChZE",
-            "YWlseUNoZWNrVHJhbnNhY3Rpb25zEhsuRGF0YWJhc2UuRGFpbHlDaGVja1Jl",
-            "cXVlc3QaHC5EYXRhYmFzZS5EYWlseUNoZWNrUmVzcG9uc2USPgoHRGVwb3Np",
-            "dBIYLkRhdGFiYXNlLkRlcG9zaXRSZXF1ZXN0GhkuRGF0YWJhc2UuRGVwb3Np",
-            "dFJlc3BvbnNlEjgKBUxvZ2luEhYuRGF0YWJhc2UuTG9naW5SZXF1ZXN0Ghcu",
-            "RGF0YWJhc2UuTG9naW5SZXNwb25zZRJWCg9Mb2dpblZhbGlkYXRpb24SIC5E",
-            "YXRhYmFzZS5Mb2dpblZhbGlkYXRpb25SZXF1ZXN0GiEuRGF0YWJhc2UuTG9n",
-            "aW5WYWxpZGF0aW9uUmVzcG9uc2VCAlABYgZwcm90bzM="));
+            "KAsyDi5EYXRhYmFzZS5Vc2VyIm4KBFVzZXISDQoFZW1haWwYASABKAkSEAoI",
+            "cGFzc3dvcmQYAiABKAkSEQoJZmlyc3ROYW1lGAMgASgJEhIKCm1pZGRsZU5h",
+            "bWUYBCABKAkSEAoIbGFzdE5hbWUYBSABKAkSDAoEcm9sZRgGIAEoCTKfBAoP",
+            "RGF0YWJhc2VTZXJ2aWNlEkMKCFRyYW5zZmVyEhkuRGF0YWJhc2UuVHJhbnNm",
+            "ZXJSZXF1ZXN0GhouRGF0YWJhc2UuVHJhbnNmZXJSZXNwb25zZSIAEk8KDENo",
+            "ZWNrQWNjb3VudBIdLkRhdGFiYXNlLkFjY291bnRDaGVja1JlcXVlc3QaHi5E",
+            "YXRhYmFzZS5BY2NvdW50Q2hlY2tSZXNwb25zZSIAEk8KDENoZWNrQmFsYW5j",
+            "ZRIdLkRhdGFiYXNlLkJhbGFuY2VDaGVja1JlcXVlc3QaHi5EYXRhYmFzZS5C",
+            "YWxhbmNlQ2hlY2tSZXNwb25zZSIAElMKFkRhaWx5Q2hlY2tUcmFuc2FjdGlv",
+            "bnMSGy5EYXRhYmFzZS5EYWlseUNoZWNrUmVxdWVzdBocLkRhdGFiYXNlLkRh",
+            "aWx5Q2hlY2tSZXNwb25zZRI+CgdEZXBvc2l0EhguRGF0YWJhc2UuRGVwb3Np",
+            "dFJlcXVlc3QaGS5EYXRhYmFzZS5EZXBvc2l0UmVzcG9uc2USOAoFTG9naW4S",
+            "Fi5EYXRhYmFzZS5Mb2dpblJlcXVlc3QaFy5EYXRhYmFzZS5Mb2dpblJlc3Bv",
+            "bnNlElYKD0xvZ2luVmFsaWRhdGlvbhIgLkRhdGFiYXNlLkxvZ2luVmFsaWRh",
+            "dGlvblJlcXVlc3QaIS5EYXRhYmFzZS5Mb2dpblZhbGlkYXRpb25SZXNwb25z",
+            "ZUICUAFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +74,7 @@ namespace Database {
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.LoginResponse), global::Database.LoginResponse.Parser, new[]{ "Email", "FirstName", "MiddleName", "LastName", "Password", "Token" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.LoginValidationRequest), global::Database.LoginValidationRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.LoginValidationResponse), global::Database.LoginValidationResponse.Parser, new[]{ "Users" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Database.User), global::Database.User.Parser, new[]{ "Email", "Password" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Database.User), global::Database.User.Parser, new[]{ "Email", "Password", "FirstName", "MiddleName", "LastName", "Role" }, null, null, null, null)
           }));
     }
     #endregion
@@ -3083,6 +3085,10 @@ namespace Database {
     public User(User other) : this() {
       email_ = other.email_;
       password_ = other.password_;
+      firstName_ = other.firstName_;
+      middleName_ = other.middleName_;
+      lastName_ = other.lastName_;
+      role_ = other.role_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3116,6 +3122,54 @@ namespace Database {
       }
     }
 
+    /// <summary>Field number for the "firstName" field.</summary>
+    public const int FirstNameFieldNumber = 3;
+    private string firstName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string FirstName {
+      get { return firstName_; }
+      set {
+        firstName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "middleName" field.</summary>
+    public const int MiddleNameFieldNumber = 4;
+    private string middleName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string MiddleName {
+      get { return middleName_; }
+      set {
+        middleName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "lastName" field.</summary>
+    public const int LastNameFieldNumber = 5;
+    private string lastName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string LastName {
+      get { return lastName_; }
+      set {
+        lastName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "role" field.</summary>
+    public const int RoleFieldNumber = 6;
+    private string role_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Role {
+      get { return role_; }
+      set {
+        role_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3133,6 +3187,10 @@ namespace Database {
       }
       if (Email != other.Email) return false;
       if (Password != other.Password) return false;
+      if (FirstName != other.FirstName) return false;
+      if (MiddleName != other.MiddleName) return false;
+      if (LastName != other.LastName) return false;
+      if (Role != other.Role) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3142,6 +3200,10 @@ namespace Database {
       int hash = 1;
       if (Email.Length != 0) hash ^= Email.GetHashCode();
       if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (FirstName.Length != 0) hash ^= FirstName.GetHashCode();
+      if (MiddleName.Length != 0) hash ^= MiddleName.GetHashCode();
+      if (LastName.Length != 0) hash ^= LastName.GetHashCode();
+      if (Role.Length != 0) hash ^= Role.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3168,6 +3230,22 @@ namespace Database {
         output.WriteRawTag(18);
         output.WriteString(Password);
       }
+      if (FirstName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(FirstName);
+      }
+      if (MiddleName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(MiddleName);
+      }
+      if (LastName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(LastName);
+      }
+      if (Role.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Role);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3186,6 +3264,22 @@ namespace Database {
         output.WriteRawTag(18);
         output.WriteString(Password);
       }
+      if (FirstName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(FirstName);
+      }
+      if (MiddleName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(MiddleName);
+      }
+      if (LastName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(LastName);
+      }
+      if (Role.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Role);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3201,6 +3295,18 @@ namespace Database {
       }
       if (Password.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
+      }
+      if (FirstName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FirstName);
+      }
+      if (MiddleName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MiddleName);
+      }
+      if (LastName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(LastName);
+      }
+      if (Role.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Role);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3219,6 +3325,18 @@ namespace Database {
       }
       if (other.Password.Length != 0) {
         Password = other.Password;
+      }
+      if (other.FirstName.Length != 0) {
+        FirstName = other.FirstName;
+      }
+      if (other.MiddleName.Length != 0) {
+        MiddleName = other.MiddleName;
+      }
+      if (other.LastName.Length != 0) {
+        LastName = other.LastName;
+      }
+      if (other.Role.Length != 0) {
+        Role = other.Role;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3243,6 +3361,22 @@ namespace Database {
             Password = input.ReadString();
             break;
           }
+          case 26: {
+            FirstName = input.ReadString();
+            break;
+          }
+          case 34: {
+            MiddleName = input.ReadString();
+            break;
+          }
+          case 42: {
+            LastName = input.ReadString();
+            break;
+          }
+          case 50: {
+            Role = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -3264,6 +3398,22 @@ namespace Database {
           }
           case 18: {
             Password = input.ReadString();
+            break;
+          }
+          case 26: {
+            FirstName = input.ReadString();
+            break;
+          }
+          case 34: {
+            MiddleName = input.ReadString();
+            break;
+          }
+          case 42: {
+            LastName = input.ReadString();
+            break;
+          }
+          case 50: {
+            Role = input.ReadString();
             break;
           }
         }

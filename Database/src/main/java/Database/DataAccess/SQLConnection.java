@@ -21,7 +21,7 @@ public class SQLConnection implements SQLConnectionInterface{
         return instance;
     }
     Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","password");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","1945");
     }
     /** Database manipulator method, to make the transfer in the database with the given details**/
     @Override
@@ -142,14 +142,19 @@ public class SQLConnection implements SQLConnectionInterface{
         List<User> users = new ArrayList<>();
         try(Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("SELECT email, password\n" +
+            PreparedStatement statement = connection.prepareStatement("SELECT *\n" +
                     "FROM \"user\"");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next())
             {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                User user = User.newBuilder().setEmail(email).setPassword(password).build();
+                String firstName = resultSet.getString("firstname");
+                String middleName = resultSet.getString("middlename");
+                String lastName = resultSet.getString("lastname");
+                String role = resultSet.getString("role");
+                User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setMiddleName(middleName).
+                setLastName(lastName).setRole(role).build();
                 users.add(user);
             }
         }
