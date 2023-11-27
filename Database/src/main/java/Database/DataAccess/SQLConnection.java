@@ -21,7 +21,7 @@ public class SQLConnection implements SQLConnectionInterface{
         return instance;
     }
     Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","1945");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","password");
     }
     /** Database manipulator method, to make the transfer in the database with the given details**/
     @Override

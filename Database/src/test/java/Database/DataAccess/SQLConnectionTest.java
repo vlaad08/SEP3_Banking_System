@@ -1,5 +1,6 @@
 package Database.DataAccess;
 
+import Database.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -7,7 +8,8 @@ import org.mockito.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -169,6 +171,73 @@ public class SQLConnectionTest {
 
         assertEquals("-",stringCaptor.getAllValues().get(0));
     }
+
+    @Test
+    void deposit_updates_the_database() throws SQLException {
+        sqlConnection.deposit("aaaabbbbccccdddd",50);
+        Mockito.verify(connection).prepareStatement("UPDATE banking_system.account\n" +
+                "SET balance = balance + ?\n" +
+                "WHERE account_id = ?");
+        Mockito.verify(statement).setDouble(eq(1),doubleCaptor.capture());
+        Mockito.verify(statement).setString(eq(2),stringCaptor.capture());
+        Mockito.verify(statement).executeUpdate();
+
+        assertEquals("aaaabbbbccccdddd",stringCaptor.getValue());
+        assertEquals(50,doubleCaptor.getValue());
+    }
+    @Test
+    void getUsers_returns_a_list() throws SQLException {
+        User sampleUser = User.newBuilder()
+                .setEmail("test@example.com")
+                .setPassword("test1234")
+                .setFirstName("Test")
+                .setMiddleName("Test")
+                .setLastName("Test")
+                .setRole("testUser")
+                .build();
+        Mockito.when(sqlConnection.getUsers()).thenReturn(List.of(sampleUser));
+        List<User> result = sqlConnection.getUsers();
+
+        assertEquals(List.of(sampleUser), result);
+    }
+
+    @Test
+    void getUsers_queries_the_database() throws SQLException {
+        Mockito.when(resultSet.next()).thenReturn(true);
+        User sampleUser = User.newBuilder()
+                .setEmail("test@example.com")
+                .setPassword("test1234")
+                .setFirstName("Test")
+                .setMiddleName("Test")
+                .setLastName("Test")
+                .setRole("testUser")
+                .build();
+        List<User> users = new ArrayList<>();
+        users.add(sampleUser);
+        try
+        {
+            Mockito.when(sqlConnection.getUsers()).thenReturn(users);
+            users = sqlConnection.getUsers();
+        }catch (NullPointerException ignored){}
+        Mockito.verify(connection).prepareStatement("SELECT *\n" +
+                "FROM \"user\"");
+        Mockito.verify(statement).executeQuery();
+        Mockito.verify(resultSet).next();
+        Mockito.verify(resultSet).getString("email");
+        Mockito.verify(resultSet).getString("password");
+        Mockito.verify(resultSet).getString("firstname");
+        Mockito.verify(resultSet).getString("middlename");
+        Mockito.verify(resultSet).getString("lastname");
+        Mockito.verify(resultSet).getString("role");
+        User.Builder builder = Mockito.mock(User.Builder.class);
+        try
+        {
+            Mockito.verify(builder.setEmail("test@example.com").setPassword("test1234").setFirstName("Test").setMiddleName("Test").setLastName("Test").setRole("testUser")).build();
+        }catch (NullPointerException ignored){}
+        assertEquals(users.size(), 1);
+    }
+
+
 
 
 }

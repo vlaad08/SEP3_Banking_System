@@ -1,11 +1,11 @@
 package Database.DAOs;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DTOs.CheckAccountDTO;
+import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,14 +24,16 @@ public class TransactionDAOTest {
     private SQLConnectionInterface connection;
     private TransferRequestDTO transferRequestDTO;
     private CheckAccountDTO checkAccountDTO;
+    private DepositRequestDTO depositRequestDTO;
 
     @BeforeEach
     void setup()
     {
         dao = new TransactionDao();
-        connection = Mockito.spy(SQLConnectionInterface.class);
+        connection = Mockito.spy(SQLConnection.class);
         transferRequestDTO = Mockito.mock(TransferRequestDTO.class);
         checkAccountDTO = Mockito.mock(CheckAccountDTO.class);
+        depositRequestDTO = Mockito.mock(DepositRequestDTO.class);
         MockitoAnnotations.openMocks(this);
     }
 
@@ -73,5 +75,10 @@ public class TransactionDAOTest {
     {
         Mockito.when(connection.dailyCheck(checkAccountDTO.getRecipientAccount_id())).thenThrow(SQLException.class);
         assertThrows(SQLException.class, ()->dao.dailyCheck(checkAccountDTO));
+    }
+    @Test
+    void makeDeposit_connection_called() throws SQLException {
+        dao.makeDeposit(depositRequestDTO);
+        Mockito.verify(connection).deposit(depositRequestDTO.getAccount_id(),depositRequestDTO.getAmount());
     }
 }
