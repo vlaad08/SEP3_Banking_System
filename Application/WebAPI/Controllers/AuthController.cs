@@ -1,10 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Application.LogicInterfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
-using Shared.Models;
 using WebAPI.Services;
 
 
@@ -74,20 +75,21 @@ public class AuthController : ControllerBase
  {
      try
      {
-         //string fullName = user.FirstName + " " + user.LastName;
 
-         //Console.WriteLine(fullName);
+         string fullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
+
+         Console.WriteLine(user.Role);
          
          var claims = new[]
          {
              new Claim(JwtRegisteredClaimNames.Sub, config["Jwt:Subject"]),
              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
              new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-           //  new Claim(ClaimTypes.Role, user.Role),
-           //  new Claim(ClaimTypes.Name, "fullName"),
-             //new Claim("Amount", user.Money.ToString()),
-             //new Claim("ProfilePicture", user.Picture)
+             new Claim(ClaimTypes.Role, user.Role),
+             new Claim(ClaimTypes.Name, fullName),
+             new Claim("Amount", user.Money.ToString()),
          };
+         
          return claims.ToList();
      }
      catch (Exception e)

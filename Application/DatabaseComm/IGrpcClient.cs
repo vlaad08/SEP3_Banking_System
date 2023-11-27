@@ -11,5 +11,5 @@ public interface IGrpcClient
    Task<string> GetAccountNumberByAccountNumber(string accountNumber);
    Task<double> DailyCheck(string accountNumber);
    Task MakeDeposit(DepositRequestDTO depositRequestDto);
-   Task<List<global::Shared.Models.User>> GetAllUserInfo();
+   Task<List<global::Domain.Models.User>> GetAllUserInfo();
 }

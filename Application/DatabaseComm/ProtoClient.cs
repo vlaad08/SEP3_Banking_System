@@ -85,7 +85,7 @@ public class ProtoClient:IGrpcClient
         var response = await databaseClient.DepositAsync(request);
     }
 
-    public async Task<List<global::Shared.Models.User>> GetAllUserInfo()
+    public async Task<List<global::Domain.Models.User>> GetAllUserInfo()
     {
         string serverAddress = "localhost:9090";
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
@@ -96,10 +96,10 @@ public class ProtoClient:IGrpcClient
         };
 
         var response = await databaseClient.LoginValidationAsync(request);
-        List<global::Shared.Models.User> users = new List<global::Shared.Models.User>();
+        List<global::Domain.Models.User> users = new List<global::Domain.Models.User>();
         foreach (var responseUser in response.Users)
         {
-            global::Shared.Models.User user = new global::Shared.Models.User()
+            global::Domain.Models.User user = new global::Domain.Models.User()
             {
                 Email = responseUser.Email,
                 Password = responseUser.Password,

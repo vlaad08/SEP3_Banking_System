@@ -1,7 +1,7 @@
+using Domain.Models;
 using Shared.DTOs;
-using Shared.Models;
 
-namespace WebAPI.Services;
+namespace Application.LogicInterfaces;
 
 public interface IAuthLogic
 {

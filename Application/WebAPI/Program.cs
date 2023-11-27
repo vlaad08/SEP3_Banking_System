@@ -5,6 +5,7 @@ using Application.LogicInterfaces;
 using DataAccess.DAOs;
 using Domain.Auth;
 using Grpc;
+using Grpc.DAOs;
 using WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;

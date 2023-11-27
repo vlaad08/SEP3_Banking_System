@@ -1,11 +1,8 @@
-﻿using System.ComponentModel;
-using Application.DaoInterfaces;
-using Database;
-using Grpc;
+﻿using Application.DaoInterfaces;
 using Shared.DTOs;
-using User = Shared.Models.User;
+using User = Domain.Models.User;
 
-namespace DataAccess.DAOs;
+namespace Grpc.DAOs;
 
 public class UserLoginDao : IUserLoginDao
 {

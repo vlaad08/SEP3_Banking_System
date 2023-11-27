@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
 using Application.DaoInterfaces;
+using Application.LogicInterfaces;
+using Domain.Models;
 using Shared.DTOs;
-using Shared.Models;
 
 namespace WebAPI.Services;
 
@@ -47,7 +47,9 @@ public class AuthLogic : IAuthLogic
                     Email = u.Email,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
-                    MiddleName = u.MiddleName
+                    MiddleName = u.MiddleName,
+                    Role = u.Role,
+                    Money = 0 //For now leave it to 0
                 };
                 break;
             }
