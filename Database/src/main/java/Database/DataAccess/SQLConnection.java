@@ -1,6 +1,7 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
+import Database.DTOs.UserInfoDTO;
 import Database.User;
 
 import java.sql.*;
@@ -183,6 +184,32 @@ public class SQLConnection implements SQLConnectionInterface{
                 }
             }
         }
+        return accountsInfoList;
+    }
+
+    public List<AccountsInfo> getUserAccountInfos(UserInfoDTO userInfoDTO) throws SQLException {
+        List<AccountsInfo> accountsInfoList = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT a.account_id, u.firstname, u.lastname, a.balance, a.account_type " +
+                    "FROM account a JOIN \"user\" u ON a.user_id = u.user_id " +
+                    "WHERE u.email = ?;";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, userInfoDTO.getEmail());
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    String accountNumber = resultSet.getString("account_id");
+                    String ownerName = resultSet.getString("firstname") + " " + resultSet.getString("lastname");
+                    double accountBalance = resultSet.getDouble("balance");
+                    String accountType = resultSet.getString("account_type");
+
+                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber).setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType).build();
+                    accountsInfoList.add(accountsInfo);
+                }
+            }
+        }
+
         return accountsInfoList;
     }
 

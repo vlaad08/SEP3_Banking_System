@@ -15,6 +15,7 @@ import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
+import Database.DTOs.UserInfoDTO;
 import Database.DailyCheckRequest;
 import Database.DailyCheckResponse;
 import Database.DatabaseServiceGrpc;
@@ -131,5 +132,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
+    @Override
+    public void userAccountsInfo(UserAccountInfoRequest request, StreamObserver<UserAccountInfoResponse> responseStreamObserver)
+    {
+        try{
+            UserInfoDTO userInfoDTO = new UserInfoDTO(request.getEmail());
+            List<AccountsInfo> accInfo = loginDao.getUserAccountInfos(userInfoDTO);
+            UserAccountInfoResponse response = UserAccountInfoResponse.newBuilder().addAllAccountInfo(accInfo).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

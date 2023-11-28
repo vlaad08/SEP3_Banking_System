@@ -13,7 +13,7 @@ service DatabaseService{
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc LoginValidation(LoginValidationRequest) returns (LoginValidationResponse);
   rpc AllAccountsInfo(AllAccountsInfoRequest) returns (AllAccountsInfoResponse);
-  //TODO account number name balnce to c# as a List
+  rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
 }
 message TransferRequest{
   string senderAccount_id = 1;
@@ -104,3 +104,11 @@ message AccountsInfo
   string accountType = 4;
 }
 
+message UserAccountInfoRequest
+{
+  string email = 1;
+}
+message UserAccountInfoResponse
+{
+  repeated AccountsInfo accountInfo = 1;
+}
