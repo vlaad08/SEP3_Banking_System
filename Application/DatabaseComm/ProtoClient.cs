@@ -10,7 +10,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "10.154.204.84:9090";
+    private string serverAddress = "10.154.206.51:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
@@ -108,7 +108,7 @@ public class ProtoClient:IGrpcClient
         }
         return users;
     }
-    public async Task<List<global::Domain.Models.AccountsInfo>> getAllAccountsInfo()
+    public async Task<List<global::Domain.Models.AccountsInfo>> GetAllAccountsInfo()
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
@@ -118,7 +118,7 @@ public class ProtoClient:IGrpcClient
         };
 
         var response = await databaseClient.AllAccountsInfoAsync(request);
-        List<global::Domain.Models.AccountsInfo> accountsInfos = new List<global::Domain.Models.AccountsInfo>();
+        List<AccountsInfo> accountsInfos = new List<AccountsInfo>();
         foreach (var responseInfo in response.AccountInfo)
         {
             AccountsInfo accountInfo = new AccountsInfo
@@ -127,6 +127,30 @@ public class ProtoClient:IGrpcClient
                 AccountOwner = responseInfo.OwnerName,
                 Balance = responseInfo.AccountBalance,
                 AccountType = responseInfo.AccountType
+            };
+            accountsInfos.Add(accountInfo);
+        }
+        return accountsInfos;
+    }
+
+    public async Task<List<AccountsInfo>> GetUserAccounts(string email)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new UserAccountInfoRequest()
+        {
+            Email = email
+        };
+        var response = await databaseClient.UserAccountsInfoAsync(request);
+        List<AccountsInfo> accountsInfos = new List<AccountsInfo>();
+        foreach (var resp in response.AccountInfo)
+        {
+            AccountsInfo accountInfo = new AccountsInfo()
+            {
+                AccountNumber = resp.AccountNumber,
+                AccountOwner = resp.OwnerName,
+                Balance = resp.AccountBalance,
+                AccountType = resp.AccountType
             };
             accountsInfos.Add(accountInfo);
         }

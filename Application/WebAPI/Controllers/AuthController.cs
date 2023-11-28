@@ -39,7 +39,7 @@ public class AuthController : ControllerBase
      try
      {
          User user = await _authLogic.Login(userLoginRequestDto);
-         List<Domain.Models.AccountsInfo> accountsInfos = await _authLogic.GetAccounts();
+         List<Domain.Models.AccountsInfo> accountsInfos = await _authLogic.GetUserAccounts(user.Email);
          user.AccountsInfos = accountsInfos;    
          string token = GenerateJwt(user);
          return Ok(token);
