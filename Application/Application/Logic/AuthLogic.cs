@@ -68,6 +68,11 @@ public class AuthLogic : IAuthLogic
     {
         return await userLoginDao.GetAccounts();
     }
+
+    public async Task<List<AccountsInfo>> GetUserAccounts(string email)
+    {
+        return await userLoginDao.GetUserAccounts(email);
+    }
    
 
     /*public Task<User> GetUser(string email, string password)

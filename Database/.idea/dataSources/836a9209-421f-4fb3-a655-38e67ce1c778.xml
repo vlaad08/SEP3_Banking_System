@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="postgres@localhost">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
+    <root id="1">
+      <ServerVersion>15.1</ServerVersion>
+      <StartupTime>1700671694</StartupTime>
+    </root>
+    <database id="2" parent="1" name="postgres">
+      <Comment>default administrative connection database</Comment>
+      <Current>1</Current>
+      <ObjectId>5</ObjectId>
+      <OwnerName>postgres</OwnerName>
+    </database>
+    <schema id="3" parent="2" name="actors">
+      <ObjectId>26593</ObjectId>
+      <StateNumber>14603</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="4" parent="2" name="airport">
+      <ObjectId>31081</ObjectId>
+      <StateNumber>19227</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="5" parent="2" name="banking_system">
+      <ObjectId>39599</ObjectId>
+      <StateNumber>19644</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="6" parent="2" name="blood_bank">
+      <ObjectId>28912</ObjectId>
+      <StateNumber>15737</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="7" parent="2" name="cinema">
+      <ObjectId>25272</ObjectId>
+      <StateNumber>13923</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="8" parent="2" name="company">
+      <ObjectId>25378</ObjectId>
+      <StateNumber>13984</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="9" parent="2" name="dbu">
+      <ObjectId>25720</ObjectId>
+      <StateNumber>14131</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="10" parent="2" name="dvdrental">
+      <Comment>Standard dvdrental schema</Comment>
+      <ObjectId>30106</ObjectId>
+      <StateNumber>18776</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="11" parent="2" name="dvdrental_PRACTICE">
+      <Comment>Standard dvdrental schema</Comment>
+      <ObjectId>29191</ObjectId>
+      <StateNumber>18075</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="12" parent="2" name="goodreads_v2">
+      <ObjectId>24945</ObjectId>
+      <StateNumber>3329</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="13" parent="2" name="goodreads_v3">
+      <ObjectId>28972</ObjectId>
+      <StateNumber>15762</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="14" parent="2" name="hotels_trigger">
+      <ObjectId>30044</ObjectId>
+      <StateNumber>18560</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="15" parent="2" name="hotels_view">
+      <ObjectId>29857</ObjectId>
+      <StateNumber>18484</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="16" parent="2" name="index_exercise">
+      <ObjectId>25957</ObjectId>
+      <StateNumber>14222</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="17" parent="2" name="information_schema">
+      <ObjectId>13449</ObjectId>
+      <StateNumber>524</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="18" parent="2" name="leadflow">
+      <ObjectId>28771</ObjectId>
+      <StateNumber>15682</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="19" parent="2" name="leadflow_old">
+      <ObjectId>26109</ObjectId>
+      <StateNumber>14500</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="20" parent="2" name="leadflow_old_2.0">
+      <ObjectId>26265</ObjectId>
+      <StateNumber>14662</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="21" parent="2" name="library">
+      <ObjectId>28286</ObjectId>
+      <StateNumber>15439</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="22" parent="2" name="pg_catalog">
+      <Comment>system catalog schema</Comment>
+      <Current>1</Current>
+      <ObjectId>11</ObjectId>
+      <StateNumber>518</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="23" parent="2" name="projects2">
+      <ObjectId>29917</ObjectId>
+      <StateNumber>18508</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="24" parent="2" name="racetimer">
+      <ObjectId>28402</ObjectId>
+      <StateNumber>15540</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="25" parent="2" name="sep">
+      <ObjectId>25721</ObjectId>
+      <StateNumber>14134</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="26" parent="2" name="simple_imdb">
+      <ObjectId>25063</ObjectId>
+      <StateNumber>4181</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="27" parent="2" name="test">
+      <ObjectId>31118</ObjectId>
+      <StateNumber>19393</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="28" parent="2" name="transactions">
+      <ObjectId>31084</ObjectId>
+      <StateNumber>19341</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+  </database-model>
+</dataSource>
