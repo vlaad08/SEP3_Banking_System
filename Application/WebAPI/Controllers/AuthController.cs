@@ -81,8 +81,7 @@ public class AuthController : ControllerBase
          string fullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
 
          string list = JsonSerializer.Serialize(user.AccountsInfos);
-         Console.WriteLine(list);
-         Console.WriteLine(user.Role);
+      
          
          var claims = new[]
          {

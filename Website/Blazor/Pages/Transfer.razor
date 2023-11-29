@@ -1,63 +1,17 @@
 @page "/transfer"
-@using Blazor.Services.Http
-@using Blazor.Components
 @attribute [Authorize]
-@inject NavigationManager navMgr
-@inject ITransactionService transactioService
 <PageTitle>Transfer</PageTitle>
 
-<div class="content">
-    
-    <div class="card">
-        <div>
-            <label>Your account number: </label>
-            <input type="text" @bind="senderAccount_id" >
-        </div>
-        <div>
-            <label>Receiver's account number: </label>
-            <input type="text" @bind="recipientAccount_id">
-        </div>
-        <div>
-            <label>Amount: </label>
-            <input type="number" placeholder="Amount in Danish Krone" @bind="amount">
-        </div>
-        <div>
-            <label>Message for receiver: </label>
-            <input type="text" @bind="message">
-        </div>
-        <div class="submitButton">
-            <button @onclick="Create">Submit transfer</button>
-        </div>
-    </div>
-</div>
-
-<Notification @ref="confirmRef" NotificationType="Confirmation">Transfer Request has Been Sent</Notification>
-<Notification @ref="errorRef" NotificationType="Error">There Was A Problem</Notification>
+<AuthorizeView>
+    <Blazor.Components.TransferForm User="@context.User"></Blazor.Components.TransferForm>
+</AuthorizeView>
 
 @code {
-    private Notification confirmRef;
-    private Notification errorRef;
-    private String senderAccount_id;
-    private String recipientAccount_id;
-    private String message;
-    private double amount;
+   
 
-    private async Task Create()
-    {
-        try
-        {
-            await confirmRef.ShowNotification();
-            await transactioService.transfer(senderAccount_id, recipientAccount_id, amount, message);
-        }
-        catch (Exception e)
-        {
-            await errorRef.ShowErrorNotification(e.Message);
-        }
-            
-    }
+
     
-    private void GoOn()
-    {
-        navMgr.NavigateTo("/Transactions");
-    }
+
+
+    
 }

@@ -1,33 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj": {}
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj": {}
   },
   "projects": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
         "projectName": "Blazor",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/obj/",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Blazor\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj"
+              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj"
               }
             }
           }
@@ -41,6 +48,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -60,26 +73,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
+    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/obj/",
+        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Website\\Shared\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -119,7 +139,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
