@@ -28,8 +28,7 @@ public class AuthLogic : IAuthLogic
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     MiddleName = u.MiddleName,
-                    Role = u.Role,
-                    Money = 0
+                    Role = u.Role
                 };
                 break;
             }

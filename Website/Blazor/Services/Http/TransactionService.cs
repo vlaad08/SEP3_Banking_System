@@ -40,7 +40,7 @@ public class TransactionService : ITransactionService
     {
         DepositDto deposit = new DepositDto()
         {
-            ToppedUpAccountNumer = toppedUpAccountNumber,
+            ToppedUpAccountNumber = toppedUpAccountNumber,
             Amount = amount
         };
 

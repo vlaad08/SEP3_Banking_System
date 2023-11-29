@@ -42,7 +42,6 @@
     {
         try
         {
-            Console.WriteLine(accountNumber + " " + amount);
             await transactioService.deposit(accountNumber, amount);
         }
         catch (Exception e)

@@ -10,7 +10,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "10.154.206.44:9090";
+    private string serverAddress = "localhost:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
@@ -79,7 +79,9 @@ public class ProtoClient:IGrpcClient
             Amount = depositRequestDto.Amount
             
         };
+        
         var response = await databaseClient.DepositAsync(request);
+
     }
 
     public async Task<List<global::Domain.Models.User>> GetAllUserInfo()
