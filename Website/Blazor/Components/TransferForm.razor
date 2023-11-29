@@ -1,0 +1,99 @@
+﻿@using global::Shared.Models
+@using System.Security.Claims
+@using Blazor.Services.Http
+@using Newtonsoft.Json
+@attribute [Authorize]
+@inject NavigationManager navMgr
+@inject ITransactionService transactioService
+
+
+
+<div class="content">
+    
+    <div class="card">
+        <div>
+            <label>Your account: </label>
+            <select @onchange="OnAccountSelectionChanged">
+                @foreach (var account in Accounts)
+                {
+                    <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>Receiver's account number: </label>
+            <input type="text" @bind="recipientAccount_id">
+        </div>
+        <div>
+            <label>Amount: </label>
+            <input type="number" placeholder="Amount in Danish Krone" @bind="amount">
+        </div>
+        <div>
+            <label>Message for receiver: </label>
+            <input type="text" @bind="message">
+        </div>
+        <div class="submitButton">
+            <button @onclick="Create">Submit transfer</button>
+        </div>
+    </div>
+</div>
+<Notification @ref="confirmRef" NotificationType="Confirmation">Transfer Request has Been Sent</Notification>
+<Notification @ref="errorRef" NotificationType="Error">There Was A Problem</Notification>
+
+
+@code {
+    [Parameter] public ClaimsPrincipal User { get; set; }
+    private Notification confirmRef;
+    private Notification errorRef;
+    private string senderAccount_id;
+    private string recipientAccount_id;
+    private string message;
+    private double amount;
+    private List<AccountsInfo> Accounts { get; set; } 
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Accounts = await GetUserAccounts(User);
+    }
+    
+    private Task OnAccountSelectionChanged(ChangeEventArgs e)
+    {
+        senderAccount_id = e.Value!.ToString()!;
+        return Task.CompletedTask;
+    }
+    
+    private async Task Create()
+    {
+        try
+        {
+            await confirmRef.ShowNotification();
+            await transactioService.transfer(senderAccount_id, recipientAccount_id, amount, message);
+        }
+        catch (Exception e)
+        {
+            await errorRef.ShowErrorNotification(e.Message);
+        }
+            
+    }
+    
+    private void GoOn()
+    {
+        navMgr.NavigateTo("/Transactions");
+    }
+    
+    private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
+    {
+        var accountsClaim = user.FindFirst("Accounts");
+
+        try
+        {
+            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim!.Value)!;
+            return Task.FromResult(accounts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+}

@@ -1,30 +1,12 @@
 @page "/home"
-@using System.Security.Claims
 @attribute [Authorize]
 
 <AuthorizeView>
     <div class="content">
-        <Blazor.Components.UserDetails Balance="@GetUserBalance(@context.User)"></Blazor.Components.UserDetails>
+        <Blazor.Components.UserDetails User="@context.User"></Blazor.Components.UserDetails>
         <Blazor.Components.RecentTransactions></Blazor.Components.RecentTransactions>
     </div>
 </AuthorizeView>
 
 @code {
-    
-    
-    private string GetUserBalance(ClaimsPrincipal user)
-    {
-
-        var amountClaim = user.FindFirst("Amount");
-
-        if (amountClaim != null)
-        {
-            return amountClaim.Value;
-        }
-        return "N/A";
-    }
-
-
-    
-
 }

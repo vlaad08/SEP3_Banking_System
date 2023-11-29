@@ -1,3 +1,6 @@
+@using global::Shared.Models
+@using System.Security.Claims
+@using Newtonsoft.Json
 
 <!-- User information: Full name + the account balance
     +Buttons for making a new transfer -->
@@ -5,7 +8,12 @@
 
 <div class="box">
     <div class="box-info">
-        <p class="balance">@Balance DKK</p>
+        <select @bind="SelectedAccount">
+            @foreach (var account in Accounts)
+            {
+                <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>                     
+            }
+        </select>
     </div>
     <div class="buttons-content">
         <div class="box-buttons">
@@ -18,15 +26,19 @@
 </div>
 
 
-
 @code {
-    
-    [Parameter]public string? Balance { get; set; }
-
-
-   
+    [Parameter] public ClaimsPrincipal User { get; set; }
+    private List<AccountsInfo> Accounts { get; set; }
     [Inject] private NavigationManager Navigation { get; set; }
+    private string SelectedAccount { get; set; } 
 
+    
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Accounts = await GetUserAccounts(User);
+    }
+    
     private void NewTransfer()
     {
         Navigation.NavigateTo("/transfer");
@@ -36,4 +48,22 @@
     {
         Navigation.NavigateTo("/deposit");
     }
+    
+
+    private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
+    {
+        var accountsClaim = user.FindFirst("Accounts");
+
+        try
+        {
+            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim!.Value)!;
+            return Task.FromResult(accounts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+   
 }

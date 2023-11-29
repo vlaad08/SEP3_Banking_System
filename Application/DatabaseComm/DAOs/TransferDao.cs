@@ -23,6 +23,8 @@ public class TransferDAO : ITransferDAO
     public async Task<double> GetBalanceByAccountNumber(string accountNumber)
     {
         double balance = await grpcClient.GetBalanceByAccountNumber(accountNumber);
+        Console.WriteLine(balance);
+        
         return balance;
     }
 

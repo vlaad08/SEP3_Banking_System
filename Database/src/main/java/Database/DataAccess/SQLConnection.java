@@ -81,7 +81,7 @@ public class SQLConnection implements SQLConnectionInterface{
         double balance=0;
         try (Connection connection= getConnection())
         {
-            PreparedStatement statement=connection.prepareStatement("SELECT balance FROM account WHERE account_id=?;");
+            PreparedStatement statement=connection.prepareStatement("SELECT balance FROM account WHERE account_id = ?;");
             statement.setString(1,account_id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
@@ -99,7 +99,7 @@ public class SQLConnection implements SQLConnectionInterface{
             PreparedStatement statement = connection.prepareStatement("SELECT account_id FROM account WHERE account_id = ?;");
             statement.setString(1, account_id);
             ResultSet result = statement.executeQuery();
-            if (result.next()) {
+            while (result.next()) {
                 recipientAccount_id = result.getString("account_id");
             }
         }
@@ -117,7 +117,7 @@ public class SQLConnection implements SQLConnectionInterface{
                     "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;");
             statement.setString(1,account_id);
             ResultSet result = statement.executeQuery();
-            if (result.next())
+            while (result.next())
             {
                 amount = result.getDouble("sum");
             }
