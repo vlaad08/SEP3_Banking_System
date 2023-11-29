@@ -3,15 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>12680</IntrospectionStateNumber>
+      <IntrospectionStateNumber>12683</IntrospectionStateNumber>
       <ServerVersion>15.1</ServerVersion>
       <StartupTime>1701080087</StartupTime>
       <TimeZones>true ACDT
@@ -813,7 +805,7 @@ false Zulu
 35114||10|C|G
 35114||-9223372036854775808|U|G
 35114||10|U|G</Grants>
-      <IntrospectionStateNumber>12680</IntrospectionStateNumber>
+      <IntrospectionStateNumber>12683</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4237,9 +4229,9 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </schema>
     <schema id="262" parent="2" name="banking_system">
-      <IntrospectionStateNumber>12680</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-11-28.09:58:09.078</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-11-28.08:58:10</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>12683</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-11-29.10:48:26.870</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-29.09:48:27</LocalIntrospectionTimestamp>
       <ObjectId>35748</ObjectId>
       <StateNumber>12665</StateNumber>
       <OwnerName>postgres</OwnerName>

@@ -1,5 +1,7 @@
 package Database.DataAccess;
 
+import Database.AccountsInfo;
+import Database.DTOs.UserInfoDTO;
 import Database.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,10 @@ public class SQLConnectionTest {
     private ArgumentCaptor<Double> doubleCaptor;
     @Captor
     private ArgumentCaptor<Timestamp> timestampCaptor;
+    @InjectMocks
+    private UserInfoDTO userInfoDTO;
+    @Captor
+    private ArgumentCaptor<UserInfoDTO> userInfoCaptor;
 
     @BeforeEach
     void setup() throws SQLException {
@@ -237,7 +243,107 @@ public class SQLConnectionTest {
         assertEquals(users.size(), 1);
     }
 
+    @Test
+    void getAccountsInfo_returns_a_list() throws SQLException {
+        AccountsInfo temp = AccountsInfo.newBuilder().
+                setAccountBalance(10)
+                .setAccountNumber("11111111111111")
+                .setAccountType("personal")
+                .setOwnerName("Name")
+                .build();
+        Mockito.when(sqlConnection.getAccountsInfo()).thenReturn(List.of(temp));
+        List<AccountsInfo> result = sqlConnection.getAccountsInfo();
 
+        assertEquals(List.of(temp), result);
+    }
+    @Test
+    void getUserAccountInfos_returns_a_list() throws SQLException {
+        AccountsInfo temp = AccountsInfo.newBuilder().
+                setAccountBalance(10)
+                .setAccountNumber("11111111111111")
+                .setAccountType("personal")
+                .setOwnerName("Name")
+                .build();
+        userInfoDTO = new UserInfoDTO("testmail@test.test");
+        Mockito.when(sqlConnection.getUserAccountInfos(userInfoDTO)).thenReturn(List.of(temp));
+        List<AccountsInfo> result = sqlConnection.getUserAccountInfos(userInfoDTO);
+
+        assertEquals(List.of(temp), result);
+    }
+    @Test
+    void getAccountsInfo_queries_the_database() throws SQLException {
+        Mockito.when(resultSet.next()).thenReturn(true);
+        AccountsInfo temp = AccountsInfo.newBuilder()
+                .setAccountBalance(10)
+                .setAccountNumber("11111111111111")
+                .setAccountType("personal")
+                .setOwnerName("Gipsz Jakab")
+                .build();
+        List<AccountsInfo> list = new ArrayList<>();
+        list.add(temp);
+
+        try {
+            Mockito.when(sqlConnection.getAccountsInfo()).thenReturn(list);
+            list = sqlConnection.getAccountsInfo();
+        } catch (NullPointerException ignored) {
+        }
+
+        Mockito.verify(connection).prepareStatement("SELECT a.account_id, u.firstname, u.lastname, a.balance, a.account_type " +
+                "FROM account a JOIN \"user\" u ON a.user_id = u.user_id;");
+        Mockito.verify(statement).executeQuery();
+        Mockito.verify(resultSet).next();
+
+        AccountsInfo.Builder builder = Mockito.mock(AccountsInfo.Builder.class);
+        Mockito.when(builder.setAccountNumber("11111111111111")).thenReturn(builder);
+        Mockito.when(builder.setOwnerName("Gipsz Jakab")).thenReturn(builder);
+        Mockito.when(builder.setAccountBalance(10)).thenReturn(builder);
+        Mockito.when(builder.setAccountType("personal")).thenReturn(builder);
+
+        Mockito.when(builder.build()).thenReturn(temp);
+
+        Mockito.mockStatic(AccountsInfo.class);
+        Mockito.when(AccountsInfo.newBuilder()).thenReturn(builder);
+
+        assertEquals(list.size(), 1);
+    }
+    @Test
+    void getUserAccountInfos_queries_database() throws SQLException {
+        Mockito.when(resultSet.next()).thenReturn(true);
+        AccountsInfo temp = AccountsInfo.newBuilder()
+                .setAccountBalance(10)
+                .setAccountNumber("11111111111111")
+                .setAccountType("personal")
+                .setOwnerName("Gipsz Jakab")
+                .build();
+        List<AccountsInfo> list = new ArrayList<>();
+        list.add(temp);
+        userInfoDTO = new UserInfoDTO("testmail@test.test");
+
+        try {
+            Mockito.when(sqlConnection.getUserAccountInfos(userInfoDTO)).thenReturn(list);
+            list = sqlConnection.getUserAccountInfos(userInfoDTO);
+        } catch (NullPointerException ignored) {
+        }
+
+        Mockito.verify(connection).prepareStatement("SELECT a.account_id, u.firstname, u.lastname, a.balance, a.account_type " +
+                "FROM account a JOIN \"user\" u ON a.user_id = u.user_id " +
+                "WHERE u.email = ?;");
+        Mockito.verify(statement).executeQuery();
+        Mockito.verify(resultSet).next();
+
+        AccountsInfo.Builder builder = Mockito.mock(AccountsInfo.Builder.class);
+        Mockito.when(builder.setAccountNumber("11111111111111")).thenReturn(builder);
+        Mockito.when(builder.setOwnerName("Gipsz Jakab")).thenReturn(builder);
+        Mockito.when(builder.setAccountBalance(10)).thenReturn(builder);
+        Mockito.when(builder.setAccountType("personal")).thenReturn(builder);
+
+        Mockito.when(builder.build()).thenReturn(temp);
+
+        Mockito.mockStatic(AccountsInfo.class);
+        Mockito.when(AccountsInfo.newBuilder()).thenReturn(builder);
+
+        assertEquals(list.size(), 1);
+    }
 
 
 }

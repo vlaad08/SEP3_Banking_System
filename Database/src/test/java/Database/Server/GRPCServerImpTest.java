@@ -8,6 +8,7 @@ import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
+import Database.DTOs.UserInfoDTO;
 import io.grpc.stub.StreamObserver;
 import io.grpc.stub.StreamObservers;
 import org.checkerframework.checker.units.qual.A;
@@ -36,6 +37,8 @@ public class GRPCServerImpTest {
     private ArgumentCaptor<CheckAccountDTO> accountCheckCaptor;
     @Captor
     private ArgumentCaptor<DepositRequestDTO> depositCaptor;
+    @Captor
+    private ArgumentCaptor<UserInfoDTO> userInfoCaptor;
 
     @BeforeEach
     void setup() {
@@ -46,6 +49,7 @@ public class GRPCServerImpTest {
         transferCaptor = ArgumentCaptor.forClass(TransferRequestDTO.class);
         accountCheckCaptor = ArgumentCaptor.forClass(CheckAccountDTO.class);
         depositCaptor = ArgumentCaptor.forClass(DepositRequestDTO.class);
+        userInfoCaptor = ArgumentCaptor.forClass(UserInfoDTO.class);
         MockitoAnnotations.initMocks(this);
     }
 
@@ -140,5 +144,30 @@ public class GRPCServerImpTest {
         Mockito.verify(loginDao).getUsers();
         Mockito.verify(responseObserver).onNext(Mockito.any());
         Mockito.verify(responseObserver).onCompleted();
+    }
+
+    @Test
+    void allAccountsInfo_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<AllAccountsInfoResponse> response = Mockito.mock(StreamObserver.class);
+        AllAccountsInfoRequest infoRequest = AllAccountsInfoRequest.newBuilder().build();
+        grpcServerImp.allAccountsInfo(infoRequest,response);
+
+        Mockito.verify(loginDao).getAccountsInfo();
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+    }
+
+    @Test
+    void userAccountsInfo_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UserAccountInfoResponse> response = Mockito.mock(StreamObserver.class);
+        UserAccountInfoRequest infoRequest = UserAccountInfoRequest.newBuilder().setEmail("totlevente@gmail.com").build();
+        grpcServerImp.userAccountsInfo(infoRequest,response);
+
+
+
+        Mockito.verify(loginDao).getUserAccountInfos(userInfoCaptor.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals("totlevente@gmail.com",userInfoCaptor.getValue().getEmail());
     }
 }

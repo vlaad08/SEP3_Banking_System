@@ -75,7 +75,7 @@ public class SQLConnection implements SQLConnectionInterface{
         }
     }
 
-    /** Database query method, to make the query for the available balance for the given account_id**/
+    /* Database query method, to make the query for the available balance for the given account_id*/
     @Override
     public double checkBalance(String account_id) throws SQLException {
         double balance=0;
@@ -127,17 +127,43 @@ public class SQLConnection implements SQLConnectionInterface{
 
     @Override
     public void deposit(String account_id, double amount) throws SQLException {
-        try(Connection connection = getConnection())
-        {
-            PreparedStatement statement = connection.prepareStatement("UPDATE banking_system.account\n" +
-                    "SET balance = balance + ?\n" +
-                    "WHERE account_id = ?");
-            statement.setDouble(1, amount);
-            statement.setString(2, account_id);
-            statement.executeUpdate();
-        }
+        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement updateStatement = connection.prepareStatement(
+                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+
+                updateStatement.setDouble(1, amount);
+                updateStatement.setString(2, account_id);
+                updateStatement.executeUpdate();
+
+                try (PreparedStatement insertStatement = connection.prepareStatement(
+                        "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                "VALUES (?, ?, ?, ?, ?)")) {
+
+                    insertStatement.setTimestamp(1, now);
+                    insertStatement.setDouble(2, amount);
+                    insertStatement.setNull(3, Types.VARCHAR); //message will be null
+                    insertStatement.setString(4, account_id);
+                    insertStatement.setString(5, account_id); // deposit to himself?
+                    insertStatement.executeUpdate();
+
+                    connection.commit();
+                } catch (SQLException e) {
+                    connection.rollback();
+                    throw new RuntimeException(e);
+                }
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 
     @Override
     public List<User> getUsers() throws SQLException {
@@ -209,7 +235,6 @@ public class SQLConnection implements SQLConnectionInterface{
                 }
             }
         }
-
         return accountsInfoList;
     }
 
