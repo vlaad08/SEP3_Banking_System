@@ -2,7 +2,7 @@ package Database.DAOs;
 
 import Database.AccountsInfo;
 import Database.DAOs.Interfaces.LoginDaoInterface;
-import Database.DTOs.UserInfoDTO;
+import Database.DTOs.UserInfoEmailDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 import Database.User;
@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginDaoTest {
@@ -25,14 +24,14 @@ public class LoginDaoTest {
     @Mock
     private SQLConnectionInterface connection;
     @InjectMocks
-    private UserInfoDTO userInfoDTO;
+    private UserInfoEmailDTO userInfoDTO;
 
     @BeforeEach
     void setup()
     {
         dao = new LoginDao();
         connection = Mockito.mock(SQLConnection.class);
-        userInfoDTO = new UserInfoDTO("testmail@test.test");
+        userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
 
         MockitoAnnotations.openMocks(this);
     }

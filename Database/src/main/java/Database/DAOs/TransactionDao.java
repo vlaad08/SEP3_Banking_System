@@ -4,6 +4,7 @@ import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
+import Database.DTOs.UserInfoAccNumDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
@@ -45,5 +46,8 @@ public class TransactionDao implements TransactionDaoInterface
         connection.deposit(depositRequestDTO.getAccount_id(), depositRequestDTO.getAmount());
     }
 
-
+    @Override
+    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
+        connection.
+    }
 }

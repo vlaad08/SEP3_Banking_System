@@ -12,10 +12,7 @@ import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
 import Database.DAOs.TransactionDao;
-import Database.DTOs.CheckAccountDTO;
-import Database.DTOs.DepositRequestDTO;
-import Database.DTOs.TransferRequestDTO;
-import Database.DTOs.UserInfoDTO;
+import Database.DTOs.*;
 import Database.DailyCheckRequest;
 import Database.DailyCheckResponse;
 import Database.DatabaseServiceGrpc;
@@ -136,7 +133,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     public void userAccountsInfo(UserAccountInfoRequest request, StreamObserver<UserAccountInfoResponse> responseStreamObserver)
     {
         try{
-            UserInfoDTO userInfoDTO = new UserInfoDTO(request.getEmail());
+            UserInfoEmailDTO userInfoDTO = new UserInfoEmailDTO(request.getEmail());
             List<AccountsInfo> accInfo = loginDao.getUserAccountInfos(userInfoDTO);
             UserAccountInfoResponse response = UserAccountInfoResponse.newBuilder().addAllAccountInfo(accInfo).build();
             responseStreamObserver.onNext(response);
@@ -144,7 +141,18 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
 
+    @Override
+    public void creditInterest(CreditInterestRequest request, StreamObserver<CreditInterestResponse> response)
+    {
+        try{
+            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccountNumber());
+            boolean happened = transactionDao.creditInterest(userInfoDTO);
+            //balblalbalbal
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
 }

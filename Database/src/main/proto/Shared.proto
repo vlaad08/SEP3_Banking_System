@@ -112,3 +112,22 @@ message UserAccountInfoResponse
 {
   repeated AccountsInfo accountInfo = 1;
 }
+
+//new
+message CreditInterestRequest //make interest
+{
+  string accountNumber = 1;
+}
+message CreditInterestResponse
+{
+    bool happened = 1;
+}
+message CheckIfInterestShouldBeCreditedRequest //return bool based on if theres shit in the DB transactions table
+{
+  string accoutNumber = 1;
+}
+message CheckIfInterestShouldBeCreditedResponse
+{
+  bool shouldBe = 1;
+}
+

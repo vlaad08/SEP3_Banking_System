@@ -3,6 +3,7 @@ package Database.DAOs.Interfaces;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
+import Database.DTOs.UserInfoAccNumDTO;
 import Database.DailyCheckRequest;
 
 import java.sql.SQLException;
@@ -14,4 +15,5 @@ public interface TransactionDaoInterface {
     double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException;
     double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException;
     void makeDeposit(DepositRequestDTO depositRequestDTO) throws SQLException;
+    boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
 }

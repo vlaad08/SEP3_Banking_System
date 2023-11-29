@@ -1,7 +1,7 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.DTOs.UserInfoDTO;
+import Database.DTOs.UserInfoEmailDTO;
 import Database.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,9 +32,9 @@ public class SQLConnectionTest {
     @Captor
     private ArgumentCaptor<Timestamp> timestampCaptor;
     @InjectMocks
-    private UserInfoDTO userInfoDTO;
+    private UserInfoEmailDTO userInfoDTO;
     @Captor
-    private ArgumentCaptor<UserInfoDTO> userInfoCaptor;
+    private ArgumentCaptor<UserInfoEmailDTO> userInfoCaptor;
 
     @BeforeEach
     void setup() throws SQLException {
@@ -264,7 +264,7 @@ public class SQLConnectionTest {
                 .setAccountType("personal")
                 .setOwnerName("Name")
                 .build();
-        userInfoDTO = new UserInfoDTO("testmail@test.test");
+        userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
         Mockito.when(sqlConnection.getUserAccountInfos(userInfoDTO)).thenReturn(List.of(temp));
         List<AccountsInfo> result = sqlConnection.getUserAccountInfos(userInfoDTO);
 
@@ -317,7 +317,7 @@ public class SQLConnectionTest {
                 .build();
         List<AccountsInfo> list = new ArrayList<>();
         list.add(temp);
-        userInfoDTO = new UserInfoDTO("testmail@test.test");
+        userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
 
         try {
             Mockito.when(sqlConnection.getUserAccountInfos(userInfoDTO)).thenReturn(list);

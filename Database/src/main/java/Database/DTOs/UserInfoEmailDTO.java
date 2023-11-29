@@ -1,10 +1,10 @@
 package Database.DTOs;
 
-public class UserInfoDTO
+public class UserInfoEmailDTO
 {
     private String email;
 
-    public UserInfoDTO(String email){
+    public UserInfoEmailDTO(String email){
             this.email = email;
     }
 

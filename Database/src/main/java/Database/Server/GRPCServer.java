@@ -18,5 +18,7 @@ public class GRPCServer {
         server.start();
         System.out.println("The server is listening on: "+server.toString());
         server.awaitTermination();
+
+
     }
 }

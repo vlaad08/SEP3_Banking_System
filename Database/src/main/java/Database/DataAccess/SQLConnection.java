@@ -1,11 +1,11 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.DTOs.UserInfoDTO;
+import Database.DTOs.UserInfoAccNumDTO;
+import Database.DTOs.UserInfoEmailDTO;
 import Database.User;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +146,7 @@ public class SQLConnection implements SQLConnectionInterface{
                     insertStatement.setTimestamp(1, now);
                     insertStatement.setDouble(2, amount);
                     insertStatement.setNull(3, Types.VARCHAR); //message will be null
+                    insertStatement.setString(3,"deposit");//actully no this s better
                     insertStatement.setString(4, account_id);
                     insertStatement.setString(5, account_id); // deposit to himself?
                     insertStatement.executeUpdate();
@@ -213,7 +214,8 @@ public class SQLConnection implements SQLConnectionInterface{
         return accountsInfoList;
     }
 
-    public List<AccountsInfo> getUserAccountInfos(UserInfoDTO userInfoDTO) throws SQLException {
+    public List<AccountsInfo> getUserAccountInfos(UserInfoEmailDTO userInfoDTO) throws SQLException {
+
         List<AccountsInfo> accountsInfoList = new ArrayList<>();
 
         try (Connection connection = getConnection()) {
@@ -237,5 +239,67 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return accountsInfoList;
     }
+
+
+    //gpt enhanced code not tested
+    public void creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement selectStatement = connection.prepareStatement(
+                    "SELECT a.balance, a.interest_rate FROM account a WHERE a.account_id = ?")) {
+
+                selectStatement.setString(1, userInfoAccNumDTO.getAccNum());
+                ResultSet resultSet = selectStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    double balance = resultSet.getDouble("balance");
+                    double interestRate = resultSet.getDouble("interest_rate");
+
+                    double interest = balance * interestRate;
+
+                    try (PreparedStatement updateStatement = connection.prepareStatement(
+                            "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+
+                        updateStatement.setDouble(1, interest);
+                        updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
+                        updateStatement.executeUpdate();
+
+                        try (PreparedStatement insertStatement = connection.prepareStatement(
+                                "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                        "VALUES (?, ?, ?, ?, ?)")) {
+
+                            Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+
+                            insertStatement.setTimestamp(1, now);
+                            insertStatement.setDouble(2, interest);
+                            insertStatement.setString(3, "Interest Credited");
+                            insertStatement.setString(4, userInfoAccNumDTO.getAccNum());
+                            insertStatement.setString(5, userInfoAccNumDTO.getAccNum());
+                            insertStatement.executeUpdate();
+
+                            connection.commit();
+                        } catch (SQLException e) {
+                            connection.rollback();
+                            throw new RuntimeException("Error executing insert statement", e);
+                        }
+                    } catch (SQLException e) {
+                        connection.rollback();
+                        throw new RuntimeException("Error executing update statement", e);
+                    }
+                } else {
+                    throw new RuntimeException("Account not found");
+                }
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing select statement", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
+
+
+
 
 }

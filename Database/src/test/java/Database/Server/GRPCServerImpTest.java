@@ -8,17 +8,12 @@ import Database.DAOs.TransactionDao;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
 import Database.DTOs.TransferRequestDTO;
-import Database.DTOs.UserInfoDTO;
+import Database.DTOs.UserInfoEmailDTO;
 import io.grpc.stub.StreamObserver;
-import io.grpc.stub.StreamObservers;
-import org.checkerframework.checker.units.qual.A;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.mockito.internal.MockitoCore;
 
-import javax.annotation.meta.When;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +33,7 @@ public class GRPCServerImpTest {
     @Captor
     private ArgumentCaptor<DepositRequestDTO> depositCaptor;
     @Captor
-    private ArgumentCaptor<UserInfoDTO> userInfoCaptor;
+    private ArgumentCaptor<UserInfoEmailDTO> userInfoCaptor;
 
     @BeforeEach
     void setup() {
@@ -49,7 +44,7 @@ public class GRPCServerImpTest {
         transferCaptor = ArgumentCaptor.forClass(TransferRequestDTO.class);
         accountCheckCaptor = ArgumentCaptor.forClass(CheckAccountDTO.class);
         depositCaptor = ArgumentCaptor.forClass(DepositRequestDTO.class);
-        userInfoCaptor = ArgumentCaptor.forClass(UserInfoDTO.class);
+        userInfoCaptor = ArgumentCaptor.forClass(UserInfoEmailDTO.class);
         MockitoAnnotations.initMocks(this);
     }
 
