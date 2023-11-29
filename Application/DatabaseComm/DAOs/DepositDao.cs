@@ -14,7 +14,6 @@ public class DepositDao : IDepositDAO
 
     public async Task DepositMoney(DepositRequestDTO depositRequestDto)
     {
-        Console.WriteLine("DepositDAO DepositMoney");
         await grpcClient.MakeDeposit(depositRequestDto);    
     }
 }

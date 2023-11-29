@@ -75,7 +75,7 @@ public class ProtoClient:IGrpcClient
 
         var request = new DepositRequest()
         {
-            AccountId = depositRequestDto.ToppedUpAccountNumer,
+            AccountId = depositRequestDto.ToppedUpAccountNumber,
             Amount = depositRequestDto.Amount
             
         };

@@ -16,30 +16,10 @@ public class AuthLogic : IAuthLogic
     private async Task<User> ValidateUser(UserLoginRequestDto userLoginRequestDto)
     {
         List<User> users = await userLoginDao.GetAllUserDataForValidation();
-
-
+        
         User existingUser = null;
         foreach (var u in users)
         {
-            Console.WriteLine(u.Email + " " + u.Password);
-            Console.WriteLine(userLoginRequestDto.Email + " " + userLoginRequestDto.Password);
-
-            if (u.Email.Equals(userLoginRequestDto.Email))
-            {
-                Console.WriteLine("MUIE la dusmani");
-            }
-
-            if (u.Password.Equals(userLoginRequestDto.Password))
-            {
-                Console.WriteLine("TEST PASSWORD"); //DOES NOT PRINTS FSFSFSFSFSFF FUUCK MY FUCKING LIFE ITS 2 AM FUUUUUUUUUUUUUUUUUUUUUCK
-                
-                //in the database the password was a char value of 16 characters so it completed the rest of the space of the password with white space so it
-                //didn't check. now it should work
-            }
-
-            Console.WriteLine(u.Password.Length);
-            Console.WriteLine(userLoginRequestDto.Password.Length);
-            
             if (u.Email!.Equals(userLoginRequestDto.Email) && u.Password!.Equals(userLoginRequestDto.Password))
             {
                 existingUser = new User()
@@ -49,15 +29,12 @@ public class AuthLogic : IAuthLogic
                     LastName = u.LastName,
                     MiddleName = u.MiddleName,
                     Role = u.Role,
-                    Money = 0 //For now leave it to 0
+                    Money = 0
                 };
                 break;
             }
         }
-
-        Console.WriteLine(existingUser.Email + " " + existingUser.FirstName + " " + existingUser.LastName);
-        
-        return existingUser!; //null if failed
+        return existingUser!;
     }
     public async Task<User> Login(UserLoginRequestDto userLoginRequestDto)
     {

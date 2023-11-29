@@ -16,7 +16,6 @@ public class UserLoginDao : IUserLoginDao
 
     public async Task GetAllUserDataForValidation(UserLoginRequestDto userLoginRequestDto)
     {
-        Console.WriteLine("LoginDTO");
         await grpcClient.GetAllUserInfo();
     }
 
