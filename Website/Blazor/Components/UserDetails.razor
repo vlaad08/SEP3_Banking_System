@@ -1,17 +1,29 @@
 @using global::Shared.Models
 @using System.Security.Claims
 @using Newtonsoft.Json
+@using Blazor.Components
 
 <!-- User information: Full name + the account balance
     +Buttons for making a new transfer -->
 
+<LoadingBox @ref="loadingBox"></LoadingBox>
 
 <div class="box">
     <div class="box-info">
         <select @bind="SelectedAccount">
             @foreach (var account in Accounts)
             {
-                <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>                     
+                if (account.AccountType.Equals("personal"))
+                {
+                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                }
+            }
+            @foreach (var account in Accounts)
+            {
+                if (account.AccountType.Equals("savings"))
+                {
+                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                }
             }
         </select>
     </div>
@@ -27,6 +39,7 @@
 
 
 @code {
+    private LoadingBox loadingBox;
     [Parameter] public ClaimsPrincipal User { get; set; }
     private List<AccountsInfo> Accounts { get; set; }
     [Inject] private NavigationManager Navigation { get; set; }
@@ -41,11 +54,13 @@
     
     private void NewTransfer()
     {
+        loadingBox.ShowLoading();
         Navigation.NavigateTo("/transfer");
     }
 
     private void Deposit()
     {
+        loadingBox.ShowLoading();
         Navigation.NavigateTo("/deposit");
     }
     

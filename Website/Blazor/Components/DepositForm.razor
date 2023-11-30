@@ -10,10 +10,20 @@
     <div class="card">
         <div>
             <label>Your account: </label>
-            <select @onchange="OnAccountSelectionChanged">
+            <select @bind="SelectedAccount">
                 @foreach (var account in Accounts)
                 {
-                    <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType</option>
+                    if (account.AccountType.Equals("personal"))
+                    {
+                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
+                }
+                @foreach (var account in Accounts)
+                {
+                    if (account.AccountType.Equals("savings"))
+                    {
+                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
                 }
             </select>
         </div>
@@ -33,6 +43,7 @@
 
 @code
 {
+    private string SelectedAccount { get; set; }
     [Parameter] public ClaimsPrincipal User { get; set; }
     private string accountNumber;
     private double amount;

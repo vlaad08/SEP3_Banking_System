@@ -48,6 +48,6 @@ public class TransactionDao implements TransactionDaoInterface
 
     @Override
     public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
-        connection.
+        return true;
     }
 }

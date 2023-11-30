@@ -143,7 +143,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
-    @Override
     public void creditInterest(CreditInterestRequest request, StreamObserver<CreditInterestResponse> response)
     {
         try{
@@ -153,6 +152,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
+        ;
     }
 
 }

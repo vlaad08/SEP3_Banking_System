@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope = b-vtfvhyjmbz
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Loan.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9hbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -43,6 +47,14 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/DepositForm.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXBvc2l0Rm9ybS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-lxtg0tg21b
+
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/LoadingBox.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2FkaW5nQm94LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-q3s9eh4698
+
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/LoanForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2FuRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-pmbt19zrla
 
 [C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/Notification.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xOb3RpZmljYXRpb24ucmF6b3I=
