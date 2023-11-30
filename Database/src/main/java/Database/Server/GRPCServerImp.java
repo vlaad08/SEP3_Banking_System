@@ -183,5 +183,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
+    @Override
+    public void logLoan(LogLoanRequest request, StreamObserver<LogLoanResponse> responseStreamObserver) {
+        try {
+            LoanRequestDTO loanRequestDTO = new LoanRequestDTO(request.getAccountId(),request.getRemainingAmount(),
+                    request.getInterestRate(),request.getMonthlyPayment(),request.getEndDate(),request.getLoanAmount());
+            transactionDao.logLoan(loanRequestDTO);
+            LogLoanResponse response = LogLoanResponse.newBuilder().setResponse("Loan granted").build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

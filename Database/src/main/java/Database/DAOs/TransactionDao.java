@@ -1,10 +1,7 @@
 package Database.DAOs;
 
 import Database.DAOs.Interfaces.TransactionDaoInterface;
-import Database.DTOs.CheckAccountDTO;
-import Database.DTOs.DepositRequestDTO;
-import Database.DTOs.TransferRequestDTO;
-import Database.DTOs.UserInfoAccNumDTO;
+import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
@@ -56,4 +53,9 @@ public class TransactionDao implements TransactionDaoInterface
     public Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
         return connection.lastInterest(userInfoAccNumDTO);
     }
+    @Override
+    public void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException {
+        connection.logLoan(loanRequestDTO);
+    }
+
 }

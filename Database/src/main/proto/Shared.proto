@@ -16,6 +16,7 @@ service DatabaseService{
   rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
   rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
   rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
+  rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
 }
 message TransferRequest{
   string senderAccount_id = 1;
@@ -114,9 +115,7 @@ message UserAccountInfoResponse
 {
   repeated AccountsInfo accountInfo = 1;
 }
-
-//new
-message CreditInterestRequest //make interest
+message CreditInterestRequest
 {
   string accountNumber = 1;
 }
@@ -124,7 +123,7 @@ message CreditInterestResponse
 {
   bool happened = 1;
 }
-message LastInterestRequest //return bool based on if theres shit in the DB transactions table
+message LastInterestRequest
 {
   string accoutNumber = 1;
 }
@@ -132,5 +131,16 @@ message LastInterestResponse
 {
   google.protobuf.Timestamp date = 1;
 }
-
-
+message LogLoanRequest
+{
+  string account_id = 1;
+  double remaining_amount = 2;
+  double interest_rate = 3;
+  double monthly_payment = 4;
+  google.protobuf.Timestamp end_date = 5;
+  double loan_amount = 6;
+}
+message LogLoanResponse
+{
+  string response = 1;
+}
