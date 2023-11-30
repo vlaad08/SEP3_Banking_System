@@ -1,7 +1,11 @@
 ﻿@page "/"
 @using Blazor.Services
+@using Blazor.Components
 @inject IAuthService authService
 @inject NavigationManager navMgr
+
+
+<Blazor.Components.LoadingBox @ref="loading"></Blazor.Components.LoadingBox>
 
 
 <div class="indexBody">
@@ -36,10 +40,12 @@
     </AuthorizeView>
     </div>
 </div>
-        
+
+
 
 
 @code {
+    private LoadingBox loading;
     private string email;
     private string password;
     private string errorLabel;
@@ -47,8 +53,10 @@
     private async Task LoginAsync()
     {
         errorLabel = "";
+        
         try
         {
+            loading.ShowLoading();
             await authService.LoginAsync(email, password);
             navMgr.NavigateTo("/home");
         }
