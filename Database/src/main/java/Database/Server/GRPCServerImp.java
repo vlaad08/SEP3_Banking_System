@@ -163,14 +163,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         try {
             UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccoutNumber());
             Timestamp date = transactionDao.lastInterest(userInfoDTO);
+            LastInterestResponse response;
+            if(date != null) {
+                // Convert Java Timestamp to Google's Timestamp
+                com.google.protobuf.Timestamp timestampProto = com.google.protobuf.Timestamp.newBuilder()
+                        .setSeconds(date.getTime() / 1000)  // Convert milliseconds to seconds
+                        .setNanos((int) ((date.getTime() % 1000) * 1000000))  // Convert remaining milliseconds to nanoseconds
+                        .build();
 
-            // Convert Java Timestamp to Google's Timestamp
-            com.google.protobuf.Timestamp timestampProto = com.google.protobuf.Timestamp.newBuilder()
-                    .setSeconds(date.getTime() / 1000)  // Convert milliseconds to seconds
-                    .setNanos((int) ((date.getTime() % 1000) * 1000000))  // Convert remaining milliseconds to nanoseconds
-                    .build();
-
-            LastInterestResponse response = LastInterestResponse.newBuilder().setDate(timestampProto).build();
+                response = LastInterestResponse.newBuilder().setDate(timestampProto).build();
+            }
+            else {
+                response = null;
+            }
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         } catch (SQLException e) {

@@ -13,7 +13,7 @@ public class GRPCServer {
             throws Exception
     {
         Server server ;
-        SocketAddress address = new InetSocketAddress("localhost",9090);
+        SocketAddress address = new InetSocketAddress("10.154.206.45",9090);
         server = NettyServerBuilder.forAddress(address).addService(new GRPCServerImp()).build();
         server.start();
         System.out.println("The server is listening on: "+server.toString());
