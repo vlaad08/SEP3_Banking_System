@@ -7,15 +7,17 @@ namespace Application.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TransferController : ControllerBase
+public class TransactionController : ControllerBase
 {
     private readonly ITransferLogic transferLogic;
     private readonly IDepositLogic depositLogic;
+    private readonly ILoanLogic loanLogic;
 
-    public TransferController(ITransferLogic transferLogic, IDepositLogic depositLogic)
+    public TransactionController(ITransferLogic transferLogic, IDepositLogic depositLogic,ILoanLogic loanLogic)
     {
         this.transferLogic = transferLogic;
         this.depositLogic = depositLogic;
+        this.loanLogic = loanLogic;
     }
 
     [HttpPost, Route("Transfer")]
@@ -23,7 +25,6 @@ public class TransferController : ControllerBase
     {
         try
         {
-            Console.WriteLine("Controller");
             await transferLogic.TransferMoney(transferRequest);
             return Ok("Transfer successful");
         }
@@ -40,11 +41,25 @@ public class TransferController : ControllerBase
         try
         {
             await depositLogic.DepositMoney(depositRequest);
-            return Ok("Deposit succesful");
+            return Ok("Deposit successful");
         }
         catch (Exception e)
         {
             return BadRequest(e.Message);;
+        }
+    }
+
+    [HttpGet, Route("Loan/calculation")]
+    public async Task<IActionResult> CalculateLoan([FromBody] LoanCalculationDTO dto)
+    {
+        try
+        {
+            await loanLogic.CalculateLoan(dto);
+            return Ok("Loan successful");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
         }
     }
 }
