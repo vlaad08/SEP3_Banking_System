@@ -145,7 +145,7 @@ public class SQLConnection implements SQLConnectionInterface{
 
                     insertStatement.setTimestamp(1, now);
                     insertStatement.setDouble(2, amount);
-                    insertStatement.setNull(3, Types.VARCHAR); //message will be null
+                    //insertStatement.setNull(3, Types.VARCHAR); //message will be null
                     insertStatement.setString(3,"deposit");//actully no this s better
                     insertStatement.setString(4, account_id);
                     insertStatement.setString(5, account_id); // deposit to himself?
@@ -240,14 +240,15 @@ public class SQLConnection implements SQLConnectionInterface{
         return accountsInfoList;
     }
 
-
+    @Override
     //gpt enhanced code not tested
-    public void creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
+    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
 
-            try (PreparedStatement selectStatement = connection.prepareStatement(
-                    "SELECT a.balance, a.interest_rate FROM account a WHERE a.account_id = ?")) {
+            try {
+                PreparedStatement selectStatement = connection.prepareStatement(
+                        "SELECT a.balance, a.interest_rate FROM account a WHERE a.account_id = ?");
 
                 selectStatement.setString(1, userInfoAccNumDTO.getAccNum());
                 ResultSet resultSet = selectStatement.executeQuery();
@@ -258,46 +259,70 @@ public class SQLConnection implements SQLConnectionInterface{
 
                     double interest = balance * interestRate;
 
-                    try (PreparedStatement updateStatement = connection.prepareStatement(
-                            "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+                    PreparedStatement updateStatement = connection.prepareStatement(
+                            "UPDATE account SET balance = balance + ? WHERE account_id = ?");
 
-                        updateStatement.setDouble(1, interest);
-                        updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
-                        updateStatement.executeUpdate();
+                    updateStatement.setDouble(1, interest);
+                    updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
+                    int updatedRows = updateStatement.executeUpdate();
 
-                        try (PreparedStatement insertStatement = connection.prepareStatement(
+                    if (updatedRows > 0) {  // Check if the update was successful
+                        PreparedStatement insertStatement = connection.prepareStatement(
                                 "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
-                                        "VALUES (?, ?, ?, ?, ?)")) {
+                                        "VALUES (?, ?, ?, ?, ?)");
 
-                            Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+                        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
-                            insertStatement.setTimestamp(1, now);
-                            insertStatement.setDouble(2, interest);
-                            insertStatement.setString(3, "Interest Credited");
-                            insertStatement.setString(4, userInfoAccNumDTO.getAccNum());
-                            insertStatement.setString(5, userInfoAccNumDTO.getAccNum());
-                            insertStatement.executeUpdate();
+                        insertStatement.setTimestamp(1, now);
+                        insertStatement.setDouble(2, interest);
+                        insertStatement.setString(3, "Interest");
+                        insertStatement.setString(4, userInfoAccNumDTO.getAccNum());
+                        insertStatement.setString(5, userInfoAccNumDTO.getAccNum());
+                        insertStatement.executeUpdate();
 
-                            connection.commit();
-                        } catch (SQLException e) {
-                            connection.rollback();
-                            throw new RuntimeException("Error executing insert statement", e);
-                        }
-                    } catch (SQLException e) {
-                        connection.rollback();
-                        throw new RuntimeException("Error executing update statement", e);
+                        connection.commit();
+                        return true;  // Return true indicating success
+                    } else {
+                        throw new RuntimeException("Update failed. No rows affected.");
                     }
                 } else {
                     throw new RuntimeException("Account not found");
                 }
             } catch (SQLException e) {
                 connection.rollback();
-                throw new RuntimeException("Error executing select statement", e);
+                throw new RuntimeException("Error executing statements", e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error opening/closing connection", e);
+            return false;  // Return false in case of an exception while opening/closing connection
         }
     }
+
+    @Override
+    public Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
+        Timestamp lastInterestTimestamp = null;
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT t.dateTime " +
+                    "FROM transactions t " +
+                    "WHERE t.senderAccount_id = ? AND t.message = 'Interest' " +
+                    "ORDER BY t.dateTime DESC LIMIT 1;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, userInfoAccNumDTO.getAccNum());
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    lastInterestTimestamp = resultSet.getTimestamp("dateTime");
+                }
+            }
+        }
+
+        return lastInterestTimestamp;
+    }
+
+
+
+
 
 
 

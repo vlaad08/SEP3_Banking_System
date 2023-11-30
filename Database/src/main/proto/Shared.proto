@@ -1,5 +1,5 @@
 syntax = "proto3";
-
+import "google/protobuf/timestamp.proto";
 option java_multiple_files=true;
 
 package Database;
@@ -14,6 +14,8 @@ service DatabaseService{
   rpc LoginValidation(LoginValidationRequest) returns (LoginValidationResponse);
   rpc AllAccountsInfo(AllAccountsInfoRequest) returns (AllAccountsInfoResponse);
   rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
+  rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
+  rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
 }
 message TransferRequest{
   string senderAccount_id = 1;
@@ -120,14 +122,15 @@ message CreditInterestRequest //make interest
 }
 message CreditInterestResponse
 {
-    bool happened = 1;
+  bool happened = 1;
 }
-message CheckIfInterestShouldBeCreditedRequest //return bool based on if theres shit in the DB transactions table
+message LastInterestRequest //return bool based on if theres shit in the DB transactions table
 {
   string accoutNumber = 1;
 }
-message CheckIfInterestShouldBeCreditedResponse
+message LastInterestResponse
 {
-  bool shouldBe = 1;
+  google.protobuf.Timestamp date = 1;
 }
+
 
