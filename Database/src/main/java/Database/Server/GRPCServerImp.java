@@ -26,6 +26,7 @@ import Database.User;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -144,15 +145,38 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     }
 
     @Override
-    public void creditInterest(CreditInterestRequest request, StreamObserver<CreditInterestResponse> response)
+    public void creditInterest(CreditInterestRequest request, StreamObserver<CreditInterestResponse> responseStreamObserver)
     {
         try{
             UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccountNumber());
             boolean happened = transactionDao.creditInterest(userInfoDTO);
-            //balblalbalbal
+            CreditInterestResponse response = CreditInterestResponse.newBuilder().setHappened(happened).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void lastInterest(LastInterestRequest request, StreamObserver<LastInterestResponse> responseStreamObserver) {
+        try {
+            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccoutNumber());
+            Timestamp date = transactionDao.lastInterest(userInfoDTO);
+
+            // Convert Java Timestamp to Google's Timestamp
+            com.google.protobuf.Timestamp timestampProto = com.google.protobuf.Timestamp.newBuilder()
+                    .setSeconds(date.getTime() / 1000)  // Convert milliseconds to seconds
+                    .setNanos((int) ((date.getTime() % 1000) * 1000000))  // Convert remaining milliseconds to nanoseconds
+                    .build();
+
+            LastInterestResponse response = LastInterestResponse.newBuilder().setDate(timestampProto).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

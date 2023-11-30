@@ -7,6 +7,7 @@ import Database.DTOs.UserInfoAccNumDTO;
 import Database.DailyCheckRequest;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface TransactionDaoInterface {
@@ -16,4 +17,5 @@ public interface TransactionDaoInterface {
     double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException;
     void makeDeposit(DepositRequestDTO depositRequestDTO) throws SQLException;
     boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
+    Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
 }

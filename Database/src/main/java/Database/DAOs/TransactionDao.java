@@ -9,6 +9,7 @@ import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class TransactionDao implements TransactionDaoInterface
@@ -47,7 +48,12 @@ public class TransactionDao implements TransactionDaoInterface
     }
 
     @Override
-    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
-        connection.
+    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException{
+        return connection.creditInterest(userInfoAccNumDTO);
+    }
+
+    @Override
+    public Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
+        return connection.lastInterest(userInfoAccNumDTO);
     }
 }
