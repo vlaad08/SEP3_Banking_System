@@ -1,6 +1,7 @@
 using System.Collections;
 using Database;
 using Domain.DTOs;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
@@ -10,7 +11,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "localhost:9090";
+    private string serverAddress = "10.154.206.45:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
@@ -157,5 +158,31 @@ public class ProtoClient:IGrpcClient
             accountsInfos.Add(accountInfo);
         }
         return accountsInfos;
+    }
+
+    public async Task<DateTime?> CheckInterest(string account_id)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new LastInterestRequest()
+        {
+            AccoutNumber = account_id
+        };
+        var response = await databaseClient.LastInterestAsync(request);
+        Timestamp timestamp= response?.Date;
+        return timestamp?.ToDateTime();
+
+    }
+
+    public async Task<bool> CreditInterest(string account_id)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new CreditInterestRequest()
+        {
+            AccountNumber = account_id
+        };
+        var response = await databaseClient.CreditInterestAsync(request);
+        return response.Happened;
     }
 }

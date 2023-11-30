@@ -1,4 +1,6 @@
+using System.Runtime.InteropServices.JavaScript;
 using Application.DaoInterfaces;
+using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.Models;
 using Shared.DTOs;
@@ -8,10 +10,11 @@ namespace WebAPI.Services;
 public class AuthLogic : IAuthLogic
 {
     private readonly IUserLoginDao userLoginDao;
-
-    public AuthLogic(IUserLoginDao userLoginDao)
+    private readonly IInterestDAO interestDao;
+    public AuthLogic(IUserLoginDao userLoginDao, IInterestDAO interestDao)
     {
         this.userLoginDao = userLoginDao;
+        this.interestDao = interestDao;
     }
     private async Task<User> ValidateUser(UserLoginRequestDto userLoginRequestDto)
     {
@@ -47,7 +50,24 @@ public class AuthLogic : IAuthLogic
 
     public async Task<List<AccountsInfo>> GetUserAccounts(string email)
     {
-        return await userLoginDao.GetUserAccounts(email);
+        List<AccountsInfo> accounts = await userLoginDao.GetUserAccounts(email);
+
+        foreach (var a in accounts)
+        {
+            DateTime? interestTimestamp = await interestDao.CheckInterest(a.AccountNumber);
+            DateTime datePart;
+            DateTime today;
+            if (interestTimestamp != null)
+            {
+                datePart = interestTimestamp.Value.Date;
+                today = DateTime.Now.Date;
+                if ((interestTimestamp != null && !datePart.Equals(today) && DateTime.Now.Day == 1) || (interestTimestamp==null&&DateTime.Now.Day == 1))
+                {
+                    await interestDao.CreditInterest(a.AccountNumber);
+                }
+            }
+        }
+        return accounts;
     }
    
 

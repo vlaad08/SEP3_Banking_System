@@ -15,4 +15,7 @@ public interface IGrpcClient
    Task<List<global::Domain.Models.User>> GetAllUserInfo();
    Task<List<AccountsInfo>> GetAllAccountsInfo();
    Task<List<AccountsInfo>> GetUserAccounts(string email);
+
+   Task<DateTime?> CheckInterest(string account_id);
+   Task<bool> CreditInterest(string account_id);
 }
