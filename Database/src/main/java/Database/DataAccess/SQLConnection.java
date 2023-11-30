@@ -1,6 +1,7 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
+import Database.DTOs.LoanRequestDTO;
 import Database.DTOs.UserInfoAccNumDTO;
 import Database.DTOs.UserInfoEmailDTO;
 import Database.User;
@@ -320,6 +321,47 @@ public class SQLConnection implements SQLConnectionInterface{
         return lastInterestTimestamp;
     }
 
+    public void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                PreparedStatement insertAccountStatement = connection.prepareStatement(
+                        "INSERT INTO loan(account_id, remaining_amount, interest_rate, monthly_payment, end_date, loan_amount) " +
+                                "VALUES (?, ?, ?, ?, ?, ?)");
+                java.sql.Timestamp sqlEndDate = new java.sql.Timestamp(loanRequestDTO.getEndDate().getSeconds() * 1000);
+                insertAccountStatement.setString(1, loanRequestDTO.getAccountId());
+                insertAccountStatement.setDouble(2, loanRequestDTO.getRemainingAmount());
+                insertAccountStatement.setDouble(3, loanRequestDTO.getInterestRate());
+                insertAccountStatement.setDouble(4, loanRequestDTO.getMonthlyPayment());
+                insertAccountStatement.setTimestamp(5, sqlEndDate);
+                insertAccountStatement.setDouble(6, loanRequestDTO.getLoanAmount());
+
+                insertAccountStatement.executeUpdate();
+
+                PreparedStatement insertTransactionStatement = connection.prepareStatement(
+                        "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                "VALUES (?, ?, ?, ?, ?)");
+
+                Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+
+                insertTransactionStatement.setTimestamp(1, now);
+                insertTransactionStatement.setDouble(2, loanRequestDTO.getLoanAmount());
+                insertTransactionStatement.setString(3, "Loan");
+                insertTransactionStatement.setString(4, loanRequestDTO.getAccountId());
+                insertTransactionStatement.setString(5, loanRequestDTO.getAccountId());
+
+                insertTransactionStatement.executeUpdate();
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing statements", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
 
 
 

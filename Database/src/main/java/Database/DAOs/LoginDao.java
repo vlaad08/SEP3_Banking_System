@@ -2,6 +2,7 @@ package Database.DAOs;
 
 import Database.AccountsInfo;
 import Database.DAOs.Interfaces.LoginDaoInterface;
+import Database.DTOs.LoanRequestDTO;
 import Database.DTOs.UserInfoEmailDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
