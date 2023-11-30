@@ -44,18 +44,18 @@ public class TransactionController : ControllerBase
             return Ok("Deposit successful");
         }
         catch (Exception e)
-        {
+        {   
             return BadRequest(e.Message);;
         }
     }
 
-    [HttpGet, Route("Loan/calculation")]
+    [HttpPost, Route("Loan/calculation")]
     public async Task<IActionResult> CalculateLoan([FromBody] LoanCalculationDTO dto)
     {
         try
         {
-            await loanLogic.CalculateLoan(dto);
-            return Ok("Loan successful");
+            double calculatedInterest = await loanLogic.CalculateLoan(dto);
+            return Ok(calculatedInterest);
         }
         catch (Exception e)
         {
