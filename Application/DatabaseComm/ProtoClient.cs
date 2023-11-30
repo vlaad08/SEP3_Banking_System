@@ -11,7 +11,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "10.154.206.45:9090";
+    private string serverAddress = "localhost:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {

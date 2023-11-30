@@ -1,7 +1,8 @@
 ﻿@using System.Security.Claims
+@using Blazor.Services
 @using global::Shared.Models
 @using Newtonsoft.Json
-@inject Services.Http.LoanService loanService
+@inject ILoanService loanService
 
 <div class="content">
     <div class="card">
@@ -46,8 +47,8 @@
 
     private async void Create()
     {
-        string interset = await loanService.LoanCalculation(principle, tenure);
-        Console.WriteLine(interset);
+        string interest = await loanService.LoanCalculation(principle, tenure);
+        Console.WriteLine(interest);
     }
     
     private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)

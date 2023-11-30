@@ -22,7 +22,7 @@ public class TransactionService : ITransactionService
             string transferJson = JsonSerializer.Serialize(transfer);
             Console.WriteLine(transferJson);
             StringContent content = new(transferJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transfer/Transfer", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transaction/Transfer", content);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -49,7 +49,7 @@ public class TransactionService : ITransactionService
             string depositJson = JsonSerializer.Serialize(deposit);
             StringContent content = new(depositJson, Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage =
-                await client.PostAsync("http://localhost:5054/api/Transfer/Deposit", content);
+                await client.PostAsync("http://localhost:5054/api/Transaction/Deposit", content);
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
             if (!responseMessage.IsSuccessStatusCode)
             {

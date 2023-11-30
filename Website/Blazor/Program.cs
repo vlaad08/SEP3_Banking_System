@@ -12,6 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IAuthService, JwtAuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped(
     sp => 
         new HttpClient { 
