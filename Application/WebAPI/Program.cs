@@ -26,6 +26,7 @@ builder.Services.AddScoped<IDepositDAO, DepositDao>();
 builder.Services.AddScoped<IGrpcClient, ProtoClient>();
 builder.Services.AddScoped<IAuthLogic, AuthLogic>();
 builder.Services.AddScoped<IUserLoginDao, UserLoginDao>();
+builder.Services.AddScoped<IInterestDAO, InterestDao>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
