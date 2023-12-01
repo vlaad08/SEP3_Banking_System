@@ -1,0 +1,45 @@
+﻿.transaction-box{
+    display: flex;
+    border-bottom: 1px solid black;
+    margin-bottom: 2%;
+}
+
+.leftPart{
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+}
+
+.midPart{
+    display: flex;
+    width: 40%;
+    justify-content: center;
+}
+
+.rightPart{
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    font-size: calc(12px + 0.4vw);
+}
+.title{
+    calc(15px + 0.4vw)
+    margin: 0;
+}
+
+.time{
+    margin: 0;
+    font-size: calc(9px + 0.4vw);
+    color: rgb(128,128,128);
+}
+
+.date{
+    font-size: calc(9px + 0.4vw);
+    color: rgb(128,128,128);
+    margin: 0;
+}
+
+.transaction-box:hover{
+    
+}
+

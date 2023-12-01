@@ -1,22 +1,29 @@
 .notification-content{
     position: absolute;
     top: 80%;
-    left: 80%;
+    left: 75%;
 }
-
-
 
 .notification-box{
     display: flex;
-    width: 300px;
+    width: 350px;
     height: auto;
     color: white;
     padding: 2%;
-    flex-direction: row;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.notification-content button{
+    align-self: flex-start;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    color: white;
 }
 
-.notification-content button{
-    align-self: flex-end;
+p{
+    font-size: calc(15px + 0.34vh);
+    margin: 1%;
 }
 
 .ConfirmationBox{
@@ -25,4 +32,20 @@
 
 .ErrorBox{
     background-color: darkred;
+}
+
+.appear{
+    animation-name: appearNotification;
+    animation-duration: 0.5s;
+}
+
+@keyframes appearNotification {
+    from{
+        left: 80%;
+        opacity: 0.5;
+    }
+    to{
+        left: 75%;
+        opacity: 0.8;
+    }
 }

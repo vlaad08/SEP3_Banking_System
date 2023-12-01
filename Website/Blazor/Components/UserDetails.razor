@@ -4,7 +4,7 @@
 @using Blazor.Components
 
 <!-- User information: Full name + the account balance
-    +Buttons for making a new transfer -->
+    +Buttons for making a new Transfer -->
 
 <LoadingBox @ref="loadingBox"></LoadingBox>
 
@@ -55,13 +55,13 @@
     private void NewTransfer()
     {
         loadingBox.ShowLoading();
-        Navigation.NavigateTo("/transfer");
+        Navigation.NavigateTo("/Transfer");
     }
 
     private void Deposit()
     {
         loadingBox.ShowLoading();
-        Navigation.NavigateTo("/deposit");
+        Navigation.NavigateTo("/Deposit");
     }
     
 

@@ -1,8 +1,12 @@
+using Shared.DAO;
+
 namespace Blazor.Services.Http;
 
 public interface ITransactionService
 {
-    public Task transfer(String senderAccount_id, String recipientAccount_id, double amount, String message);
+    public Task Transfer(String senderAccount_id, String recipientAccount_id, double amount, String message);
 
-    public Task deposit(string accountNumber, double amount);
+    public Task Deposit(string accountNumber, double amount);
+
+    public Task<List<TransactionDao>> GetTransactions(string email);
 }

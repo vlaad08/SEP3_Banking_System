@@ -83,13 +83,13 @@
     padding: 2%;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 1441px) {
     .box{
         width: 50%;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1440px) {
     .box{
         width: 98%;
     }

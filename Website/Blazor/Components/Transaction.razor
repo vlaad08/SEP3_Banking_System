@@ -1,0 +1,56 @@
+﻿
+
+<div class="transaction-box">
+    <div class="leftPart">
+        <p class="title">@senderName</p>
+        <p class="time">@Date.Hour:@Date.Minute</p>
+        <p class="date">@Date.Day/@Date.Month/@Date.Year</p>
+    </div>
+    <div class="midPart">
+        @if (!Message.Equals("Deposit") || !Message.Equals("Interest"))
+        {
+            <p class="message">@Message</p>
+        }
+    </div>
+    <div class="rightPart">
+        @if (senderName.Equals("Deposit") || senderName.Equals("Interest"))
+        {
+            <p style="color: green">@sign@Amount DKK</p>
+        }
+        else
+        {
+            <p style="color: red;">@sign@Amount DKK</p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Recipient { get; set; }
+    [Parameter] public string Sender { get; set; }
+    [Parameter] public double Amount { get; set; }
+    [Parameter] public string Message { get; set; }
+    [Parameter] public DateTime Date { get; set; }
+
+    private string senderName;
+    private string sign;
+    
+    protected override async void OnInitialized()
+    {
+        senderName = await CheckName();
+    }
+
+    private async Task<string> CheckName()
+    {
+        if (Sender.Equals(Recipient) && (Message.Equals("Deposit") || Message.Equals("Interest")))
+        {
+            sign = "+";
+            return "Deposit";
+        }
+        sign = "-";
+        return "Transfer";
+    }
+    
+    
+    
+
+}

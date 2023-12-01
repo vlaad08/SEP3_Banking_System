@@ -13,19 +13,19 @@
     <div class="card">
         <div>
             <label>Your account: </label>
-            <select>
+            <select @onchange="OnAccountSelectionChanged">
                 @foreach (var account in Accounts)
                 {
                     if (account.AccountType.Equals("personal"))
                     {
-                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                     }
                 }
                 @foreach (var account in Accounts)
                 {
                     if (account.AccountType.Equals("savings"))
                     {
-                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                     }
                 }
             </select>
@@ -43,27 +43,30 @@
             <input type="text" @bind="message">
         </div>
         <div class="submitButton">
-            <button @onclick="Create">Submit transfer</button>
+            <button @onclick="Create">Submit Transfer</button>
         </div>
     </div>
 </div>
 <Notification @ref="confirmRef" NotificationType="Confirmation">Transfer Request has Been Sent</Notification>
 <Notification @ref="errorRef" NotificationType="Error">There Was A Problem</Notification>
+<Notification @ref="successRef" NotificationType="Confirmation">The Transfer was successful</Notification>
 
 
 @code {
     [Parameter] public ClaimsPrincipal User { get; set; }
     private Notification confirmRef;
     private Notification errorRef;
-    private string senderAccount_id;
-    private string recipientAccount_id;
-    private string message;
+    private Notification successRef;
+    private string senderAccount_id = "";
+    private string recipientAccount_id = "";
+    private string message = "";
     private double amount;
     private List<AccountsInfo> Accounts { get; set; } 
     
     protected override async Task OnInitializedAsync()
     {
         Accounts = await GetUserAccounts(User);
+        senderAccount_id = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal")).AccountNumber;
     }
     
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
@@ -77,7 +80,19 @@
         try
         {
             await confirmRef.ShowNotification();
-            await transactioService.transfer(senderAccount_id, recipientAccount_id, amount, message);
+
+            if (senderAccount_id.Equals("") || recipientAccount_id.Equals(""))
+            {
+                await errorRef.ShowErrorNotification("Please fill out all the fields correctly");
+            }
+            else
+            {
+                
+                await transactioService.Transfer(senderAccount_id, recipientAccount_id, amount, message);
+                await successRef.ShowNotification();
+
+            }
+            
         }
         catch (Exception e)
         {
@@ -106,4 +121,7 @@
             throw;
         }
     }
+
+    
+
 }

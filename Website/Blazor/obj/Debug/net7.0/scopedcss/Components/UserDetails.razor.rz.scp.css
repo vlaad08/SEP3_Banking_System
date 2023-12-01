@@ -72,7 +72,7 @@ select option[b-vtfvhyjmbz]{
 }
 
 
-@media (min-width: 641px) {
+@media (min-width: 1441px) {
     .box[b-vtfvhyjmbz]{
         width: 50%;
     }
@@ -81,7 +81,7 @@ select option[b-vtfvhyjmbz]{
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1440px) {
     .box[b-vtfvhyjmbz]{
         width: 98%;
     }

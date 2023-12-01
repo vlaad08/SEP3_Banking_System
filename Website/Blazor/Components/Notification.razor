@@ -1,10 +1,10 @@
 @if (showPopUp)
 {
-    <div class="notification-content">
+    <div class="notification-content @Appear">
         @if (NotificationType.Equals(ConfirmationTransfer))
         {
             <div class="notification-box ConfirmationBox ">
-                <button class="align-self-end" @onclick="() => HideNotification()">
+                <button class="" @onclick="() => HideNotification()">
                     X
                 </button>
                 <p>@ChildContent</p>
@@ -13,7 +13,7 @@
         else if (NotificationType.Equals(ErrorTransfer))
         {
             <div class="notification-box ErrorBox ">
-                <button class="align-self-end" @onclick="() => HideNotification()">
+                <button class="" @onclick="() => HideNotification()">
                     X
                 </button>
                 <p>@ChildContent</p>
@@ -29,6 +29,8 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
     [Parameter] public string NotificationType { get; set; }
+
+    private string Appear => showPopUp ? "appear" : null;
 
     private bool showPopUp = false;
 

@@ -1,22 +1,29 @@
 .notification-content[b-tzo2c5zty5]{
     position: absolute;
     top: 80%;
-    left: 80%;
+    left: 75%;
 }
-
-
 
 .notification-box[b-tzo2c5zty5]{
     display: flex;
-    width: 300px;
+    width: 350px;
     height: auto;
     color: white;
     padding: 2%;
-    flex-direction: row;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.notification-content button[b-tzo2c5zty5]{
+    align-self: flex-start;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    color: white;
 }
 
-.notification-content button[b-tzo2c5zty5]{
-    align-self: flex-end;
+p[b-tzo2c5zty5]{
+    font-size: calc(15px + 0.34vh);
+    margin: 1%;
 }
 
 .ConfirmationBox[b-tzo2c5zty5]{
@@ -25,4 +32,20 @@
 
 .ErrorBox[b-tzo2c5zty5]{
     background-color: darkred;
+}
+
+.appear[b-tzo2c5zty5]{
+    animation-name: appearNotification-b-tzo2c5zty5;
+    animation-duration: 0.5s;
+}
+
+@keyframes appearNotification-b-tzo2c5zty5 {
+    from{
+        left: 80%;
+        opacity: 0.5;
+    }
+    to{
+        left: 75%;
+        opacity: 0.8;
+    }
 }

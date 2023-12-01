@@ -1,5 +1,12 @@
 .content[b-pxs5efj3sx]{
     display: flex;
-    justify-content: center;
     align-content: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 1440px) {
+    .card[b-pxs5efj3sx]{
+        width: 100%;
+    }
 }

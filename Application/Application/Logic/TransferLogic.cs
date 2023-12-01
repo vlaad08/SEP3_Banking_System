@@ -18,6 +18,13 @@ public class TransferLogic : ITransferLogic
 
     private async Task ValidateTransfer(TransferRequestDTO transferRequestDto)
     {
+        if (transferRequestDto.SenderAccountNumber.Equals(null) ||
+            transferRequestDto.RecipientAccountNumber.Equals(null) ||
+            transferRequestDto.Amount < 0)
+        {
+            throw new Exception("Please fill out the fields correctly");
+        }
+        
         Console.WriteLine("Valid 1");
         if (await transferDao.GetAccountNumberByAccountNumber(transferRequestDto.RecipientAccountNumber) != transferRequestDto.RecipientAccountNumber)
         {

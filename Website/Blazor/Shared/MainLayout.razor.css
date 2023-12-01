@@ -11,11 +11,14 @@ main {
     flex: 1;
     height: auto;
     background-size: cover;
+    z-index: 1;
 }
 
 .sidebar{
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+    z-index: 2;
 }
 
 
@@ -39,7 +42,7 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (min-width: 1001px) {
+@media (min-width: 1441px) {
     .sidebar{
         position: relative;
         left: 20%;
@@ -47,9 +50,8 @@ main {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1440px) {
     
-
     .page{
         flex-direction: column;
     }

@@ -1,15 +1,19 @@
 using System.Security.Claims;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
+using Shared.DAO;
 using Shared.DTOs;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Blazor.Services.Http;
 
 public class TransactionService : ITransactionService
 {   
     private readonly HttpClient client = new ();
-    public async Task transfer(String senderAccount_id, String recipientAccount_id, double amount, String message)
+    public async Task Transfer(String senderAccount_id, String recipientAccount_id, double amount, String message)
     {
+        
+        
         TransferDto transfer = new TransferDto()
         {
             SenderAccountNumber = senderAccount_id,
@@ -17,11 +21,13 @@ public class TransactionService : ITransactionService
             Amount = amount,
             Message = message,
         };
+        
+        
         try
         {
             string transferJson = JsonSerializer.Serialize(transfer);
-            Console.WriteLine(transferJson);
             StringContent content = new(transferJson, Encoding.UTF8, "application/json");
+            Console.WriteLine(content);
             HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transaction/Transfer", content);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
@@ -36,7 +42,7 @@ public class TransactionService : ITransactionService
         }
     }
 
-    public async Task deposit(string toppedUpAccountNumber, double amount)
+    public async Task Deposit(string toppedUpAccountNumber, double amount)
     {
         DepositDto deposit = new DepositDto()
         {
@@ -63,5 +69,27 @@ public class TransactionService : ITransactionService
             throw new Exception($"Deposit failed: {e.Message}");
         }
 
+    }
+
+    public async Task<List<TransactionDao>> GetTransactions(string email)
+    {
+        try
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/{email}");
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+
+            List<TransactionDao> list = JsonConvert.DeserializeObject<List<TransactionDao>>(responseBody);
+
+            return list;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

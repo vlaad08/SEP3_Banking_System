@@ -17,6 +17,7 @@
     justify-content: center;
     row-gap: 50px;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .card h1{
@@ -80,11 +81,7 @@
     background-position: right bottom;
 }
 
-@media (max-width: 1000px) {
-    .card{
-        width: 90%;
-    }
-}
+
 
 @media (max-width: 640px) {
     .card{

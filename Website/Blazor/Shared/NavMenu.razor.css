@@ -72,7 +72,12 @@
     border-radius: 50%;
 }
 
-@media (min-width: 1000px) {
+.nav-scrollable{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px) ;
+}
+
+@media (min-width: 1441px) {
     .top-row{
         width: 100%;
     }
@@ -93,9 +98,11 @@
     
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1440px) {
     .container-fluid{
         padding: 0;
+        width: 100%;
+        justify-content: space-evenly;
     }
     .top-row{
         width: 100%;
@@ -105,5 +112,10 @@
     }
     .navbar-toggler{
     }
-    
+    .nav-scrollable
+    { 
+        background-color: rgba(0,0,0,0.8);
+        position: absolute;
+        width: 100%;
+    }
 }
