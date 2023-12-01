@@ -9,5 +9,5 @@ public interface ITransferDAO
     Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequest);
     Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequest);
     Task<double> GetTransferAmountsByDayForUser(TransferRequestDTO transferRequest);
-    Task<IEnumerable<Transaction>> GetTransactions(string email);
+    Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
 }

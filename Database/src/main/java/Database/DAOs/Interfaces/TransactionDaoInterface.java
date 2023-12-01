@@ -2,6 +2,7 @@ package Database.DAOs.Interfaces;
 
 import Database.DTOs.*;
 import Database.DailyCheckRequest;
+import Database.Transactions;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -16,4 +17,5 @@ public interface TransactionDaoInterface {
     boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
+    List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException;
 }

@@ -41,8 +41,8 @@ public class TransferDAO : ITransferDAO
         return amount;
     }
     
-    public async Task<IEnumerable<Transaction>> GetTransactions(string email)
+    public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
     {
-        return await grpcClient.GetTransactions(email);
+        return await grpcClient.GetTransactions(getTransactionsDto);
     }
 }

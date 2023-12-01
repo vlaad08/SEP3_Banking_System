@@ -40,7 +40,11 @@ public class TransactionController : ControllerBase
     {
         try
         {
-            var transactions = await transferLogic.GetTransactions(email);
+            GetTransactionsDTO dto = new GetTransactionsDTO
+            {
+                Email = email
+            };
+            var transactions = await transferLogic.GetTransactions(dto);
             return Ok(transactions);
         }
         catch (Exception e)
@@ -71,6 +75,19 @@ public class TransactionController : ControllerBase
         {
             double calculatedInterest = await loanLogic.CalculateLoan(dto);
             return Ok(calculatedInterest);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    [HttpPost, Route("Loan")]
+    public async Task<IActionResult> RequestLoan([FromBody] LoanCalculationDTO dto)
+    {
+        try
+        {
+            await loanLogic.RequestLoan(dto);
+            return Ok("Loan accepted!");
         }
         catch (Exception e)
         {

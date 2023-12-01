@@ -16,6 +16,8 @@ service DatabaseService{
     rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
     rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
     rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
+    rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
+    rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -114,7 +116,6 @@ message UserAccountInfoResponse
 {
     repeated AccountsInfo accountInfo = 1;
 }
-
 message CreditInterestRequest
 {
     string accountNumber = 1;
@@ -123,7 +124,7 @@ message CreditInterestResponse
 {
     bool happened = 1;
 }
-message LastInterestRequest 
+message LastInterestRequest
 {
     string accoutNumber = 1;
 }
@@ -144,17 +145,14 @@ message LogLoanResponse
 {
     string response = 1;
 }
-message GetTransactionsRequest
-{
+message GetTransactionsRequest {
     string email = 1;
 }
-message GetTransactionsResponse
-{
+message GetTransactionsResponse {
     repeated Transactions transactions = 1;
 }
-message Transactions
-{
-    string senderAccountNumber = 1;
+message Transactions {
+    string senderAccountNumber =1;
     string recipientAccountNumber = 2;
     double amount = 3;
     string message = 4;

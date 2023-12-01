@@ -67,7 +67,7 @@ namespace Database {
             "ZGVyQWNjb3VudE51bWJlchgBIAEoCRIeChZyZWNpcGllbnRBY2NvdW50TnVt",
             "YmVyGAIgASgJEg4KBmFtb3VudBgDIAEoARIPCgdtZXNzYWdlGAQgASgJEigK",
             "BGRhdGUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCnNl",
-            "bmRlck5hbWUYBiABKAkSFAoMcmVjZWl2ZXJOYW1lGAcgASgJMvQGCg9EYXRh",
+            "bmRlck5hbWUYBiABKAkSFAoMcmVjZWl2ZXJOYW1lGAcgASgJMowICg9EYXRh",
             "YmFzZVNlcnZpY2USQwoIVHJhbnNmZXISGS5EYXRhYmFzZS5UcmFuc2ZlclJl",
             "cXVlc3QaGi5EYXRhYmFzZS5UcmFuc2ZlclJlc3BvbnNlIgASTwoMQ2hlY2tB",
             "Y2NvdW50Eh0uRGF0YWJhc2UuQWNjb3VudENoZWNrUmVxdWVzdBoeLkRhdGFi",
@@ -87,7 +87,11 @@ namespace Database {
             "ZWRpdEludGVyZXN0Eh8uRGF0YWJhc2UuQ3JlZGl0SW50ZXJlc3RSZXF1ZXN0",
             "GiAuRGF0YWJhc2UuQ3JlZGl0SW50ZXJlc3RSZXNwb25zZRJNCgxMYXN0SW50",
             "ZXJlc3QSHS5EYXRhYmFzZS5MYXN0SW50ZXJlc3RSZXF1ZXN0Gh4uRGF0YWJh",
-            "c2UuTGFzdEludGVyZXN0UmVzcG9uc2VCAlABYgZwcm90bzM="));
+            "c2UuTGFzdEludGVyZXN0UmVzcG9uc2USPgoHTG9nTG9hbhIYLkRhdGFiYXNl",
+            "LkxvZ0xvYW5SZXF1ZXN0GhkuRGF0YWJhc2UuTG9nTG9hblJlc3BvbnNlElYK",
+            "D0dldFRyYW5zYWN0aW9ucxIgLkRhdGFiYXNlLkdldFRyYW5zYWN0aW9uc1Jl",
+            "cXVlc3QaIS5EYXRhYmFzZS5HZXRUcmFuc2FjdGlvbnNSZXNwb25zZUICUAFi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

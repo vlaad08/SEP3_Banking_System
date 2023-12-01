@@ -1,6 +1,7 @@
 using System.Collections;
 using Database;
 using Domain.DTOs;
+using Domain.Models;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using Shared.DTOs;
@@ -199,5 +200,32 @@ public class ProtoClient:IGrpcClient
             LoanAmount = dto.Amount
         };
         var response = await databaseClient.LogLoanAsync(request);
+    }
+    
+    public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new GetTransactionsRequest
+        {
+            Email = getTransactionsDto.Email
+        };
+        var response = await databaseClient.GetTransactionsAsync(request);
+        List<Transaction> transactions = new List<Transaction>();
+        foreach (var t in response.Transactions)
+        {
+            Transaction transaction = new Transaction
+            {
+                SenderName = t.SenderName,
+                RecipientName = t.ReceiverName,
+                SenderAccountNumber = t.SenderAccountNumber,
+                RecipientAccountNumber = t.RecipientAccountNumber,
+                Amount = t.Amount,
+                Message = t.Message,
+                Date = t.Date.ToDateTime()
+            };
+            transactions.Add(transaction);
+        }
+        return transactions;
     }
 }
