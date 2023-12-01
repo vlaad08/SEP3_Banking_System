@@ -80,9 +80,7 @@ public class ProtoClient:IGrpcClient
             Amount = depositRequestDto.Amount
             
         };
-        
         var response = await databaseClient.DepositAsync(request);
-
     }
 
     public async Task<List<global::Domain.Models.User>> GetAllUserInfo()
@@ -184,5 +182,22 @@ public class ProtoClient:IGrpcClient
         };
         var response = await databaseClient.CreditInterestAsync(request);
         return response.Happened;
+    }
+
+    public async Task RequestLoan(LoanRequestDTO dto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        DateTime utcEndDate = dto.EndDate.ToUniversalTime();
+        var request = new LogLoanRequest
+        {
+            AccountId = dto.AccountNumber,
+            RemainingAmount = dto.RemainingAmount,
+            InterestRate = dto.InterestRate,
+            MonthlyPayment = dto.MonthlyPayment,
+            EndDate = Timestamp.FromDateTime(utcEndDate),
+            LoanAmount = dto.Amount
+        };
+        var response = await databaseClient.LogLoanAsync(request);
     }
 }

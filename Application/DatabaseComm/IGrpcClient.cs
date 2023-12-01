@@ -8,14 +8,14 @@ namespace Grpc;
 public interface IGrpcClient
 {
    Task MakeTransfer(TransferRequestDTO transferRequestDto);
-   Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto);
-   Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequestDto);
-   Task<double> DailyCheck(TransferRequestDTO transferRequestDto);
+   Task<double> GetBalanceByAccountNumber(string accountNumber);
+   Task<string> GetAccountNumberByAccountNumber(string accountNumber);
+   Task<double> DailyCheck(string accountNumber);
    Task MakeDeposit(DepositRequestDTO depositRequestDto);
    Task<List<global::Domain.Models.User>> GetAllUserInfo();
    Task<List<AccountsInfo>> GetAllAccountsInfo();
-   Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto);
-
-   Task<DateTime?> CheckInterest(InterestCheckDTO dto);
-   Task<bool> CreditInterest(InterestCheckDTO dto);
+   Task<List<AccountsInfo>> GetUserAccounts(string email);
+   Task<DateTime?> CheckInterest(string account_id);
+   Task<bool> CreditInterest(string account_id);
+   Task RequestLoan(LoanRequestDTO dto);
 }
