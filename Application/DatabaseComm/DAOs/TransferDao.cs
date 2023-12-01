@@ -40,4 +40,9 @@ public class TransferDAO : ITransferDAO
         double amount = await grpcClient.DailyCheck(accountNumber);
         return amount;
     }
+
+    public async Task<IEnumerable<Transaction>> GetTransactions(string email)
+    {
+        return await grpcClient.GetTransactions(email);
+    }
 }

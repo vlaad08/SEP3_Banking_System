@@ -1,6 +1,7 @@
 using System.Collections;
 using Database;
 using Domain.DTOs;
+using Domain.Models;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using Shared.DTOs;
@@ -11,7 +12,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "localhost:9090";
+    private string serverAddress = "10.154.204.74:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
@@ -185,4 +186,51 @@ public class ProtoClient:IGrpcClient
         var response = await databaseClient.CreditInterestAsync(request);
         return response.Happened;
     }
+<<<<<<< Updated upstream
+=======
+
+    public async Task RequestLoan(LoanRequestDTO dto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        DateTime utcEndDate = dto.EndDate.ToUniversalTime();
+        var request = new LogLoanRequest
+        {
+            AccountId = dto.AccountNumber,
+            RemainingAmount = dto.RemainingAmount,
+            InterestRate = dto.InterestRate,
+            MonthlyPayment = dto.MonthlyPayment,
+            EndDate = Timestamp.FromDateTime(utcEndDate),
+            LoanAmount = dto.Amount
+        };
+        var response = await databaseClient.LogLoanAsync(request);
+    }
+
+    public async Task<IEnumerable<Transaction>> GetTransactions(string email)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new GetTransactionsRequest
+        {
+            Email = email
+        };
+        var response = await databaseClient.GetTransactionsAsync(request);
+        List<Transaction> transactions = new List<Transaction>();
+        foreach (var t in response.Transactions)
+        {
+            Transaction transaction = new Transaction
+            {
+                SenderName = t.SenderName,
+                RecipientName = t.ReceiverName,
+                SenderAccountNumber = t.SenderAccountNumber,
+                RecipientAccountNumber = t.RecipientAccountNumber,
+                Amount = t.Amount,
+                Message = t.Message,
+                Date = t.Date.ToDateTime()
+            };
+            transactions.Add(transaction);
+        }
+        return transactions;
+    }
+>>>>>>> Stashed changes
 }

@@ -21,9 +21,25 @@ public class LoginLogicTest
     public async Task GetUserAccounts_Calls_LoginDao()
     {
         var loginDao = new Mock<IUserLoginDao>();
+<<<<<<< Updated upstream
         var auth = new AuthLogic(loginDao.Object);
+=======
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object,interestDao.Object);
+        loginDao.Setup(d => d.GetUserAccounts(It.IsAny<string>())).ReturnsAsync(new List<AccountsInfo>());
+>>>>>>> Stashed changes
         await auth.GetUserAccounts("test@gmail.com");
-        loginDao.Verify(d =>d.GetUserAccounts("test@gmail.com"));
+        loginDao.Verify(d => d.GetUserAccounts("test@gmail.com"), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetUserAccounts_Checks_For_Interest_Requirements()
+    {
+        var loginDao = new Mock<IUserLoginDao>();
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object,interestDao.Object);
+        
+        loginDao.Setup(d => d.GetUserAccounts(It.IsAny<string>())).ReturnsAsync(new List<AccountsInfo>());
     }
 
     [Fact]
