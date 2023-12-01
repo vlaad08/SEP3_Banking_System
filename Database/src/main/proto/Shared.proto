@@ -17,7 +17,6 @@ service DatabaseService{
   rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
   rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
   rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
-  rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
 }
 message TransferRequest{
   string senderAccount_id = 1;
@@ -144,19 +143,4 @@ message LogLoanRequest
 message LogLoanResponse
 {
   string response = 1;
-}
-message GetTransactionsRequest {
-  string email = 1;
-}
-message GetTransactionsResponse {
-  repeated Transactions transactions = 1;
-}
-message Transactions {
-  string senderAccountNumber =1;
-  string recipientAccountNumber = 2;
-  double amount = 3;
-  string message = 4;
-  google.protobuf.Timestamp date = 5;
-  string senderName = 6;
-  string receiverName = 7;
 }

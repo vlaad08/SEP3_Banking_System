@@ -32,6 +32,7 @@ public class LoginDaoTest {
         dao = new LoginDao();
         connection = Mockito.mock(SQLConnection.class);
         userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
+
         MockitoAnnotations.openMocks(this);
     }
 

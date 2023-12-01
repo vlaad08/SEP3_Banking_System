@@ -4,7 +4,6 @@ import Database.AccountsInfo;
 import Database.DTOs.LoanRequestDTO;
 import Database.DTOs.UserInfoAccNumDTO;
 import Database.DTOs.UserInfoEmailDTO;
-import Database.Transactions;
 import Database.User;
 
 import java.sql.*;
@@ -363,61 +362,7 @@ public class SQLConnection implements SQLConnectionInterface{
             throw new RuntimeException("Error opening/closing connection", e);
         }
     }
-    @Override
-    public List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) {
-        List<Transactions> transactionsList = new ArrayList<>();
 
-        try (Connection connection = getConnection()) {
-            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName " +
-                    "FROM transactions t " +
-                    "JOIN account a1 ON t.senderAccount_id = a1.account_id " +
-                    "JOIN account a2 ON t.recipientAccount_id = a2.account_id " +
-                    "JOIN \"user\" u1 ON a1.user_id = u1.user_id " +
-                    "JOIN \"user\" u2 ON a2.user_id = u2.user_id " +
-                    "WHERE u1.email = ? OR u2.email = ? " +
-                    "ORDER BY t.dateTime DESC;";
-
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, userInfoEmailDTO.getEmail());
-                statement.setString(2, userInfoEmailDTO.getEmail());
-
-                ResultSet resultSet = statement.executeQuery();
-
-                while (resultSet.next()) {
-                    String senderAccountNumber = resultSet.getString("senderAccount_id");
-                    String recipientAccountNumber = resultSet.getString("recipientAccount_id");
-                    double amount = resultSet.getDouble("amount");
-                    String message = resultSet.getString("message");
-                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("dateTime");
-                    String senderFirstName = resultSet.getString("senderFirstName");
-                    String senderLastName = resultSet.getString("senderLastName");
-                    String receiverFirstName = resultSet.getString("receiverFirstName");
-                    String receiverLastName = resultSet.getString("receiverLastName");
-                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
-                            .setSeconds(sqlTimestamp.getTime() / 1000)
-                            .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
-                            .build();
-
-                    Transactions transaction = Transactions.newBuilder()
-                            .setSenderAccountNumber(senderAccountNumber)
-                            .setRecipientAccountNumber(recipientAccountNumber)
-                            .setAmount(amount)
-                            .setMessage(message)
-                            .setDate(date)
-                            .setSenderName(senderFirstName + " " + senderLastName)
-                            .setReceiverName(receiverFirstName + " " + receiverLastName)
-                            .build();
-
-                    transactionsList.add(transaction);
-                }
-            }
-        } catch (SQLException e) {
-            // Handle SQLException
-            throw new RuntimeException("Error executing statements", e);
-        }
-
-        return transactionsList;
-    }
 
 
 
