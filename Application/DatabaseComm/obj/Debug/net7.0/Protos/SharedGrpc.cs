@@ -89,17 +89,6 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.LastInterestRequest> __Marshaller_Database_LastInterestRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LastInterestRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.LastInterestResponse> __Marshaller_Database_LastInterestResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LastInterestResponse.Parser));
-<<<<<<< Updated upstream
-=======
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.LogLoanRequest> __Marshaller_Database_LogLoanRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LogLoanRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.LogLoanResponse> __Marshaller_Database_LogLoanResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.LogLoanResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.GetTransactionsRequest> __Marshaller_Database_GetTransactionsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetTransactionsRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.GetTransactionsResponse> __Marshaller_Database_GetTransactionsResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetTransactionsResponse.Parser));
->>>>>>> Stashed changes
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse> __Method_Transfer = new grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse>(
@@ -189,25 +178,6 @@ namespace Database {
         __Marshaller_Database_LastInterestRequest,
         __Marshaller_Database_LastInterestResponse);
 
-<<<<<<< Updated upstream
-=======
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Database.LogLoanRequest, global::Database.LogLoanResponse> __Method_LogLoan = new grpc::Method<global::Database.LogLoanRequest, global::Database.LogLoanResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "LogLoan",
-        __Marshaller_Database_LogLoanRequest,
-        __Marshaller_Database_LogLoanResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse> __Method_GetTransactions = new grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetTransactions",
-        __Marshaller_Database_GetTransactionsRequest,
-        __Marshaller_Database_GetTransactionsResponse);
-
->>>>>>> Stashed changes
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -461,49 +431,6 @@ namespace Database {
       {
         return CallInvoker.AsyncUnaryCall(__Method_LastInterest, null, options, request);
       }
-<<<<<<< Updated upstream
-=======
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Database.LogLoanResponse LogLoan(global::Database.LogLoanRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return LogLoan(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Database.LogLoanResponse LogLoan(global::Database.LogLoanRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_LogLoan, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Database.LogLoanResponse> LogLoanAsync(global::Database.LogLoanRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return LogLoanAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Database.LogLoanResponse> LogLoanAsync(global::Database.LogLoanRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_LogLoan, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Database.GetTransactionsResponse GetTransactions(global::Database.GetTransactionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetTransactions(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Database.GetTransactionsResponse GetTransactions(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_GetTransactions, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetTransactionsAsync(global::Database.GetTransactionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetTransactionsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetTransactionsAsync(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_GetTransactions, null, options, request);
-      }
->>>>>>> Stashed changes
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override DatabaseServiceClient NewInstance(ClientBaseConfiguration configuration)

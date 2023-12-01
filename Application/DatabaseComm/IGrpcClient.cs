@@ -1,6 +1,5 @@
 using Database;
 using Domain.DTOs;
-using Domain.Models;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
 
@@ -19,9 +18,4 @@ public interface IGrpcClient
 
    Task<DateTime?> CheckInterest(string account_id);
    Task<bool> CreditInterest(string account_id);
-<<<<<<< Updated upstream
-=======
-   Task RequestLoan(LoanRequestDTO dto);
-   Task<IEnumerable<Transaction>> GetTransactions(string email);
->>>>>>> Stashed changes
 }

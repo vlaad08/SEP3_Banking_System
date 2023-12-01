@@ -1,11 +1,6 @@
 ﻿using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.DTOs;
-<<<<<<< Updated upstream
-=======
-using Domain.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
->>>>>>> Stashed changes
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers;
@@ -39,22 +34,7 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    
-    [HttpGet, Route("{email}")]
-    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
-    {
-        try
-        {
-            var transactions = await transferLogic.GetTransactions(email);
-            return Ok(transactions);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return BadRequest();
-        }
-    }
-    
+
     [HttpPost, Route("Deposit")]
     public async Task<IActionResult> DepositMoney([FromBody] DepositRequestDTO depositRequest)
     {

@@ -16,11 +16,6 @@ service DatabaseService{
     rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
     rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
     rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
-<<<<<<< Updated upstream
-=======
-    rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
-    rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
->>>>>>> Stashed changes
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -135,35 +130,4 @@ message LastInterestRequest
 message LastInterestResponse
 {
     google.protobuf.Timestamp date = 1;
-<<<<<<< Updated upstream
-=======
-}
-message LogLoanRequest
-{
-    string account_id = 1;
-    double remaining_amount = 2;
-    double interest_rate = 3;
-    double monthly_payment = 4;
-    google.protobuf.Timestamp end_date = 5;
-    double loan_amount = 6;
-}
-message LogLoanResponse
-{
-    string response = 1;
-}
-message GetTransactionsRequest {
-    string email = 1;
-}
-message GetTransactionsResponse {
-    repeated Transactions transactions = 1;
-}
-message Transactions {
-    string senderAccountNumber =1;
-    string recipientAccountNumber = 2;
-    double amount = 3;
-    string message = 4;
-    google.protobuf.Timestamp date = 5;
-    string senderName = 6;
-    string receiverName = 7;
->>>>>>> Stashed changes
 }

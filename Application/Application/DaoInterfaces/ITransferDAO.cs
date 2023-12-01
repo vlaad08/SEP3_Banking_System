@@ -8,6 +8,6 @@ public interface ITransferDAO
     Task TransferMoney(TransferRequestDTO transferRequest);
     Task<double> GetBalanceByAccountNumber(string accountNumber);
     Task<string> GetAccountNumberByAccountNumber(string accountNumber);
+
     Task<double> GetTransferAmountsByDayForUser(string accountNumber);
-    Task<IEnumerable<Transaction>> GetTransactions(string email);
 }
