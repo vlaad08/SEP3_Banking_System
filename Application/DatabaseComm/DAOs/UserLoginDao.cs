@@ -29,8 +29,8 @@ public class UserLoginDao : IUserLoginDao
         return await grpcClient.GetAllAccountsInfo();
     }
 
-    public async Task<List<AccountsInfo>> GetUserAccounts(string email)
+    public async Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto)
     {
-        return await grpcClient.GetUserAccounts(email);
+        return await grpcClient.GetUserAccounts(userLoginRequestDto);
     }
 }

@@ -1,4 +1,5 @@
 using Application.DaoInterfaces;
+using Domain.DTOs;
 
 namespace Grpc.DAOs;
 
@@ -9,14 +10,14 @@ public class InterestDao : IInterestDAO
     {
         this.grpcClient = grpcClient;
     }
-    public async Task<bool> CreditInterest(string account_id)
+    public async Task<bool> CreditInterest(InterestCheckDTO dto)
     {
-        return await grpcClient.CreditInterest(account_id);
+        return await grpcClient.CreditInterest(dto);
     }
 
-    public async Task<DateTime?> CheckInterest(string account_id)
+    public async Task<DateTime?> CheckInterest(InterestCheckDTO dto)
     {
-        DateTime? dateTime = await grpcClient.CheckInterest(account_id);
+        DateTime? dateTime = await grpcClient.CheckInterest(dto);
         return dateTime;
     }
 }

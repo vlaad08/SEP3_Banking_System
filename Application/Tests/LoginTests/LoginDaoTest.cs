@@ -45,12 +45,16 @@ public class LoginDaoTest
     [Fact]
     public async void GetUserAccounts_Calls_GrpcClient()
     {
-        string email = "test@gmail.com";
+        UserLoginRequestDto dto = new UserLoginRequestDto
+        {
+            Email = "user1@gmail.com",
+            Password = "password1"
+        };
         var grpc = new Mock<IGrpcClient>();
         var dao = new UserLoginDao(grpc.Object);
 
-        await dao.GetUserAccounts(email);
+        await dao.GetUserAccounts(dto);
         
-        grpc.Verify(g => g.GetUserAccounts(email));
+        grpc.Verify(g => g.GetUserAccounts(dto));
     }
 }
