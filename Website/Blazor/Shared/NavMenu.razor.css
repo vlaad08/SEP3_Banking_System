@@ -1,0 +1,109 @@
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: max-content;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.oi {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.logOutBtn{
+    justify-self: flex-end;
+}
+
+.nav-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item ::deep a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item ::deep a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item ::deep a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.container-fluid{
+    justify-content: flex-start;
+}
+
+.userName{
+    color: white;
+    font-size: calc(17px + 0.4vh);
+    align-content: center;
+    margin-top: 1rem;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+@media (min-width: 1000px) {
+    .top-row{
+        width: 100%;
+    }
+    
+    
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+    
+    .nav-scrollable {
+        
+    }
+    
+}
+
+@media (max-width: 640px) {
+    .container-fluid{
+        padding: 0;
+    }
+    .top-row{
+        width: 100%;
+    }
+    .userName{
+        margin-left: 1%;
+    }
+    .navbar-toggler{
+    }
+    
+}

@@ -1,0 +1,7 @@
+@page "/deposit"
+@attribute [Authorize]
+
+
+<AuthorizeView>
+    <Blazor.Components.DepositForm User="@context.User"></Blazor.Components.DepositForm>
+</AuthorizeView>

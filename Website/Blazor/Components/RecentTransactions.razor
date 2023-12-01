@@ -1,0 +1,58 @@
+<!-- Visible on the same page with the it's information, the user can also see a couple of the recent transactions that he made i.e (payment, deposit, top-up etc) -->
+
+
+<div class="box">
+    <div class="box-options">
+        <p class="optionsText">Transactions</p>
+        <button class="optionsButton">...</button>
+        <!-- Select how many transactions you would like to see. Min 3 Max 7 -->
+    </div>
+    <div class="transactions-list">
+        <!-- Load list of the last x transactions -->
+        @if (@transactions?.Count == 0)
+        {   
+            <div class="empty-block">
+                <p class="emptyText">You have not made any transactions</p>
+            </div>
+        }
+        else if (@transactions != null)
+        {
+            foreach (string i in @transactions)
+            {
+                <p>@i</p>
+            }
+        }
+    </div>
+    <div class="box-transactions">
+        <button class="transactionsButton">See all</button>
+    </div>
+</div>
+
+
+
+<!-- We can move this code in the main file that uses this component and the UserDetails one, because the methods look quite the same, and the parse
+the results in the components-->
+@code {
+
+    private List<string>? transactions; // when we have the transaction object, and we can get them from the database we can
+                                       //render the list appropriately
+
+
+    private async Task RequestInformation()
+    {
+        transactions = await GetTransactions();
+    }
+
+    private async Task<List<string>> GetTransactions()
+    {
+        await Task.Delay(1000);
+
+        return new List<string> { "Kantinen Horsens 25 dkk", "Bilka 28 dkk", "Wolt 200 dkk" };
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RequestInformation();
+    }
+}

@@ -1,0 +1,146 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+option java_multiple_files=true;
+
+package Database;
+
+service DatabaseService{
+  rpc Transfer(TransferRequest) returns (TransferResponse){};
+  rpc CheckAccount(AccountCheckRequest) returns (AccountCheckResponse){};
+  rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
+  rpc DailyCheckTransactions(DailyCheckRequest) returns (DailyCheckResponse);
+  rpc Deposit(DepositRequest) returns (DepositResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc LoginValidation(LoginValidationRequest) returns (LoginValidationResponse);
+  rpc AllAccountsInfo(AllAccountsInfoRequest) returns (AllAccountsInfoResponse);
+  rpc UserAccountsInfo(UserAccountInfoRequest) returns (UserAccountInfoResponse);
+  rpc CreditInterest(CreditInterestRequest) returns (CreditInterestResponse);
+  rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
+  rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
+}
+message TransferRequest{
+  string senderAccount_id = 1;
+  string recipientAccount_id =2;
+  double balance = 3;
+  string message = 4;
+}
+
+message TransferResponse{
+  string resp = 1;
+}
+
+message AccountCheckRequest
+{
+  string recipientAccount_id = 1;
+}
+message AccountCheckResponse{
+  string recipientAccount_id = 1;
+}
+
+message BalanceCheckRequest{
+  string account_id = 1;
+}
+message BalanceCheckResponse{
+  double balance = 1;
+}
+message DailyCheckRequest
+{
+  string account_id = 1;
+}
+message DailyCheckResponse
+{
+  double amount = 1;
+}
+message DepositRequest
+{
+  string account_id = 1;
+  double amount = 2;
+}
+message DepositResponse
+{
+  string resp = 1;
+}
+message LoginRequest
+{
+  string email = 1;
+  string password = 2;
+}
+message LoginResponse
+{
+  string email = 1;
+  string firstName = 2;
+  string middleName = 3;
+  string lastName = 4;
+  string password = 5;
+  string token = 6;
+}
+message LoginValidationRequest
+{
+
+}
+message LoginValidationResponse
+{
+  repeated User users = 1;
+}
+message User
+{
+  string email = 1;
+  string password = 2;
+  string firstName = 3;
+  string middleName = 4;
+  string lastName = 5;
+  string role = 6;
+}
+message AllAccountsInfoRequest
+{
+
+}
+message AllAccountsInfoResponse
+{
+  repeated AccountsInfo accountInfo = 1;
+}
+message AccountsInfo
+{
+  string accountNumber = 1;
+  string ownerName = 2;
+  double accountBalance = 3;
+  string accountType = 4;
+}
+
+message UserAccountInfoRequest
+{
+  string email = 1;
+}
+message UserAccountInfoResponse
+{
+  repeated AccountsInfo accountInfo = 1;
+}
+message CreditInterestRequest
+{
+  string accountNumber = 1;
+}
+message CreditInterestResponse
+{
+  bool happened = 1;
+}
+message LastInterestRequest
+{
+  string accoutNumber = 1;
+}
+message LastInterestResponse
+{
+  google.protobuf.Timestamp date = 1;
+}
+message LogLoanRequest
+{
+  string account_id = 1;
+  double remaining_amount = 2;
+  double interest_rate = 3;
+  double monthly_payment = 4;
+  google.protobuf.Timestamp end_date = 5;
+  double loan_amount = 6;
+}
+message LogLoanResponse
+{
+  string response = 1;
+}

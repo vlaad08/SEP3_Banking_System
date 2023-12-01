@@ -1,0 +1,12 @@
+@page "/home"
+@attribute [Authorize]
+
+<AuthorizeView>
+    <div class="content">
+        <Blazor.Components.UserDetails User="@context.User"></Blazor.Components.UserDetails>
+        <Blazor.Components.RecentTransactions></Blazor.Components.RecentTransactions>
+    </div>
+</AuthorizeView>
+
+@code {
+}

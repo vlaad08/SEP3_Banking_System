@@ -1,0 +1,28 @@
+.notification-content{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+}
+
+
+
+.notification-box{
+    display: flex;
+    width: 300px;
+    height: auto;
+    color: white;
+    padding: 2%;
+    flex-direction: row;
+}
+
+.notification-content button{
+    align-self: flex-end;
+}
+
+.ConfirmationBox{
+    background-color: green;
+}
+
+.ErrorBox{
+    background-color: darkred;
+}

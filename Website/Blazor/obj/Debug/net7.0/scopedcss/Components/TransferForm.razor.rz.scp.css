@@ -1,0 +1,56 @@
+.content[b-rprs6danod]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.card[b-rprs6danod]{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 1rem;
+    width: 40rem;
+    color: white;
+}
+
+.card div[b-rprs6danod] {
+    padding: 1rem;
+}
+
+.submitButton[b-rprs6danod]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+button[b-rprs6danod] {
+    background-color: inherit;
+    width: calc(30% + 20px);
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover[b-rprs6danod] {
+    transition: 0.2s ease-in-out;
+    background-color: #420000;;
+    cursor: pointer;
+}
+
+input[b-rprs6danod], select[b-rprs6danod], option[b-rprs6danod]{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 100%;
+}
+
+label[b-rprs6danod] {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
