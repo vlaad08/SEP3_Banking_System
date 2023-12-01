@@ -77,14 +77,14 @@ public class TransactionService : ITransactionService
         {
             HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/{email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            Console.WriteLine(responseBody);
             if (!responseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
 
-            List<TransactionDao> list = JsonConvert.DeserializeObject<List<TransactionDao>>(responseBody);
-
-            return list;
+            Console.WriteLine(responseBody);
+            return new List<TransactionDao>();
         }
         catch (Exception e)
         {

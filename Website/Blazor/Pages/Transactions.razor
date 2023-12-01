@@ -4,7 +4,7 @@
 <PageTitle>Transactions</PageTitle>
 
 <AuthorizeView>
-        <TransactionsList></TransactionsList>
+        <TransactionsList email="@context.User.FindFirst("Email").Value"></TransactionsList>
 </AuthorizeView>
 
 @code{
