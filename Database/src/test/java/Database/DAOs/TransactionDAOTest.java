@@ -2,6 +2,7 @@ package Database.DAOs;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DTOs.CheckAccountDTO;
 import Database.DTOs.DepositRequestDTO;
+import Database.DTOs.LoanRequestDTO;
 import Database.DTOs.TransferRequestDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
@@ -25,6 +26,7 @@ public class TransactionDAOTest {
     private TransferRequestDTO transferRequestDTO;
     private CheckAccountDTO checkAccountDTO;
     private DepositRequestDTO depositRequestDTO;
+    private LoanRequestDTO loanRequestDTO;
 
     @BeforeEach
     void setup()
@@ -34,6 +36,7 @@ public class TransactionDAOTest {
         transferRequestDTO = Mockito.mock(TransferRequestDTO.class);
         checkAccountDTO = Mockito.mock(CheckAccountDTO.class);
         depositRequestDTO = Mockito.mock(DepositRequestDTO.class);
+        loanRequestDTO = Mockito.mock(LoanRequestDTO.class);
         MockitoAnnotations.openMocks(this);
     }
 
@@ -80,5 +83,14 @@ public class TransactionDAOTest {
     void makeDeposit_connection_called() throws SQLException {
         dao.makeDeposit(depositRequestDTO);
         Mockito.verify(connection).deposit(depositRequestDTO.getAccount_id(),depositRequestDTO.getAmount());
+    }
+    @Test
+    void creditInterest_connection_called() throws SQLException {
+        dao.logLoan(loanRequestDTO);
+        Mockito.verify(connection).logLoan(loanRequestDTO);
+    }
+    @Test
+    void creditInterest_throws_SQLException() throws SQLException {
+
     }
 }
