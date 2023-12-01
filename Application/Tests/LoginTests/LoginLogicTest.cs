@@ -1,4 +1,5 @@
 using Application.DaoInterfaces;
+using Domain.DTOs;
 using Domain.Models;
 using Moq;
 using Shared.DTOs;
@@ -12,7 +13,8 @@ public class LoginLogicTest
     public async Task GetAccounts_Calls_LoginDao()
     {
         var loginDao = new Mock<IUserLoginDao>();
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
         await auth.GetAccounts();
         loginDao.Verify(d => d.GetAccounts());
     }
@@ -20,12 +22,80 @@ public class LoginLogicTest
     [Fact]
     public async Task GetUserAccounts_Calls_LoginDao()
     {
+        UserLoginRequestDto dto = new UserLoginRequestDto
+        {
+            Email = "user1@gmail.com",
+            Password = "password1"
+        };
         var loginDao = new Mock<IUserLoginDao>();
-        var auth = new AuthLogic(loginDao.Object);
-        await auth.GetUserAccounts("test@gmail.com");
-        loginDao.Verify(d =>d.GetUserAccounts("test@gmail.com"));
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        loginDao.Setup(d => d.GetUserAccounts(dto))
+            .ReturnsAsync(new List<AccountsInfo>());
+        await auth.GetUserAccounts(dto);
+        loginDao.Verify(d =>d.GetUserAccounts(dto));
     }
 
+    [Fact]
+    public async Task GetUserAccounts_Calls_For_CheckInterest()
+    {
+        UserLoginRequestDto dto = new UserLoginRequestDto
+        {
+            Email = "user1@gmail.com",
+            Password = "password1"
+        };
+        var loginDao = new Mock<IUserLoginDao>();
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        loginDao.Setup(d => d.GetUserAccounts(dto))
+            .ReturnsAsync(new List<AccountsInfo>
+            {
+                new AccountsInfo
+                {
+                    AccountNumber = "123456789",
+                    AccountOwner = "Test",
+                    Balance = 1000.5,
+                    AccountType = "personal"
+                }
+            });
+        interestDao.Setup(i => i.CheckInterest(It.IsAny<InterestCheckDTO>()))
+            .ReturnsAsync(DateTime.Now);
+        await auth.GetUserAccounts(dto);
+        interestDao.Verify( i => i.CheckInterest(It.IsAny<InterestCheckDTO>()));
+    }
+    
+    [Fact]
+    public async Task GetUserAccounts_Calls_For_CreditInterest() //This test was written on 1/12, and the CreditInterest has been called, meaning the method will grant the interest if it is the first day of the month today
+    {
+        UserLoginRequestDto dto = new UserLoginRequestDto
+        {
+            Email = "user1@gmail.com",
+            Password = "password1"
+        };
+        var loginDao = new Mock<IUserLoginDao>();
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        loginDao.Setup(d => d.GetUserAccounts(dto))
+            .ReturnsAsync(new List<AccountsInfo>
+            {
+                new AccountsInfo
+                {
+                    AccountNumber = "123456789",
+                    AccountOwner = "Test",
+                    Balance = 1000.5,
+                    AccountType = "personal"
+                }
+            });
+        //DateTime today = new DateTime(2023, 11, 1);
+        DateTime interestTimestamp = new DateTime(2022, 12, 1);
+        interestDao.Setup(i => i.CheckInterest(It.IsAny<InterestCheckDTO>()))
+            .ReturnsAsync(interestTimestamp);
+
+        await auth.GetUserAccounts(dto);
+
+        interestDao.Verify(i => i.CreditInterest(It.IsAny<InterestCheckDTO>()), Times.Once);
+    }
+    
     [Fact]
     public async Task Login_Calls_For_Validation()
     {
@@ -42,7 +112,8 @@ public class LoginLogicTest
         var loginDao = new Mock<IUserLoginDao>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User existing = await auth.Login(dto);
         
@@ -66,7 +137,8 @@ public class LoginLogicTest
         var loginDao = new Mock<IUserLoginDao>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User nonExistent = await auth.Login(dto);
         
@@ -88,9 +160,10 @@ public class LoginLogicTest
             new User { Email = "user2@gmail.com", Password = "password2" }
         };
         var loginDao = new Mock<IUserLoginDao>();
+        var interestDao = new Mock<IInterestDAO>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User nonExistent = await auth.Login(dto);
         

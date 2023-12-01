@@ -5,8 +5,14 @@ namespace Grpc.DAOs;
 
 public class LoanDao : ILoanDAO
 {
-    public Task RequestLoan(LoanRequestDTO dto)
+    private readonly IGrpcClient grpcClient;
+    public LoanDao(IGrpcClient grpcClient)
     {
-        throw new NotImplementedException();
+        this.grpcClient = grpcClient;
+    }
+
+    public async Task RequestLoan(LoanRequestDTO dto)
+    {
+        await grpcClient.RequestLoan(dto);
     }
 }

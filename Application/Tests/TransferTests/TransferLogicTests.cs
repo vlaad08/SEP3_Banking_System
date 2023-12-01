@@ -20,11 +20,11 @@ public class TransferLogicTests
             Amount = 200.0
         };
         var transferDaoMock = new Mock<ITransferDAO>();
-        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.RecipientAccountNumber);
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.Amount);
-        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
@@ -48,11 +48,11 @@ public class TransferLogicTests
         };
 
         var transferDaoMock = new Mock<ITransferDAO>();
-        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.RecipientAccountNumber);
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.Amount - 1);
-        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
@@ -74,11 +74,11 @@ public class TransferLogicTests
 
         //Act
         var transferDaoMock = new Mock<ITransferDAO>();
-        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
             .ReturnsAsync("3333333333333333");
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.Amount + 1);
-        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
@@ -99,11 +99,11 @@ public class TransferLogicTests
 
         //Act
         var transferDaoMock = new Mock<ITransferDAO>();
-        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
             .ReturnsAsync("2222222222222222");
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
             .ReturnsAsync(transferRequestDto.Amount + 1);
-        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(It.IsAny<string>()))
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(200000);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);

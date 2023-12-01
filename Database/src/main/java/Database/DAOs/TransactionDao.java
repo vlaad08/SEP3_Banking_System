@@ -4,6 +4,7 @@ import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
+import Database.Transactions;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -56,6 +57,11 @@ public class TransactionDao implements TransactionDaoInterface
     @Override
     public void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException {
         connection.logLoan(loanRequestDTO);
+    }
+
+    @Override
+    public List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException {
+        return connection.getAllTransactions(userInfoEmailDTO);
     }
 
 }

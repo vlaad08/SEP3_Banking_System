@@ -1,6 +1,7 @@
 using System.Collections;
 using Database;
 using Domain.DTOs;
+using Domain.Models;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using Shared.DTOs;
@@ -28,42 +29,42 @@ public class ProtoClient:IGrpcClient
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
     }
 
-    public async Task<double> GetBalanceByAccountNumber(string accountNumber)
+    public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
         var request = new BalanceCheckRequest()
         {
-            AccountId = accountNumber
+            AccountId = transferRequestDto.SenderAccountNumber
         };
 
         var response = await databaseClient.CheckBalanceAsync(request);
         return response.Balance;
     }
 
-    public async Task<string> GetAccountNumberByAccountNumber(string accountNumber)
+    public async Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         
         var request = new AccountCheckRequest()
         {
-            RecipientAccountId = accountNumber
+            RecipientAccountId = transferRequestDto.RecipientAccountNumber
         };
 
         var response = await databaseClient.CheckAccountAsync(request);
         return response.RecipientAccountId;
     }
 
-    public async Task<double> DailyCheck(string accountNumber)
+    public async Task<double> DailyCheck(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var request = new DailyCheckRequest()
         {
-            AccountId = accountNumber
+            AccountId = transferRequestDto.SenderAccountNumber
         };
         var response = await databaseClient.DailyCheckTransactionsAsync(request);
         return response.Amount;
@@ -80,9 +81,7 @@ public class ProtoClient:IGrpcClient
             Amount = depositRequestDto.Amount
             
         };
-        
         var response = await databaseClient.DepositAsync(request);
-
     }
 
     public async Task<List<global::Domain.Models.User>> GetAllUserInfo()
@@ -136,13 +135,13 @@ public class ProtoClient:IGrpcClient
         return accountsInfos;
     }
 
-    public async Task<List<AccountsInfo>> GetUserAccounts(string email)
+    public async Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new UserAccountInfoRequest()
         {
-            Email = email
+            Email = userLoginRequestDto.Email
         };
         var response = await databaseClient.UserAccountsInfoAsync(request);
         List<AccountsInfo> accountsInfos = new List<AccountsInfo>();
@@ -160,13 +159,13 @@ public class ProtoClient:IGrpcClient
         return accountsInfos;
     }
 
-    public async Task<DateTime?> CheckInterest(string account_id)
+    public async Task<DateTime?> CheckInterest(InterestCheckDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new LastInterestRequest()
         {
-            AccoutNumber = account_id
+            AccoutNumber = dto.AccountID
         };
         var response = await databaseClient.LastInterestAsync(request);
         Timestamp timestamp= response?.Date;
@@ -174,15 +173,59 @@ public class ProtoClient:IGrpcClient
 
     }
 
-    public async Task<bool> CreditInterest(string account_id)
+    public async Task<bool> CreditInterest(InterestCheckDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new CreditInterestRequest()
         {
-            AccountNumber = account_id
+            AccountNumber = dto.AccountID
         };
         var response = await databaseClient.CreditInterestAsync(request);
         return response.Happened;
+    }
+
+    public async Task RequestLoan(LoanRequestDTO dto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        DateTime utcEndDate = dto.EndDate.ToUniversalTime();
+        var request = new LogLoanRequest
+        {
+            AccountId = dto.AccountNumber,
+            RemainingAmount = dto.RemainingAmount,
+            InterestRate = dto.InterestRate,
+            MonthlyPayment = dto.MonthlyPayment,
+            EndDate = Timestamp.FromDateTime(utcEndDate),
+            LoanAmount = dto.Amount
+        };
+        var response = await databaseClient.LogLoanAsync(request);
+    }
+    
+    public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new GetTransactionsRequest
+        {
+            Email = getTransactionsDto.Email
+        };
+        var response = await databaseClient.GetTransactionsAsync(request);
+        List<Transaction> transactions = new List<Transaction>();
+        foreach (var t in response.Transactions)
+        {
+            Transaction transaction = new Transaction
+            {
+                SenderName = t.SenderName,
+                RecipientName = t.ReceiverName,
+                SenderAccountNumber = t.SenderAccountNumber,
+                RecipientAccountNumber = t.RecipientAccountNumber,
+                Amount = t.Amount,
+                Message = t.Message,
+                Date = t.Date.ToDateTime()
+            };
+            transactions.Add(transaction);
+        }
+        return transactions;
     }
 }

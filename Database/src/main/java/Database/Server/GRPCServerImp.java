@@ -8,6 +8,8 @@ import Database.AllAccountsInfoRequest;
 import Database.AllAccountsInfoResponse;
 import Database.BalanceCheckRequest;
 import Database.BalanceCheckResponse;
+import Database.CreditInterestRequest;
+import Database.CreditInterestResponse;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
@@ -18,11 +20,20 @@ import Database.DailyCheckResponse;
 import Database.DatabaseServiceGrpc;
 import Database.DepositRequest;
 import Database.DepositResponse;
+import Database.GetTransactionsRequest;
+import Database.GetTransactionsResponse;
+import Database.LastInterestRequest;
+import Database.LastInterestResponse;
+import Database.LogLoanRequest;
+import Database.LogLoanResponse;
 import Database.LoginValidationRequest;
 import Database.LoginValidationResponse;
+import Database.Transactions;
 import Database.TransferRequest;
 import Database.TransferResponse;
 import Database.User;
+import Database.UserAccountInfoRequest;
+import Database.UserAccountInfoResponse;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.SQLException;
@@ -190,6 +201,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
                     request.getInterestRate(),request.getMonthlyPayment(),request.getEndDate(),request.getLoanAmount());
             transactionDao.logLoan(loanRequestDTO);
             LogLoanResponse response = LogLoanResponse.newBuilder().setResponse("Loan granted").build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getTransactions(GetTransactionsRequest request, StreamObserver<GetTransactionsResponse> responseStreamObserver) {
+        try {
+            UserInfoEmailDTO userInfoEmailDTO = new UserInfoEmailDTO(request.getEmail());
+            List<Transactions> transactions = transactionDao.getAllTransactions(userInfoEmailDTO);
+            GetTransactionsResponse response = GetTransactionsResponse.newBuilder().addAllTransactions(transactions).build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         }catch(SQLException e) {

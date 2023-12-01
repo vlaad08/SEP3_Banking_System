@@ -1,6 +1,7 @@
 ﻿using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.DTOs;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers;
@@ -34,6 +35,24 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    [HttpGet, Route("{email}")]
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
+    {
+        try
+        {
+            GetTransactionsDTO dto = new GetTransactionsDTO
+            {
+                Email = email
+            };
+            var transactions = await transferLogic.GetTransactions(dto);
+            return Ok(transactions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
+        }
+    }
 
     [HttpPost, Route("Deposit")]
     public async Task<IActionResult> DepositMoney([FromBody] DepositRequestDTO depositRequest)
@@ -56,6 +75,19 @@ public class TransactionController : ControllerBase
         {
             double calculatedInterest = await loanLogic.CalculateLoan(dto);
             return Ok(calculatedInterest);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    [HttpPost, Route("Loan")]
+    public async Task<IActionResult> RequestLoan([FromBody] LoanCalculationDTO dto)
+    {
+        try
+        {
+            await loanLogic.RequestLoan(dto);
+            return Ok("Loan accepted!");
         }
         catch (Exception e)
         {

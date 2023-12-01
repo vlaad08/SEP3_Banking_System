@@ -2,6 +2,7 @@ using System.Runtime.InteropServices.JavaScript;
 using Application.DaoInterfaces;
 using Application.Logic;
 using Application.LogicInterfaces;
+using Domain.DTOs;
 using Domain.Models;
 using Shared.DTOs;
 
@@ -48,13 +49,14 @@ public class AuthLogic : IAuthLogic
         return await userLoginDao.GetAccounts();
     }
 
-    public async Task<List<AccountsInfo>> GetUserAccounts(string email)
+    public async Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto)
     {
-        List<AccountsInfo> accounts = await userLoginDao.GetUserAccounts(email);
+        List<AccountsInfo> accounts = await userLoginDao.GetUserAccounts(userLoginRequestDto);
 
         foreach (var a in accounts)
         {
-            DateTime? interestTimestamp = await interestDao.CheckInterest(a.AccountNumber);
+            InterestCheckDTO dto = new InterestCheckDTO { AccountID = a.AccountNumber };
+            DateTime? interestTimestamp = await interestDao.CheckInterest(dto);
             DateTime datePart;
             DateTime today;
             if (interestTimestamp != null)
@@ -63,7 +65,7 @@ public class AuthLogic : IAuthLogic
                 today = DateTime.Now.Date;
                 if ((interestTimestamp != null && !datePart.Equals(today) && DateTime.Now.Day == 1) || (interestTimestamp==null&&DateTime.Now.Day == 1))
                 {
-                    await interestDao.CreditInterest(a.AccountNumber);
+                    await interestDao.CreditInterest(dto);
                 }
             }
         }

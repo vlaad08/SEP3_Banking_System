@@ -8,6 +8,6 @@ public class LoanRequestDTO
     public int Duration { get; set; }
     public double InterestRate { get; set; }
     public double MonthlyPayment { get; set; }
-    public DateTime? EndDate { get; set; }
+    public DateTime EndDate { get; set; }
 
 }
