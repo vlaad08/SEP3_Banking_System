@@ -238,11 +238,6 @@ C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/Tests/obj
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.pdb
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.genruntimeconfig.cache
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/ref/Tests.dll
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.csproj.AssemblyReference.cache
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.GeneratedMSBuildEditorConfig.editorconfig
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.AssemblyInfoInputs.cache
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.AssemblyInfo.cs
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.csproj.CoreCompileInputs.cache
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/DatabaseComm.deps.json
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/DatabaseComm.runtimeconfig.json
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/DatabaseComm
@@ -351,6 +346,11 @@ C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/Tests/obj
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/Application.pdb
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/DatabaseComm.pdb
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/bin/Debug/net7.0/Domain.pdb
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.csproj.AssemblyReference.cache
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.AssemblyInfoInputs.cache
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.AssemblyInfo.cs
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.csproj.CoreCompileInputs.cache
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.csproj.CopyComplete
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/Tests.dll
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Tests/obj/Debug/net7.0/refint/Tests.dll

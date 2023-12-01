@@ -47,6 +47,11 @@ public class TransferLogic : ITransferLogic
         Console.WriteLine("Logic 3");
     }
     
+    public async Task<IEnumerable<Transaction>> GetTransactions(string email)
+    {
+        return await transferDao.GetTransactions(email);
+    }
+    
     
     
 }

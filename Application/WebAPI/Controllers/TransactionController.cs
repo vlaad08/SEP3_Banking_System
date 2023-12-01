@@ -1,6 +1,7 @@
 ﻿using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.DTOs;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers;
@@ -32,6 +33,20 @@ public class TransactionController : ControllerBase
         {
             Console.WriteLine(e.Message);
             return BadRequest(e.Message);
+        }
+    }
+    [HttpGet, Route("{email}")]
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
+    {
+        try
+        {
+            var transactions = await transferLogic.GetTransactions(email);
+            return Ok(transactions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
         }
     }
 
