@@ -197,5 +197,17 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
+    @Override
+    public void getTransactions(GetTransactionsRequest request, StreamObserver<GetTransactionsResponse> responseStreamObserver) {
+        try {
+            UserInfoEmailDTO userInfoEmailDTO = new UserInfoEmailDTO(request.getEmail());
+            List<Transactions> transactions = transactionDao.getAllTransactions(userInfoEmailDTO);
+            GetTransactionsResponse response = GetTransactionsResponse.newBuilder().addAllTransactions(transactions).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
