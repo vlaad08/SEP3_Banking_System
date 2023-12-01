@@ -5,5 +5,5 @@ namespace Application.LogicInterfaces;
 public interface ILoanLogic
 {
     Task<double> CalculateLoan(LoanCalculationDTO dto);
-    Task RequestLoan(LoanRequestDTO dto);
+    Task RequestLoan(LoanCalculationDTO dto);
 }

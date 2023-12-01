@@ -12,7 +12,8 @@ public class LoginLogicTest
     public async Task GetAccounts_Calls_LoginDao()
     {
         var loginDao = new Mock<IUserLoginDao>();
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object,interestDao.Object);
         await auth.GetAccounts();
         loginDao.Verify(d => d.GetAccounts());
     }
@@ -21,7 +22,8 @@ public class LoginLogicTest
     public async Task GetUserAccounts_Calls_LoginDao()
     {
         var loginDao = new Mock<IUserLoginDao>();
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object,interestDao.Object);
         await auth.GetUserAccounts("test@gmail.com");
         loginDao.Verify(d =>d.GetUserAccounts("test@gmail.com"));
     }
@@ -42,7 +44,8 @@ public class LoginLogicTest
         var loginDao = new Mock<IUserLoginDao>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User existing = await auth.Login(dto);
         
@@ -66,7 +69,8 @@ public class LoginLogicTest
         var loginDao = new Mock<IUserLoginDao>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User nonExistent = await auth.Login(dto);
         
@@ -90,7 +94,8 @@ public class LoginLogicTest
         var loginDao = new Mock<IUserLoginDao>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object);
+        var interestDao = new Mock<IInterestDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
 
         User nonExistent = await auth.Login(dto);
         

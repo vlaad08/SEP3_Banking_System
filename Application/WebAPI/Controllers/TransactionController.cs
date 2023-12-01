@@ -1,6 +1,7 @@
 ﻿using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers;
@@ -62,4 +63,19 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpPost, Route("Loan")]
+    public async Task<IActionResult> RequestLoan([FromBody] LoanCalculationDTO dto)
+    {
+        try
+        {
+            await loanLogic.RequestLoan(dto);
+            return Ok("Loan accepted!");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    
 }
