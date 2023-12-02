@@ -1,7 +1,10 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
+import Database.DTOs.LoanRequestDTO;
+import Database.DTOs.UserInfoAccNumDTO;
 import Database.DTOs.UserInfoEmailDTO;
+import Database.Transactions;
 import Database.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +13,13 @@ import org.mockito.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 public class SQLConnectionTest {
     @InjectMocks
@@ -344,6 +349,116 @@ public class SQLConnectionTest {
 
         assertEquals(list.size(), 1);
     }
+
+    @Test
+    public void testLastInterest() throws SQLException {
+        UserInfoAccNumDTO userInfoAccNumDTO = new UserInfoAccNumDTO("yourAccNum");
+
+        Timestamp expectedTimestamp = Timestamp.valueOf(LocalDateTime.now());
+
+        when(connection.prepareStatement(anyString())).thenReturn(statement);
+        when(statement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.next()).thenReturn(true);
+        when(resultSet.getTimestamp("dateTime")).thenReturn(expectedTimestamp);
+
+        Timestamp resultTimestamp = sqlConnection.lastInterest(userInfoAccNumDTO);
+
+        assertEquals(expectedTimestamp, resultTimestamp);
+
+        verify(statement).setString(1, userInfoAccNumDTO.getAccNum());
+    }
+
+
+    @Test
+    public void testCreditInterest() throws SQLException {
+        // Arrange
+        UserInfoAccNumDTO userInfoAccNumDTO = new UserInfoAccNumDTO("bbbbddddaaaacccc");
+        PreparedStatement updateStatement = mock(PreparedStatement.class);
+        PreparedStatement insertStatement = mock(PreparedStatement.class);
+
+        // Mocking JDBC behavior
+        when(connection.prepareStatement(contains("SELECT"))).thenReturn(statement);
+        when(connection.prepareStatement(contains("UPDATE"))).thenReturn(updateStatement);
+        when(connection.prepareStatement(contains("INSERT"))).thenReturn(insertStatement);
+
+        when(statement.executeQuery()).thenReturn(resultSet);
+        when(resultSet.next()).thenReturn(true);
+        when(resultSet.getDouble("balance")).thenReturn(1000.0); // Provide appropriate values
+        when(resultSet.getDouble("interest_rate")).thenReturn(0.05); // Provide appropriate values
+        when(updateStatement.executeUpdate()).thenReturn(1);
+
+        // Act
+        boolean result = sqlConnection.creditInterest(userInfoAccNumDTO);
+
+        // Assert
+        assertTrue(result);
+
+        // Verify that the correct methods were called with the correct parameters
+        verify(connection).setAutoCommit(false);
+        verify(statement).setString(1, userInfoAccNumDTO.getAccNum());
+        verify(updateStatement).setDouble(1, 50.0); // Adjust according to your interest calculation logic
+        verify(updateStatement).setString(2, userInfoAccNumDTO.getAccNum());
+        verify(insertStatement).setTimestamp(eq(1), any(Timestamp.class));
+        verify(insertStatement).setDouble(2, 50.0); // Adjust according to your interest calculation logic
+        verify(insertStatement, times(2)).setString(anyInt(), eq(userInfoAccNumDTO.getAccNum()));
+        verify(connection).commit();
+    }
+
+
+
+    @Test
+    void testLogLoan() throws SQLException {
+        LoanRequestDTO loanRequestDTO = new LoanRequestDTO(
+                "123456",
+                1000.0,
+                0.05,
+                100.0,
+                com.google.protobuf.Timestamp.newBuilder().setSeconds(LocalDateTime.now().getSecond()).build(),
+                5000.0
+        );
+
+        try {
+            sqlConnection.logLoan(loanRequestDTO);
+
+            PreparedStatement selectStatement = connection.prepareStatement(
+                    "SELECT * FROM loan WHERE account_id = ?");
+            selectStatement.setString(1, loanRequestDTO.getAccountId());
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            if (resultSet.next()) {
+                assertEquals(loanRequestDTO.getRemainingAmount(), resultSet.getDouble("remaining_amount"));
+                assertEquals(loanRequestDTO.getInterestRate(), resultSet.getDouble("interest_rate"));
+                assertEquals(loanRequestDTO.getMonthlyPayment(), resultSet.getDouble("monthly_payment"));
+                assertEquals(loanRequestDTO.getLoanAmount(), resultSet.getDouble("loan_amount"));
+            }
+
+        } catch (RuntimeException e) {
+            assertEquals(1, 0, "Exception occurred: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void getAllTransactions_returns_a_list() throws SQLException {
+        com.google.protobuf.Timestamp timestamp = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(System.currentTimeMillis() / 1000)
+                .setNanos(0)
+                .build();
+        Transactions temp = Transactions.newBuilder().
+                setSenderAccountNumber("testmessage")
+                .setRecipientAccountNumber("11111111111111")
+                .setAmount(200)
+                .setMessage("Name")
+                .setDate(timestamp)
+                .setSenderName("Alin Maaa")
+                .setReceiverName("Levi Ksaaa")
+                .build();
+        userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
+        when(sqlConnection.getAllTransactions(userInfoDTO)).thenReturn(List.of(temp));
+        List<Transactions> result = sqlConnection.getAllTransactions(userInfoDTO);
+
+        assertEquals(List.of(temp), result);
+    }
+
 
 
 }
