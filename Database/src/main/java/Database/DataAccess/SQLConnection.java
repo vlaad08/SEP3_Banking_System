@@ -2,6 +2,7 @@ package Database.DataAccess;
 
 import Database.AccountsInfo;
 import Database.DTOs.LoanRequestDTO;
+import Database.DTOs.RegisterUserDTO;
 import Database.DTOs.UserInfoAccNumDTO;
 import Database.DTOs.UserInfoEmailDTO;
 import Database.Transactions;
@@ -420,9 +421,13 @@ public class SQLConnection implements SQLConnectionInterface{
         return transactionsList;
     }
 
+    @Override public void registerUser(RegisterUserDTO registerUserDTO)
+        throws SQLException
+    {
+        try (Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("")){
 
-
-
-
+        }
+    }
 
 }

@@ -220,6 +220,17 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
+    public void registerUser(RegisterRequest request, StreamObserver<RegisterResponse> responseStreamObserver)
+    {
+        try
+        {
+            RegisterUserDTO registerUserDTO = new RegisterUserDTO(
+                request.getEmail(), request.getFirstname(),
+                request.getMiddlename(), request.getLastname(),
+                request.getPassword(), request.getPlan()
+            );
+        }
+    }
 
 }

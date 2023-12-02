@@ -2,6 +2,7 @@ package Database.DataAccess;
 
 import Database.AccountsInfo;
 import Database.DTOs.LoanRequestDTO;
+import Database.DTOs.RegisterUserDTO;
 import Database.DTOs.UserInfoAccNumDTO;
 import Database.DTOs.UserInfoEmailDTO;
 import Database.Transactions;
@@ -24,4 +25,6 @@ public interface SQLConnectionInterface {
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO);
+
+    void registerUser(RegisterUserDTO registerUserDTO) throws SQLException;
 }
