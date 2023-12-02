@@ -1,30 +1,31 @@
+@using global::Shared.DAO
+@using Blazor.Services.Http
+@inject ITransactionService transactionService
+@inject NavigationManager NavMgr
 <!-- Visible on the same page with the it's information, the user can also see a couple of the recent transactions that he made i.e (payment, Deposit, top-up etc) -->
 
 
 <div class="box">
     <div class="box-options">
         <p class="optionsText">Transactions</p>
-        <button class="optionsButton">...</button>
+        
         <!-- Select how many transactions you would like to see. Min 3 Max 7 -->
     </div>
     <div class="transactions-list">
-        <!-- Load list of the last x transactions -->
-        @if (@transactions?.Count == 0)
-        {   
-            <div class="empty-block">
-                <p class="emptyText">You have not made any transactions</p>
-            </div>
-        }
-        else if (@transactions != null)
+        @if (transactions != null)
         {
-            foreach (string i in @transactions)
+            @foreach(var transaction in transactions)
             {
-                <p>@i</p>
+                <Transaction Recipient="@transaction.RecipientName"
+                             Sender="@transaction.SenderName"
+                             Message="@transaction.Message"
+                             Amount="@transaction.Amount"
+                             Date="@transaction.Date"></Transaction>
             }
         }
     </div>
     <div class="box-transactions">
-        <button class="transactionsButton">See all</button>
+        <button class="transactionsButton" @onclick="GoToTransactions">See all</button>
     </div>
 </div>
 
@@ -33,26 +34,34 @@
 <!-- We can move this code in the main file that uses this component and the UserDetails one, because the methods look quite the same, and the parse
 the results in the components-->
 @code {
+    [Parameter] public string Email { get; set; }
+    [Parameter] public LoadingBox Loading { get; set; }
+    
+    
 
-    private List<string>? transactions; // when we have the transaction object, and we can get them from the database we can
-                                       //render the list appropriately
-
+    public List<TransactionDao> transactions = new List<TransactionDao>(); 
 
     private async Task RequestInformation()
     {
-        transactions = await GetTransactions();
+        transactions = await GetTransactions(Email) ?? new List<TransactionDao>(); 
     }
 
-    private async Task<List<string>> GetTransactions()
+    private async Task<List<TransactionDao>> GetTransactions(string email)
     {
-        await Task.Delay(1000);
-
-        return new List<string> { "Kantinen Horsens 25 dkk", "Bilka 28 dkk", "Wolt 200 dkk" };
+        return await transactionService.GetTransactions(email);
     }
 
+    private void GoToTransactions()
+    {
+        Loading.ShowLoading();
+        NavMgr.NavigateTo("/transactions");
+    }
+    
 
     protected override async Task OnInitializedAsync()
     {
+        Loading.ShowLoading();
         await RequestInformation();
+        Loading.CloseLoading();
     }
 }

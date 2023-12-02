@@ -6,7 +6,6 @@
 <!-- User information: Full name + the account balance
     +Buttons for making a new Transfer -->
 
-<LoadingBox @ref="loadingBox"></LoadingBox>
 
 <div class="box">
     <div class="box-info">
@@ -39,7 +38,7 @@
 
 
 @code {
-    private LoadingBox loadingBox;
+    [Parameter] public LoadingBox Loading { get; set; }
     [Parameter] public ClaimsPrincipal User { get; set; }
     private List<AccountsInfo> Accounts { get; set; }
     [Inject] private NavigationManager Navigation { get; set; }
@@ -54,13 +53,13 @@
     
     private void NewTransfer()
     {
-        loadingBox.ShowLoading();
+        Loading.ShowLoading();
         Navigation.NavigateTo("/Transfer");
     }
 
     private void Deposit()
     {
-        loadingBox.ShowLoading();
+        Loading.ShowLoading();
         Navigation.NavigateTo("/Deposit");
     }
     

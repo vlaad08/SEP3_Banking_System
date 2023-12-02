@@ -31,12 +31,13 @@
 
 
 @code {
-    [Parameter] public string email { get; set; }
+    [Parameter]public LoadingBox Loading { get; set; }
+    [Parameter] public string Email { get; set; }
     public List<TransactionDao> transactions = new List<TransactionDao>(); 
 
     private async Task RequestInformation()
     {
-        transactions = await GetTransactions(email) ?? new List<TransactionDao>(); 
+        transactions = await GetTransactions(Email) ?? new List<TransactionDao>(); 
     }
 
     private async Task<List<TransactionDao>> GetTransactions(string email)
@@ -46,6 +47,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Loading.ShowLoading();
         await RequestInformation();
+        Loading.CloseLoading();
     }
 }

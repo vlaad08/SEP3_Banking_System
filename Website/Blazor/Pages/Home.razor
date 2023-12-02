@@ -1,12 +1,16 @@
 @page "/home"
 @attribute [Authorize]
+@using Blazor.Components
 
+
+<LoadingBox @ref="loadingRef"></LoadingBox>
 <AuthorizeView>
     <div class="content">
-        <Blazor.Components.UserDetails User="@context.User"></Blazor.Components.UserDetails>
-        <Blazor.Components.RecentTransactions></Blazor.Components.RecentTransactions>
+        <Blazor.Components.UserDetails User="@context.User" Loading="loadingRef"></Blazor.Components.UserDetails>
+        <Blazor.Components.RecentTransactions Email="@context.User.FindFirst("Email").Value" Loading="loadingRef"></Blazor.Components.RecentTransactions>
     </div>
 </AuthorizeView>
 
 @code {
+    public LoadingBox loadingRef;
 }

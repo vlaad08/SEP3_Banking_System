@@ -3,11 +3,14 @@
 @using Blazor.Components
 <PageTitle>Transactions</PageTitle>
 
+
+<LoadingBox @ref="loadingRef"></LoadingBox>
 <AuthorizeView>
-        <TransactionsList email="@context.User.FindFirst("Email").Value"></TransactionsList>
+        <TransactionsList Email="@context.User.FindFirst("Email").Value" Loading="loadingRef"></TransactionsList>
 </AuthorizeView>
 
 @code{
 
    
+        public LoadingBox loadingRef;
 }
