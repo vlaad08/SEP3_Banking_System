@@ -110,4 +110,17 @@ public class TransferDaoTest
         Assert.Equal(expectedAmount, result);
         grpcClientMock.Verify(c => c.DailyCheck(transferRequestDto), Times.Once);
     }
+
+    [Fact]
+    public async Task GetTransactions_Calls_Grpc()
+    {
+        var dto = new GetTransactionsDTO
+        {
+            Email = "test@gmail.com"
+        };
+        var grpcClientMock = new Mock<IGrpcClient>();
+        var transferDao = new TransferDAO(grpcClientMock.Object);
+        await transferDao.GetTransactions(dto);
+        grpcClientMock.Verify(g=>g.GetTransactions(dto));
+    }
 }
