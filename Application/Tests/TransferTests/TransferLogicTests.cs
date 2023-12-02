@@ -2,6 +2,7 @@ using Application.DaoInterfaces;
 using Application.Logic;
 using DataAccess.DAOs;
 using Domain.DTOs;
+using Domain.Models;
 using Grpc;
 using Moq;
 
@@ -26,6 +27,8 @@ public class TransferLogicTests
             .ReturnsAsync(transferRequestDto.Amount);
         transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
+            .ReturnsAsync(transferRequestDto.Amount+1);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
 
@@ -54,6 +57,7 @@ public class TransferLogicTests
             .ReturnsAsync(transferRequestDto.Amount - 1);
         transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
+        
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
 
@@ -111,4 +115,40 @@ public class TransferLogicTests
         // Assert
         await Assert.ThrowsAsync<Exception>(() => transferLogic.TransferMoney(transferRequestDto));
     }
+
+    [Fact]
+    public async Task GetTransactions_Returns_A_List()
+    {
+        var getTransactionsDTO = new GetTransactionsDTO
+        {
+            Email = "test@gmail.com"
+        };
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetTransactions(It.IsAny<GetTransactionsDTO>()))
+            .ReturnsAsync(new List<Transaction>());
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+
+        IEnumerable<Transaction> transactions = await transferLogic.GetTransactions(getTransactionsDTO);
+
+        Assert.IsAssignableFrom<IEnumerable<Transaction>>(transactions);
+    }
+    [Fact]
+    public async Task GetTransactions_Calls_Dao()
+    {
+        var getTransactionsDTO = new GetTransactionsDTO
+        {
+            Email = "test@gmail.com"
+        };
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetTransactions(It.IsAny<GetTransactionsDTO>()))
+            .ReturnsAsync(new List<Transaction>());
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+
+        await transferLogic.GetTransactions(getTransactionsDTO);
+
+        transferDaoMock.Verify(d=>d.GetTransactions(getTransactionsDTO));
+    }
+
+    
+    
 }
