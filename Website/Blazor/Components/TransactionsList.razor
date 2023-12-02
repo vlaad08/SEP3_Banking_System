@@ -14,14 +14,17 @@
         </div>
         
         <div class="transactions-list">
-            @* @foreach( var transaction in transactions) *@
-            @* { *@
-            @*     <Transaction Recipient="@transaction.RecipientAccountNumber" *@
-            @*                  Sender="@transaction.SenderAccountNumber" *@
-            @*                  Message="@transaction.Message" *@
-            @*                  Amount="@transaction.Amount" *@
-            @*                  Date="@transaction.Date"></Transaction> *@
-            @* } *@
+            @if (transactions != null)
+            {
+                @foreach(var transaction in transactions)
+                {
+                    <Transaction Recipient="@transaction.RecipientName"
+                                 Sender="@transaction.SenderName"
+                                 Message="@transaction.Message"
+                                 Amount="@transaction.Amount"
+                                 Date="@transaction.Date"></Transaction>
+                }
+            }
         </div>
     </div>
 </div>
@@ -29,23 +32,17 @@
 
 @code {
     [Parameter] public string email { get; set; }
-    public List<TransactionDao>? transactions; 
+    public List<TransactionDao> transactions = new List<TransactionDao>(); 
 
-    
-    //add the code to request the list
     private async Task RequestInformation()
     {
-        transactions = await GetTransactions(email);
+        transactions = await GetTransactions(email) ?? new List<TransactionDao>(); 
     }
 
     private async Task<List<TransactionDao>> GetTransactions(string email)
     {
-
-
         return await transactionService.GetTransactions(email);
-
     }
-
 
     protected override async Task OnInitializedAsync()
     {

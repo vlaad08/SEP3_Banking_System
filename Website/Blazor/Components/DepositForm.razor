@@ -11,18 +11,21 @@
         <div>
             <label>Your account: </label>
             <select @bind="SelectedAccount">
-                @foreach (var account in Accounts)
+                @if (Accounts != null)
                 {
-                    if (account.AccountType.Equals("personal"))
+                    @foreach (var account in Accounts)
                     {
-                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        if (account.AccountType.Equals("personal"))
+                        {
+                            <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        }
                     }
-                }
-                @foreach (var account in Accounts)
-                {
-                    if (account.AccountType.Equals("savings"))
+                    @foreach (var account in Accounts)
                     {
-                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        if (account.AccountType.Equals("savings"))
+                        {
+                            <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                        }
                     }
                 }
             </select>
@@ -45,9 +48,9 @@
 {
     private string SelectedAccount { get; set; }
     [Parameter] public ClaimsPrincipal User { get; set; }
-    private string accountNumber;
+    private string accountNumber = "";
     private double amount;
-    private List<AccountsInfo> Accounts { get; set; } 
+    private List<AccountsInfo> Accounts = new List<AccountsInfo>();
     
     private async Task Create()
     {
@@ -69,23 +72,41 @@
     
     protected override async Task OnInitializedAsync()
     {
-        Accounts = await GetUserAccounts(User);
+        Accounts = await GetUserAccounts(User) ?? new List<AccountsInfo>();
     }
     
-    private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
+    private async Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
     {
+        if (user == null)
+        {
+            Console.WriteLine("User is null");
+            return new List<AccountsInfo>();
+        }
+
         var accountsClaim = user.FindFirst("Accounts");
+        if (accountsClaim == null || string.IsNullOrEmpty(accountsClaim.Value))
+        {
+            Console.WriteLine("Accounts claim is null or empty");
+            return new List<AccountsInfo>();
+        }
 
         try
         {
-            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim!.Value)!;
-            accountNumber = accounts.FirstOrDefault(a => a.AccountType.Equals("personal")).AccountNumber;
-            return Task.FromResult(accounts);
+            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim.Value);
+            if (accounts != null && accounts.Any())
+            {
+                var personalAccount = accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
+                if (personalAccount != null)
+                {
+                    accountNumber = personalAccount.AccountNumber;
+                }
+            }
+            return accounts ?? new List<AccountsInfo>();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine($"Error in GetUserAccounts: {e.Message}");
+            return new List<AccountsInfo>();
         }
     }
 }

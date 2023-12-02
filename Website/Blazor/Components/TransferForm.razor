@@ -63,11 +63,7 @@
     private double amount;
     private List<AccountsInfo> Accounts { get; set; } 
     
-    protected override async Task OnInitializedAsync()
-    {
-        Accounts = await GetUserAccounts(User);
-        senderAccount_id = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal")).AccountNumber;
-    }
+   
     
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
@@ -106,19 +102,35 @@
         navMgr.NavigateTo("/Transactions");
     }
     
-    private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
+    protected override async Task OnInitializedAsync()
+    {
+        Accounts = await GetUserAccounts(User) ?? new List<AccountsInfo>();
+
+        var personalAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
+        if (personalAccount != null)
+        {
+            senderAccount_id = personalAccount.AccountNumber;
+        }
+    }
+
+    private async Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
     {
         var accountsClaim = user.FindFirst("Accounts");
 
+        if (accountsClaim == null || string.IsNullOrEmpty(accountsClaim.Value))
+        {
+            Console.WriteLine("Accounts claim is null or empty");
+            return new List<AccountsInfo>();
+        }
+
         try
         {
-            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim!.Value)!;
-            return Task.FromResult(accounts);
+            return JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim.Value) ?? new List<AccountsInfo>();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine($"Error in GetUserAccounts: {e.Message}");
+            return new List<AccountsInfo>();
         }
     }
 

@@ -7,7 +7,7 @@
         <p class="date">@Date.Day/@Date.Month/@Date.Year</p>
     </div>
     <div class="midPart">
-        @if (!Message.Equals("Deposit") || !Message.Equals("Interest"))
+        @if (!Message.Equals("deposit") || !Message.Equals("interest"))
         {
             <p class="message">@Message</p>
         }
@@ -41,10 +41,15 @@
 
     private async Task<string> CheckName()
     {
-        if (Sender.Equals(Recipient) && (Message.Equals("Deposit") || Message.Equals("Interest")))
+        if (Sender.Equals(Recipient) && Message.Equals("deposit"))
         {
             sign = "+";
             return "Deposit";
+        }
+        if (Sender.Equals(Recipient) && Message.Equals("interest"))
+        {
+            sign = "+";
+            return "Interest";
         }
         sign = "-";
         return "Transfer";
