@@ -3,6 +3,7 @@
 @using global::Shared.DTOs
 @inject IAuthService authService
 @using Blazor.Components
+@inject NavigationManager NavMgr
 
 <LoadingBox @ref="loadingRef"></LoadingBox>
 <div class="content">
@@ -128,6 +129,7 @@
                 {
                     await errorRef.ShowErrorNotification(e.Message);
                     loadingRef.CloseLoading();
+                    NavMgr.NavigateTo("/");
                 }
                 
                 await successRef.ShowNotification();

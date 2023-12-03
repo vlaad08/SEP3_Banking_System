@@ -120,26 +120,6 @@ public class AuthLogic : IAuthLogic
     {
         await registerDao.CreateUserAccountNumber(accountCreateRequestDto);
     }
-
-
-    /*public Task<User> GetUser(string Email, string Password)
-    {
-        User? existingUser = users.FirstOrDefault(u => 
-            u.Email.Equals(Email, StringComparison.OrdinalIgnoreCase));
-
-        if (existingUser == null)
-        {
-            throw new Exception("User not found");
-        }
-
-        return Task.FromResult(existingUser);
-    }
-
-    }*/
-    
-    
-    
-    
     
     
 }
