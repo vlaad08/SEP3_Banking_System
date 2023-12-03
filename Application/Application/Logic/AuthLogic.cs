@@ -81,16 +81,16 @@ public class AuthLogic : IAuthLogic
         {
             Email = userRegisterDto.Email
         };
+
+        
         string email = await registerDao.VerifyUser(user);
 
-        Console.WriteLine(email);
         
-        if (email.Equals(""))
+        if (email.Equals(userRegisterDto.Email))
         {
-            return false;
+            return true;
         }
-
-        return true;
+        return false;
 
     }
 

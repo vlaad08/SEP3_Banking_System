@@ -700,6 +700,116 @@ select option[b-vtfvhyjmbz]{
     width: 30px;
     cursor: pointer;
 }
+/* _content/Blazor/Pages/Register.razor.rz.scp.css */
+.content[b-be1upc63yq] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card[b-be1upc63yq] {
+    color: white;
+    padding: 1%;
+    background: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.card h1[b-be1upc63yq]{
+    color: white;
+    font-weight: 700;
+}
+
+.field[b-be1upc63yq] {
+    width: 80%;
+}
+
+.field input:-webkit-autofill[b-be1upc63yq]{
+    font-size: calc(15px + 0.4vh);
+}
+
+.field input[b-be1upc63yq]
+{
+    padding: 2%;
+    width: 100%;
+    font-size: calc(15px + 0.4vh);
+    border-radius: 10px;
+    outline: none;
+}
+
+.plansBox[b-be1upc63yq]{
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+}
+
+.plan[b-be1upc63yq]{
+    position: static;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: space-evenly;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: 0.2s ease-in-out;
+}
+
+.plan p[b-be1upc63yq]{
+    align-self: center;
+    font-size: calc(14px + 0.4vw);
+}
+
+ul[b-be1upc63yq]{
+    list-style-type: none;
+}
+
+.plan button[b-be1upc63yq]{
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: calc(12px + 0.4vw);
+    background-color: transparent;
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+
+.plan button:hover[b-be1upc63yq]{
+    color: black;
+    background-color: white;
+}
+
+.plan:hover[b-be1upc63yq]{
+    transform: scale(1.2);
+    box-shadow: 0px 0px 15px white;
+    z-index: 2;
+}
+
+.registerButton[b-be1upc63yq]{
+    width: 80%;
+    font-size: calc(17px + 0.4vw);
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+    background: linear-gradient(to bottom right, #60151c , #050518 );
+    background-size: 100% 200%;
+    transition: all .5s ease-out;
+}
+
+.registerButton:hover[b-be1upc63yq]{
+    background-position: right bottom;
+}
 /* _content/Blazor/Pages/Settings.razor.rz.scp.css */
 /* _content/Blazor/Pages/Transactions.razor.rz.scp.css */
 .content[b-pxs5efj3sx]{

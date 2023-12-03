@@ -29,7 +29,7 @@
                     </div>
                 }
                 <button class="loginbtn" @onclick="LoginAsync">Log in <span class="loginArrow">></span></button>
-                <button class="registerbtn">Need an account?</button>
+                <button class="registerbtn" @onclick="GoToRegister">Need an account?</button>
             </div>
         </NotAuthorized>
         <Authorized>
@@ -73,6 +73,11 @@
         {
             await LoginAsync();
         }
+    }
+
+    private async Task GoToRegister()
+    {
+        navMgr.NavigateTo("/register");
     }
 
 

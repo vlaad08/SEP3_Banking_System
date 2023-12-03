@@ -1,0 +1,139 @@
+﻿@page "/register"
+@using Blazor.Services
+@using global::Shared.DTOs
+@inject IAuthService authService
+@using Blazor.Components
+
+<LoadingBox @ref="loadingRef"></LoadingBox>
+<div class="content">
+    <div class="card">
+        <h1>Fill out all the fields</h1>
+        <div class="field">
+            <input type="text" placeholder="Email" @bind="Email"/>
+        </div>
+        <div class="field">
+            <input type="text" placeholder="Firstname" @bind="Firstname"/>
+        </div>
+        <div class="field">
+            <input type="text" placeholder="Middlename (Can be left empty)" @bind="Middlename"/>
+        </div>
+        <div class="field">
+            <input type="text" placeholder="LastName" @bind="Lastname"/>
+        </div>
+        <div class="field">
+            <input type="password" placeholder="Password" @bind="Password"/>
+        </div>
+        <div class="plansBox">
+            
+            <div class="plan">
+                <p class="planTitle">Default</p>
+                <ul class="benefits">
+                    <li>
+                        Up to 3 bank accounts (personal, savings, business)
+                    </li>
+                    <li>
+                        Secure account in the system
+                    </li>
+                    <li>
+                        Base interest rate: 1.7%
+                    </li>
+                </ul>
+                <button @onclick="ChangeToDefault">Select this plan</button>
+            </div>
+            
+            <div class="plan">
+                <p class="planTitle">Premium</p>
+                <ul class="benefits">
+                    <li>
+                        Up to 3 bank accounts (personal, savings, business)
+                    </li>
+                    <li>
+                        Secure account in the system
+                    </li>
+                    <li>
+                        Base interest rate: 3.7%
+                    </li>
+                    <li>
+                        Fast response time from employees
+                    </li>
+                </ul>
+                <button @onclick="ChangeToPremium">Select this plan</button>
+            </div>
+        </div>
+        <button class="registerButton" @onclick="RegisterNewUser">
+            Register
+        </button>
+    </div>
+</div>
+
+<Notification @ref="confirmationRef" NotificationType="Confirmation">The register request has been sent</Notification>
+<Notification @ref="errorRef" NotificationType="Error">There was a problem with registering the new user</Notification>
+<Notification @ref="successRef" NotificationType="Success">The account has been created</Notification>
+
+@code {
+    private string Email = "";
+    private string Firstname = "";
+    private string Middlename = "";
+    private string Lastname = "";
+    private string Password = "";
+    private LoadingBox loadingRef;
+    private string Plan = "";
+
+    private Notification confirmationRef;
+    private Notification errorRef;
+    private Notification successRef;
+
+    private void ChangeToDefault()
+    {
+        Plan = "Default";
+    }
+
+    private void ChangeToPremium()
+    {
+        Plan = "Premium";
+
+    }
+
+    private async Task RegisterNewUser()
+    {
+        
+        
+            loadingRef.ShowLoading();
+            if (Email.Equals("") || Firstname.Equals("")||
+                Lastname.Equals("") ||  Password.Equals("")  || Plan.Equals(""))
+            {
+                
+                await errorRef.ShowErrorNotification("Please fill out all the fields");
+                loadingRef.CloseLoading();
+            }
+            else
+            {
+                
+                await confirmationRef.ShowNotification();
+                UserRegisterDto user = new UserRegisterDto()
+                {
+                    Email = Email,
+                    Firstname = Firstname,
+                    Middlename = Middlename,
+                    Lastname = Lastname,
+                    Password = Password,
+                    Plan = Plan
+                };
+
+                try
+                {
+                    await authService.RegisterAsync(user);
+                }
+                catch (Exception e)
+                {
+                    await errorRef.ShowErrorNotification(e.Message);
+                    loadingRef.CloseLoading();
+                }
+                
+                await successRef.ShowNotification();
+                loadingRef.CloseLoading();
+            }
+        }
+    }
+    }
+}

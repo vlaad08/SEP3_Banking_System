@@ -239,6 +239,7 @@ public class ProtoClient:IGrpcClient
             Email = userEmailDto.Email
         };
         var response = await databaseClient.GetUserByEmailAsync(request);
+        
         return response.Email;
     }
 

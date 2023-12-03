@@ -234,7 +234,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
                 request.getPassword()
             );
             registerDao.registerUser(registerUserDTO);
-            System.out.println(registerUserDTO.toString());
             RegisterResponse response = RegisterResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();

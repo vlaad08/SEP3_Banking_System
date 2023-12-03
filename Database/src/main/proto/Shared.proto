@@ -193,7 +193,7 @@ message UserEmailRequest{
 }
 
 message UserEmailResponse{
-  string email = 2;
+  string email = 1;
 }
 
 message AccountCreateRequest{

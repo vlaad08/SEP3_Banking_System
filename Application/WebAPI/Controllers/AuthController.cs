@@ -59,12 +59,12 @@ public class AuthController : ControllerBase
  {
      try
      {
-
-
          if (await _authLogic.VerifyUser(userRegisterDto) == false)
          {
+             
+             
              await _authLogic.RegisterUser(userRegisterDto);
-
+             
              var userEmail = new UserEmailDTO()
              {
                  Email = userRegisterDto.Email
