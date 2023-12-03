@@ -1,10 +1,18 @@
 package Database.DAOs.Interfaces;
 
-import Database.DTOs.RegisterUserDTO;
+import Database.DTOs.RegisterRequestDTO;
+import Database.DTOs.UserAccountDTO;
+import Database.DTOs.UserAccountRequestDTO;
 
 import java.sql.SQLException;
 
 public interface RegisterDaoInterface
 {
-  void registerUser(RegisterUserDTO registerUserDTO) throws SQLException;
+  void registerUser(RegisterRequestDTO registerUserDTO) throws SQLException;
+
+  int getUserID(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
+
+  void generateAccountNumber(UserAccountDTO userAccountDTO) throws SQLException;
+
+  String getUserEmail(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
 }

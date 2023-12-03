@@ -107,6 +107,7 @@
         Accounts = await GetUserAccounts(User) ?? new List<AccountsInfo>();
 
         var personalAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
+        
         if (personalAccount != null)
         {
             senderAccount_id = personalAccount.AccountNumber;

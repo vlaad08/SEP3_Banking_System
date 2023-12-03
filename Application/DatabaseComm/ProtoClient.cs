@@ -3,6 +3,7 @@ using Database;
 using Domain.DTOs;
 using Domain.Models;
 using Google.Protobuf.WellKnownTypes;
+using Grpc.DAOs;
 using Grpc.Net.Client;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
@@ -227,5 +228,58 @@ public class ProtoClient:IGrpcClient
             transactions.Add(transaction);
         }
         return transactions;
+    }
+
+    public async Task<string> GetUserByEmail(UserEmailDTO userEmailDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new UserEmailRequest
+        {
+            Email = userEmailDto.Email
+        };
+        var response = await databaseClient.GetUserByEmailAsync(request);
+        return response.Email;
+    }
+
+    public async Task RegisterUser(UserRegisterDto userRegisterDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new RegisterRequest
+        {
+            Email = userRegisterDto.Email,
+            Firstname = userRegisterDto.Firstname,
+            Middlename = userRegisterDto.Middlename,
+            Lastname = userRegisterDto.Lastname,
+            Password = userRegisterDto.Password,
+            Plan = "Client"
+        };
+        var response = await databaseClient.RegisterUserAsync(request);
+    }
+
+    public async Task<int> getUserID(UserEmailDTO userEmailDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new UserAccountRequest
+        {
+            Email = userEmailDto.Email
+        };
+        var response = await databaseClient.GetUserIdAsync(request);
+        return int.Parse(response.UserId);
+    }
+
+    public async Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new AccountCreateRequest()
+        {
+            UserId = accountCreateRequestDto.User_id.ToString(),
+            UserAccountNumber = accountCreateRequestDto.UserAccountNumber,
+            InterestRate = accountCreateRequestDto.InterestRate.ToString(),
+        };
+        var response = await databaseClient.CreateUserAccountNumberAsync(request);
     }
 }

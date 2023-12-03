@@ -18,6 +18,10 @@ service DatabaseService{
     rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
     rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
     rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+    rpc RegisterUser(RegisterRequest) returns (RegisterResponse);
+    rpc GetUserByEmail(UserEmailRequest) returns (UserEmailResponse);
+    rpc GetUserId(UserAccountRequest) returns (UserAccountResponse);
+    rpc CreateUserAccountNumber(AccountCreateRequest) returns (AccountCreateResponse);
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -107,7 +111,6 @@ message AccountsInfo
     double accountBalance = 3;
     string accountType = 4;
 }
-
 message UserAccountInfoRequest
 {
     string email = 1;
@@ -160,3 +163,36 @@ message Transactions {
     string senderName = 6;
     string receiverName = 7;
 }
+
+message RegisterRequest{
+    string email = 1;
+    string firstname = 2;
+    string middlename = 3;
+    string lastname = 4;
+    string password = 5;
+    string plan = 6;
+}
+message RegisterResponse{}
+
+message UserAccountRequest{
+    string email = 1;
+}
+message UserAccountResponse{
+    string user_id = 1;
+}
+
+message UserEmailRequest{
+    string email = 1;
+}
+
+message UserEmailResponse{
+    string email = 1;
+}
+
+message AccountCreateRequest{
+    string user_id = 1;
+    string userAccountNumber = 2;
+    string interestRate = 3;
+}
+
+message AccountCreateResponse{}

@@ -35,7 +35,7 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    [HttpGet, Route("{email}")]
+    [HttpGet, Route("{Email}")]
     public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
     {
         try

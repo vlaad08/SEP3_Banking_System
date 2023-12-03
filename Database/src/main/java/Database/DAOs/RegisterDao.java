@@ -1,7 +1,9 @@
 package Database.DAOs;
 
 import Database.DAOs.Interfaces.RegisterDaoInterface;
-import Database.DTOs.RegisterUserDTO;
+import Database.DTOs.RegisterRequestDTO;
+import Database.DTOs.UserAccountDTO;
+import Database.DTOs.UserAccountRequestDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
@@ -17,9 +19,26 @@ public class RegisterDao implements RegisterDaoInterface
       throw new RuntimeException(e);
     }
   }
-  @Override public void registerUser(RegisterUserDTO registerUserDTO)
+  @Override public void registerUser(RegisterRequestDTO registerUserDTO)
       throws SQLException
   {
     connection.registerUser(registerUserDTO);
+  }
+
+  @Override public int getUserID(UserAccountRequestDTO userAccountRequestDTO)
+      throws SQLException
+  {
+    return connection.getUserID(userAccountRequestDTO);
+  }
+
+  @Override public void generateAccountNumber(UserAccountDTO userAccountDTO) throws SQLException
+  {
+    connection.generateAccountNumber(userAccountDTO);
+  }
+
+  @Override public String getUserEmail(
+      UserAccountRequestDTO userAccountRequestDTO) throws SQLException
+  {
+    return connection.getUserEmail(userAccountRequestDTO);
   }
 }
