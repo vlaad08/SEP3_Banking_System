@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <Grants>1||-9223372036854775808|c|G
@@ -4338,9 +4338,9 @@ false Zulu
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>32789</ObjectId>
-      <RefColNames>user_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>860</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>user_id</RefKeyColNames>
       <RefTableId>32770</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4435,9 +4435,9 @@ default</CollationNames>
       <ColNames>account_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>32821</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>862</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>32779</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4503,9 +4503,9 @@ default</CollationNames>
       <ColNames>senderaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>32801</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>861</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>32779</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4514,9 +4514,9 @@ default</CollationNames>
       <ColNames>recipientaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>32806</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>861</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>32779</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>

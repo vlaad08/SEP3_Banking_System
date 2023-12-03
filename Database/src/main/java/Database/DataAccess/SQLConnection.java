@@ -1,13 +1,14 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.DTOs.LoanRequestDTO;
-import Database.DTOs.UserInfoAccNumDTO;
-import Database.DTOs.UserInfoEmailDTO;
+import Database.CreateIssueRequest;
+import Database.DTOs.*;
 import Database.Transactions;
 import Database.User;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -184,9 +185,10 @@ public class SQLConnection implements SQLConnectionInterface{
                 String middleName = resultSet.getString("middlename");
                 String lastName = resultSet.getString("lastname");
                 String role = resultSet.getString("role");
+                int id = resultSet.getInt("user_id");
 
                 User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setMiddleName(middleName).
-                setLastName(lastName).setRole(role).build();
+                setLastName(lastName).setRole(role).setId(id).build();
                 users.add(user);
             }
         }
@@ -420,9 +422,66 @@ public class SQLConnection implements SQLConnectionInterface{
         return transactionsList;
     }
 
+    @Override
+    public void createIssue(IssueDTO issueDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                PreparedStatement insertIssueStatement = connection.prepareStatement(
+                        "INSERT INTO issues(title, body, owner_id, creation_time, flagged) " +
+                                "VALUES (?, ?, ?, ?, ?)");
+
+                insertIssueStatement.setString(1, issueDTO.getTitle());
+                insertIssueStatement.setString(2, issueDTO.getBody());
+                insertIssueStatement.setInt(3, issueDTO.getOwnerId());
+                insertIssueStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                insertIssueStatement.setBoolean(5, false); // default is false, will change if employee changes it
+
+                insertIssueStatement.executeUpdate();
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing statements", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
 
 
+    @Override
+    public void sendMessage(MessageDTO messageDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                String query = "INSERT INTO messages(title, body, owner_id, creation_time, issue_id) VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, messageDTO.getTitle());
+                    statement.setString(2, messageDTO.getBody());
+                    statement.setInt(3, messageDTO.getOwner());
+                    statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                    statement.setInt(5, messageDTO.getIssueId()); // Assuming you have a getIssueId() method in MessageDTO
+
+                    statement.executeUpdate();
+                }
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing sendMessage statement", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
 
 
+    @Override
+    public void getMessagesForIssue() throws SQLException {
+
+    }
 
 }
