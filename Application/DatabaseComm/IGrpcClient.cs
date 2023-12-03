@@ -20,4 +20,7 @@ public interface IGrpcClient
    Task<bool> CreditInterest(InterestCheckDTO loanRequestDto);
    Task RequestLoan(LoanRequestDTO dto);
    Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
+   Task SendMessage(SendMessageDTO sendMessageDto);
+   Task<IEnumerable<Message>> GetMessagesForIssue(IssueGetterDTO dto);
+   Task CreateIssue(IssueCreationDTO dto);
 }

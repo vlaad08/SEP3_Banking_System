@@ -8,31 +8,39 @@ public class LoanService : ILoanService
 {
     private readonly HttpClient client = new ();
     
-    public async Task<string> LoanCalculation(double Principle, int Tenure)
+    public async Task<string> LoanCalculation(LoanRequestDto dto)
     {
-        LoanDto loan = new LoanDto()
-        {
-            Principle = Principle,
-            Tenure = Tenure
-        };
-
         try
         {
-            string loanJson = JsonSerializer.Serialize(loan);
-            Console.WriteLine(loanJson);
-            StringContent content = new(loanJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transaction/Loan/calculation", content);
+            Console.WriteLine(dto.AccountNumber+" "+dto.Principal+" "+dto.Tenure);
+            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/api/Transaction/Loan/calculation", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-
             return responseBody;
         }
         catch (Exception e)
         { 
-            throw new Exception($"Transfer failed: {e.Message}");
+            throw new Exception($"Loan request failed: {e.Message}");
+        }
+    }
+
+    public async Task RequestLoan(LoanRequestDto dto)
+    {
+        try
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/api/Transaction/Loan", dto);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
         }
     }
 }

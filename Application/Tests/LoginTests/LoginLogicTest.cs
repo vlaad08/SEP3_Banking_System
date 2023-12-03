@@ -65,7 +65,7 @@ public class LoginLogicTest
     }
     
     [Fact]
-    public async Task GetUserAccounts_Calls_For_CreditInterest() //This test was written on 1/12, and the CreditInterest has been called, meaning the method will grant the interest if it is the first day of the month today
+    public async Task GetUserAccounts_Calls_For_CreditInterest() //This test was written (and passed) on 1/12, and the CreditInterest has been called, meaning the method will grant the interest if it is the first day of the month today
     {
         UserLoginRequestDto dto = new UserLoginRequestDto
         {

@@ -28,6 +28,7 @@ public class AuthLogic : IAuthLogic
             {
                 existingUser = new User()
                 {
+                    Id = u.Id,
                     Email = u.Email,
                     FirstName = u.FirstName,
                     LastName = u.LastName,

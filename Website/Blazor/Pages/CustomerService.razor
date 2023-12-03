@@ -1,0 +1,51 @@
+@page "/customerService"
+@using Blazor.Services
+@using global::Shared.DTOs
+@using System.Security.Claims
+@inject IIssueService IssueService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<div class="content">
+    <div class="card">
+        <h3>CustomerService</h3>
+        <div>
+            <div>
+                <label>Issue title</label>
+                <input type="text" @bind="title">
+            </div>
+            <div>
+                <label>Description</label>
+                <input class="description" type="text" @bind="body">
+            </div>
+            <button @onclick="Create">Send Issue</button>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private string title="";
+    private string body="";
+    [Parameter] public ClaimsPrincipal User { get; set; }
+    private string? owner = "";
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        owner = user.Claims.FirstOrDefault(c => c.Type.Equals("Id")).Value;
+    }
+
+    private async Task Create()
+    {
+        try
+        {
+            IssueCreationDto dto = new IssueCreationDto(title, body, int.Parse(owner));
+            Console.WriteLine(dto.Title+" "+dto.Body+" "+dto.Owner);
+            await IssueService.CreateIssue(dto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+}

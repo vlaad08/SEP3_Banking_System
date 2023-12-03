@@ -1,0 +1,48 @@
+.content[b-3cu29tzlu1]{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.card[b-3cu29tzlu1]{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 1rem;
+    width: 40rem;
+    color: white;
+}
+input[b-3cu29tzlu1] {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 100%;
+}
+
+label[b-3cu29tzlu1] {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.description[b-3cu29tzlu1]{
+    display: block;
+    margin-bottom: 0.5rem;
+    height: 200px;
+}
+button[b-3cu29tzlu1] {
+    background-color: inherit;
+    width: calc(30% + 20px);
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover[b-3cu29tzlu1] {
+    transition: 0.2s ease-in-out;
+    background-color: #420000;;
+    cursor: pointer;
+}

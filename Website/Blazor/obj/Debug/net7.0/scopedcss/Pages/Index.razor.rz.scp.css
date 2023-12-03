@@ -1,11 +1,11 @@
-.content[b-ci4vf3jic1] {
+.content[b-yc7mlmln1x] {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.card[b-ci4vf3jic1] {
+.card[b-yc7mlmln1x] {
     color: white;
     padding: 1%;
     background: none;
@@ -20,21 +20,21 @@
     -webkit-backdrop-filter: blur(10px);
 }
 
-.card h1[b-ci4vf3jic1]{
+.card h1[b-yc7mlmln1x]{
     color: white;
     font-weight: 700;
 }
 
-.field[b-ci4vf3jic1] {
+.field[b-yc7mlmln1x] {
     margin-top: 20px;
     width: 80%;
 }
 
-.field input:-webkit-autofill[b-ci4vf3jic1]{
+.field input:-webkit-autofill[b-yc7mlmln1x]{
     font-size: calc(15px + 0.4vh);
 }
 
-.field input[b-ci4vf3jic1]
+.field input[b-yc7mlmln1x]
 {
     padding: 2%;
     width: 100%;
@@ -43,7 +43,7 @@
     outline: none;
 }
 
-.loginbtn[b-ci4vf3jic1], .registerbtn[b-ci4vf3jic1] {
+.loginbtn[b-yc7mlmln1x], .registerbtn[b-yc7mlmln1x] {
     color: white;
     border-radius: 10px;
     width: 50%;
@@ -54,21 +54,21 @@
     transition: all .5s ease-out;
 }
 
-.loginbtn:hover[b-ci4vf3jic1]{
+.loginbtn:hover[b-yc7mlmln1x]{
     background-position: right bottom;
 }
 
-.loginArrow[b-ci4vf3jic1] {
+.loginArrow[b-yc7mlmln1x] {
     display: inline-block;
     font-size: 1.7rem;
     transition: transform 0.5s ease;
 }
 
-.loginbtn:hover .loginArrow[b-ci4vf3jic1]{
+.loginbtn:hover .loginArrow[b-yc7mlmln1x]{
     transform: rotate(360deg);
 }
 
-.registerbtn[b-ci4vf3jic1]{
+.registerbtn[b-yc7mlmln1x]{
     font-size: 1rem;
     width: 30%;
     background: linear-gradient(to bottom right, #60151c , #050518 );
@@ -76,7 +76,7 @@
     transition: all .5s ease-out;
 }
 
-.registerbtn:hover[b-ci4vf3jic1]{
+.registerbtn:hover[b-yc7mlmln1x]{
 
     background-position: right bottom;
 }
@@ -84,16 +84,16 @@
 
 
 @media (max-width: 640px) {
-    .card[b-ci4vf3jic1]{
+    .card[b-yc7mlmln1x]{
         width: 100%;
     }
-    .loginbtn[b-ci4vf3jic1]{
+    .loginbtn[b-yc7mlmln1x]{
         width: 80%;
     }
-    .registerbtn[b-ci4vf3jic1]{
+    .registerbtn[b-yc7mlmln1x]{
         width: 60%;
     }
-    .content[b-ci4vf3jic1]{
+    .content[b-yc7mlmln1x]{
         width: 100%;
     }
 }

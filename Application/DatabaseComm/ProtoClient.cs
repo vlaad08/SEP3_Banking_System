@@ -12,7 +12,7 @@ namespace Grpc;
 public class ProtoClient:IGrpcClient
 {
     public static async Task Main(string[] args) {}
-    private string serverAddress = "localhost:9090";
+    private string serverAddress = "10.154.206.5:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
@@ -99,6 +99,7 @@ public class ProtoClient:IGrpcClient
         {
             global::Domain.Models.User user = new global::Domain.Models.User()
             {
+                Id = responseUser.Id,
                 Email = responseUser.Email,
                 Password = responseUser.Password,
                 FirstName = responseUser.FirstName,
@@ -227,5 +228,28 @@ public class ProtoClient:IGrpcClient
             transactions.Add(transaction);
         }
         return transactions;
+    }
+
+    public Task SendMessage(SendMessageDTO sendMessageDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Message>> GetMessagesForIssue(IssueGetterDTO dto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task CreateIssue(IssueCreationDTO dto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new CreateIssueRequest
+        {
+            Title = dto.Title,
+            Body = dto.Body,
+            Owner = dto.Owner
+        };
+        var response = await databaseClient.CreateIssueAsync(request);
     }
 }

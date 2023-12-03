@@ -91,7 +91,8 @@ public class AuthController : ControllerBase
              new Claim(ClaimTypes.Role, user.Role),
              new Claim(ClaimTypes.Name, fullName),
              new Claim("Email", user.Email),
-             new Claim("Accounts", list)
+             new Claim("Accounts", list),
+             new Claim("Id",user.Id.ToString())
          };
          
          return claims.ToList();

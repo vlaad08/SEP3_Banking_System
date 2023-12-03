@@ -14,7 +14,7 @@ public class LoanLogicTest
     {
         var dto = new LoanCalculationDTO
         {
-            Account = "1111222233334444",
+            AccountNumber = "1111222233334444",
             Principal = 4000,
             Tenure = 12
         };
@@ -30,7 +30,7 @@ public class LoanLogicTest
     {
         var dto = new LoanCalculationDTO
         {
-            Account = "1111222233334444",
+            AccountNumber = "1111222233334444",
             Principal = 4000000000,
             Tenure = 12
         };
@@ -43,7 +43,7 @@ public class LoanLogicTest
     {
         var dto = new LoanCalculationDTO
         {
-            Account = "1111222233334444",
+            AccountNumber = "1111222233334444",
             Principal = 100,
             Tenure = 12
         };
@@ -57,7 +57,7 @@ public class LoanLogicTest
     {
         var dto = new LoanCalculationDTO
         {
-            Account = "1111222233334444",
+            AccountNumber = "1111222233334444",
             Principal = 10000,
             Tenure = 12
         };

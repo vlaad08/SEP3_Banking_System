@@ -29,6 +29,8 @@ builder.Services.AddScoped<IUserLoginDao, UserLoginDao>();
 builder.Services.AddScoped<IInterestDAO, InterestDao>();
 builder.Services.AddScoped<ILoanLogic, LoanLogic>();
 builder.Services.AddScoped<ILoanDAO, LoanDao>();
+builder.Services.AddScoped<IIssueLogic, IssueLogic>();
+builder.Services.AddScoped<IIssueDAO, IssueDao>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
