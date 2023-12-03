@@ -18,7 +18,18 @@ service DatabaseService{
   rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
   rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
   rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+  //register
+  rpc RegisterUser(RegisterRequest) returns (RegisterResponse);
+  rpc GetUserByEmail(UserEmailRequest) returns (UserEmailResponse);
+  rpc GetUserId(UserAccountRequest) returns (UserAccountResponse);
+  rpc CreateUserAccountNumber(AccountCreateRequest) returns (AccountCreateResponse);
+  //chat
+  rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessagesForIssue(GetMessagesForIssueRequest) returns (GetMessagesForIssueResponse);
+
 }
+
 message TransferRequest{
   string senderAccount_id = 1;
   string recipientAccount_id =2;
@@ -91,6 +102,7 @@ message User
   string middleName = 4;
   string lastName = 5;
   string role = 6;
+  int32 id = 7;
 }
 message AllAccountsInfoRequest
 {
@@ -107,7 +119,6 @@ message AccountsInfo
   double accountBalance = 3;
   string accountType = 4;
 }
-
 message UserAccountInfoRequest
 {
   string email = 1;
@@ -159,4 +170,77 @@ message Transactions {
   google.protobuf.Timestamp date = 5;
   string senderName = 6;
   string receiverName = 7;
+}
+
+
+//added by vlad for register
+
+message RegisterRequest{
+  string email = 1;
+  string firstname = 2;
+  string middlename = 3;
+  string lastname = 4;
+  string password = 5;
+  string plan = 6;
+}
+message RegisterResponse{}
+
+message UserAccountRequest{
+  string email = 1;
+}
+message UserAccountResponse{
+  string user_id = 1;
+}
+
+message UserEmailRequest{
+  string email = 1;
+}
+
+message UserEmailResponse{
+  string email = 2;
+}
+
+message AccountCreateRequest{
+  string user_id = 1;
+  string userAccountNumber = 2;
+  string interestRate = 3;
+}
+
+message AccountCreateResponse{
+}
+
+message CreateIssueRequest {
+  string title = 1;
+  string body = 2;
+  int32 owner = 3;
+}
+
+message CreateIssueResponse {
+
+}
+
+message SendMessageRequest{
+   string title = 1;
+   int32 owner = 2;
+   string body = 3;
+   int32 issue_id = 4;
+}
+
+message SendMessageResponse{
+
+}
+
+message GetMessagesForIssueRequest {
+  int32 issue_id = 1;
+}
+
+message GetMessagesForIssueResponse {
+  repeated MessageInfo messageInfo = 1;
+}
+
+message MessageInfo {
+  string title = 1;
+  int32 owner = 2;
+  string body = 3;
+  int32 issue_id = 4;
 }

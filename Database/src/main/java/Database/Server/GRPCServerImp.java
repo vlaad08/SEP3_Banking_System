@@ -10,6 +10,8 @@ import Database.BalanceCheckRequest;
 import Database.BalanceCheckResponse;
 import Database.CreditInterestRequest;
 import Database.CreditInterestResponse;
+import Database.DAOs.ChatDao;
+import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
@@ -44,6 +46,7 @@ import java.util.List;
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
+    ChatDaoInterface chatDao = new ChatDao();
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         System.out.println("TRANSFER");
@@ -220,6 +223,36 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void createIssue(CreateIssueRequest request, StreamObserver<CreateIssueResponse> responseStreamObserver) {
+        try {
+            IssueDTO issueDTO = new IssueDTO(request.getTitle(),request.getBody(),request.getOwner());
+            chatDao.createIssue(issueDTO);
+            CreateIssueResponse response = CreateIssueResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void sendMessage(SendMessageRequest request, StreamObserver<SendMessageResponse> responseStreamObserver) {
+        try{
+            MessageDTO messageDTO = new MessageDTO(request.getTitle(),request.getOwner(),request.getBody(),request.getIssueId());
+            chatDao.sendMessage(messageDTO);
+            SendMessageResponse response = SendMessageResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 
 }
