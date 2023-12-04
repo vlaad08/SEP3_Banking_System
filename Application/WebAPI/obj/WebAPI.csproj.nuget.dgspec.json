@@ -1,40 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {}
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\obj\\",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }
@@ -64,44 +57,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
         "projectName": "DatabaseComm",
-        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
-        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\obj\\",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj"
               },
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }
@@ -147,33 +133,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\obj\\",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -213,47 +192,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\vlada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\WebAPI\\obj\\",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vlada\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj"
               },
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj"
               },
-              "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\vlada\\Documents\\Portfolio\\SEP3\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }
@@ -304,7 +276,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }

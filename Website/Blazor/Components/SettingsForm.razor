@@ -1,0 +1,116 @@
+@using global::Shared.Models
+@using Blazor.Components
+@using Blazor.Services.Http
+@using System.Security.Claims
+@using global::Shared.DAO
+@using System.Reflection.Metadata
+@using Newtonsoft.Json
+@inject ITransactionService transactionService
+
+<div class="content">
+    <div class="card">
+        <div class="user-details">
+            <h3>Account details</h3>
+            @foreach (var user in Users)
+            {
+                if (@user.AccountType.Equals("personal"))
+                {
+                    <label>User's name: @user.AccountOwner</label>
+                    <label>User's email: @Email</label>
+                    <label>User's current membership: @Role</label>
+                    <label>User's personal account number: @FormatAccountNumber(user.AccountNumber)</label>
+                }
+                if (@user.AccountType.Equals("savings"))
+                {
+                    <label>User's savings account number: @FormatAccountNumber(user.AccountNumber)</label>
+                }
+                if (@user.AccountType.Equals("business"))
+                {
+                    <label>User's business account number: @FormatAccountNumber(user.AccountNumber)</label>
+                }
+                
+            }
+            
+        </div>
+    </div>
+</div>
+<div class="userDetailsButton">
+    <button  @onclick="ChangePassword">Change password</button>
+</div>
+
+<button class="btn btn-primary" @onclick="ToggleMenu">Change Email</button>
+
+@if (isMenuVisible)
+{
+    <div class="menu">
+        <label>Type new Email:</label>
+        <input type="text" placeholder="new email"/>
+
+        <label>Confirm Email:</label>
+        <input type="text" placeholder="confirm email" />
+
+        <button class="btn btn-success" >Save Changes</button>
+    </div>
+}
+
+@code
+{   
+    [Parameter] public ClaimsPrincipal User { get; set; }
+    [Parameter] public string Email { get; set; }
+    [Parameter] public string Role { get; set; }
+    [Parameter]public LoadingBox Loading { get; set; }
+    private List<AccountsInfo> Users { get; set; }
+    private string SelectedAccount { get; set; }
+    private bool isMenuVisible = false;
+
+    [Inject] private NavigationManager Navigation { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        Users = await GetUserAccounts(User);
+        Email = User.FindFirst("Email").Value;
+        Role = User.FindFirst(ClaimTypes.Role).Value;
+
+    }
+
+    private Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
+    {
+        var accountsClaim = user.FindFirst("Accounts");
+
+        try
+        {
+            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim!.Value)!;
+            return Task.FromResult(accounts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    private void ChangePassword()
+    {
+        Loading.ShowLoading();
+        Navigation.NavigateTo("/Changepassword");
+    }
+    
+    private string FormatAccountNumber(string accountNumber)
+    {
+        if (accountNumber.Length >= 16)
+        {
+            return $"{accountNumber.Substring(0, 4)}{new string('*', 8)}{accountNumber.Substring(12)}";
+        }
+        else
+        {
+            return accountNumber;
+        }
+    }
+    
+    private void ToggleMenu()
+    {
+        isMenuVisible = !isMenuVisible;
+    }
+}
+
+
