@@ -1,9 +1,7 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.DTOs.LoanRequestDTO;
-import Database.DTOs.UserInfoAccNumDTO;
-import Database.DTOs.UserInfoEmailDTO;
+import Database.DTOs.*;
 import Database.Transactions;
 import Database.User;
 
@@ -24,4 +22,12 @@ public interface SQLConnectionInterface {
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO);
+
+    void registerUser(RegisterRequestDTO registerUserDTO) throws SQLException;
+    int getUserID(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
+    void generateAccountNumber(UserAccountDTO userAccountDTO) throws SQLException;
+    String getUserEmail(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
+
+    void updateNewBaseRate(AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException;
+    void updateUserInformation(UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException;
 }

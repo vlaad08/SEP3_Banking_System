@@ -14,7 +14,8 @@ public class LoginLogicTest
     {
         var loginDao = new Mock<IUserLoginDao>();
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
         await auth.GetAccounts();
         loginDao.Verify(d => d.GetAccounts());
     }
@@ -29,7 +30,8 @@ public class LoginLogicTest
         };
         var loginDao = new Mock<IUserLoginDao>();
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
         loginDao.Setup(d => d.GetUserAccounts(dto))
             .ReturnsAsync(new List<AccountsInfo>());
         await auth.GetUserAccounts(dto);
@@ -46,7 +48,8 @@ public class LoginLogicTest
         };
         var loginDao = new Mock<IUserLoginDao>();
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
         loginDao.Setup(d => d.GetUserAccounts(dto))
             .ReturnsAsync(new List<AccountsInfo>
             {
@@ -74,7 +77,8 @@ public class LoginLogicTest
         };
         var loginDao = new Mock<IUserLoginDao>();
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
         loginDao.Setup(d => d.GetUserAccounts(dto))
             .ReturnsAsync(new List<AccountsInfo>
             {
@@ -113,7 +117,8 @@ public class LoginLogicTest
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
 
         User existing = await auth.Login(dto);
         
@@ -138,7 +143,8 @@ public class LoginLogicTest
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
         var interestDao = new Mock<IInterestDAO>();
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
 
         User nonExistent = await auth.Login(dto);
         
@@ -163,7 +169,8 @@ public class LoginLogicTest
         var interestDao = new Mock<IInterestDAO>();
         loginDao.Setup(l => l.GetAllUserDataForValidation())
             .ReturnsAsync(userList);
-        var auth = new AuthLogic(loginDao.Object, interestDao.Object);
+        var registerDao = new Mock<IUserRegisterDAO>();
+        var auth = new AuthLogic(loginDao.Object, interestDao.Object, registerDao.Object);
 
         User nonExistent = await auth.Login(dto);
         

@@ -1,6 +1,7 @@
 using Database;
 using Domain.DTOs;
 using Domain.Models;
+using Grpc.DAOs;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
 
@@ -20,4 +21,13 @@ public interface IGrpcClient
    Task<bool> CreditInterest(InterestCheckDTO loanRequestDto);
    Task RequestLoan(LoanRequestDTO dto);
    Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
+
+   Task<string> GetUserByEmail(UserEmailDTO userEmailDto); 
+   Task RegisterUser(UserRegisterDto userRegisterDto);
+
+
+   Task<int> getUserID(UserEmailDTO userEmailDto);
+   Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto);
+   Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
+   Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto);
 }

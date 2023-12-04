@@ -65,10 +65,11 @@ public class JwtAuthService : IAuthService
         return Task.CompletedTask;
     }
 
-    public async Task RegisterAsync(User user)
+    public async Task RegisterAsync(UserRegisterDto user)
     {
-        string userAsJson = JsonSerializer.Serialize(user);
-        StringContent content = new(userAsJson, Encoding.UTF8, "application/json");
+        string userRegisterJson = JsonSerializer.Serialize(user); 
+        StringContent content = new(userRegisterJson, Encoding.UTF8, "application/json");
+
         HttpResponseMessage response = await client.PostAsync("http://localhost:5054/auth/register", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -77,6 +78,7 @@ public class JwtAuthService : IAuthService
             throw new Exception(responseContent);
         }
     }
+
 
     public Task<ClaimsPrincipal> GetAuthAsync()
     {

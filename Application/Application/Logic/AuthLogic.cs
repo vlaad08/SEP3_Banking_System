@@ -4,6 +4,7 @@ using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.DTOs;
 using Domain.Models;
+using Grpc.DAOs;
 using Shared.DTOs;
 
 namespace WebAPI.Services;
@@ -12,10 +13,12 @@ public class AuthLogic : IAuthLogic
 {
     private readonly IUserLoginDao userLoginDao;
     private readonly IInterestDAO interestDao;
-    public AuthLogic(IUserLoginDao userLoginDao, IInterestDAO interestDao)
+    private readonly IUserRegisterDAO registerDao;
+    public AuthLogic(IUserLoginDao userLoginDao, IInterestDAO interestDao, IUserRegisterDAO registerDao)
     {
         this.userLoginDao = userLoginDao;
         this.interestDao = interestDao;
+        this.registerDao = registerDao;
     }
     private async Task<User> ValidateUser(UserLoginRequestDto userLoginRequestDto)
     {
@@ -71,45 +74,52 @@ public class AuthLogic : IAuthLogic
         }
         return accounts;
     }
-   
 
-    /*public Task<User> GetUser(string email, string password)
+    public async Task<bool> VerifyUser(UserRegisterDto userRegisterDto)
     {
-        User? existingUser = users.FirstOrDefault(u => 
-            u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
-
-        if (existingUser == null)
+        UserEmailDTO user = new UserEmailDTO()
         {
-            throw new Exception("User not found");
-        }
+            Email = userRegisterDto.Email
+        };
 
-        return Task.FromResult(existingUser);
+        
+        string email = await registerDao.VerifyUser(user);
+
+        
+        if (email.Equals(userRegisterDto.Email))
+        {
+            return true;
+        }
+        return false;
+
     }
 
-    public Task RegisterUser(User user)
+    public async Task RegisterUser(UserRegisterDto userRegisterDto)
     {
+        await registerDao.RegisterUser(userRegisterDto);
+    }
 
-        if (string.IsNullOrEmpty(user.Email))
+    public async Task<int> GetUserId(UserEmailDTO userEmailDto)
+    {
+       return await registerDao.GetUserId(userEmailDto);
+    }
+
+    public async Task<bool> VerifyAccountNumber(TransferRequestDTO transferRequestDto)
+    {
+        string accountNumber = await registerDao.VerifyAccountNumber(transferRequestDto);
+
+        if (accountNumber == "" || accountNumber == null)
         {
-            throw new ValidationException("Username cannot be null");
+            return false;
         }
 
-        if (string.IsNullOrEmpty(user.Password))
-        {
-            throw new ValidationException("Password cannot be null");
-        }
-        // Do more user info validation here
-        
-        // save to persistence instead of list
-        
-        users.Add(user);
-        
-        return Task.CompletedTask;
-    }*/
-    
-    
-    
-    
+        return true;
+    }
+
+    public async Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto)
+    {
+        await registerDao.CreateUserAccountNumber(accountCreateRequestDto);
+    }
     
     
 }

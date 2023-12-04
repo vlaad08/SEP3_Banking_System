@@ -2,8 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+using Application.DaoInterfaces;
 using Application.LogicInterfaces;
+using Domain.DTOs;
 using Domain.Models;
+using Grpc.DAOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
@@ -19,7 +23,6 @@ public class AuthController : ControllerBase
 {
     private readonly IConfiguration config;
     private readonly IAuthLogic _authLogic;
-
     public AuthController(IConfiguration config, IAuthLogic authLogic)
     {
         this.config = config;
@@ -49,6 +52,83 @@ public class AuthController : ControllerBase
          Console.WriteLine(e.StackTrace);
          return BadRequest(e.Message);
      }
+ }
+
+ [HttpPost, Route("register")]
+ public async Task<ActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
+ {
+     try
+     {
+         if (await _authLogic.VerifyUser(userRegisterDto) == false)
+         {
+             
+             
+             await _authLogic.RegisterUser(userRegisterDto);
+             
+             var userEmail = new UserEmailDTO()
+             {
+                 Email = userRegisterDto.Email
+             };
+             int newUserID =  await _authLogic.GetUserId(userEmail);
+
+             string accountNumber = GenerateAccountNumber();
+
+
+             TransferRequestDTO transferRequestDto = new TransferRequestDTO()
+             {
+                 RecipientAccountNumber = accountNumber
+             };
+             
+             while (await _authLogic.VerifyAccountNumber(transferRequestDto) == false)
+             {
+                 accountNumber = GenerateAccountNumber();
+                 transferRequestDto = new TransferRequestDTO()
+                 {
+                     RecipientAccountNumber = accountNumber
+                 };
+             }
+
+             double baseInterestRate = 1.7;
+             if (userRegisterDto.Plan == "Premium")
+             {
+                 baseInterestRate = 3.7;
+             }
+
+             AccountCreateRequestDto accountCreateRequestDto = new AccountCreateRequestDto()
+             {
+                 User_id = newUserID,
+                 AccountType = userRegisterDto.Plan,
+                 UserAccountNumber = accountNumber,
+                 InterestRate = baseInterestRate
+             };
+
+             await _authLogic.CreateUserAccountNumber(accountCreateRequestDto);
+             
+             
+             return Ok("User created");
+         }
+
+         return BadRequest("User already exists");
+
+     }
+     catch (Exception e)
+     {
+         Console.WriteLine(e);
+         return BadRequest(e.Message);
+     }
+ }
+ 
+ static string GenerateAccountNumber()
+ {
+     Random random = new Random();
+     string accountNumber = "";
+
+     for (int i = 0; i < 14; i++)
+     {
+         accountNumber += random.Next(0, 10).ToString();
+     }
+
+     return accountNumber;
  }
 
  private string GenerateJwt(User user)

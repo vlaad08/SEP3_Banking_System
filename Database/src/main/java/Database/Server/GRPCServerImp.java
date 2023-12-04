@@ -10,9 +10,11 @@ import Database.BalanceCheckRequest;
 import Database.BalanceCheckResponse;
 import Database.CreditInterestRequest;
 import Database.CreditInterestResponse;
+import Database.DAOs.CredentialChangerDao;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
+import Database.DAOs.RegisterDao;
 import Database.DAOs.TransactionDao;
 import Database.DTOs.*;
 import Database.DailyCheckRequest;
@@ -44,6 +46,8 @@ import java.util.List;
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
+    RegisterDao registerDao = new RegisterDao();
+    CredentialChangerDao credentialChangerDao = new CredentialChangerDao();
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         System.out.println("TRANSFER");
@@ -172,7 +176,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     @Override
     public void lastInterest(LastInterestRequest request, StreamObserver<LastInterestResponse> responseStreamObserver) {
         try {
-            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccoutNumber());
+            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccountNumber());
             Timestamp date = transactionDao.lastInterest(userInfoDTO);
             LastInterestResponse response;
             if(date != null) {
@@ -217,6 +221,118 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public void registerUser(RegisterRequest request, StreamObserver<RegisterResponse> responseStreamObserver)
+    {
+        try
+        {
+            RegisterRequestDTO registerUserDTO = new RegisterRequestDTO(
+                request.getEmail(), request.getFirstname(),
+                request.getMiddlename(), request.getLastname(),
+                request.getPassword(), request.getPlan()
+            );
+            registerDao.registerUser(registerUserDTO);
+            RegisterResponse response = RegisterResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getUserByEmail(UserEmailRequest request, StreamObserver<UserEmailResponse> responseStreamObserver)
+    {
+        try
+        {
+            UserAccountRequestDTO userAccountRequestDTO = new UserAccountRequestDTO(request.getEmail());
+            String email = registerDao.getUserEmail(userAccountRequestDTO);
+            UserEmailResponse response = UserEmailResponse.newBuilder().setEmail(email).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getUserId(UserAccountRequest request, StreamObserver<UserAccountResponse> responseStreamObserver)
+    {
+        try
+        {
+            UserAccountRequestDTO userAccountRequestDTO = new UserAccountRequestDTO(request.getEmail());
+            int user_id = registerDao.getUserID(userAccountRequestDTO);
+            UserAccountResponse response = UserAccountResponse.newBuilder().setUserId(
+                String.valueOf(user_id)).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void createUserAccountNumber(AccountCreateRequest request, StreamObserver<AccountCreateResponse> responseStreamObserver)
+    {
+        try
+        {
+            UserAccountDTO userAccountDTO = new UserAccountDTO(
+                Integer.parseInt(request.getUserId()),request.getUserAccountNumber(), request.getAccountType(), Double.parseDouble(request.getInterestRate())
+            );
+            registerDao.generateAccountNumber(userAccountDTO);
+            AccountCreateResponse response = AccountCreateResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeUserDetails(UserNewDetailsRequest request, StreamObserver<UserNewDetailsResponse> responseStreamObserver)
+    {
+        try
+        {
+            UserNewDetailsRequestDTO userNewDetailsRequestDTO = new UserNewDetailsRequestDTO(
+                request.getNewEmail(), request.getOldEmail(), request.getPassword(), request.getPlan()
+            );
+            credentialChangerDao.UpdateUserInformation(userNewDetailsRequestDTO);
+            UserNewDetailsResponse response = UserNewDetailsResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeBaseRate(AccountNewBaseRateRequest request, StreamObserver<AccountNewBaseRateResponse> responseStreamObserver)
+    {
+        try
+        {
+            AccountNewBaseRateDTO accountNewBaseRateDTO = new AccountNewBaseRateDTO(
+                Integer.parseInt(request.getUserId()), Double.parseDouble(request.getBaseRate())
+            );
+            credentialChangerDao.UpdateNewBaseRate(accountNewBaseRateDTO);
+            AccountNewBaseRateResponse response = AccountNewBaseRateResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
     }

@@ -1,9 +1,7 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.DTOs.LoanRequestDTO;
-import Database.DTOs.UserInfoAccNumDTO;
-import Database.DTOs.UserInfoEmailDTO;
+import Database.DTOs.*;
 import Database.Transactions;
 import Database.User;
 
@@ -420,9 +418,111 @@ public class SQLConnection implements SQLConnectionInterface{
         return transactionsList;
     }
 
+    @Override public void registerUser(RegisterRequestDTO registerUserDTO)
+        throws SQLException
+    {
+        try (Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO \"user\" (email, firstName, middleName, "
+            + "lastName, password, role, plan)\n"
+            + "VALUES\n"
+            + "  (?, ?, ?, ?, ?, ?, ?);")){
+            statement.setString(1, registerUserDTO.getEmail());
+            statement.setString(2, registerUserDTO.getFirstname());
+            statement.setString(3, registerUserDTO.getMiddlename());
+            statement.setString(4, registerUserDTO.getLastname());
+            statement.setString(5, registerUserDTO.getPassword());
+            statement.setString(6, "Client");
+            statement.setString(7,registerUserDTO.getPlan());
+            statement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override public int getUserID(UserAccountRequestDTO userAccountRequestDTO)
+        throws SQLException
+    {
+        try(Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT user_id FROM \"user\" where email = ?;"))
+        {
+            statement.setString(1, userAccountRequestDTO.getEmail());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next())
+            {
+                return resultSet.getInt("user_id");
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
 
+    @Override public void generateAccountNumber(UserAccountDTO userAccountDTO)
+        throws SQLException
+    {
+        try(Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO account "
+            + "(account_id, user_id, balance, account_type, interest_rate)\n"
+            + "VALUES\n" + "  (?, ?, 0, ?, ?);"))
+        {
+            statement.setString(1, userAccountDTO.getUserAccountNumber());
+            statement.setInt(2, userAccountDTO.getUser_id());
+            statement.setString(3, userAccountDTO.getAccountType());
+            statement.setDouble(4, userAccountDTO.getInterestRate());
+            statement.executeUpdate();
+        }
+    }
 
+    @Override public String getUserEmail(
+        UserAccountRequestDTO userAccountRequestDTO) throws SQLException
+    {
+        try(Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT email FROM \"user\" WHERE email = ?"))
+        {
+            statement.setString(1,userAccountRequestDTO.getEmail());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next())
+            {
+                return resultSet.getString("email");
+            }
+        }
+        return "";
+    }
 
+    @Override public void updateNewBaseRate(
+        AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException
+    {
+        try
+            (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE account SET "
+                + "interest_rate = ? where user_id = ?"))
+        {
+            statement.setDouble(1, accountNewBaseRateDTO.getBaseRate());
+            statement.setInt(2, accountNewBaseRateDTO.getUser_id());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public void updateUserInformation(
+        UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException
+    {
+        try
+            (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                "UPDATE \"user\" SET email = ?, password = ?, plan = ? WHERE "
+                    + "email = ?"
+            ))
+        {
+            statement.setString(1, userNewDetailsRequestDTO.getNewEmail());
+            statement.setString(2, userNewDetailsRequestDTO.getPassword());
+            statement.setString(3, userNewDetailsRequestDTO.getPlan());
+            statement.setString(4, userNewDetailsRequestDTO.getOldEmail());
+            statement.executeUpdate();
+        }
+   }
 
 }
