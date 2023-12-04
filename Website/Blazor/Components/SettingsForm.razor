@@ -36,12 +36,17 @@
 </div>
 <div class="userDetailsButton">
     <button  @onclick="ChangePassword">Change password</button>
+    
+    
+
 </div>
 
 <button class="btn btn-primary" @onclick="ToggleMenu">Change Email</button>
+ <button class="userPlansButton" @onclick="ToggleChangePlans">Change Plans</button>
 
 @if (isMenuVisible)
 {
+    isChangePlansVisible = false;
     <div class="menu">
         <label>Type new Email:</label>
         <input type="text" placeholder="new email"/>
@@ -50,6 +55,33 @@
         <input type="text" placeholder="confirm email" />
 
         <button class="btn btn-success" >Save Changes</button>
+    </div>
+}
+
+@if (isChangePlansVisible)
+{
+    isMenuVisible = false;
+    <div class="plansBox">
+        <div class="plan">
+            <p class="planTitle">Default</p>
+            <ul class="benefits">
+                <li>Up to 3 bank accounts (personal, savings, business)</li>
+                <li>Secure account in the system</li>
+                <li>Base interest rate: 1.7%</li>
+            </ul>
+            <button>Select this plan</button>
+        </div>
+        
+        <div class="plan">
+            <p class="planTitle">Premium</p>
+            <ul class="benefits">
+                <li>Up to 3 bank accounts (personal, savings, business)</li>
+                <li>Secure account in the system</li>
+                <li>Base interest rate: 3.7%</li>
+                <li>Fast response time from employees</li>
+            </ul>
+            <button>Select this plan</button>
+        </div>
     </div>
 }
 
@@ -62,6 +94,8 @@
     private List<AccountsInfo> Users { get; set; }
     private string SelectedAccount { get; set; }
     private bool isMenuVisible = false;
+    private bool isChangePlansVisible = false;
+
 
     [Inject] private NavigationManager Navigation { get; set; }
 
@@ -110,6 +144,11 @@
     private void ToggleMenu()
     {
         isMenuVisible = !isMenuVisible;
+    }
+    
+    private void ToggleChangePlans()
+    {
+        isChangePlansVisible = !isChangePlansVisible;
     }
 }
 
