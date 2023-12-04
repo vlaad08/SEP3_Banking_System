@@ -166,7 +166,7 @@ public class ProtoClient:IGrpcClient
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new LastInterestRequest()
         {
-            AccoutNumber = dto.AccountID
+            AccountNumber = dto.AccountID
         };
         var response = await databaseClient.LastInterestAsync(request);
         Timestamp timestamp= response?.Date;
@@ -278,9 +278,36 @@ public class ProtoClient:IGrpcClient
         var request = new AccountCreateRequest()
         {
             UserId = accountCreateRequestDto.User_id.ToString(),
+            AccountType = accountCreateRequestDto.AccountType,
             UserAccountNumber = accountCreateRequestDto.UserAccountNumber,
             InterestRate = accountCreateRequestDto.InterestRate.ToString(),
         };
         var response = await databaseClient.CreateUserAccountNumberAsync(request);
+    }
+
+    public async Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new AccountNewBaseRateRequest()
+        {
+            UserId = accountNewBaseRateDto.UserID.ToString(),
+            BaseRate = accountNewBaseRateDto.BaseRate.ToString()
+        };
+        var response = await databaseClient.ChangeBaseRateAsync(request);
+    }
+
+    public async Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+        var request = new UserNewDetailsRequest()
+        {
+            NewEmail = userNewDetailsRequestDto.NewEmail,
+            OldEmail = userNewDetailsRequestDto.OldEmail,
+            Password = userNewDetailsRequestDto.Password,
+            Plan = userNewDetailsRequestDto.Plan
+        };
+        var response = await databaseClient.ChangeUserDetailsAsync(request);
     }
 }

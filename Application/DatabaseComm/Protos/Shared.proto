@@ -18,10 +18,18 @@ service DatabaseService{
     rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
     rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
     rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+
+
+    //Added by vlad for register and changing credentials
+
     rpc RegisterUser(RegisterRequest) returns (RegisterResponse);
     rpc GetUserByEmail(UserEmailRequest) returns (UserEmailResponse);
     rpc GetUserId(UserAccountRequest) returns (UserAccountResponse);
     rpc CreateUserAccountNumber(AccountCreateRequest) returns (AccountCreateResponse);
+
+
+    rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
+    rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
 }
 message TransferRequest{
     string senderAccount_id = 1;
@@ -129,7 +137,7 @@ message CreditInterestResponse
 }
 message LastInterestRequest
 {
-    string accoutNumber = 1;
+    string accountNumber = 1;
 }
 message LastInterestResponse
 {
@@ -164,6 +172,9 @@ message Transactions {
     string receiverName = 7;
 }
 
+
+//added by vlad for register
+
 message RegisterRequest{
     string email = 1;
     string firstname = 2;
@@ -191,8 +202,27 @@ message UserEmailResponse{
 
 message AccountCreateRequest{
     string user_id = 1;
-    string userAccountNumber = 2;
-    string interestRate = 3;
+    string accountType =2;
+    string userAccountNumber = 3;
+    string interestRate = 4;
 }
 
 message AccountCreateResponse{}
+
+message UserNewDetailsRequest{
+    string newEmail = 1;
+    string oldEmail = 2;
+    string password = 3;
+    string plan = 4;
+}
+
+message UserNewDetailsResponse{
+
+}
+
+message AccountNewBaseRateRequest{
+    string user_id = 1;
+    string baseRate = 2;
+}
+
+message AccountNewBaseRateResponse{}

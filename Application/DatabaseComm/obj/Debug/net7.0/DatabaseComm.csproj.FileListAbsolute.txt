@@ -58,6 +58,11 @@ C:/Users/tothl/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.pdb
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.genruntimeconfig.cache
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/ref/DatabaseComm.dll
+C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.AssemblyReference.cache
+C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfoInputs.cache
+C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfo.cs
+C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.CoreCompileInputs.cache
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\DatabaseComm.exe
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\DatabaseComm.deps.json
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\DatabaseComm.runtimeconfig.json
@@ -77,11 +82,6 @@ C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseC
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\Domain.dll
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\Application.pdb
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\bin\Debug\net7.0\Domain.pdb
-C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.AssemblyReference.cache
-C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfoInputs.cache
-C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.AssemblyInfo.cs
-C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.CoreCompileInputs.cache
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.csproj.CopyComplete
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\DatabaseComm.dll
 C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Application\DatabaseComm\obj\Debug\net7.0\refint\DatabaseComm.dll

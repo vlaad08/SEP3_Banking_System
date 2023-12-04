@@ -28,4 +28,6 @@ public interface IGrpcClient
 
    Task<int> getUserID(UserEmailDTO userEmailDto);
    Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto);
+   Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
+   Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto);
 }

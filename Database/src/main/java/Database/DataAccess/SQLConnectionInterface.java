@@ -27,4 +27,7 @@ public interface SQLConnectionInterface {
     int getUserID(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
     void generateAccountNumber(UserAccountDTO userAccountDTO) throws SQLException;
     String getUserEmail(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
+
+    void updateNewBaseRate(AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException;
+    void updateUserInformation(UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException;
 }

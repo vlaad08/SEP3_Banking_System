@@ -10,6 +10,7 @@ import Database.BalanceCheckRequest;
 import Database.BalanceCheckResponse;
 import Database.CreditInterestRequest;
 import Database.CreditInterestResponse;
+import Database.DAOs.CredentialChangerDao;
 import Database.DAOs.Interfaces.LoginDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
@@ -45,8 +46,8 @@ import java.util.List;
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
-
     RegisterDao registerDao = new RegisterDao();
+    CredentialChangerDao credentialChangerDao = new CredentialChangerDao();
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         System.out.println("TRANSFER");
@@ -175,7 +176,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     @Override
     public void lastInterest(LastInterestRequest request, StreamObserver<LastInterestResponse> responseStreamObserver) {
         try {
-            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccoutNumber());
+            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccountNumber());
             Timestamp date = transactionDao.lastInterest(userInfoDTO);
             LastInterestResponse response;
             if(date != null) {
@@ -231,7 +232,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             RegisterRequestDTO registerUserDTO = new RegisterRequestDTO(
                 request.getEmail(), request.getFirstname(),
                 request.getMiddlename(), request.getLastname(),
-                request.getPassword()
+                request.getPassword(), request.getPlan()
             );
             registerDao.registerUser(registerUserDTO);
             RegisterResponse response = RegisterResponse.newBuilder().build();
@@ -285,7 +286,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         try
         {
             UserAccountDTO userAccountDTO = new UserAccountDTO(
-                request.getUserId(), request.getUserAccountNumber(), request.getInterestRate()
+                Integer.parseInt(request.getUserId()),request.getUserAccountNumber(), request.getAccountType(), Double.parseDouble(request.getInterestRate())
             );
             registerDao.generateAccountNumber(userAccountDTO);
             AccountCreateResponse response = AccountCreateResponse.newBuilder().build();
@@ -297,5 +298,44 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void changeUserDetails(UserNewDetailsRequest request, StreamObserver<UserNewDetailsResponse> responseStreamObserver)
+    {
+        try
+        {
+            UserNewDetailsRequestDTO userNewDetailsRequestDTO = new UserNewDetailsRequestDTO(
+                request.getNewEmail(), request.getOldEmail(), request.getPassword(), request.getPlan()
+            );
+            credentialChangerDao.UpdateUserInformation(userNewDetailsRequestDTO);
+            UserNewDetailsResponse response = UserNewDetailsResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeBaseRate(AccountNewBaseRateRequest request, StreamObserver<AccountNewBaseRateResponse> responseStreamObserver)
+    {
+        try
+        {
+            AccountNewBaseRateDTO accountNewBaseRateDTO = new AccountNewBaseRateDTO(
+                Integer.parseInt(request.getUserId()), Double.parseDouble(request.getBaseRate())
+            );
+            credentialChangerDao.UpdateNewBaseRate(accountNewBaseRateDTO);
+            AccountNewBaseRateResponse response = AccountNewBaseRateResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

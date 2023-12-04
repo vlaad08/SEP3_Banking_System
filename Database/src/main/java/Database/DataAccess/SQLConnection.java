@@ -423,15 +423,16 @@ public class SQLConnection implements SQLConnectionInterface{
     {
         try (Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement("INSERT INTO \"user\" (email, firstName, middleName, "
-            + "lastName, password, role)\n"
+            + "lastName, password, role, plan)\n"
             + "VALUES\n"
-            + "  (?, ?, ?, ?, ?, ?);")){
+            + "  (?, ?, ?, ?, ?, ?, ?);")){
             statement.setString(1, registerUserDTO.getEmail());
             statement.setString(2, registerUserDTO.getFirstname());
             statement.setString(3, registerUserDTO.getMiddlename());
             statement.setString(4, registerUserDTO.getLastname());
             statement.setString(5, registerUserDTO.getPassword());
             statement.setString(6, "Client");
+            statement.setString(7,registerUserDTO.getPlan());
             statement.executeUpdate();
         }
         catch (SQLException e)
@@ -466,11 +467,12 @@ public class SQLConnection implements SQLConnectionInterface{
         try(Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement("INSERT INTO account "
             + "(account_id, user_id, balance, account_type, interest_rate)\n"
-            + "VALUES\n" + "  (?, ?, 0, 'personal', ?);"))
+            + "VALUES\n" + "  (?, ?, 0, ?, ?);"))
         {
             statement.setString(1, userAccountDTO.getUserAccountNumber());
             statement.setInt(2, userAccountDTO.getUser_id());
-            statement.setDouble(3, userAccountDTO.getInterestRate());
+            statement.setString(3, userAccountDTO.getAccountType());
+            statement.setDouble(4, userAccountDTO.getInterestRate());
             statement.executeUpdate();
         }
     }
@@ -490,5 +492,37 @@ public class SQLConnection implements SQLConnectionInterface{
         }
         return "";
     }
+
+    @Override public void updateNewBaseRate(
+        AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException
+    {
+        try
+            (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE account SET "
+                + "interest_rate = ? where user_id = ?"))
+        {
+            statement.setDouble(1, accountNewBaseRateDTO.getBaseRate());
+            statement.setInt(2, accountNewBaseRateDTO.getUser_id());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public void updateUserInformation(
+        UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException
+    {
+        try
+            (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                "UPDATE \"user\" SET email = ?, password = ?, plan = ? WHERE "
+                    + "email = ?"
+            ))
+        {
+            statement.setString(1, userNewDetailsRequestDTO.getNewEmail());
+            statement.setString(2, userNewDetailsRequestDTO.getPassword());
+            statement.setString(3, userNewDetailsRequestDTO.getPlan());
+            statement.setString(4, userNewDetailsRequestDTO.getOldEmail());
+            statement.executeUpdate();
+        }
+   }
 
 }

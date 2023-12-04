@@ -4,14 +4,16 @@ public class UserAccountDTO
 {
   private int user_id;
   private String userAccountNumber;
+  private String accountType;
   private double interestRate;
 
-  public UserAccountDTO(
-      String user_id, String userAccountNumber, String interestRate)
+  public UserAccountDTO(int user_id, String userAccountNumber,
+      String accountType, double interestRate)
   {
-    this.user_id = Integer.parseInt(user_id);
+    this.user_id = user_id;
     this.userAccountNumber = userAccountNumber;
-    this.interestRate = Double.parseDouble(interestRate);
+    this.accountType = accountType;
+    this.interestRate = interestRate;
   }
 
   public int getUser_id()
@@ -22,6 +24,11 @@ public class UserAccountDTO
   public String getUserAccountNumber()
   {
     return userAccountNumber;
+  }
+
+  public String getAccountType()
+  {
+    return accountType;
   }
 
   public double getInterestRate()

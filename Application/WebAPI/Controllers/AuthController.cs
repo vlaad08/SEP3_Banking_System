@@ -97,6 +97,7 @@ public class AuthController : ControllerBase
              AccountCreateRequestDto accountCreateRequestDto = new AccountCreateRequestDto()
              {
                  User_id = newUserID,
+                 AccountType = userRegisterDto.Plan,
                  UserAccountNumber = accountNumber,
                  InterestRate = baseInterestRate
              };

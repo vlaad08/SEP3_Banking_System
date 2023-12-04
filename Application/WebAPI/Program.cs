@@ -8,6 +8,7 @@ using Grpc;
 using Grpc.DAOs;
 using WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 
 
@@ -30,7 +31,8 @@ builder.Services.AddScoped<IInterestDAO, InterestDao>();
 builder.Services.AddScoped<ILoanLogic, LoanLogic>();
 builder.Services.AddScoped<ILoanDAO, LoanDao>();
 builder.Services.AddScoped<IUserRegisterDAO, UserRegisterDao>();
-
+builder.Services.AddScoped<ISettingsDAO, SettingsDao>();
+builder.Services.AddScoped<ISettingsLogic, SettingsLogic>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
