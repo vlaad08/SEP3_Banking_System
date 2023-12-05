@@ -1,13 +1,11 @@
 /* _content/Blazor/Components/Changepasswordform.razor.rz.scp.css */
 .content[b-638owfp8gd]{
-/* _content/Blazor/Components/DepositForm.razor.rz.scp.css */
-.content[b-sec5sa2xsu]{
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
-.card[b-sec5sa2xsu]{
+.card[b-638owfp8gd]{
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -25,23 +23,18 @@
 }
 
 input[b-638owfp8gd] {
-.card div[b-sec5sa2xsu] {
-    padding: 1rem;
-}
-
-input[b-sec5sa2xsu] {
     border: 1px solid #ccc;
     border-radius: 2px;
     padding: 1rem;
     width: 100%;
 }
 
-label[b-sec5sa2xsu] {
+label[b-638owfp8gd] {
     display: block;
     margin-bottom: 0.5rem;
 }
 
-.submitButton[b-sec5sa2xsu]{
+.changeButtonButton[b-638owfp8gd]{
     display: flex;
     justify-content: center;
     align-content: center;
@@ -985,6 +978,7 @@ h1[b-3cu29tzlu1], h2[b-3cu29tzlu1], h3[b-3cu29tzlu1], h4[b-3cu29tzlu1], h5[b-3cu
     justify-content: center;
     flex-direction: column;
 }
+ 
 .card[b-yc7mlmln1x] {
     color: white;
     padding: 1%;

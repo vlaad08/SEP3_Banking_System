@@ -72,11 +72,11 @@ namespace Database {
             "c3RuYW1lGAIgASgJEhIKCm1pZGRsZW5hbWUYAyABKAkSEAoIbGFzdG5hbWUY",
             "BCABKAkSEAoIcGFzc3dvcmQYBSABKAkSDAoEcGxhbhgGIAEoCSISChBSZWdp",
             "c3RlclJlc3BvbnNlIiMKElVzZXJBY2NvdW50UmVxdWVzdBINCgVlbWFpbBgB",
-            "IAEoCSImChNVc2VyQWNjb3VudFJlc3BvbnNlEg8KB3VzZXJfaWQYASABKAki",
+            "IAEoCSImChNVc2VyQWNjb3VudFJlc3BvbnNlEg8KB3VzZXJfaWQYASABKAUi",
             "IQoQVXNlckVtYWlsUmVxdWVzdBINCgVlbWFpbBgBIAEoCSIiChFVc2VyRW1h",
             "aWxSZXNwb25zZRINCgVlbWFpbBgCIAEoCSJYChRBY2NvdW50Q3JlYXRlUmVx",
-            "dWVzdBIPCgd1c2VyX2lkGAEgASgJEhkKEXVzZXJBY2NvdW50TnVtYmVyGAIg",
-            "ASgJEhQKDGludGVyZXN0UmF0ZRgDIAEoCSIXChVBY2NvdW50Q3JlYXRlUmVz",
+            "dWVzdBIPCgd1c2VyX2lkGAEgASgFEhkKEXVzZXJBY2NvdW50TnVtYmVyGAIg",
+            "ASgJEhQKDGludGVyZXN0UmF0ZRgDIAEoASIXChVBY2NvdW50Q3JlYXRlUmVz",
             "cG9uc2UiQAoSQ3JlYXRlSXNzdWVSZXF1ZXN0Eg0KBXRpdGxlGAEgASgJEgwK",
             "BGJvZHkYAiABKAkSDQoFb3duZXIYAyABKAUiFQoTQ3JlYXRlSXNzdWVSZXNw",
             "b25zZSJSChJTZW5kTWVzc2FnZVJlcXVlc3QSDQoFdGl0bGUYASABKAkSDQoF",
@@ -99,7 +99,7 @@ namespace Database {
             "YWlsc1JlcXVlc3QSEAoIbmV3RW1haWwYASABKAkSEAoIb2xkRW1haWwYAiAB",
             "KAkSEAoIcGFzc3dvcmQYAyABKAkSDAoEcGxhbhgEIAEoCSIYChZVc2VyTmV3",
             "RGV0YWlsc1Jlc3BvbnNlIj4KGUFjY291bnROZXdCYXNlUmF0ZVJlcXVlc3QS",
-            "DwoHdXNlcl9pZBgBIAEoCRIQCghiYXNlUmF0ZRgCIAEoCSIcChpBY2NvdW50",
+            "DwoHdXNlcl9pZBgBIAEoBRIQCghiYXNlUmF0ZRgCIAEoASIcChpBY2NvdW50",
             "TmV3QmFzZVJhdGVSZXNwb25zZTKrDwoPRGF0YWJhc2VTZXJ2aWNlEkMKCFRy",
             "YW5zZmVyEhkuRGF0YWJhc2UuVHJhbnNmZXJSZXF1ZXN0GhouRGF0YWJhc2Uu",
             "VHJhbnNmZXJSZXNwb25zZSIAEk8KDENoZWNrQWNjb3VudBIdLkRhdGFiYXNl",
@@ -7468,13 +7468,13 @@ namespace Database {
 
     /// <summary>Field number for the "user_id" field.</summary>
     public const int UserIdFieldNumber = 1;
-    private string userId_ = "";
+    private int userId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
+    public int UserId {
       get { return userId_; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        userId_ = value;
       }
     }
 
@@ -7501,7 +7501,7 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserId.Length != 0) hash ^= UserId.GetHashCode();
+      if (UserId != 0) hash ^= UserId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -7520,9 +7520,9 @@ namespace Database {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -7534,9 +7534,9 @@ namespace Database {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -7548,8 +7548,8 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (UserId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (UserId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -7563,7 +7563,7 @@ namespace Database {
       if (other == null) {
         return;
       }
-      if (other.UserId.Length != 0) {
+      if (other.UserId != 0) {
         UserId = other.UserId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -7581,8 +7581,8 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
         }
@@ -7600,8 +7600,8 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
         }
@@ -8037,13 +8037,13 @@ namespace Database {
 
     /// <summary>Field number for the "user_id" field.</summary>
     public const int UserIdFieldNumber = 1;
-    private string userId_ = "";
+    private int userId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
+    public int UserId {
       get { return userId_; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        userId_ = value;
       }
     }
 
@@ -8061,13 +8061,13 @@ namespace Database {
 
     /// <summary>Field number for the "interestRate" field.</summary>
     public const int InterestRateFieldNumber = 3;
-    private string interestRate_ = "";
+    private double interestRate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string InterestRate {
+    public double InterestRate {
       get { return interestRate_; }
       set {
-        interestRate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        interestRate_ = value;
       }
     }
 
@@ -8088,7 +8088,7 @@ namespace Database {
       }
       if (UserId != other.UserId) return false;
       if (UserAccountNumber != other.UserAccountNumber) return false;
-      if (InterestRate != other.InterestRate) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(InterestRate, other.InterestRate)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -8096,9 +8096,9 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserId.Length != 0) hash ^= UserId.GetHashCode();
+      if (UserId != 0) hash ^= UserId.GetHashCode();
       if (UserAccountNumber.Length != 0) hash ^= UserAccountNumber.GetHashCode();
-      if (InterestRate.Length != 0) hash ^= InterestRate.GetHashCode();
+      if (InterestRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(InterestRate);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -8117,17 +8117,17 @@ namespace Database {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
       if (UserAccountNumber.Length != 0) {
         output.WriteRawTag(18);
         output.WriteString(UserAccountNumber);
       }
-      if (InterestRate.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(InterestRate);
+      if (InterestRate != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(InterestRate);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -8139,17 +8139,17 @@ namespace Database {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
       if (UserAccountNumber.Length != 0) {
         output.WriteRawTag(18);
         output.WriteString(UserAccountNumber);
       }
-      if (InterestRate.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(InterestRate);
+      if (InterestRate != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(InterestRate);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -8161,14 +8161,14 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (UserId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (UserId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
       }
       if (UserAccountNumber.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserAccountNumber);
       }
-      if (InterestRate.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(InterestRate);
+      if (InterestRate != 0D) {
+        size += 1 + 8;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -8182,13 +8182,13 @@ namespace Database {
       if (other == null) {
         return;
       }
-      if (other.UserId.Length != 0) {
+      if (other.UserId != 0) {
         UserId = other.UserId;
       }
       if (other.UserAccountNumber.Length != 0) {
         UserAccountNumber = other.UserAccountNumber;
       }
-      if (other.InterestRate.Length != 0) {
+      if (other.InterestRate != 0D) {
         InterestRate = other.InterestRate;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -8206,16 +8206,16 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
           case 18: {
             UserAccountNumber = input.ReadString();
             break;
           }
-          case 26: {
-            InterestRate = input.ReadString();
+          case 25: {
+            InterestRate = input.ReadDouble();
             break;
           }
         }
@@ -8233,16 +8233,16 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
           case 18: {
             UserAccountNumber = input.ReadString();
             break;
           }
-          case 26: {
-            InterestRate = input.ReadString();
+          case 25: {
+            InterestRate = input.ReadDouble();
             break;
           }
         }
@@ -11589,25 +11589,25 @@ namespace Database {
 
     /// <summary>Field number for the "user_id" field.</summary>
     public const int UserIdFieldNumber = 1;
-    private string userId_ = "";
+    private int userId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
+    public int UserId {
       get { return userId_; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        userId_ = value;
       }
     }
 
     /// <summary>Field number for the "baseRate" field.</summary>
     public const int BaseRateFieldNumber = 2;
-    private string baseRate_ = "";
+    private double baseRate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string BaseRate {
+    public double BaseRate {
       get { return baseRate_; }
       set {
-        baseRate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        baseRate_ = value;
       }
     }
 
@@ -11627,7 +11627,7 @@ namespace Database {
         return true;
       }
       if (UserId != other.UserId) return false;
-      if (BaseRate != other.BaseRate) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(BaseRate, other.BaseRate)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -11635,8 +11635,8 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserId.Length != 0) hash ^= UserId.GetHashCode();
-      if (BaseRate.Length != 0) hash ^= BaseRate.GetHashCode();
+      if (UserId != 0) hash ^= UserId.GetHashCode();
+      if (BaseRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(BaseRate);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -11655,13 +11655,13 @@ namespace Database {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
-      if (BaseRate.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(BaseRate);
+      if (BaseRate != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(BaseRate);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -11673,13 +11673,13 @@ namespace Database {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UserId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
+      if (UserId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UserId);
       }
-      if (BaseRate.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(BaseRate);
+      if (BaseRate != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(BaseRate);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -11691,11 +11691,11 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (UserId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (UserId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
       }
-      if (BaseRate.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(BaseRate);
+      if (BaseRate != 0D) {
+        size += 1 + 8;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -11709,10 +11709,10 @@ namespace Database {
       if (other == null) {
         return;
       }
-      if (other.UserId.Length != 0) {
+      if (other.UserId != 0) {
         UserId = other.UserId;
       }
-      if (other.BaseRate.Length != 0) {
+      if (other.BaseRate != 0D) {
         BaseRate = other.BaseRate;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -11730,12 +11730,12 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
-          case 18: {
-            BaseRate = input.ReadString();
+          case 17: {
+            BaseRate = input.ReadDouble();
             break;
           }
         }
@@ -11753,12 +11753,12 @@ namespace Database {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            UserId = input.ReadString();
+          case 8: {
+            UserId = input.ReadInt32();
             break;
           }
-          case 18: {
-            BaseRate = input.ReadString();
+          case 17: {
+            BaseRate = input.ReadDouble();
             break;
           }
         }

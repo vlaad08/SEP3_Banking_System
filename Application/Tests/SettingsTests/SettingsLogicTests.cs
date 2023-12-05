@@ -10,6 +10,7 @@ public class SettingsLogicTests
 {
     private readonly SettingsLogic settingsLogic;
     private readonly Mock<IUserRegisterDAO> registerDao;
+    private readonly Mock<IUserLoginDao> loginDao;
     private readonly Mock<ISettingsDAO> settingsDao;
 
 
@@ -17,7 +18,8 @@ public class SettingsLogicTests
     {
         settingsDao = new Mock<ISettingsDAO>();
         registerDao = new Mock<IUserRegisterDAO>();
-        settingsLogic = new SettingsLogic(settingsDao.Object, registerDao.Object);
+        loginDao = new Mock<IUserLoginDao>();
+        settingsLogic = new SettingsLogic(settingsDao.Object, registerDao.Object,loginDao.Object);
     }
 
     [Fact]

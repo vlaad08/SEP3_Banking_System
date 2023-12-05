@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {}
+    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {}
   },
   "projects": {
-    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
+    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
-        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
-        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/obj/",
+        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
+        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
+          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

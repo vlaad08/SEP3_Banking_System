@@ -271,7 +271,7 @@ public class ProtoClient : IGrpcClient
             Email = userEmailDto.Email
         };
         var response = await databaseClient.GetUserIdAsync(request);
-        return int.Parse(response.UserId);
+        return response.UserId;
     }
 
     public async Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto)
@@ -280,10 +280,9 @@ public class ProtoClient : IGrpcClient
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new AccountCreateRequest()
         {
-            UserId = accountCreateRequestDto.User_id.ToString(),
-            AccountType = accountCreateRequestDto.AccountType,
+            UserId = accountCreateRequestDto.User_id,
             UserAccountNumber = accountCreateRequestDto.UserAccountNumber,
-            InterestRate = accountCreateRequestDto.InterestRate.ToString(),
+            InterestRate = accountCreateRequestDto.InterestRate
 
         };
         var response = await databaseClient.CreateUserAccountNumberAsync(request);
@@ -295,8 +294,8 @@ public class ProtoClient : IGrpcClient
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new AccountNewBaseRateRequest()
         {
-            UserId = accountNewBaseRateDto.UserID.ToString(),
-            BaseRate = accountNewBaseRateDto.BaseRate.ToString()
+            UserId = accountNewBaseRateDto.UserID,
+            BaseRate = accountNewBaseRateDto.BaseRate
         };
         var response = await databaseClient.ChangeBaseRateAsync(request);
     }
@@ -313,7 +312,9 @@ public class ProtoClient : IGrpcClient
             Plan = userNewDetailsRequestDto.Plan
         };
         var response = await databaseClient.ChangeUserDetailsAsync(request);
-        public async Task SendMessage(SendMessageDTO sendMessageDto)
+    }
+
+    public async Task SendMessage(SendMessageDTO sendMessageDto)
         {
             using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
             var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
@@ -390,3 +391,4 @@ public class ProtoClient : IGrpcClient
             return issues;
         }
     }
+    

@@ -198,7 +198,7 @@ message UserAccountRequest{
     string email = 1;
 }
 message UserAccountResponse{
-    string user_id = 1;
+    int32 user_id = 1;
 }
 
 message UserEmailRequest{
@@ -210,9 +210,9 @@ message UserEmailResponse{
 }
 
 message AccountCreateRequest{
-    string user_id = 1;
+    int32 user_id = 1;
     string userAccountNumber = 2;
-    string interestRate = 3;
+    double interestRate = 3;
 }
 
 message AccountCreateResponse{
@@ -296,8 +296,8 @@ message UserNewDetailsResponse{
 }
 
 message AccountNewBaseRateRequest{
-    string user_id = 1;
-    string baseRate = 2;
+    int32 user_id = 1;
+    double baseRate = 2;
 }
 
 message AccountNewBaseRateResponse{}
