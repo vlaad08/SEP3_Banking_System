@@ -1,10 +1,10 @@
-.notification-content[b-tzo2c5zty5]{
+.notification-content[b-amt7uxjkk8]{
     position: absolute;
     top: 80%;
     left: 75%;
 }
 
-.notification-box[b-tzo2c5zty5]{
+.notification-box[b-amt7uxjkk8]{
     display: flex;
     width: 350px;
     height: auto;
@@ -13,7 +13,7 @@
     flex-direction: column;
     border-radius: 10px;
 }
-.notification-content button[b-tzo2c5zty5]{
+.notification-content button[b-amt7uxjkk8]{
     align-self: flex-start;
     border: none;
     background-color: transparent;
@@ -21,25 +21,25 @@
     color: white;
 }
 
-p[b-tzo2c5zty5]{
+p[b-amt7uxjkk8]{
     font-size: calc(15px + 0.34vh);
     margin: 1%;
 }
 
-.ConfirmationBox[b-tzo2c5zty5]{
+.ConfirmationBox[b-amt7uxjkk8]{
     background-color: green;
 }
 
-.ErrorBox[b-tzo2c5zty5]{
+.ErrorBox[b-amt7uxjkk8]{
     background-color: darkred;
 }
 
-.appear[b-tzo2c5zty5]{
-    animation-name: appearNotification-b-tzo2c5zty5;
+.appear[b-amt7uxjkk8]{
+    animation-name: appearNotification-b-amt7uxjkk8;
     animation-duration: 0.5s;
 }
 
-@keyframes appearNotification-b-tzo2c5zty5 {
+@keyframes appearNotification-b-amt7uxjkk8 {
     from{
         left: 80%;
         opacity: 0.5;

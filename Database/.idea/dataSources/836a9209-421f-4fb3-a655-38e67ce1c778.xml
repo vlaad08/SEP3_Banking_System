@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>1720</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1751</IntrospectionStateNumber>
       <ServerVersion>15.4</ServerVersion>
-      <StartupTime>1701507864</StartupTime>
+      <StartupTime>1701763885</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -806,7 +806,7 @@ false Zulu
 16399||10|C|G
 16399||-9223372036854775808|U|G
 16399||10|U|G</Grants>
-      <IntrospectionStateNumber>1720</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1751</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4220,11 +4220,11 @@ false Zulu
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
     <schema id="260" parent="2" name="banking_system">
-      <IntrospectionStateNumber>1720</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-12-02.12:25:30.950</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-02.11:25:31</LocalIntrospectionTimestamp>
-      <ObjectId>17915</ObjectId>
-      <StateNumber>1708</StateNumber>
+      <IntrospectionStateNumber>1751</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-12-05.13:19:20.031</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-05.12:19:20</LocalIntrospectionTimestamp>
+      <ObjectId>17974</ObjectId>
+      <StateNumber>1725</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
     <schema id="261" parent="2" name="dvdrental">
@@ -4264,126 +4264,154 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </schema>
     <routine id="267" parent="260" name="check_account_balance">
-      <ObjectId>17971</ObjectId>
+      <ObjectId>18063</ObjectId>
       <PgRoutineKind>pg-trigger</PgRoutineKind>
       <ResultsDefinition>trigger</ResultsDefinition>
       <Rows>0.0</Rows>
       <SourceTextLength>130</SourceTextLength>
-      <StateNumber>1717</StateNumber>
+      <StateNumber>1736</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <sequence id="268" parent="260" name="loan_loan_id_seq">
+    <sequence id="268" parent="260" name="issues_issue_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17956</ObjectId>
+      <ObjectId>18030</ObjectId>
       <SequenceIdentity>1(1)</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1730</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="269" parent="260" name="transactions_transaction_id_seq">
+    <sequence id="269" parent="260" name="loan_loan_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17939</ObjectId>
+      <ObjectId>18015</ObjectId>
+      <SequenceIdentity>1(1)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1729</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="270" parent="260" name="messages_message_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>18044</ObjectId>
+      <SequenceIdentity>1(1)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1731</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="271" parent="260" name="transactions_transaction_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>17998</ObjectId>
       <SequenceIdentity>1(4)</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="270" parent="260" name="user_user_id_seq">
+    <sequence id="272" parent="260" name="user_user_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17916</ObjectId>
+      <ObjectId>17975</ObjectId>
       <SequenceIdentity>1(1)</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="271" parent="260" name="account">
-      <ObjectId>17924</ObjectId>
-      <StateNumber>1710</StateNumber>
+    <table id="273" parent="260" name="account">
+      <ObjectId>17983</ObjectId>
+      <StateNumber>1727</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="272" parent="260" name="loan">
-      <ObjectId>17957</ObjectId>
-      <StateNumber>1712</StateNumber>
+    <table id="274" parent="260" name="issues">
+      <ObjectId>18031</ObjectId>
+      <StateNumber>1730</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="273" parent="260" name="transactions">
-      <ObjectId>17940</ObjectId>
-      <StateNumber>1711</StateNumber>
+    <table id="275" parent="260" name="loan">
+      <ObjectId>18016</ObjectId>
+      <StateNumber>1729</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="274" parent="260" name="user">
-      <ObjectId>17917</ObjectId>
-      <StateNumber>1710</StateNumber>
+    <table id="276" parent="260" name="messages">
+      <ObjectId>18045</ObjectId>
+      <StateNumber>1731</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <argument id="275" parent="267">
+    <table id="277" parent="260" name="transactions">
+      <ObjectId>17999</ObjectId>
+      <StateNumber>1728</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="278" parent="260" name="user">
+      <ObjectId>17976</ObjectId>
+      <StateNumber>1727</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <argument id="279" parent="267">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>trigger|0s</DasType>
     </argument>
-    <column id="276" parent="271" name="account_id">
+    <column id="280" parent="273" name="account_id">
       <DasType>varchar(16)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="277" parent="271" name="user_id">
+    <column id="281" parent="273" name="user_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="278" parent="271" name="balance">
+    <column id="282" parent="273" name="balance">
       <DasType>numeric(12,2 digit)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="279" parent="271" name="account_type">
+    <column id="283" parent="273" name="account_type">
       <DasType>varchar(10)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="280" parent="271" name="interest_rate">
+    <column id="284" parent="273" name="interest_rate">
       <DasType>numeric|0s</DasType>
       <DefaultExpression>1.7</DefaultExpression>
       <Position>5</Position>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <foreign-key id="281" parent="271" name="account_user_id_fkey">
+    <foreign-key id="285" parent="273" name="account_user_id_fkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17934</ObjectId>
-      <StateNumber>1710</StateNumber>
+      <ObjectId>17993</ObjectId>
+      <StateNumber>1727</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17917</RefTableId>
+      <RefTableId>17976</RefTableId>
     </foreign-key>
-    <index id="282" parent="271" name="account_pkey">
+    <index id="286" parent="273" name="account_pkey">
       <ColNames>account_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17930</ObjectId>
+      <ObjectId>17989</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1710</StateNumber>
+      <StateNumber>1727</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="283" parent="271" name="account_user_id_account_type_key">
+    <index id="287" parent="273" name="account_user_id_account_type_key">
       <ColNames>user_id
 account_type</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17932</ObjectId>
-      <StateNumber>1710</StateNumber>
+      <ObjectId>17991</ObjectId>
+      <StateNumber>1727</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -4393,243 +4421,382 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="284" parent="271" name="account_pkey">
+    <key id="288" parent="273" name="account_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17931</ObjectId>
+      <ObjectId>17990</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1710</StateNumber>
-      <UnderlyingIndexId>17930</UnderlyingIndexId>
+      <StateNumber>1727</StateNumber>
+      <UnderlyingIndexId>17989</UnderlyingIndexId>
     </key>
-    <key id="285" parent="271" name="account_user_id_account_type_key">
+    <key id="289" parent="273" name="account_user_id_account_type_key">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17933</ObjectId>
-      <StateNumber>1710</StateNumber>
-      <UnderlyingIndexId>17932</UnderlyingIndexId>
+      <ObjectId>17992</ObjectId>
+      <StateNumber>1727</StateNumber>
+      <UnderlyingIndexId>17991</UnderlyingIndexId>
     </key>
-    <trigger id="286" parent="271" name="verify_account_balance">
+    <trigger id="290" parent="273" name="verify_account_balance">
       <Events>IU</Events>
-      <ObjectId>17972</ObjectId>
-      <StateNumber>1718</StateNumber>
+      <ObjectId>18064</ObjectId>
+      <StateNumber>1737</StateNumber>
       <Turn>before-row</Turn>
-      <CallRoutineId>17971</CallRoutineId>
+      <CallRoutineId>18063</CallRoutineId>
     </trigger>
-    <column id="287" parent="272" name="loan_id">
+    <column id="291" parent="274" name="issue_id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;banking_system.issues_issue_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1730</StateNumber>
+      <SequenceId>18030</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="292" parent="274" name="title">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>1730</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="293" parent="274" name="body">
+      <DasType>text|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>1730</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="294" parent="274" name="owner_id">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1730</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="295" parent="274" name="creation_time">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>1730</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="296" parent="274" name="flagged">
+      <DasType>boolean|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>1730</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <foreign-key id="297" parent="274" name="issues_owner_id_fkey">
+      <ColNames>owner_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18039</ObjectId>
+      <StateNumber>1730</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17976</RefTableId>
+    </foreign-key>
+    <index id="298" parent="274" name="issues_pkey">
+      <ColNames>issue_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18037</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1730</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="299" parent="274" name="issues_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18038</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1730</StateNumber>
+      <UnderlyingIndexId>18037</UnderlyingIndexId>
+    </key>
+    <column id="300" parent="275" name="loan_id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;banking_system.loan_loan_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1712</StateNumber>
-      <SequenceId>17956</SequenceId>
+      <StateNumber>1729</StateNumber>
+      <SequenceId>18015</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="288" parent="272" name="account_id">
+    <column id="301" parent="275" name="account_id">
       <DasType>varchar(16)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="289" parent="272" name="remaining_amount">
+    <column id="302" parent="275" name="remaining_amount">
       <DasType>numeric(12,2 digit)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="290" parent="272" name="interest_rate">
+    <column id="303" parent="275" name="interest_rate">
       <DasType>numeric|0s</DasType>
       <DefaultExpression>0.01</DefaultExpression>
       <Position>4</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="291" parent="272" name="monthly_payment">
+    <column id="304" parent="275" name="monthly_payment">
       <DasType>numeric(12,2 digit)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="292" parent="272" name="end_date">
+    <column id="305" parent="275" name="end_date">
       <DasType>date|0s</DasType>
       <Position>6</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="293" parent="272" name="loan_amount">
+    <column id="306" parent="275" name="loan_amount">
       <DasType>numeric(12,2 digit)|0s</DasType>
       <Position>7</Position>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <foreign-key id="294" parent="272" name="loan_account_id_fkey">
+    <foreign-key id="307" parent="275" name="loan_account_id_fkey">
       <ColNames>account_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17966</ObjectId>
-      <StateNumber>1712</StateNumber>
+      <ObjectId>18025</ObjectId>
+      <StateNumber>1729</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17924</RefTableId>
+      <RefTableId>17983</RefTableId>
     </foreign-key>
-    <index id="295" parent="272" name="loan_pkey">
+    <index id="308" parent="275" name="loan_pkey">
       <ColNames>loan_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17964</ObjectId>
+      <ObjectId>18023</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1712</StateNumber>
+      <StateNumber>1729</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="296" parent="272" name="loan_pkey">
+    <key id="309" parent="275" name="loan_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17965</ObjectId>
+      <ObjectId>18024</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1712</StateNumber>
-      <UnderlyingIndexId>17964</UnderlyingIndexId>
+      <StateNumber>1729</StateNumber>
+      <UnderlyingIndexId>18023</UnderlyingIndexId>
     </key>
-    <column id="297" parent="273" name="transaction_id">
+    <column id="310" parent="276" name="message_id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;banking_system.messages_message_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1731</StateNumber>
+      <SequenceId>18044</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="311" parent="276" name="title">
+      <DasType>varchar(150)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1731</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="312" parent="276" name="body">
+      <DasType>text|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>1731</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="313" parent="276" name="owner_id">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1731</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="314" parent="276" name="creation_time">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>1731</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="315" parent="276" name="issue_id">
+      <DasType>integer|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>1731</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="316" parent="276" name="messages_owner_id_fkey">
+      <ColNames>owner_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18053</ObjectId>
+      <StateNumber>1731</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17976</RefTableId>
+    </foreign-key>
+    <foreign-key id="317" parent="276" name="messages_issue_id_fkey">
+      <ColNames>issue_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18058</ObjectId>
+      <StateNumber>1731</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>18031</RefTableId>
+    </foreign-key>
+    <index id="318" parent="276" name="messages_pkey">
+      <ColNames>message_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18051</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1731</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="319" parent="276" name="messages_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18052</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1731</StateNumber>
+      <UnderlyingIndexId>18051</UnderlyingIndexId>
+    </key>
+    <column id="320" parent="277" name="transaction_id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;banking_system.transactions_transaction_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1711</StateNumber>
-      <SequenceId>17939</SequenceId>
+      <StateNumber>1728</StateNumber>
+      <SequenceId>17998</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="298" parent="273" name="datetime">
+    <column id="321" parent="277" name="datetime">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="299" parent="273" name="amount">
+    <column id="322" parent="277" name="amount">
       <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="300" parent="273" name="message">
+    <column id="323" parent="277" name="message">
       <DasType>varchar(150)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="301" parent="273" name="senderaccount_id">
+    <column id="324" parent="277" name="senderaccount_id">
       <DasType>varchar(16)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="302" parent="273" name="recipientaccount_id">
+    <column id="325" parent="277" name="recipientaccount_id">
       <DasType>varchar(16)|0s</DasType>
       <Position>6</Position>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="303" parent="273" name="transactions_senderaccount_id_fkey">
+    <foreign-key id="326" parent="277" name="transactions_senderaccount_id_fkey">
       <ColNames>senderaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17946</ObjectId>
-      <StateNumber>1711</StateNumber>
+      <ObjectId>18005</ObjectId>
+      <StateNumber>1728</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17924</RefTableId>
+      <RefTableId>17983</RefTableId>
     </foreign-key>
-    <foreign-key id="304" parent="273" name="transactions_recipientaccount_id_fkey">
+    <foreign-key id="327" parent="277" name="transactions_recipientaccount_id_fkey">
       <ColNames>recipientaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17951</ObjectId>
-      <StateNumber>1711</StateNumber>
+      <ObjectId>18010</ObjectId>
+      <StateNumber>1728</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17924</RefTableId>
+      <RefTableId>17983</RefTableId>
     </foreign-key>
-    <index id="305" parent="273" name="transactions_pkey">
+    <index id="328" parent="277" name="transactions_pkey">
       <ColNames>transaction_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17944</ObjectId>
+      <ObjectId>18003</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1711</StateNumber>
+      <StateNumber>1728</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="306" parent="273" name="transactions_pkey">
+    <key id="329" parent="277" name="transactions_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17945</ObjectId>
+      <ObjectId>18004</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1711</StateNumber>
-      <UnderlyingIndexId>17944</UnderlyingIndexId>
+      <StateNumber>1728</StateNumber>
+      <UnderlyingIndexId>18003</UnderlyingIndexId>
     </key>
-    <check id="307" parent="274" name="user_password_check">
+    <check id="330" parent="278" name="user_password_check">
       <ColNames>password</ColNames>
-      <ObjectId>17921</ObjectId>
+      <ObjectId>17980</ObjectId>
       <Predicate>(length((password)::text) &gt;= 8) AND (length((password)::text) &lt;= 16)</Predicate>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
     </check>
-    <column id="308" parent="274" name="user_id">
+    <column id="331" parent="278" name="user_id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;banking_system.user_user_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1709</StateNumber>
-      <SequenceId>17916</SequenceId>
+      <StateNumber>1726</StateNumber>
+      <SequenceId>17975</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="309" parent="274" name="email">
+    <column id="332" parent="278" name="email">
       <DasType>varchar(70)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="310" parent="274" name="firstname">
+    <column id="333" parent="278" name="firstname">
       <DasType>varchar(35)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="311" parent="274" name="middlename">
+    <column id="334" parent="278" name="middlename">
       <DasType>varchar(35)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="312" parent="274" name="lastname">
+    <column id="335" parent="278" name="lastname">
       <DasType>varchar(35)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="313" parent="274" name="password">
+    <column id="336" parent="278" name="password">
       <DasType>varchar(16)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="314" parent="274" name="role">
+    <column id="337" parent="278" name="role">
       <DasType>varchar(35)|0s</DasType>
       <Position>7</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="315" parent="274" name="token">
+    <column id="338" parent="278" name="token">
       <DasType>varchar(300)|0s</DasType>
       <Position>8</Position>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="316" parent="274" name="user_pkey">
+    <index id="339" parent="278" name="user_pkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17922</ObjectId>
+      <ObjectId>17981</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1709</StateNumber>
+      <StateNumber>1726</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="317" parent="274" name="user_pkey">
+    <key id="340" parent="278" name="user_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17923</ObjectId>
+      <ObjectId>17982</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1709</StateNumber>
-      <UnderlyingIndexId>17922</UnderlyingIndexId>
+      <StateNumber>1726</StateNumber>
+      <UnderlyingIndexId>17981</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>
