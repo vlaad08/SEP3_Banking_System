@@ -7,7 +7,6 @@
 @inject ITransactionService transactioService
 
 
-
 <div class="content">
     
     <div class="card">
@@ -24,6 +23,13 @@
                 @foreach (var account in Accounts)
                 {
                     if (account.AccountType.Equals("savings"))
+                    {
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
+                }
+                @foreach (var account in Accounts)
+                {
+                    if (account.AccountType.Equals("business"))
                     {
                         <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                     }
@@ -68,6 +74,7 @@
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
         senderAccount_id = e.Value!.ToString()!;
+        Console.WriteLine(senderAccount_id);
         return Task.CompletedTask;
     }
     
@@ -83,10 +90,8 @@
             }
             else
             {
-                
                 await transactioService.Transfer(senderAccount_id, recipientAccount_id, amount, message);
                 await successRef.ShowNotification();
-
             }
             
         }
@@ -105,12 +110,15 @@
     protected override async Task OnInitializedAsync()
     {
         Accounts = await GetUserAccounts(User) ?? new List<AccountsInfo>();
-
         var personalAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
         
         if (personalAccount != null)
         {
             senderAccount_id = personalAccount.AccountNumber;
+        }var businessAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("business"));
+        if (businessAccount != null)
+        {
+            senderAccount_id = businessAccount.AccountNumber;
         }
     }
 

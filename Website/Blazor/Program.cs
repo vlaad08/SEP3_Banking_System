@@ -14,10 +14,12 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
+builder.Services.AddScoped<IIssueService, IssueService>();
 builder.Services.AddScoped(
-    sp => 
-        new HttpClient { 
-            BaseAddress = new Uri("https://localhost:7257") 
+    sp =>
+        new HttpClient
+        {
+            BaseAddress = new Uri("https://localhost:7257")
         }
 );
 

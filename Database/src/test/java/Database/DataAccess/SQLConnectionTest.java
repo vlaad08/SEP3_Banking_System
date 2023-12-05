@@ -1,11 +1,7 @@
 package Database.DataAccess;
 
-import Database.AccountsInfo;
-import Database.DTOs.LoanRequestDTO;
-import Database.DTOs.UserInfoAccNumDTO;
-import Database.DTOs.UserInfoEmailDTO;
-import Database.Transactions;
-import Database.User;
+import Database.*;
+import Database.DTOs.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -38,6 +34,12 @@ public class SQLConnectionTest {
     private ArgumentCaptor<Timestamp> timestampCaptor;
     @InjectMocks
     private UserInfoEmailDTO userInfoDTO;
+    @InjectMocks
+    private IssueCreationDTO issueCreationDTO;
+    @InjectMocks
+    private IssueinfoDTO issueinfoDTO;
+    @InjectMocks
+    private MessageDTO messageDTO;
     @Captor
     private ArgumentCaptor<UserInfoEmailDTO> userInfoCaptor;
 
@@ -458,6 +460,200 @@ public class SQLConnectionTest {
 
         assertEquals(List.of(temp), result);
     }
+
+    @Test
+    void testCreateIssue() throws SQLException {
+        IssueCreationDTO issueDTO = new IssueCreationDTO("Title", "Body", 1);
+
+        try {
+            sqlConnection.createIssue(issueDTO);
+
+            PreparedStatement selectStatement = connection.prepareStatement(
+                    "SELECT * FROM issues WHERE title = ?");
+            selectStatement.setString(1, issueDTO.getTitle());
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            if (resultSet.next()) {
+                assertEquals(issueDTO.getTitle(), resultSet.getString("title"));
+                assertEquals(issueDTO.getBody(), resultSet.getString("body"));
+                assertEquals(issueDTO.getOwnerId(), resultSet.getInt("owner_id"));
+            }
+
+        } catch (RuntimeException e) {
+            assertEquals(1, 0, "Exception occurred: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testSendMessage() throws SQLException {
+        // Create a sample java.sql.Timestamp for testing
+        java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(LocalDateTime.now());
+
+        // Convert java.sql.Timestamp to com.google.protobuf.Timestamp
+        com.google.protobuf.Timestamp protobufTimestamp = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                .build();
+
+        // Create a sample MessageDTO for testing
+        MessageDTO messageDTO = new MessageDTO("Sample Title", 1, "Body", 1, protobufTimestamp);
+
+        // Call the sendMessage method with the sample MessageDTO
+        sqlConnection.sendMessage(messageDTO);
+
+        // Capture the timestamp used in sendMessage method
+        ArgumentCaptor<Timestamp> timestampCaptor = ArgumentCaptor.forClass(Timestamp.class);
+        verify(statement).setTimestamp(eq(4), timestampCaptor.capture());
+
+        // Verify that the PreparedStatement methods were called with the correct parameters
+        verify(statement).setString(1, messageDTO.getTitle());
+        verify(statement).setString(2, messageDTO.getBody());
+        verify(statement).setInt(3, messageDTO.getOwner());
+
+        verify(statement).setInt(5, messageDTO.getIssueId());
+
+        // Verify that executeUpdate was called
+        verify(statement).executeUpdate();
+
+        // Verify that commit was called
+        verify(connection).commit();
+    }
+
+    @Test
+    void testGetMessagesForIssue() throws SQLException {
+        // Create a sample IssueinfoDTO for testing
+        IssueinfoDTO issueinfoDTO = new IssueinfoDTO(1); // Set the ID to the expected issue ID
+
+        // Create a mock ResultSet with expected data
+        ResultSet resultSetMock = mock(ResultSet.class);
+        when(resultSetMock.next()).thenReturn(true, false); // Simulate one row of data
+        when(resultSetMock.getString("title")).thenReturn("Sample Title");
+        when(resultSetMock.getString("body")).thenReturn("Body");
+        when(resultSetMock.getInt("owner_id")).thenReturn(1);
+
+        // Set the expected creation time
+        java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(LocalDateTime.now());
+        com.google.protobuf.Timestamp expectedDate = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                .build();
+        when(resultSetMock.getTimestamp("creation_time")).thenReturn(sqlTimestamp);
+
+        // Mock the PreparedStatement
+        PreparedStatement statementMock = mock(PreparedStatement.class);
+        when(statementMock.executeQuery()).thenReturn(resultSetMock);
+
+        // Mock the Connection
+        Connection connectionMock = mock(Connection.class);
+        when(connectionMock.prepareStatement(anyString())).thenReturn(statementMock);
+
+        // Mock the SQLConnection
+        SQLConnection sqlConnectionMock = spy(new SQLConnection());
+        doReturn(connectionMock).when(sqlConnectionMock).getConnection();
+
+        // Call the getMessagesForIssue method with the sample IssueinfoDTO
+        List<MessageInfo> result = sqlConnectionMock.getMessagesForIssue(issueinfoDTO);
+
+        // Verify that the PreparedStatement methods were called with the correct parameters
+        verify(statementMock).setInt(1, issueinfoDTO.getId());
+
+        // Verify that the ResultSet methods were called to retrieve data
+        verify(resultSetMock).getString("title");
+        verify(resultSetMock).getString("body");
+        verify(resultSetMock).getInt("owner_id");
+        verify(resultSetMock).getTimestamp("creation_time");
+
+        // Verify that the expected MessageInfo object was created
+        MessageInfo expectedMessageInfo = MessageInfo.newBuilder()
+                .setTitle("Sample Title")
+                .setBody("Body")
+                .setOwner(1)
+                .setCreationTime(expectedDate)
+                .setIssueId(issueinfoDTO.getId())
+                .build();
+        assertEquals(List.of(expectedMessageInfo), result);
+    }
+
+    @Test
+    void testGetAllIssues() throws SQLException {
+        // Create a mock ResultSet with expected data for two issues
+        ResultSet resultSetMock = mock(ResultSet.class);
+
+        when(resultSetMock.next()).thenReturn(true, true, false); // Simulate two rows of data
+        when(resultSetMock.getInt("issue_id")).thenReturn(1, 2);
+        when(resultSetMock.getString("title")).thenReturn("Issue 1", "Issue 2");
+        when(resultSetMock.getString("body")).thenReturn("Body 1", "Body 2");
+        when(resultSetMock.getInt("owner_id")).thenReturn(1, 2);
+
+        // Set the expected creation time for both issues
+        java.sql.Timestamp sqlTimestamp1 = java.sql.Timestamp.valueOf(LocalDateTime.now().minusDays(1));
+        com.google.protobuf.Timestamp date1 = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp1.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp1.getTime() % 1000) * 1_000_000))
+                .build();
+
+        java.sql.Timestamp sqlTimestamp2 = java.sql.Timestamp.valueOf(LocalDateTime.now());
+        com.google.protobuf.Timestamp date2 = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp2.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp2.getTime() % 1000) * 1_000_000))
+                .build();
+
+        when(resultSetMock.getTimestamp("creation_time")).thenReturn(sqlTimestamp1, sqlTimestamp2);
+        when(resultSetMock.getBoolean("flagged")).thenReturn(true, false);
+
+        // Mock the PreparedStatement
+        PreparedStatement statementMock = mock(PreparedStatement.class);
+        when(statementMock.executeQuery()).thenReturn(resultSetMock);
+
+        // Mock the Connection
+        Connection connectionMock = mock(Connection.class);
+        when(connectionMock.prepareStatement(anyString())).thenReturn(statementMock);
+
+        // Mock the SQLConnection
+        SQLConnection sqlConnectionMock = spy(new SQLConnection());
+        doReturn(connectionMock).when(sqlConnectionMock).getConnection();
+        doReturn(List.of(MessageInfo.getDefaultInstance())).when(sqlConnectionMock).getMessagesForIssue(any());
+
+        // Call the getAllIssues method
+        List<Issue> result = sqlConnectionMock.getAllIssues();
+
+        // Verify that the PreparedStatement methods were called with the correct parameters
+        verify(statementMock).executeQuery();
+
+        // Verify that the ResultSet methods were called to retrieve data
+        verify(resultSetMock, times(2)).getInt("issue_id");
+        verify(resultSetMock, times(2)).getString("title");
+        verify(resultSetMock, times(2)).getString("body");
+        verify(resultSetMock, times(2)).getInt("owner_id");
+        verify(resultSetMock, times(2)).getTimestamp("creation_time");
+        verify(resultSetMock, times(2)).getBoolean("flagged");
+
+        // Verify that the expected Issue objects were created
+        Issue expectedIssue1 = Issue.newBuilder()
+                .setIssueId(1)
+                .setTitle("Issue 1")
+                .setBody("Body 1")
+                .setOwnerId(1)
+                .setCreationTime(date1)
+                .setFlagged(true)
+                .addAllMessages(List.of(MessageInfo.getDefaultInstance()))
+                .build();
+
+        Issue expectedIssue2 = Issue.newBuilder()
+                .setIssueId(2)
+                .setTitle("Issue 2")
+                .setBody("Body 2")
+                .setOwnerId(2)
+                .setCreationTime(date2)
+                .setFlagged(false)
+                .addAllMessages(List.of(MessageInfo.getDefaultInstance()))
+                .build();
+
+        assertEquals(List.of(expectedIssue1, expectedIssue2), result);
+    }
+
+//MORE TESTING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 
 

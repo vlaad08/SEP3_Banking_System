@@ -33,10 +33,10 @@ public class TransferLogic : ITransferLogic
             Console.WriteLine("Valid 3");
             throw new Exception("You have reached your daily limit!");
         }
-        if (await transferDao.GetBalanceByAccountNumber(transferRequestDto)<transferRequestDto.Amount)
+        /*if (await transferDao.GetBalanceByAccountNumber(transferRequestDto)<transferRequestDto.Amount)
         {
             throw new Exception("Transaction amount exceeds Sender account balance!");
-        }
+        }*/
     }   
 
     public async Task TransferMoney(TransferRequestDTO transferRequest)

@@ -7,19 +7,21 @@ using Grpc.DAOs;
 using Grpc.Net.Client;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
+using Issue = Domain.Models.Issue;
+using Message = Domain.Models.Message;
 
 namespace Grpc;
 
-public class ProtoClient:IGrpcClient
+public class ProtoClient : IGrpcClient
 {
-    public static async Task Main(string[] args) {}
-    private string serverAddress = "localhost:9090";
+    public static async Task Main(string[] args) { }
+    private string serverAddress = "10.154.206.72:9090";
 
     public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-        
+
         var transferRequest = new TransferRequest
         {
             SenderAccountId = transferRequestDto.SenderAccountNumber,
@@ -34,7 +36,7 @@ public class ProtoClient:IGrpcClient
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-        
+        Console.WriteLine("OKOKOKOKOKO");
         var request = new BalanceCheckRequest()
         {
             AccountId = transferRequestDto.SenderAccountNumber
@@ -48,7 +50,7 @@ public class ProtoClient:IGrpcClient
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-        
+
         var request = new AccountCheckRequest()
         {
             RecipientAccountId = transferRequestDto.RecipientAccountNumber
@@ -80,7 +82,7 @@ public class ProtoClient:IGrpcClient
         {
             AccountId = depositRequestDto.ToppedUpAccountNumber,
             Amount = depositRequestDto.Amount
-            
+
         };
         var response = await databaseClient.DepositAsync(request);
     }
@@ -100,6 +102,7 @@ public class ProtoClient:IGrpcClient
         {
             global::Domain.Models.User user = new global::Domain.Models.User()
             {
+                Id = responseUser.Id,
                 Email = responseUser.Email,
                 Password = responseUser.Password,
                 FirstName = responseUser.FirstName,
@@ -169,7 +172,7 @@ public class ProtoClient:IGrpcClient
             AccountNumber = dto.AccountID
         };
         var response = await databaseClient.LastInterestAsync(request);
-        Timestamp timestamp= response?.Date;
+        Timestamp timestamp = response?.Date;
         return timestamp?.ToDateTime();
 
     }
@@ -202,7 +205,7 @@ public class ProtoClient:IGrpcClient
         };
         var response = await databaseClient.LogLoanAsync(request);
     }
-    
+
     public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
@@ -239,7 +242,7 @@ public class ProtoClient:IGrpcClient
             Email = userEmailDto.Email
         };
         var response = await databaseClient.GetUserByEmailAsync(request);
-        
+
         return response.Email;
     }
 
@@ -281,7 +284,7 @@ public class ProtoClient:IGrpcClient
             AccountType = accountCreateRequestDto.AccountType,
             UserAccountNumber = accountCreateRequestDto.UserAccountNumber,
             InterestRate = accountCreateRequestDto.InterestRate.ToString(),
-            
+
         };
         var response = await databaseClient.CreateUserAccountNumberAsync(request);
     }
@@ -310,5 +313,80 @@ public class ProtoClient:IGrpcClient
             Plan = userNewDetailsRequestDto.Plan
         };
         var response = await databaseClient.ChangeUserDetailsAsync(request);
+        public async Task SendMessage(SendMessageDTO sendMessageDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new SendMessageRequest()
+            {
+                IssueId = sendMessageDto.IssueId,
+                Title = sendMessageDto.Title,
+                Body = sendMessageDto.Body,
+                Owner = sendMessageDto.Owner
+            };
+            var response = await databaseClient.SendMessageAsync(request);
+        }
+
+        public async Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new GetMessagesByIssueIdRequest()
+            {
+                IssueId = dto.Id
+            };
+            Console.WriteLine(dto.Id);
+            var response = await databaseClient.GetMessagesByIssueIdAsync(request);
+            List<Message> messages = new List<Message>();
+            foreach (var m in response.MessageInfo)
+            {
+                Message message = new Message
+                {
+                    Title = m.Title,
+                    Body = m.Body,
+                    Owner = m.Owner,
+                    CreationTime = m.CreationTime.ToDateTime()
+                };
+                Console.WriteLine(message.Title);
+                messages.Add(message);
+            }
+            return messages;
+        }
+
+        public async Task CreateIssue(IssueCreationDTO dto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new CreateIssueRequest
+            {
+                Title = dto.Title,
+                Body = dto.Body,
+                Owner = dto.Owner
+            };
+            var response = await databaseClient.CreateIssueAsync(request);
+        }
+
+        public async Task<IEnumerable<Issue>> GetIssues()
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            Console.WriteLine("OK");
+            var request = new GetAllIssuesRequest();
+            var response = await databaseClient.GetAllIssuesAsync(request);
+            List<Issue> issues = new List<Issue>();
+            foreach (var issue in response.Issues)
+            {
+                Console.WriteLine(issue.Title);
+                Issue newIssue = new Issue
+                {
+                    Id = issue.IssueId,
+                    Title = issue.Title,
+                    Body = issue.Body,
+                    Owner = issue.OwnerId,
+                    CreationTime = issue.CreationTime.ToDateTime()
+                };
+                issues.Add(newIssue);
+            }
+            return issues;
+        }
     }
-}

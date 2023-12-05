@@ -30,7 +30,20 @@ service DatabaseService{
 
     rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
     rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
+    //register
+    rpc RegisterUser(RegisterRequest) returns (RegisterResponse);
+    rpc GetUserByEmail(UserEmailRequest) returns (UserEmailResponse);
+    rpc GetUserId(UserAccountRequest) returns (UserAccountResponse);
+    rpc CreateUserAccountNumber(AccountCreateRequest) returns (AccountCreateResponse);
+    //chat
+    rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
+    rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+    rpc GetMessagesForIssue(GetMessagesForIssueRequest) returns (GetMessagesForIssueResponse);
+    rpc GetAllIssues(GetAllIssuesRequest) returns (GetAllIssuesResponse);
+    rpc GetMessagesByIssueId(GetMessagesByIssueIdRequest) returns (GetMessagesByIssueIdResponse);
+
 }
+
 message TransferRequest{
     string senderAccount_id = 1;
     string recipientAccount_id =2;
@@ -103,6 +116,7 @@ message User
     string middleName = 4;
     string lastName = 5;
     string role = 6;
+    int32 id = 7;
 }
 message AllAccountsInfoRequest
 {
@@ -171,58 +185,3 @@ message Transactions {
     string senderName = 6;
     string receiverName = 7;
 }
-
-
-//added by vlad for register
-
-message RegisterRequest{
-    string email = 1;
-    string firstname = 2;
-    string middlename = 3;
-    string lastname = 4;
-    string password = 5;
-    string plan = 6;
-}
-message RegisterResponse{}
-
-message UserAccountRequest{
-    string email = 1;
-}
-message UserAccountResponse{
-    string user_id = 1;
-}
-
-message UserEmailRequest{
-    string email = 1;
-}
-
-message UserEmailResponse{
-    string email = 1;
-}
-
-message AccountCreateRequest{
-    string user_id = 1;
-    string accountType =2;
-    string userAccountNumber = 3;
-    string interestRate = 4;
-}
-
-message AccountCreateResponse{}
-
-message UserNewDetailsRequest{
-    string newEmail = 1;
-    string oldEmail = 2;
-    string password = 3;
-    string plan = 4;
-}
-
-message UserNewDetailsResponse{
-
-}
-
-message AccountNewBaseRateRequest{
-    string user_id = 1;
-    string baseRate = 2;
-}
-
-message AccountNewBaseRateResponse{}

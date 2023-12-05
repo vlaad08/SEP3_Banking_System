@@ -1,0 +1,11 @@
+<div class="card">
+    <h4>@Title</h4>
+    <p>@Body</p>
+    <p>@CreationTime.ToString()</p>
+</div>
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string Body { get; set; }
+    [Parameter] public int Name { get; set; }
+    [Parameter] public DateTime CreationTime { get; set; }
+}

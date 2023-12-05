@@ -6,7 +6,6 @@
 <!-- User information: Full name + the account balance
     +Buttons for making a new Transfer -->
 
-
 <div class="box">
     <div class="box-info">
         <select @bind="SelectedAccount">
@@ -20,6 +19,13 @@
             @foreach (var account in Accounts)
             {
                 if (account.AccountType.Equals("savings"))
+                {
+                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                }
+            }
+            @foreach (var account in Accounts)
+            {
+                if (account.AccountType.Equals("business"))
                 {
                     <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                 }

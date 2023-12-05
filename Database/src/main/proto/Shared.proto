@@ -30,7 +30,20 @@ service DatabaseService{
 
   rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
   rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
+  //register
+  rpc RegisterUser(RegisterRequest) returns (RegisterResponse);
+  rpc GetUserByEmail(UserEmailRequest) returns (UserEmailResponse);
+  rpc GetUserId(UserAccountRequest) returns (UserAccountResponse);
+  rpc CreateUserAccountNumber(AccountCreateRequest) returns (AccountCreateResponse);
+  //chat
+  rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessagesForIssue(GetMessagesForIssueRequest) returns (GetMessagesForIssueResponse);
+  rpc GetAllIssues(GetAllIssuesRequest) returns (GetAllIssuesResponse);
+  rpc GetMessagesByIssueId(GetMessagesByIssueIdRequest) returns (GetMessagesByIssueIdResponse);
+
 }
+
 message TransferRequest{
   string senderAccount_id = 1;
   string recipientAccount_id =2;
@@ -103,6 +116,7 @@ message User
   string middleName = 4;
   string lastName = 5;
   string role = 6;
+  int32 id = 7;
 }
 message AllAccountsInfoRequest
 {
@@ -171,6 +185,108 @@ message Transactions {
   string senderName = 6;
   string receiverName = 7;
 }
+
+
+//added by vlad for register
+
+message RegisterRequest{
+  string email = 1;
+  string firstname = 2;
+  string middlename = 3;
+  string lastname = 4;
+  string password = 5;
+  string plan = 6;
+}
+message RegisterResponse{}
+
+message UserAccountRequest{
+  string email = 1;
+}
+message UserAccountResponse{
+  string user_id = 1;
+}
+
+message UserEmailRequest{
+  string email = 1;
+}
+
+message UserEmailResponse{
+  string email = 2;
+}
+
+message AccountCreateRequest{
+  string user_id = 1;
+  string userAccountNumber = 2;
+  string interestRate = 3;
+}
+
+message AccountCreateResponse{
+}
+
+message CreateIssueRequest {
+  string title = 1;
+  string body = 2;
+  int32 owner = 3;
+}
+
+message CreateIssueResponse {
+
+}
+
+message SendMessageRequest{
+   string title = 1;
+   int32 owner = 2;
+   string body = 3;
+   int32 issue_id = 4;
+}
+
+message SendMessageResponse{
+
+}
+
+message GetMessagesForIssueRequest {
+  int32 issue_id = 1;
+}
+
+message GetMessagesForIssueResponse {
+  repeated MessageInfo messageInfo = 1;
+}
+
+message MessageInfo {
+  string title = 1;
+  int32 owner = 2;
+  string body = 3;
+  int32 issue_id = 4;
+  google.protobuf.Timestamp creation_time = 5;
+}
+
+message GetAllIssuesRequest {
+
+}
+
+message GetAllIssuesResponse {
+  repeated Issue issues =1;
+}
+
+message Issue {
+  int32 issue_id = 1;
+  string title = 2;
+  string body = 3;
+  int32 owner_id = 4;
+  google.protobuf.Timestamp creation_time = 5;
+  bool flagged = 6;
+  repeated MessageInfo messages = 7;
+}
+
+message GetMessagesByIssueIdRequest {
+  int32 issue_id = 1;
+}
+
+message GetMessagesByIssueIdResponse {
+  repeated MessageInfo messageInfo = 1;
+}
+
+
 
 
 //added by vlad for register

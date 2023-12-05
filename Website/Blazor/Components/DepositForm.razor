@@ -3,29 +3,33 @@
 @using global::Shared.Models
 @using Newtonsoft.Json
 @inject NavigationManager navMgr
-@inject ITransactionService transactioService
+@inject ITransactionService transactionService
 
 <div class="content">
     
     <div class="card">
         <div>
             <label>Your account: </label>
-            <select @bind="SelectedAccount">
-                @if (Accounts != null)
+             <select @onchange="OnAccountSelectionChanged">
+                @foreach (var account in Accounts)
                 {
-                    @foreach (var account in Accounts)
+                    if (account.AccountType.Equals("personal"))
                     {
-                        if (account.AccountType.Equals("personal"))
-                        {
-                            <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
-                        }
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                     }
-                    @foreach (var account in Accounts)
+                }
+                @foreach (var account in Accounts)
+                {
+                    if (account.AccountType.Equals("savings"))
                     {
-                        if (account.AccountType.Equals("savings"))
-                        {
-                            <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
-                        }
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
+                }
+                @foreach (var account in Accounts)
+                {
+                    if (account.AccountType.Equals("business"))
+                    {
+                        <option value="@account.AccountNumber">@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
                     }
                 }
             </select>
@@ -56,7 +60,8 @@
     {
         try
         {
-            await transactioService.Deposit(accountNumber, amount);
+            Console.WriteLine(accountNumber+"/"+amount);
+            await transactionService.Deposit(accountNumber, amount);
         }
         catch (Exception e)
         {
@@ -67,23 +72,28 @@
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
         accountNumber = e.Value!.ToString()!;
+        Console.WriteLine(accountNumber);
         return Task.CompletedTask;
     }
     
     protected override async Task OnInitializedAsync()
     {
         Accounts = await GetUserAccounts(User) ?? new List<AccountsInfo>();
+        var personalAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
+        if (personalAccount != null)
+        {
+            accountNumber = personalAccount.AccountNumber;
+        }var businessAccount = Accounts.FirstOrDefault(a => a.AccountType.Equals("business"));
+        if (businessAccount != null)
+        {
+            accountNumber = businessAccount.AccountNumber;
+        }
     }
     
     private async Task<List<AccountsInfo>> GetUserAccounts(ClaimsPrincipal user)
     {
-        if (user == null)
-        {
-            Console.WriteLine("User is null");
-            return new List<AccountsInfo>();
-        }
-
         var accountsClaim = user.FindFirst("Accounts");
+
         if (accountsClaim == null || string.IsNullOrEmpty(accountsClaim.Value))
         {
             Console.WriteLine("Accounts claim is null or empty");
@@ -92,16 +102,7 @@
 
         try
         {
-            List<AccountsInfo> accounts = JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim.Value);
-            if (accounts != null && accounts.Any())
-            {
-                var personalAccount = accounts.FirstOrDefault(a => a.AccountType.Equals("personal"));
-                if (personalAccount != null)
-                {
-                    accountNumber = personalAccount.AccountNumber;
-                }
-            }
-            return accounts ?? new List<AccountsInfo>();
+            return JsonConvert.DeserializeObject<List<AccountsInfo>>(accountsClaim.Value) ?? new List<AccountsInfo>();
         }
         catch (Exception e)
         {

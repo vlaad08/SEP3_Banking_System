@@ -73,11 +73,13 @@ public class TransactionController : ControllerBase
     {
         try
         {
+            Console.WriteLine("Atjott kocsog");
             double calculatedInterest = await loanLogic.CalculateLoan(dto);
             return Ok(calculatedInterest);
         }
         catch (Exception e)
         {
+            Console.WriteLine(e.Message);
             return BadRequest(e.Message);
         }
     }

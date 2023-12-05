@@ -4,6 +4,7 @@ using Domain.Models;
 using Grpc.DAOs;
 using Shared.DTOs;
 using AccountsInfo = Domain.Models.AccountsInfo;
+using Issue = Domain.Models.Issue;
 
 namespace Grpc;
 
@@ -22,7 +23,7 @@ public interface IGrpcClient
    Task RequestLoan(LoanRequestDTO dto);
    Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
 
-   Task<string> GetUserByEmail(UserEmailDTO userEmailDto); 
+   Task<string> GetUserByEmail(UserEmailDTO userEmailDto);
    Task RegisterUser(UserRegisterDto userRegisterDto);
 
 
@@ -30,4 +31,8 @@ public interface IGrpcClient
    Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto);
    Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
    Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto);
+   Task SendMessage(SendMessageDTO sendMessageDto);
+   Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto);
+   Task CreateIssue(IssueCreationDTO dto);
+   Task<IEnumerable<Issue>> GetIssues();
 }

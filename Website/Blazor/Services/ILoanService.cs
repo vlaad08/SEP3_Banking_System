@@ -1,6 +1,9 @@
-﻿namespace Blazor.Services;
+﻿using Shared.DTOs;
+
+namespace Blazor.Services;
 
 public interface ILoanService
 {
-    public Task<string> LoanCalculation(double Principle, int Tenure);
+    public Task<string> LoanCalculation(LoanRequestDto dto);
+    public Task RequestLoan(LoanRequestDto dto);
 }

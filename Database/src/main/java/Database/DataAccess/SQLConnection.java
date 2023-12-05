@@ -4,28 +4,37 @@ import Database.AccountsInfo;
 import Database.DTOs.*;
 import Database.Transactions;
 import Database.User;
+import Database.*;
+import Database.DTOs.*;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLConnection implements SQLConnectionInterface{
+public class SQLConnection implements SQLConnectionInterface {
     private static SQLConnection instance;
+
     protected SQLConnection() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
-    public static SQLConnection getInstance() throws SQLException
-    {
-        if (instance ==null) {
+
+    public static SQLConnection getInstance() throws SQLException {
+        if (instance == null) {
             instance = new SQLConnection();
         }
         return instance;
     }
+
     Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system","postgres","12345678");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system",
+                "postgres", "12345678");
     }
-    /** Database manipulator method, to make the transfer in the database with the given details**/
+
+    /**
+     * Database manipulator method, to make the transfer in the database with the
+     * given details
+     **/
     @Override
     public void transfer(String id_1, String id_2, double amount, String message) {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
@@ -47,7 +56,8 @@ public class SQLConnection implements SQLConnectionInterface{
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
-                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                                    +
                                     "VALUES (?, ?, ?, ?, ?)")) {
 
                         insertStatement.setTimestamp(1, now);
@@ -75,14 +85,17 @@ public class SQLConnection implements SQLConnectionInterface{
         }
     }
 
-    /* Database query method, to make the query for the available balance for the given account_id*/
+    /*
+     * Database query method, to make the query for the available balance for the
+     * given account_id
+     */
     @Override
     public double checkBalance(String account_id) throws SQLException {
-        double balance=0;
-        try (Connection connection= getConnection())
-        {
-            PreparedStatement statement=connection.prepareStatement("SELECT balance FROM account WHERE account_id = ?;");
-            statement.setString(1,account_id);
+        double balance = 0;
+        try (Connection connection = getConnection()) {
+            PreparedStatement statement = connection
+                    .prepareStatement("SELECT balance FROM account WHERE account_id = ?;");
+            statement.setString(1, account_id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 balance = result.getDouble("balance");
@@ -94,9 +107,9 @@ public class SQLConnection implements SQLConnectionInterface{
     @Override
     public String checkAccountId(String account_id) throws SQLException {
         String recipientAccount_id = "-";
-        try(Connection connection = getConnection())
-        {
-            PreparedStatement statement = connection.prepareStatement("SELECT account_id FROM account WHERE account_id = ?;");
+        try (Connection connection = getConnection()) {
+            PreparedStatement statement = connection
+                    .prepareStatement("SELECT account_id FROM account WHERE account_id = ?;");
             statement.setString(1, account_id);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -109,16 +122,14 @@ public class SQLConnection implements SQLConnectionInterface{
     @Override
     public double dailyCheck(String account_id) throws SQLException {
         double amount = 0;
-        try (Connection connection = getConnection())
-        {
+        try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT SUM(amount)\n" +
                     "FROM transactions\n" +
                     "WHERE senderAccount_id = ?\n" +
                     "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;");
-            statement.setString(1,account_id);
+            statement.setString(1, account_id);
             ResultSet result = statement.executeQuery();
-            while (result.next())
-            {
+            while (result.next()) {
                 amount = result.getDouble("sum");
             }
         }
@@ -145,8 +156,8 @@ public class SQLConnection implements SQLConnectionInterface{
 
                     insertStatement.setTimestamp(1, now);
                     insertStatement.setDouble(2, amount);
-                    //insertStatement.setNull(3, Types.VARCHAR); //message will be null
-                    insertStatement.setString(3,"deposit");//actully no this s better
+                    // insertStatement.setNull(3, Types.VARCHAR); //message will be null
+                    insertStatement.setString(3, "deposit");// actully no this s better
                     insertStatement.setString(4, account_id);
                     insertStatement.setString(5, account_id); // deposit to himself?
                     insertStatement.executeUpdate();
@@ -165,26 +176,24 @@ public class SQLConnection implements SQLConnectionInterface{
         }
     }
 
-
     @Override
     public List<User> getUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        try(Connection connection = getConnection())
-        {
+        try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT *\n" +
                     "FROM \"user\"");
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next())
-            {
+            while (resultSet.next()) {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 String firstName = resultSet.getString("firstname");
                 String middleName = resultSet.getString("middlename");
                 String lastName = resultSet.getString("lastname");
                 String role = resultSet.getString("role");
+                int id = resultSet.getInt("user_id");
 
-                User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setMiddleName(middleName).
-                setLastName(lastName).setRole(role).build();
+                User user = User.newBuilder().setEmail(email).setPassword(password).setFirstName(firstName)
+                        .setMiddleName(middleName).setLastName(lastName).setRole(role).setId(id).build();
                 users.add(user);
             }
         }
@@ -199,14 +208,15 @@ public class SQLConnection implements SQLConnectionInterface{
                     "FROM account a JOIN \"user\" u ON a.user_id = u.user_id;";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next())
-                {
+                while (resultSet.next()) {
                     String accountNumber = resultSet.getString("account_id");
                     String ownerName = resultSet.getString("firstname") + " " + resultSet.getString("lastname");
                     double accountBalance = resultSet.getDouble("balance");
                     String accountType = resultSet.getString("account_type");
 
-                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber).setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType).build();
+                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber)
+                            .setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType)
+                            .build();
                     accountsInfoList.add(accountsInfo);
                 }
             }
@@ -232,7 +242,9 @@ public class SQLConnection implements SQLConnectionInterface{
                     double accountBalance = resultSet.getDouble("balance");
                     String accountType = resultSet.getString("account_type");
 
-                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber).setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType).build();
+                    AccountsInfo accountsInfo = AccountsInfo.newBuilder().setAccountNumber(accountNumber)
+                            .setOwnerName(ownerName).setAccountBalance(accountBalance).setAccountType(accountType)
+                            .build();
                     accountsInfoList.add(accountsInfo);
                 }
             }
@@ -241,7 +253,7 @@ public class SQLConnection implements SQLConnectionInterface{
     }
 
     @Override
-    //gpt enhanced code not tested
+    // gpt enhanced code not tested
     public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
@@ -266,9 +278,10 @@ public class SQLConnection implements SQLConnectionInterface{
                     updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
                     int updatedRows = updateStatement.executeUpdate();
 
-                    if (updatedRows > 0) {  // Check if the update was successful
+                    if (updatedRows > 0) { // Check if the update was successful
                         PreparedStatement insertStatement = connection.prepareStatement(
-                                "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                                        +
                                         "VALUES (?, ?, ?, ?, ?)");
 
                         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
@@ -281,7 +294,7 @@ public class SQLConnection implements SQLConnectionInterface{
                         insertStatement.executeUpdate();
 
                         connection.commit();
-                        return true;  // Return true indicating success
+                        return true; // Return true indicating success
                     } else {
                         throw new RuntimeException("Update failed. No rows affected.");
                     }
@@ -293,7 +306,7 @@ public class SQLConnection implements SQLConnectionInterface{
                 throw new RuntimeException("Error executing statements", e);
             }
         } catch (SQLException e) {
-            return false;  // Return false in case of an exception while opening/closing connection
+            return false; // Return false in case of an exception while opening/closing connection
         }
     }
 
@@ -326,7 +339,8 @@ public class SQLConnection implements SQLConnectionInterface{
 
             try {
                 PreparedStatement insertAccountStatement = connection.prepareStatement(
-                        "INSERT INTO loan(account_id, remaining_amount, interest_rate, monthly_payment, end_date, loan_amount) " +
+                        "INSERT INTO loan(account_id, remaining_amount, interest_rate, monthly_payment, end_date, loan_amount) "
+                                +
                                 "VALUES (?, ?, ?, ?, ?, ?)");
                 java.sql.Timestamp sqlEndDate = new java.sql.Timestamp(loanRequestDTO.getEndDate().getSeconds() * 1000);
                 insertAccountStatement.setString(1, loanRequestDTO.getAccountId());
@@ -367,7 +381,8 @@ public class SQLConnection implements SQLConnectionInterface{
         List<Transactions> transactionsList = new ArrayList<>();
 
         try (Connection connection = getConnection()) {
-            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName " +
+            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName "
+                    +
                     "FROM transactions t " +
                     "JOIN account a1 ON t.senderAccount_id = a1.account_id " +
                     "JOIN account a2 ON t.recipientAccount_id = a2.account_id " +
@@ -411,64 +426,236 @@ public class SQLConnection implements SQLConnectionInterface{
                 }
             }
         } catch (SQLException e) {
-            // Handle SQLException
+
             throw new RuntimeException("Error executing statements", e);
         }
 
         return transactionsList;
     }
 
-    @Override public void registerUser(RegisterRequestDTO registerUserDTO)
-        throws SQLException
-    {
+    @Override
+    public void registerUser(RegisterRequestDTO registerUserDTO)
+            throws SQLException {
         try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO \"user\" (email, firstName, middleName, "
-            + "lastName, password, role, plan)\n"
-            + "VALUES\n"
-            + "  (?, ?, ?, ?, ?, ?, ?);")){
+                PreparedStatement statement = connection
+                        .prepareStatement("INSERT INTO \"user\" (email, firstName, middleName, "
+                                + "lastName, password, role, plan)\n"
+                                + "VALUES\n"
+                                + "  (?, ?, ?, ?, ?, ?, ?);")) {
             statement.setString(1, registerUserDTO.getEmail());
             statement.setString(2, registerUserDTO.getFirstname());
             statement.setString(3, registerUserDTO.getMiddlename());
             statement.setString(4, registerUserDTO.getLastname());
             statement.setString(5, registerUserDTO.getPassword());
             statement.setString(6, "Client");
-            statement.setString(7,registerUserDTO.getPlan());
+            statement.setString(7, registerUserDTO.getPlan());
             statement.executeUpdate();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Override public int getUserID(UserAccountRequestDTO userAccountRequestDTO)
-        throws SQLException
-    {
-        try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT user_id FROM \"user\" where email = ?;"))
-        {
-            statement.setString(1, userAccountRequestDTO.getEmail());
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next())
-            {
-                return resultSet.getInt("user_id");
+    @Override
+    public void createIssue(IssueCreationDTO issueDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                PreparedStatement insertIssueStatement = connection.prepareStatement(
+                        "INSERT INTO issues(title, body, owner_id, creation_time, flagged) " +
+                                "VALUES (?, ?, ?, ?, ?)");
+
+                insertIssueStatement.setString(1, issueDTO.getTitle());
+                insertIssueStatement.setString(2, issueDTO.getBody());
+                insertIssueStatement.setInt(3, issueDTO.getOwnerId());
+                insertIssueStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                insertIssueStatement.setBoolean(5, false); // default is false, will change if employee changes it
+
+                insertIssueStatement.executeUpdate();
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing statements", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
+
+    @Override
+    public void sendMessage(MessageDTO messageDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                String query = "INSERT INTO messages(title, body, owner_id, creation_time, issue_id) VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, messageDTO.getTitle());
+                    statement.setString(2, messageDTO.getBody());
+                    statement.setInt(3, messageDTO.getOwner());
+                    statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                    statement.setInt(5, messageDTO.getIssueId()); // Assuming you have a getIssueId() method in
+                                                                  // MessageDTO
+
+                    statement.executeUpdate();
+                }
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing sendMessage statement", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
+
+    @Override
+    public List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException {
+        List<MessageInfo> messages = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT title, body, owner_id, creation_time FROM messages WHERE issue_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, issueinfoDTO.getId());
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                        com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                                .setSeconds(sqlTimestamp.getTime() / 1000)
+                                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                                .build();
+
+                        MessageInfo messageInfo = MessageInfo.newBuilder()
+                                .setTitle(resultSet.getString("title"))
+                                .setBody(resultSet.getString("body"))
+                                .setOwner(resultSet.getInt("owner_id"))
+                                .setCreationTime(date)
+                                .setIssueId(issueinfoDTO.getId())
+                                .build();
+
+                        messages.add(messageInfo);
+                    }
+                }
             }
         }
-        catch (SQLException e)
-        {
+
+        return messages;
+    }
+
+    @Override
+    public List<Issue> getAllIssues() throws SQLException {
+        List<Issue> issues = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT issue_id, title, body, owner_id, creation_time, flagged FROM issues";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    int issueId = resultSet.getInt("issue_id");
+                    String title = resultSet.getString("title");
+                    String body = resultSet.getString("body");
+                    int ownerId = resultSet.getInt("owner_id");
+
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                            .setSeconds(sqlTimestamp.getTime() / 1000)
+                            .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                            .build();
+                    boolean flagged = resultSet.getBoolean("flagged");
+
+                    List<MessageInfo> messages = getMessagesForIssue(new IssueinfoDTO(issueId));
+
+                    Issue issue = Issue.newBuilder()
+                            .setIssueId(issueId)
+                            .setTitle(title)
+                            .setBody(body)
+                            .setOwnerId(ownerId)
+                            .setCreationTime(date)
+                            .setFlagged(flagged)
+                            .addAllMessages(messages)
+                            .build();
+
+                    issues.add(issue);
+                }
+            }
+        }
+
+        return issues;
+    }
+
+    @Override
+    public List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException {
+        List<MessageInfo> messages = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            String query = "SELECT title, body, owner_id, creation_time FROM messages WHERE issue_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, issueinfoDTO.getId());
+                ResultSet resultSet = statement.executeQuery();
+                System.out.println("GECI6");
+                while (resultSet.next()) {
+                    System.out.println("GECI7");
+                    String title = resultSet.getString("title");
+                    System.out.println("GECI8");
+                    String body = resultSet.getString("body");
+                    System.out.println("GECI9");
+                    int ownerId = resultSet.getInt("owner_id");
+                    System.out.println("GECI10");
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                    System.out.println("GECI11");
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                            .setSeconds(sqlTimestamp.getTime() / 1000)
+                            .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                            .build();
+                    System.out.println("GECI12");
+                    System.out.println(title);
+                    System.out.println("FOOOOS");
+
+                    MessageInfo messageInfo = MessageInfo.newBuilder()
+                            .setTitle(title)
+                            .setBody(body)
+                            .setOwner(ownerId)
+                            .setCreationTime(date)
+                            .setIssueId(issueinfoDTO.getId())
+                            .build();
+
+                    messages.add(messageInfo);
+
+                }
+            }
+        }
+
+        return messages;
+    }
+
+    @Override
+    public int getUserID(UserAccountRequestDTO userAccountRequestDTO)
+            throws SQLException {
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection
+                        .prepareStatement("SELECT user_id FROM \"user\" where email = ?;")) {
+            statement.setString(1, userAccountRequestDTO.getEmail());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("user_id");
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return 0;
     }
 
-    @Override public void generateAccountNumber(UserAccountDTO userAccountDTO)
-        throws SQLException
-    {
-        try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO account "
-            + "(account_id, user_id, balance, account_type, interest_rate)\n"
-            + "VALUES\n" + "  (?, ?, 0, ?, ?);"))
-        {
+    @Override
+    public void generateAccountNumber(UserAccountDTO userAccountDTO)
+            throws SQLException {
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO account "
+                        + "(account_id, user_id, balance, account_type, interest_rate)\n"
+                        + "VALUES\n" + "  (?, ?, 0, ?, ?);")) {
             statement.setString(1, userAccountDTO.getUserAccountNumber());
             statement.setInt(2, userAccountDTO.getUser_id());
             statement.setString(3, userAccountDTO.getAccountType());
@@ -477,52 +664,46 @@ public class SQLConnection implements SQLConnectionInterface{
         }
     }
 
-    @Override public String getUserEmail(
-        UserAccountRequestDTO userAccountRequestDTO) throws SQLException
-    {
-        try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT email FROM \"user\" WHERE email = ?"))
-        {
-            statement.setString(1,userAccountRequestDTO.getEmail());
+    @Override
+    public String getUserEmail(
+            UserAccountRequestDTO userAccountRequestDTO) throws SQLException {
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection
+                        .prepareStatement("SELECT email FROM \"user\" WHERE email = ?")) {
+            statement.setString(1, userAccountRequestDTO.getEmail());
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next())
-            {
+            if (resultSet.next()) {
                 return resultSet.getString("email");
             }
         }
         return "";
     }
 
-    @Override public void updateNewBaseRate(
-        AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException
-    {
-        try
-            (Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE account SET "
-                + "interest_rate = ? where user_id = ?"))
-        {
+    @Override
+    public void updateNewBaseRate(
+            AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException {
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement("UPDATE account SET "
+                        + "interest_rate = ? where user_id = ?")) {
             statement.setDouble(1, accountNewBaseRateDTO.getBaseRate());
             statement.setInt(2, accountNewBaseRateDTO.getUser_id());
             statement.executeUpdate();
         }
     }
 
-    @Override public void updateUserInformation(
-        UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException
-    {
-        try
-            (Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                "UPDATE \"user\" SET email = ?, password = ?, plan = ? WHERE "
-                    + "email = ?"
-            ))
-        {
+    @Override
+    public void updateUserInformation(
+            UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException {
+        try (Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        "UPDATE \"user\" SET email = ?, password = ?, plan = ? WHERE "
+                                + "email = ?")) {
             statement.setString(1, userNewDetailsRequestDTO.getNewEmail());
             statement.setString(2, userNewDetailsRequestDTO.getPassword());
             statement.setString(3, userNewDetailsRequestDTO.getPlan());
             statement.setString(4, userNewDetailsRequestDTO.getOldEmail());
             statement.executeUpdate();
         }
-   }
+    }
 
 }

@@ -32,7 +32,9 @@ builder.Services.AddScoped<ILoanLogic, LoanLogic>();
 builder.Services.AddScoped<ILoanDAO, LoanDao>();
 builder.Services.AddScoped<IUserRegisterDAO, UserRegisterDao>();
 builder.Services.AddScoped<ISettingsDAO, SettingsDao>();
-builder.Services.AddScoped<ISettingsLogic, SettingsLogic>();
+builder.Services.AddScoped<ISettingsLogic, SettingsLogic>(); builder.Services.AddScoped<IIssueLogic, IssueLogic>();
+builder.Services.AddScoped<IIssueDAO, IssueDao>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
