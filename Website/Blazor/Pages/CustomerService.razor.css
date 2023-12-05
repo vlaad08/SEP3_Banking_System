@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 1000px;
 }
 
 .card{
@@ -11,15 +12,23 @@
     background-color: rgb(27, 27, 27);
     border-radius: 2px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin: 1rem;
     width: 40rem;
     color: white;
 }
+::-webkit-scrollbar{
+    width: 9px;
+}
+::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 15px;
+}
 input {
     border: 1px solid #ccc;
     border-radius: 2px;
-    padding: 1rem;
+    /*padding: 1rem;*/
     width: 100%;
 }
 
@@ -45,4 +54,38 @@ button:hover {
     transition: 0.2s ease-in-out;
     background-color: #420000;;
     cursor: pointer;
+}
+
+p{
+    color: white;
+}
+h1, h2, h3, h4, h5, h6
+{
+    color: white;
+}
+
+#body{
+    height: 200px;
+    border: solid 1px white;
+}
+.flexColumn
+{
+    display: flex;
+    align-content: center;
+}
+
+.messageBox{
+    margin: 40px auto;
+    width: 70%;
+}
+#messageh5{
+    margin-bottom: 10px;
+}
+#messageBody
+{
+    height: 100px;
+}
+#messageButton{
+    position: relative;
+    right: 0;
 }

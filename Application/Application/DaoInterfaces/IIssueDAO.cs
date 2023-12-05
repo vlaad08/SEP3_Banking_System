@@ -6,6 +6,7 @@ namespace Application.DaoInterfaces;
 public interface IIssueDAO
 {
     Task SendMessage(SendMessageDTO dto);
-    Task<IEnumerable<Message>> GetMessagesForIssue(IssueGetterDTO dto);
+    Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto);
     Task CreateIssue(IssueCreationDTO dto);
+    Task<IEnumerable<Issue>> GetIssues();
 }

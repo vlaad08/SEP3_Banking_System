@@ -125,6 +125,14 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.GetMessagesForIssueRequest> __Marshaller_Database_GetMessagesForIssueRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetMessagesForIssueRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.GetMessagesForIssueResponse> __Marshaller_Database_GetMessagesForIssueResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetMessagesForIssueResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.GetAllIssuesRequest> __Marshaller_Database_GetAllIssuesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetAllIssuesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.GetAllIssuesResponse> __Marshaller_Database_GetAllIssuesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetAllIssuesResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.GetMessagesByIssueIdRequest> __Marshaller_Database_GetMessagesByIssueIdRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetMessagesByIssueIdRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.GetMessagesByIssueIdResponse> __Marshaller_Database_GetMessagesByIssueIdResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GetMessagesByIssueIdResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse> __Method_Transfer = new grpc::Method<global::Database.TransferRequest, global::Database.TransferResponse>(
@@ -285,6 +293,22 @@ namespace Database {
         "GetMessagesForIssue",
         __Marshaller_Database_GetMessagesForIssueRequest,
         __Marshaller_Database_GetMessagesForIssueResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetAllIssuesRequest, global::Database.GetAllIssuesResponse> __Method_GetAllIssues = new grpc::Method<global::Database.GetAllIssuesRequest, global::Database.GetAllIssuesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAllIssues",
+        __Marshaller_Database_GetAllIssuesRequest,
+        __Marshaller_Database_GetAllIssuesResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetMessagesByIssueIdRequest, global::Database.GetMessagesByIssueIdResponse> __Method_GetMessagesByIssueId = new grpc::Method<global::Database.GetMessagesByIssueIdRequest, global::Database.GetMessagesByIssueIdResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetMessagesByIssueId",
+        __Marshaller_Database_GetMessagesByIssueIdRequest,
+        __Marshaller_Database_GetMessagesByIssueIdResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -774,6 +798,46 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesForIssueResponse> GetMessagesForIssueAsync(global::Database.GetMessagesForIssueRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetMessagesForIssue, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetAllIssuesResponse GetAllIssues(global::Database.GetAllIssuesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllIssues(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetAllIssuesResponse GetAllIssues(global::Database.GetAllIssuesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAllIssues, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetAllIssuesResponse> GetAllIssuesAsync(global::Database.GetAllIssuesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllIssuesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetAllIssuesResponse> GetAllIssuesAsync(global::Database.GetAllIssuesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAllIssues, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesByIssueIdResponse GetMessagesByIssueId(global::Database.GetMessagesByIssueIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesByIssueId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesByIssueIdResponse GetMessagesByIssueId(global::Database.GetMessagesByIssueIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetMessagesByIssueId, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesByIssueIdResponse> GetMessagesByIssueIdAsync(global::Database.GetMessagesByIssueIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesByIssueIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesByIssueIdResponse> GetMessagesByIssueIdAsync(global::Database.GetMessagesByIssueIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetMessagesByIssueId, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

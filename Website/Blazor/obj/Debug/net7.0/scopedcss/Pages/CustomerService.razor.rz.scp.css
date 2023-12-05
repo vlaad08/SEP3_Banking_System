@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 1000px;
 }
 
 .card[b-3cu29tzlu1]{
@@ -11,15 +12,23 @@
     background-color: rgb(27, 27, 27);
     border-radius: 2px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin: 1rem;
     width: 40rem;
     color: white;
 }
+[b-3cu29tzlu1]::-webkit-scrollbar{
+    width: 9px;
+}
+[b-3cu29tzlu1]::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 15px;
+}
 input[b-3cu29tzlu1] {
     border: 1px solid #ccc;
     border-radius: 2px;
-    padding: 1rem;
+    /*padding: 1rem;*/
     width: 100%;
 }
 
@@ -45,4 +54,38 @@ button:hover[b-3cu29tzlu1] {
     transition: 0.2s ease-in-out;
     background-color: #420000;;
     cursor: pointer;
+}
+
+p[b-3cu29tzlu1]{
+    color: white;
+}
+h1[b-3cu29tzlu1], h2[b-3cu29tzlu1], h3[b-3cu29tzlu1], h4[b-3cu29tzlu1], h5[b-3cu29tzlu1], h6[b-3cu29tzlu1]
+{
+    color: white;
+}
+
+#body[b-3cu29tzlu1]{
+    height: 200px;
+    border: solid 1px white;
+}
+.flexColumn[b-3cu29tzlu1]
+{
+    display: flex;
+    align-content: center;
+}
+
+.messageBox[b-3cu29tzlu1]{
+    margin: 40px auto;
+    width: 70%;
+}
+#messageh5[b-3cu29tzlu1]{
+    margin-bottom: 10px;
+}
+#messageBody[b-3cu29tzlu1]
+{
+    height: 100px;
+}
+#messageButton[b-3cu29tzlu1]{
+    position: relative;
+    right: 0;
 }
