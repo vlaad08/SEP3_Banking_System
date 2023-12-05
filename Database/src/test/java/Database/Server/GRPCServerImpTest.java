@@ -200,7 +200,7 @@ public class GRPCServerImpTest {
     @Test
     void lastInterest_calls_dao_and_sends_response() throws SQLException {
         StreamObserver<LastInterestResponse> response = Mockito.mock(StreamObserver.class);
-        LastInterestRequest request = LastInterestRequest.newBuilder().setAccoutNumber("aaaabbbbccccdddd").build();
+        LastInterestRequest request = LastInterestRequest.newBuilder().setAccountNumber("aaaabbbbccccdddd").build();
         grpcServerImp.lastInterest(request, response);
 
         Mockito.verify(transactionDao).lastInterest(userInfoAccNumDto.capture());

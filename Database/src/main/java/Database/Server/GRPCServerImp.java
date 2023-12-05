@@ -244,7 +244,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             UserAccountRequestDTO userAccountRequestDTO = new UserAccountRequestDTO(request.getEmail());
             int user_id = registerDao.getUserID(userAccountRequestDTO);
             UserAccountResponse response = UserAccountResponse.newBuilder().setUserId(
-                    String.valueOf(user_id)).build();
+                    user_id).build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         } catch (SQLException e) {
@@ -257,8 +257,8 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             StreamObserver<AccountCreateResponse> responseStreamObserver) {
         try {
             UserAccountDTO userAccountDTO = new UserAccountDTO(
-                    Integer.parseInt(request.getUserId()), request.getUserAccountNumber(), request.getAccountType(),
-                    Double.parseDouble(request.getInterestRate()));
+                    request.getUserId(), request.getUserAccountNumber(), /*request.getAccountType(),*/
+                    request.getInterestRate());
             registerDao.generateAccountNumber(userAccountDTO);
             AccountCreateResponse response = AccountCreateResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
@@ -288,7 +288,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             StreamObserver<AccountNewBaseRateResponse> responseStreamObserver) {
         try {
             AccountNewBaseRateDTO accountNewBaseRateDTO = new AccountNewBaseRateDTO(
-                    Integer.parseInt(request.getUserId()), Double.parseDouble(request.getBaseRate()));
+                    request.getUserId(), request.getBaseRate());
             credentialChangerDao.UpdateNewBaseRate(accountNewBaseRateDTO);
             AccountNewBaseRateResponse response = AccountNewBaseRateResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
