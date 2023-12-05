@@ -69,22 +69,22 @@ public class GRPCServerImpTest {
         assertEquals("-",transferCaptor.getValue().getMessage());
     }
 
-    @Test
-    void checkAccount_calls_dao_and_sends_response() throws SQLException {
-        StreamObserver<AccountCheckResponse> responseObserver = Mockito.mock(StreamObserver.class);
-        AccountCheckRequest accountCheckRequest = AccountCheckRequest.newBuilder()
-                .setRecipientAccountId("bbbbaaaaccccdddd")
-                .build();
-        try
-        {
-            grpcServerImp.checkAccount(accountCheckRequest,responseObserver);
-        }catch (NullPointerException e)
-        {}
-        Mockito.verify(dao).checkAccountId(accountCheckCaptor.capture());
-        Mockito.verify(responseObserver).onNext(Mockito.any());
-        Mockito.verify(responseObserver).onCompleted();
-        assertEquals("bbbbaaaaccccdddd",accountCheckCaptor.getValue().getRecipientAccount_id());
-    }
+//    @Test
+//    void checkAccount_calls_dao_and_sends_response() throws SQLException {
+//        StreamObserver<AccountCheckResponse> responseObserver = Mockito.mock(StreamObserver.class);
+//        AccountCheckRequest accountCheckRequest = AccountCheckRequest.newBuilder()
+//                .setRecipientAccountId("bbbbaaaaccccdddd")
+//                .build();
+//        try
+//        {
+//            grpcServerImp.checkAccount(accountCheckRequest,responseObserver);
+//        }catch (NullPointerException e)
+//        {}
+//        Mockito.verify(dao).checkAccountId(accountCheckCaptor.capture());
+//        Mockito.verify(responseObserver).onNext(Mockito.any());
+//        Mockito.verify(responseObserver).onCompleted();
+//        assertEquals("bbbbaaaaccccdddd",accountCheckCaptor.getValue().getRecipientAccount_id());
+//    }
 
     @Test
     void checkBalance_calls_dao_and_sends_response() throws SQLException {

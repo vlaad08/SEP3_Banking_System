@@ -18,7 +18,7 @@ public class UserRegisterDaoTests
     
     
     [Fact]
-    public async Task VerifyUser_ValidEmail_ReturnsEmail()
+    public async Task verifying_users_email_returns_the_email()
     {
         var userEmailDto = new UserEmailDTO { Email = "test@example.com" };
         mockGrpcClient.Setup(client => client.GetUserByEmail(userEmailDto))
@@ -30,7 +30,7 @@ public class UserRegisterDaoTests
     }
     
     [Fact]
-    public async Task RegisterUser_ValidData_RegistersUser()
+    public async Task registering_the_user_with_valid_data()
     {
         var userRegisterDto = new UserRegisterDto
         {
@@ -52,7 +52,7 @@ public class UserRegisterDaoTests
     
     
     [Fact]
-    public async Task GetUserId_ExistingUser_ReturnsUserId()
+    public async Task getting_user_id_by_email_returns_user_id()
     {
         
         var userEmailDto = new UserEmailDTO { Email = "test@example.com" };

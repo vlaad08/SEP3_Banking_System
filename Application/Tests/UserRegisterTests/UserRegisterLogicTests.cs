@@ -25,7 +25,7 @@ public class UserRegisterLogicTests
     
     
     [Fact]
-    public async Task VerifyUser_WithExistingEmail_ReturnsTrue()
+    public async Task verifying_user_with_email_returns_true()
     {
         
         var userRegisterDto = new UserRegisterDto { Email = "existing@example.com" };
@@ -39,13 +39,13 @@ public class UserRegisterLogicTests
     }
 
     [Fact]
-    public async Task VerifyUser_WithNonExistingEmail_ReturnsFalse()
+    public async Task veryfing_user_with_email_returns_false()
     {
         // Arrange similar to above, but return a non-matching email or null
     }
     
     [Fact]
-    public async Task RegisterUser_CallsRegisterDaoWithValidData()
+    public async Task register_user_calls_the_UserRegisterDao()
     { 
         var userRegisterDto = new UserRegisterDto { /* Populate with test data */ };
         mockRegisterDao.Setup(dao => dao.RegisterUser(userRegisterDto)).Returns(Task.CompletedTask);
@@ -56,7 +56,7 @@ public class UserRegisterLogicTests
     }
     
     [Fact]
-    public async Task GetUserId_WithValidEmail_ReturnsUserId()
+    public async Task getting_user_with_valid_email_returns_the_id()
     {
         
         var userEmailDto = new UserEmailDTO { Email = "test@example.com" };
@@ -70,7 +70,7 @@ public class UserRegisterLogicTests
     [Fact]
     public async Task VerifyAccountNumber_WithValidAccount_ReturnsTrue()
     {
-        var transferRequestDto = new TransferRequestDTO { /* Populate with test data */ };
+        var transferRequestDto = new TransferRequestDTO { };
         mockRegisterDao.Setup(dao => dao.VerifyAccountNumber(transferRequestDto)).ReturnsAsync("valid_account_number");
 
         
@@ -79,15 +79,9 @@ public class UserRegisterLogicTests
         Assert.True(result);
     } 
 
-    [Fact]
-    public async Task VerifyAccountNumber_WithInvalidAccount_ReturnsFalse()
-    {
-        // Arrange with an invalid account number
-    }
-    
     
     [Fact]
-    public async Task CreateUserAccountNumber_CallsRegisterDaoWithValidData()
+    public async Task create_user_account_calls_RegisterDao()
     {
         
         var accountCreateRequestDto = new AccountCreateRequestDto {  };

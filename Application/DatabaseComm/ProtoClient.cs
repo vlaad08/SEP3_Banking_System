@@ -254,7 +254,7 @@ public class ProtoClient:IGrpcClient
             Middlename = userRegisterDto.Middlename,
             Lastname = userRegisterDto.Lastname,
             Password = userRegisterDto.Password,
-            Plan = "Client"
+            Plan = userRegisterDto.Plan
         };
         var response = await databaseClient.RegisterUserAsync(request);
     }
@@ -281,6 +281,7 @@ public class ProtoClient:IGrpcClient
             AccountType = accountCreateRequestDto.AccountType,
             UserAccountNumber = accountCreateRequestDto.UserAccountNumber,
             InterestRate = accountCreateRequestDto.InterestRate.ToString(),
+            
         };
         var response = await databaseClient.CreateUserAccountNumberAsync(request);
     }

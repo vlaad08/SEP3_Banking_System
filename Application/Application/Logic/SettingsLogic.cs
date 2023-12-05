@@ -27,7 +27,6 @@ public class SettingsLogic : ISettingsLogic
             
             int user_id = await registerDao.GetUserId(userEmailDto);
 
-            Console.WriteLine(user_id);
             
             double newBaseRate = 1.7;
             if (userNewDetailsRequestDto.Plan == "Premium")
@@ -43,7 +42,6 @@ public class SettingsLogic : ISettingsLogic
 
 
             await settingsDao.ChangeBaseRate(accountNewBaseRateDto);
-            Console.WriteLine("coaie");
 
             await settingsDao.ChangeUserDetails(userNewDetailsRequestDto);
         }
