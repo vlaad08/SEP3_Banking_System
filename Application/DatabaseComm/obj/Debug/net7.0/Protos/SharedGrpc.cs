@@ -7,8 +7,7 @@
 
 using grpc = global::Grpc.Core;
 
-namespace Database
-{
+namespace Database {
   public static partial class DatabaseService
   {
     static readonly string __ServiceName = "Database.DatabaseService";
@@ -16,7 +15,7 @@ namespace Database
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
     {
-#if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
       if (message is global::Google.Protobuf.IBufferMessage)
       {
         context.SetPayloadLength(message.CalculateSize());
@@ -24,7 +23,7 @@ namespace Database
         context.Complete();
         return;
       }
-#endif
+      #endif
       context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
     }
 
@@ -37,12 +36,12 @@ namespace Database
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
     {
-#if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
       if (__Helper_MessageCache<T>.IsBufferMessage)
       {
         return parser.ParseFrom(context.PayloadAsReadOnlySequence());
       }
-#endif
+      #endif
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
@@ -122,22 +121,6 @@ namespace Database
     static readonly grpc::Marshaller<global::Database.AccountNewBaseRateRequest> __Marshaller_Database_AccountNewBaseRateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AccountNewBaseRateRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.AccountNewBaseRateResponse> __Marshaller_Database_AccountNewBaseRateResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AccountNewBaseRateResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.RegisterRequest> __Marshaller_Database_RegisterRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.RegisterRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.RegisterResponse> __Marshaller_Database_RegisterResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.RegisterResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.UserEmailRequest> __Marshaller_Database_UserEmailRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserEmailRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.UserEmailResponse> __Marshaller_Database_UserEmailResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserEmailResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.UserAccountRequest> __Marshaller_Database_UserAccountRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserAccountRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.UserAccountResponse> __Marshaller_Database_UserAccountResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserAccountResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.AccountCreateRequest> __Marshaller_Database_AccountCreateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AccountCreateRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Database.AccountCreateResponse> __Marshaller_Database_AccountCreateResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AccountCreateResponse.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.CreateIssueRequest> __Marshaller_Database_CreateIssueRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.CreateIssueRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -262,6 +245,94 @@ namespace Database
         "GetTransactions",
         __Marshaller_Database_GetTransactionsRequest,
         __Marshaller_Database_GetTransactionsResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.RegisterRequest, global::Database.RegisterResponse> __Method_RegisterUser = new grpc::Method<global::Database.RegisterRequest, global::Database.RegisterResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RegisterUser",
+        __Marshaller_Database_RegisterRequest,
+        __Marshaller_Database_RegisterResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserEmailRequest, global::Database.UserEmailResponse> __Method_GetUserByEmail = new grpc::Method<global::Database.UserEmailRequest, global::Database.UserEmailResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetUserByEmail",
+        __Marshaller_Database_UserEmailRequest,
+        __Marshaller_Database_UserEmailResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserAccountRequest, global::Database.UserAccountResponse> __Method_GetUserId = new grpc::Method<global::Database.UserAccountRequest, global::Database.UserAccountResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetUserId",
+        __Marshaller_Database_UserAccountRequest,
+        __Marshaller_Database_UserAccountResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.AccountCreateRequest, global::Database.AccountCreateResponse> __Method_CreateUserAccountNumber = new grpc::Method<global::Database.AccountCreateRequest, global::Database.AccountCreateResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateUserAccountNumber",
+        __Marshaller_Database_AccountCreateRequest,
+        __Marshaller_Database_AccountCreateResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserNewDetailsRequest, global::Database.UserNewDetailsResponse> __Method_ChangeUserDetails = new grpc::Method<global::Database.UserNewDetailsRequest, global::Database.UserNewDetailsResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ChangeUserDetails",
+        __Marshaller_Database_UserNewDetailsRequest,
+        __Marshaller_Database_UserNewDetailsResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.AccountNewBaseRateRequest, global::Database.AccountNewBaseRateResponse> __Method_ChangeBaseRate = new grpc::Method<global::Database.AccountNewBaseRateRequest, global::Database.AccountNewBaseRateResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ChangeBaseRate",
+        __Marshaller_Database_AccountNewBaseRateRequest,
+        __Marshaller_Database_AccountNewBaseRateResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.CreateIssueRequest, global::Database.CreateIssueResponse> __Method_CreateIssue = new grpc::Method<global::Database.CreateIssueRequest, global::Database.CreateIssueResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateIssue",
+        __Marshaller_Database_CreateIssueRequest,
+        __Marshaller_Database_CreateIssueResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.SendMessageRequest, global::Database.SendMessageResponse> __Method_SendMessage = new grpc::Method<global::Database.SendMessageRequest, global::Database.SendMessageResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SendMessage",
+        __Marshaller_Database_SendMessageRequest,
+        __Marshaller_Database_SendMessageResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetMessagesForIssueRequest, global::Database.GetMessagesForIssueResponse> __Method_GetMessagesForIssue = new grpc::Method<global::Database.GetMessagesForIssueRequest, global::Database.GetMessagesForIssueResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetMessagesForIssue",
+        __Marshaller_Database_GetMessagesForIssueRequest,
+        __Marshaller_Database_GetMessagesForIssueResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetAllIssuesRequest, global::Database.GetAllIssuesResponse> __Method_GetAllIssues = new grpc::Method<global::Database.GetAllIssuesRequest, global::Database.GetAllIssuesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAllIssues",
+        __Marshaller_Database_GetAllIssuesRequest,
+        __Marshaller_Database_GetAllIssuesResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetMessagesByIssueIdRequest, global::Database.GetMessagesByIssueIdResponse> __Method_GetMessagesByIssueId = new grpc::Method<global::Database.GetMessagesByIssueIdRequest, global::Database.GetMessagesByIssueIdResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetMessagesByIssueId",
+        __Marshaller_Database_GetMessagesByIssueIdRequest,
+        __Marshaller_Database_GetMessagesByIssueIdResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -555,6 +626,254 @@ namespace Database
       public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetTransactionsAsync(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetTransactions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.RegisterResponse RegisterUser(global::Database.RegisterRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RegisterUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.RegisterResponse RegisterUser(global::Database.RegisterRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RegisterUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.RegisterResponse> RegisterUserAsync(global::Database.RegisterRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RegisterUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.RegisterResponse> RegisterUserAsync(global::Database.RegisterRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RegisterUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserEmailResponse GetUserByEmail(global::Database.UserEmailRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetUserByEmail(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserEmailResponse GetUserByEmail(global::Database.UserEmailRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetUserByEmail, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserEmailResponse> GetUserByEmailAsync(global::Database.UserEmailRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetUserByEmailAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserEmailResponse> GetUserByEmailAsync(global::Database.UserEmailRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetUserByEmail, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserAccountResponse GetUserId(global::Database.UserAccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetUserId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserAccountResponse GetUserId(global::Database.UserAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetUserId, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserAccountResponse> GetUserIdAsync(global::Database.UserAccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetUserIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserAccountResponse> GetUserIdAsync(global::Database.UserAccountRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetUserId, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AccountCreateResponse CreateUserAccountNumber(global::Database.AccountCreateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateUserAccountNumber(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AccountCreateResponse CreateUserAccountNumber(global::Database.AccountCreateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateUserAccountNumber, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AccountCreateResponse> CreateUserAccountNumberAsync(global::Database.AccountCreateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateUserAccountNumberAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AccountCreateResponse> CreateUserAccountNumberAsync(global::Database.AccountCreateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateUserAccountNumber, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewDetailsResponse ChangeUserDetails(global::Database.UserNewDetailsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ChangeUserDetails(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewDetailsResponse ChangeUserDetails(global::Database.UserNewDetailsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ChangeUserDetails, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewDetailsResponse> ChangeUserDetailsAsync(global::Database.UserNewDetailsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ChangeUserDetailsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewDetailsResponse> ChangeUserDetailsAsync(global::Database.UserNewDetailsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ChangeUserDetails, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AccountNewBaseRateResponse ChangeBaseRate(global::Database.AccountNewBaseRateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ChangeBaseRate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.AccountNewBaseRateResponse ChangeBaseRate(global::Database.AccountNewBaseRateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ChangeBaseRate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AccountNewBaseRateResponse> ChangeBaseRateAsync(global::Database.AccountNewBaseRateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ChangeBaseRateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.AccountNewBaseRateResponse> ChangeBaseRateAsync(global::Database.AccountNewBaseRateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ChangeBaseRate, null, options, request);
+      }
+      /// <summary>
+      ///chat
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.CreateIssueResponse CreateIssue(global::Database.CreateIssueRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateIssue(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///chat
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.CreateIssueResponse CreateIssue(global::Database.CreateIssueRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateIssue, null, options, request);
+      }
+      /// <summary>
+      ///chat
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.CreateIssueResponse> CreateIssueAsync(global::Database.CreateIssueRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateIssueAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///chat
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.CreateIssueResponse> CreateIssueAsync(global::Database.CreateIssueRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateIssue, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.SendMessageResponse SendMessage(global::Database.SendMessageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SendMessage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.SendMessageResponse SendMessage(global::Database.SendMessageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SendMessage, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.SendMessageResponse> SendMessageAsync(global::Database.SendMessageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SendMessageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.SendMessageResponse> SendMessageAsync(global::Database.SendMessageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SendMessage, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesForIssueResponse GetMessagesForIssue(global::Database.GetMessagesForIssueRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesForIssue(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesForIssueResponse GetMessagesForIssue(global::Database.GetMessagesForIssueRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetMessagesForIssue, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesForIssueResponse> GetMessagesForIssueAsync(global::Database.GetMessagesForIssueRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesForIssueAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesForIssueResponse> GetMessagesForIssueAsync(global::Database.GetMessagesForIssueRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetMessagesForIssue, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetAllIssuesResponse GetAllIssues(global::Database.GetAllIssuesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllIssues(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetAllIssuesResponse GetAllIssues(global::Database.GetAllIssuesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAllIssues, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetAllIssuesResponse> GetAllIssuesAsync(global::Database.GetAllIssuesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllIssuesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetAllIssuesResponse> GetAllIssuesAsync(global::Database.GetAllIssuesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAllIssues, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesByIssueIdResponse GetMessagesByIssueId(global::Database.GetMessagesByIssueIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesByIssueId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetMessagesByIssueIdResponse GetMessagesByIssueId(global::Database.GetMessagesByIssueIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetMessagesByIssueId, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesByIssueIdResponse> GetMessagesByIssueIdAsync(global::Database.GetMessagesByIssueIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMessagesByIssueIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetMessagesByIssueIdResponse> GetMessagesByIssueIdAsync(global::Database.GetMessagesByIssueIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetMessagesByIssueId, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
