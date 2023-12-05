@@ -1,0 +1,12 @@
+.card[b-53fj11847i]{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 1rem;
+    width: 40rem;
+    color: white;
+}

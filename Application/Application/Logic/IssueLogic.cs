@@ -19,7 +19,7 @@ public class IssueLogic : IIssueLogic
     {
         await issueDao.SendMessage(dto);
     }
-    public async Task<IEnumerable<Message>> GetMessagesForIssue(IssueGetterDTO dto)
+    public async Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto)
     {
         return await issueDao.GetMessagesForIssue(dto);
     }
@@ -27,5 +27,25 @@ public class IssueLogic : IIssueLogic
     public async Task CreateIssue(IssueCreationDTO dto)
     {
          await issueDao.CreateIssue(dto);
+    }
+
+    public async Task<IEnumerable<Issue>> GetIssues()
+    {
+        return await issueDao.GetIssues();
+    }
+
+    public async Task<IEnumerable<Issue>> GetIssuesForUser(GetIssuesDTO dto)
+    {
+        int owner = Convert.ToInt32(dto.Id);
+        IEnumerable<Issue> issues = await issueDao.GetIssues();
+        List<Issue> newIssues = new List<Issue>();
+        foreach (var i in issues)
+        {
+            if (i.Owner==owner)
+            {
+                newIssues.Add(i);
+            }
+        }
+        return newIssues;
     }
 }

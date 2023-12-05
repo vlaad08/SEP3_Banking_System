@@ -2,11 +2,14 @@
 @using Blazor.Services
 @using global::Shared.DTOs
 @using System.Security.Claims
+@using Blazor.Components
+@using global::Shared.Models
 @inject IIssueService IssueService
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager navManager;
 <div class="content">
     <div class="card">
-        <h3>CustomerService</h3>
+        <h3>Open new Issue</h3>
         <div>
             <div>
                 <label>Issue title</label>
@@ -18,20 +21,92 @@
             </div>
             <button @onclick="Create">Send Issue</button>
         </div>
+        @if (issues == null)
+        {
+            <p>No issues</p>
+        }
+        else
+        {
+            foreach (var i in issues)
+            {
+                <div @onclick="()=>DisplayPopUp(i)">
+                    <IssueContainer
+                        Title="@i.Title"
+                        Body="@i.Body"
+                        Name="@i.Owner"
+                        CreationTime="@i.CreationTime">
+                    </IssueContainer> 
+                </div>
+                
+            }
+            
+        }
     </div>
+    <PopUp ShowPopUp="showPopUp">
+        <h2>@issue.Title</h2>
+        <p id="body">@issue.Body</p>
+        <h5>Messages:</h5>
+        @if (issue.Messages != null)
+        {
+            @foreach (var m in issue.Messages)
+            {
+                <div>
+                    <p>@m.Title</p>
+                    <p>@m.Body</p>
+                </div>
+            }
+            <div class="messageBox">
+                <h5 id="messageh5">New Message:</h5>
+                <div class="flexColumn">
+                    <p>Message title:</p>
+                    <input type="text" @bind="messageTitle"/>
+                </div>
+                <p>Your message:</p>
+                <input id="messageBody" type="text" @bind="messageBody"/>
+                <button @onclick="() => SendMessage()" id="messageButton">Send message</button>
+            </div>
+        }
+        else
+        {
+            <p>You haven't received a solution, our team is working hard to respond as soon as possible.</p>
+            <div class="messageBox">
+                <h5 id="messageh5">New Message:</h5>
+                <div class="flexColumn">
+                    <p>Message title:</p>
+                    <input type="text" @bind="messageTitle"/>
+                </div>
+                <p>Your message:</p>
+                <input id="messageBody" type="text" @bind="messageBody"/>
+                <button @onclick="() => SendMessage()" id="messageButton">Send message</button>
+            </div>
+        }
+        
+        <button @onclick="() => Back()">Back</button>
+    </PopUp>
+    
 </div>
 
 
 @code {
+    private bool showPopUp = false;
     private string title="";
     private string body="";
     [Parameter] public ClaimsPrincipal User { get; set; }
     private string? owner = "";
+    private string role = "";
+    private Issue? issue;
+    private IEnumerable<Issue>? issues = null;
+    private IEnumerable<Message>? messages = null;
+    private string messageBody = "";
+    private string messageTitle = "";
+
     protected async override Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         owner = user.Claims.FirstOrDefault(c => c.Type.Equals("Id")).Value;
+        role = user.FindFirst(ClaimTypes.Role).Value;
+        await LoadIssues();
     }
 
     private async Task Create()
@@ -41,11 +116,66 @@
             IssueCreationDto dto = new IssueCreationDto(title, body, int.Parse(owner));
             Console.WriteLine(dto.Title+" "+dto.Body+" "+dto.Owner);
             await IssueService.CreateIssue(dto);
+            navManager.NavigateTo("/customerService", true);
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
             throw new Exception(e.Message);
         }
+    }
+
+    private async Task SendMessage()
+    {
+        try
+        {
+            SendMessageDto dto = new SendMessageDto(messageTitle, messageBody, int.Parse(owner),issue.Id);
+            await IssueService.SendMessage(dto);
+            Back();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+
+    private async Task<IEnumerable<Message>>  RefreshComments(Issue issue)
+    {
+        try
+        {
+            GetMessagesDto dto = new GetMessagesDto(issue.Id);
+            return await IssueService.GetMessagesForIssue(dto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async void DisplayPopUp(Issue i)
+    {
+        i.Messages = (List<Message>)await RefreshComments(i);
+        showPopUp = true;
+        issue = i;
+    }
+
+    public async Task LoadIssues()
+    {
+        if (role.Equals("Employee"))
+        {
+            issues = await IssueService.GetIssues();
+        }
+        if (role.Equals("Client"))
+        {
+            Console.WriteLine(int.Parse(owner));
+            issues = await IssueService.GetIssuesForClient(new GetIssuesDto { UserId = int.Parse(owner) });
+        }
+    }
+
+    public void Back()
+    {
+        showPopUp = false;
     }
 }

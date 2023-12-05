@@ -34,6 +34,41 @@ public class IssueController : ControllerBase
         }
     }
     
+    [HttpGet, Route("Employee/Issues")]
+    public async Task<ActionResult> GetIssues()
+    {
+        Console.WriteLine("Employee");
+        try
+        {
+            IEnumerable<Issue> issues = await issueLogic.GetIssues();
+            return Ok(issues);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+    [HttpGet, Route("Client/Issues/{userId}")]
+    public async Task<ActionResult> GetIssuesForUser([FromRoute] int userId)
+    {
+        Console.WriteLine("Client");
+        try
+        {
+            GetIssuesDTO dto = new GetIssuesDTO
+            {
+                Id = userId
+            };
+            IEnumerable<Issue> issues = await issueLogic.GetIssuesForUser(dto);
+            return Ok(issues);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+    
 
     [HttpPost, Route("Message")]
     public async Task<ActionResult> SendMessage([FromBody] SendMessageDTO dto)
@@ -51,10 +86,11 @@ public class IssueController : ControllerBase
     }
 
     [HttpGet, Route("Message/{issueId}")]
-    public async Task<ActionResult<IEnumerable<Message>>> GetMessagesForIssue([FromRoute] IssueGetterDTO dto)
+    public async Task<ActionResult<IEnumerable<Message>>> GetMessagesForIssue([FromRoute] int issueId)
     {
         try
         {
+            GetMessagesDTO dto = new GetMessagesDTO() { Id = issueId };
             IEnumerable<Message> messages = await issueLogic.GetMessagesForIssue(dto);
             return Ok(messages);
         }

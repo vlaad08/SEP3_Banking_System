@@ -1,7 +1,6 @@
 package Database.DataAccess;
 
 import Database.AccountsInfo;
-import Database.CreateIssueRequest;
 import Database.DTOs.*;
 import Database.Transactions;
 import Database.User;

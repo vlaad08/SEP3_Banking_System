@@ -15,7 +15,7 @@ public class IssueDao : IIssueDAO
     {
         await grpcClient.SendMessage(dto);
     }
-    public async Task<IEnumerable<Message>> GetMessagesForIssue(IssueGetterDTO dto)
+    public async Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto)
     {
         return await grpcClient.GetMessagesForIssue(dto);
     }
@@ -23,5 +23,10 @@ public class IssueDao : IIssueDAO
     public async Task CreateIssue(IssueCreationDTO dto)
     {
         await grpcClient.CreateIssue(dto);
+    }
+
+    public async Task<IEnumerable<Issue>> GetIssues()
+    {
+        return await grpcClient.GetIssues();
     }
 }

@@ -1,0 +1,19 @@
+
+
+@if (ShowPopUp)
+{
+    <div class="modal-background">
+        <div class="modal-box">
+
+            @ChildContent
+
+        </div>
+    </div>
+}
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
+
+    [Parameter]
+    public bool ShowPopUp {get; set; }
+}
