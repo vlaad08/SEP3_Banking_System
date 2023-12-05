@@ -1,15 +1,6 @@
 package Database.Server;
 
 import Database.*;
-import Database.AccountCheckRequest;
-import Database.AccountCheckResponse;
-import Database.AccountsInfo;
-import Database.AllAccountsInfoRequest;
-import Database.AllAccountsInfoResponse;
-import Database.BalanceCheckRequest;
-import Database.BalanceCheckResponse;
-import Database.CreditInterestRequest;
-import Database.CreditInterestResponse;
 import Database.DAOs.ChatDao;
 import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DAOs.Interfaces.LoginDaoInterface;
@@ -17,25 +8,6 @@ import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
 import Database.DAOs.TransactionDao;
 import Database.DTOs.*;
-import Database.DailyCheckRequest;
-import Database.DailyCheckResponse;
-import Database.DatabaseServiceGrpc;
-import Database.DepositRequest;
-import Database.DepositResponse;
-import Database.GetTransactionsRequest;
-import Database.GetTransactionsResponse;
-import Database.LastInterestRequest;
-import Database.LastInterestResponse;
-import Database.LogLoanRequest;
-import Database.LogLoanResponse;
-import Database.LoginValidationRequest;
-import Database.LoginValidationResponse;
-import Database.Transactions;
-import Database.TransferRequest;
-import Database.TransferResponse;
-import Database.User;
-import Database.UserAccountInfoRequest;
-import Database.UserAccountInfoResponse;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.SQLException;
@@ -227,7 +199,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     @Override
     public void createIssue(CreateIssueRequest request, StreamObserver<CreateIssueResponse> responseStreamObserver) {
         try {
-            IssueDTO issueDTO = new IssueDTO(request.getTitle(),request.getBody(),request.getOwner());
+            IssueCreationDTO issueDTO = new IssueCreationDTO(request.getTitle(),request.getBody(),request.getOwner());
             chatDao.createIssue(issueDTO);
             CreateIssueResponse response = CreateIssueResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
@@ -240,7 +212,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     @Override
     public void sendMessage(SendMessageRequest request, StreamObserver<SendMessageResponse> responseStreamObserver) {
         try{
-            MessageDTO messageDTO = new MessageDTO(request.getTitle(),request.getOwner(),request.getBody(),request.getIssueId());
+            MessageDTO messageDTO = new MessageDTO(request.getTitle(),request.getOwner(),request.getBody(),request.getIssueId(),null);//WATCH OUT FOR THIS CHECK IF ALR
             chatDao.sendMessage(messageDTO);
             SendMessageResponse response = SendMessageResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
@@ -251,6 +223,52 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
+    @Override
+    public void getMessagesForIssue(GetMessagesForIssueRequest request, StreamObserver<GetMessagesForIssueResponse> responseStreamObserver) {
+        try {
+                IssueinfoDTO issueinfoDTO = new IssueinfoDTO(request.getIssueId());
+                List<MessageInfo> messageInfos = chatDao.getMessagesForIssue(issueinfoDTO);
+                GetMessagesForIssueResponse response = GetMessagesForIssueResponse.newBuilder().addAllMessageInfo(messageInfos).build();
+                responseStreamObserver.onNext(response);
+                responseStreamObserver.onCompleted();
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getAllIssues(GetAllIssuesRequest request, StreamObserver<GetAllIssuesResponse> responseStreamObserver) {
+        try {
+            List<Issue> issues = chatDao.getAllIssues();
+            GetAllIssuesResponse response = GetAllIssuesResponse.newBuilder().addAllIssues(issues).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+            for (Issue issue : issues) {
+                System.out.println(issue.getOwnerId());
+            }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getMessagesByIssueId(GetMessagesByIssueIdRequest request, StreamObserver<GetMessagesByIssueIdResponse> responseStreamObserver) {
+        try {
+            IssueinfoDTO issueInfoDTO = new IssueinfoDTO(request.getIssueId());
+            List<MessageInfo> messageInfos = chatDao.getMessagesByIssueId(issueInfoDTO);
+            GetMessagesByIssueIdResponse response = GetMessagesByIssueIdResponse.newBuilder().addAllMessageInfo(messageInfos).build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+            for (MessageInfo info : messageInfos) {
+                System.out.println(info.getTitle());
+            }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

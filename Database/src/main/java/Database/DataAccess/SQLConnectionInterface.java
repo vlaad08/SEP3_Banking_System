@@ -1,10 +1,7 @@
 package Database.DataAccess;
 
-import Database.AccountsInfo;
-import Database.CreateIssueRequest;
+import Database.*;
 import Database.DTOs.*;
-import Database.Transactions;
-import Database.User;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -23,7 +20,10 @@ public interface SQLConnectionInterface {
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO);
-    void createIssue(IssueDTO issueDTO) throws SQLException;
+    void createIssue(IssueCreationDTO issueDTO) throws SQLException;
     void sendMessage(MessageDTO messageDTO) throws SQLException;
-    void getMessagesForIssue() throws SQLException;
+    List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException;
+    List<Issue> getAllIssues() throws SQLException;
+    List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException;
+
 }

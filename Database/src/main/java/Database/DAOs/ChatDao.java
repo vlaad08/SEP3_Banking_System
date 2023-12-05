@@ -1,13 +1,16 @@
 package Database.DAOs;
 
 import Database.DAOs.Interfaces.ChatDaoInterface;
-import Database.DTOs.IssueDTO;
+import Database.DTOs.IssueCreationDTO;
+import Database.DTOs.IssueinfoDTO;
 import Database.DTOs.MessageDTO;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
-import jdk.jshell.spi.ExecutionControl;
+import Database.Issue;
+import Database.MessageInfo;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ChatDao implements ChatDaoInterface {
     SQLConnectionInterface connection;
@@ -20,7 +23,7 @@ public class ChatDao implements ChatDaoInterface {
     }
 
     @Override
-    public void createIssue(IssueDTO issueDTO) throws SQLException {
+    public void createIssue(IssueCreationDTO issueDTO) throws SQLException {
         connection.createIssue(issueDTO);
     }
 
@@ -30,9 +33,19 @@ public class ChatDao implements ChatDaoInterface {
     }
 
     @Override
-    public void getMessagesForIssue() throws SQLException {
-
+    public List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException {
+        return connection.getMessagesForIssue(issueinfoDTO);
     }
 
+    @Override
+    public List<Issue> getAllIssues() throws SQLException {
+        return connection.getAllIssues();
+    }
+
+    @Override
+    public List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException{
+        System.out.println("BUZI");
+        return connection.getMessagesByIssueId(issueinfoDTO);
+    }
 
 }

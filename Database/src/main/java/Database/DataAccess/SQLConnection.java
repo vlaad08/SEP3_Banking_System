@@ -1,14 +1,9 @@
 package Database.DataAccess;
 
-import Database.AccountsInfo;
-import Database.CreateIssueRequest;
+import Database.*;
 import Database.DTOs.*;
-import Database.Transactions;
-import Database.User;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.*;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -415,7 +410,7 @@ public class SQLConnection implements SQLConnectionInterface{
                 }
             }
         } catch (SQLException e) {
-            // Handle SQLException
+
             throw new RuntimeException("Error executing statements", e);
         }
 
@@ -423,7 +418,7 @@ public class SQLConnection implements SQLConnectionInterface{
     }
 
     @Override
-    public void createIssue(IssueDTO issueDTO) throws SQLException {
+    public void createIssue(IssueCreationDTO issueDTO) throws SQLException {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
 
@@ -480,8 +475,128 @@ public class SQLConnection implements SQLConnectionInterface{
 
 
     @Override
-    public void getMessagesForIssue() throws SQLException {
+    public List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException {
+        List<MessageInfo> messages = new ArrayList<>();
 
+        try (Connection connection = getConnection()) {
+            String query = "SELECT title, body, owner_id, creation_time FROM messages WHERE issue_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, issueinfoDTO.getId());
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                        com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                                .setSeconds(sqlTimestamp.getTime() / 1000)
+                                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                                .build();
+
+                        MessageInfo messageInfo = MessageInfo.newBuilder()
+                                .setTitle(resultSet.getString("title"))
+                                .setBody(resultSet.getString("body"))
+                                .setOwner(resultSet.getInt("owner_id"))
+                                .setCreationTime(date)
+                                .setIssueId(issueinfoDTO.getId())
+                                .build();
+
+                        messages.add(messageInfo);
+                    }
+                }
+            }
+        }
+
+        return messages;
     }
+
+    @Override
+    public List<Issue> getAllIssues() throws SQLException {
+        List<Issue> issues = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT issue_id, title, body, owner_id, creation_time, flagged FROM issues";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    int issueId = resultSet.getInt("issue_id");
+                    String title = resultSet.getString("title");
+                    String body = resultSet.getString("body");
+                    int ownerId = resultSet.getInt("owner_id");
+
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                            .setSeconds(sqlTimestamp.getTime() / 1000)
+                            .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                            .build();
+                    boolean flagged = resultSet.getBoolean("flagged");
+
+                    List<MessageInfo> messages = getMessagesForIssue(new IssueinfoDTO(issueId));
+
+                    Issue issue = Issue.newBuilder()
+                            .setIssueId(issueId)
+                            .setTitle(title)
+                            .setBody(body)
+                            .setOwnerId(ownerId)
+                            .setCreationTime(date)
+                            .setFlagged(flagged)
+                            .addAllMessages(messages)
+                            .build();
+
+                    issues.add(issue);
+                }
+            }
+        }
+
+        return issues;
+    }
+
+    @Override
+    public List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException {
+        List<MessageInfo> messages = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            String query = "SELECT title, body, owner_id, creation_time FROM messages WHERE issue_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, issueinfoDTO.getId());
+                ResultSet resultSet = statement.executeQuery();
+                    System.out.println("GECI6");
+                    while (resultSet.next()) {
+                        System.out.println("GECI7");
+                        String title = resultSet.getString("title");
+                        System.out.println("GECI8");
+                        String body = resultSet.getString("body");
+                        System.out.println("GECI9");
+                        int ownerId = resultSet.getInt("owner_id");
+                        System.out.println("GECI10");
+                        java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
+                        System.out.println("GECI11");
+                        com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                                .setSeconds(sqlTimestamp.getTime() / 1000)
+                                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                                .build();
+                        System.out.println("GECI12");
+                        System.out.println(title);
+                        System.out.println("FOOOOS");
+
+                        MessageInfo messageInfo = MessageInfo.newBuilder()
+                                .setTitle(title)
+                                .setBody(body)
+                                .setOwner(ownerId)
+                                .setCreationTime(date)
+                                .setIssueId(issueinfoDTO.getId())
+                                .build();
+
+                        messages.add(messageInfo);
+
+                }
+            }
+        }
+
+        return messages;
+    }
+
+
+
+
 
 }

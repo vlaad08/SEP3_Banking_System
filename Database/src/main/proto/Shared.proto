@@ -27,6 +27,8 @@ service DatabaseService{
   rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
   rpc GetMessagesForIssue(GetMessagesForIssueRequest) returns (GetMessagesForIssueResponse);
+  rpc GetAllIssues(GetAllIssuesRequest) returns (GetAllIssuesResponse);
+  rpc GetMessagesByIssueId(GetMessagesByIssueIdRequest) returns (GetMessagesByIssueIdResponse);
 
 }
 
@@ -243,4 +245,32 @@ message MessageInfo {
   int32 owner = 2;
   string body = 3;
   int32 issue_id = 4;
+  google.protobuf.Timestamp creation_time = 5;
 }
+
+message GetAllIssuesRequest {
+
+}
+
+message GetAllIssuesResponse {
+  repeated Issue issues =1;
+}
+
+message Issue {
+  int32 issue_id = 1;
+  string title = 2;
+  string body = 3;
+  int32 owner_id = 4;
+  google.protobuf.Timestamp creation_time = 5;
+  bool flagged = 6;
+  repeated MessageInfo messages = 7;
+}
+
+message GetMessagesByIssueIdRequest {
+  int32 issue_id = 1;
+}
+
+message GetMessagesByIssueIdResponse {
+  repeated MessageInfo messageInfo = 1;
+}
+

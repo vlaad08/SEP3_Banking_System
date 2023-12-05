@@ -562,19 +562,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/AgostonBabicz/.nuget/packages/": {}
+    "C:\\Users\\tothl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+      "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
       "projectName": "DatabaseComm",
-      "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
-      "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-      "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/",
+      "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\DatabaseComm.csproj",
+      "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\DatabaseComm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -586,11 +586,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
-              "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj"
+            "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Application\\Application.csproj"
             },
-            "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
-              "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
+            "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Application\\Domain\\Domain.csproj"
             }
           }
         }
@@ -636,7 +636,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

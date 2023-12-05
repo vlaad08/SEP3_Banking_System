@@ -1,13 +1,11 @@
 package Database.DTOs;
 
-import java.time.LocalDate;
-
-public class IssueDTO {
+public class IssueCreationDTO {
     private String title;
     private String body;
     private int ownerId;
 
-    public IssueDTO(String title, String body, int ownerId) {
+    public IssueCreationDTO(String title, String body, int ownerId) {
         this.title = title;
         this.body = body;
         this.ownerId = ownerId;
