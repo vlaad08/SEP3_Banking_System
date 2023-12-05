@@ -9,11 +9,13 @@ public class SettingsLogic : ISettingsLogic
 {
     private readonly ISettingsDAO settingsDao;
     private readonly IUserRegisterDAO registerDao;
+    private readonly IUserLoginDao userLoginDao;
 
-    public SettingsLogic(ISettingsDAO settingsDao, IUserRegisterDAO registerDao)
+    public SettingsLogic(ISettingsDAO settingsDao, IUserRegisterDAO registerDao,IUserLoginDao userLoginDao)
     {
         this.settingsDao = settingsDao;
         this.registerDao = registerDao;
+        this.userLoginDao = userLoginDao;
     }
 
     public async Task UpdateUser(UserNewDetailsRequestDTO userNewDetailsRequestDto)
@@ -24,7 +26,6 @@ public class SettingsLogic : ISettingsLogic
             {
                 Email = userNewDetailsRequestDto.OldEmail
             };
-            
             int user_id = await registerDao.GetUserId(userEmailDto);
 
             Console.WriteLine(user_id);

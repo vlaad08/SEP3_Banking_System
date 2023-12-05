@@ -937,14 +937,14 @@ select option[b-o1ibr4neq7]{
     cursor: pointer;
 }
 /* _content/Blazor/Pages/Register.razor.rz.scp.css */
-.content[b-be1upc63yq] {
+.content[b-8xlal766b8] {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.card[b-be1upc63yq] {
+.card[b-8xlal766b8] {
     color: white;
     padding: 1%;
     background: none;
@@ -959,20 +959,20 @@ select option[b-o1ibr4neq7]{
     -webkit-backdrop-filter: blur(10px);
 }
 
-.card h1[b-be1upc63yq]{
+.card h1[b-8xlal766b8]{
     color: white;
     font-weight: 700;
 }
 
-.field[b-be1upc63yq] {
+.field[b-8xlal766b8] {
     width: 80%;
 }
 
-.field input:-webkit-autofill[b-be1upc63yq]{
+.field input:-webkit-autofill[b-8xlal766b8]{
     font-size: calc(15px + 0.4vh);
 }
 
-.field input[b-be1upc63yq]
+.field input[b-8xlal766b8]
 {
     padding: 2%;
     width: 100%;
@@ -981,13 +981,13 @@ select option[b-o1ibr4neq7]{
     outline: none;
 }
 
-.plansBox[b-be1upc63yq]{
+.plansBox[b-8xlal766b8]{
     display: flex;
     flex-direction: row;
     margin: 2%;
 }
 
-.plan[b-be1upc63yq]{
+.plan[b-8xlal766b8]{
     position: static;
     display: flex;
     flex-direction: column;
@@ -1002,16 +1002,16 @@ select option[b-o1ibr4neq7]{
     transition: 0.2s ease-in-out;
 }
 
-.plan p[b-be1upc63yq]{
+.plan p[b-8xlal766b8]{
     align-self: center;
     font-size: calc(14px + 0.4vw);
 }
 
-ul[b-be1upc63yq]{
+ul[b-8xlal766b8]{
     list-style-type: none;
 }
 
-.plan button[b-be1upc63yq]{
+.plan button[b-8xlal766b8]{
     border: 1px solid white;
     border-radius: 10px;
     font-size: calc(12px + 0.4vw);
@@ -1020,18 +1020,18 @@ ul[b-be1upc63yq]{
     transition: 0.2s ease-in-out;
 }
 
-.plan button:hover[b-be1upc63yq]{
+.plan button:hover[b-8xlal766b8]{
     color: black;
     background-color: white;
 }
 
-.plan:hover[b-be1upc63yq]{
+.plan:hover[b-8xlal766b8]{
     transform: scale(1.2);
     box-shadow: 0px 0px 15px white;
     z-index: 2;
 }
 
-.registerButton[b-be1upc63yq]{
+.registerButton[b-8xlal766b8]{
     width: 80%;
     font-size: calc(17px + 0.4vw);
     font-weight: 500;
@@ -1043,7 +1043,7 @@ ul[b-be1upc63yq]{
     transition: all .5s ease-out;
 }
 
-.registerButton:hover[b-be1upc63yq]{
+.registerButton:hover[b-8xlal766b8]{
     background-position: right bottom;
 }
 /* _content/Blazor/Pages/Settings.razor.rz.scp.css */

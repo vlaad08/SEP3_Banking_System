@@ -4,8 +4,11 @@
 @using System.Security.Claims
 @using global::Shared.DAO
 @using System.Reflection.Metadata
+@using Blazor.Services
+@using global::Shared.DTOs
 @using Newtonsoft.Json
 @inject ITransactionService transactionService
+@inject ISettingsService settingsService
 
 <div class="content">
     <div class="card">
@@ -49,12 +52,12 @@
     isChangePlansVisible = false;
     <div class="menu">
         <label>Type new Email:</label>
-        <input type="text" placeholder="new email"/>
+        <input type="text" placeholder="new email" @bind="newemail1"/>
 
         <label>Confirm Email:</label>
-        <input type="text" placeholder="confirm email" />
+        <input type="text" placeholder="confirm email" @bind="newemail"/>
 
-        <button class="btn btn-success" >Save Changes</button>
+        <button @onclick="UpdateEmail" class="btn btn-success" >Save Changes</button>
     </div>
 }
 
@@ -69,7 +72,7 @@
                 <li>Secure account in the system</li>
                 <li>Base interest rate: 1.7%</li>
             </ul>
-            <button>Select this plan</button>
+            <button @onclick="UpdatePlanToDefault">Select this plan</button>
         </div>
         
         <div class="plan">
@@ -80,7 +83,7 @@
                 <li>Base interest rate: 3.7%</li>
                 <li>Fast response time from employees</li>
             </ul>
-            <button>Select this plan</button>
+            <button @onclick="UpdatePlanToPremium">Select this plan</button>
         </div>
     </div>
 }
@@ -95,6 +98,12 @@
     private string SelectedAccount { get; set; }
     private bool isMenuVisible = false;
     private bool isChangePlansVisible = false;
+    private string newemail;
+    private string newemail1;
+    private string rolepremium="Premium";
+    private string roledefault = "Default";
+    private string Password = "12345678";
+  
 
 
     [Inject] private NavigationManager Navigation { get; set; }
@@ -105,6 +114,7 @@
         Users = await GetUserAccounts(User);
         Email = User.FindFirst("Email").Value;
         Role = User.FindFirst(ClaimTypes.Role).Value;
+        
 
     }
 
@@ -149,6 +159,48 @@
     private void ToggleChangePlans()
     {
         isChangePlansVisible = !isChangePlansVisible;
+    }
+
+    private async Task UpdateEmail()
+    {
+        if (newemail.Equals(newemail1))
+        {
+            try
+            {
+                await settingsService.UpdateUserDetails(newemail,Email, Password, Role );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+        }
+    }
+    
+    private async Task UpdatePlanToDefault()
+    {
+            try
+            {
+                await settingsService.UpdateUserDetails(Email, Email, Password,roledefault);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+    }
+    private async Task UpdatePlanToPremium()
+    {
+        try
+        {
+            await settingsService.UpdateUserDetails(Email, Email, Password, rolepremium);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
 
