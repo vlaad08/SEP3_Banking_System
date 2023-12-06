@@ -1,6 +1,10 @@
+using Domain.DTOs;
+
 namespace Blazor.Services;
 
 public interface ISettingsService
 {
-    public Task UpdateUserDetails(string newEmail, string oldEmail, string password, string plan);
+    Task UpdateEmail(UserNewEmailDTO userNewEmailDto);
+    Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto);
+    Task UpdatePlan(UserNewPlanDTO userNewPlanDto);
 }

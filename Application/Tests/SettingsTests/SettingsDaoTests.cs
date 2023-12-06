@@ -24,11 +24,11 @@ public class SettingsDaoTests
             UserID = 1,
             BaseRate = 3.7
         };
-        grpcClient.Setup(client => client.ChangeBaseRate(accountBaseRate));
+        grpcClient.Setup(client => client.UpdateBaseRate(accountBaseRate));
 
-        await settingDao.ChangeBaseRate(accountBaseRate);
+        await settingDao.UpdateBaseRate(accountBaseRate);
 
-        grpcClient.Verify(client => client.ChangeBaseRate(accountBaseRate), Times.Once());
+        grpcClient.Verify(client => client.UpdateBaseRate(accountBaseRate), Times.Once());
     }
 
     [Fact]
@@ -40,10 +40,10 @@ public class SettingsDaoTests
             BaseRate = 3.7
         };
 
-        grpcClient.Setup(client => client.ChangeBaseRate(accountBaseRate)).Throws<Exception>();
+        grpcClient.Setup(client => client.UpdateBaseRate(accountBaseRate)).Throws<Exception>();
 
 
-        await Assert.ThrowsAsync<Exception>(() => settingDao.ChangeBaseRate(accountBaseRate));
+        await Assert.ThrowsAsync<Exception>(() => settingDao.UpdateBaseRate(accountBaseRate));
     }
 
     [Fact]

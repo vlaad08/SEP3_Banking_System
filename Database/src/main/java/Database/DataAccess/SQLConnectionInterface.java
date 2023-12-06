@@ -58,4 +58,7 @@ public interface SQLConnectionInterface {
 
     List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException;
 
+    void updateEmail(UserNewEmailDTO userNewEmailDTO) throws SQLException;
+    void updatePassword(UserNewPasswordDTO userNewPasswordDTO) throws SQLException;
+    void updatePlan(UserNewPlanDTO userNewPlanDTO) throws SQLException;
 }

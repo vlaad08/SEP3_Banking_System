@@ -45,7 +45,7 @@ public class CredentialChangerDaoTest
   @Test
   void updating_new_base_rate() throws SQLException
   {
-    dao.UpdateNewBaseRate(accountNewBaseRateDTO);
+    dao.UpdateBaseRate(accountNewBaseRateDTO);
     Mockito.verify(connection).updateNewBaseRate(accountNewBaseRateDTO);
   }
 

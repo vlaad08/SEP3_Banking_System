@@ -5,6 +5,7 @@
 @using global::Shared.DAO
 @using System.Reflection.Metadata
 @using Blazor.Services
+@using Domain.DTOs
 @using global::Shared.DTOs
 @using Newtonsoft.Json
 @inject ITransactionService transactionService
@@ -72,7 +73,7 @@
                 <li>Secure account in the system</li>
                 <li>Base interest rate: 1.7%</li>
             </ul>
-            <button @onclick="UpdatePlanToDefault">Select this plan</button>
+            <button @onclick="">Select this plan</button>
         </div>
         
         <div class="plan">
@@ -83,7 +84,7 @@
                 <li>Base interest rate: 3.7%</li>
                 <li>Fast response time from employees</li>
             </ul>
-            <button @onclick="UpdatePlanToPremium">Select this plan</button>
+            <button @onclick="">Select this plan</button>
         </div>
     </div>
 }
@@ -163,38 +164,25 @@
 
     private async Task UpdateEmail()
     {
-        if (newemail.Equals(newemail1))
-        {
-            try
-            {
-                await settingsService.UpdateUserDetails(newemail,Email, Password, Role );
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            
-        }
-    }
-    
-    private async Task UpdatePlanToDefault()
-    {
-            try
-            {
-                await settingsService.UpdateUserDetails(Email, Email, Password,roledefault);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-    }
-    private async Task UpdatePlanToPremium()
-    {
         try
         {
-            await settingsService.UpdateUserDetails(Email, Email, Password, rolepremium);
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+    }
+    
+    
+    private async Task UpdatePlan()
+    {
+        try
+        {   
+        
+            settingsService.UpdatePlan()
         }
         catch (Exception e)
         {

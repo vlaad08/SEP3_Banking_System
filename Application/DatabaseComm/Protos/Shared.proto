@@ -30,6 +30,12 @@ service DatabaseService{
 
     rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
     rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
+
+    rpc UpdateEmail(UserNewEmailRequest) returns (UserNewEmailResponse);
+    rpc UpdatePassword(UserNewPasswordRequest) returns (UserNewPasswordResponse);
+    rpc UpdatePlan(UserNewPlanRequest) returns (UserNewPlanResponse);
+
+
     //chat
     rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
     rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
@@ -282,8 +288,6 @@ message GetMessagesByIssueIdResponse {
 }
 
 
-
-
 message UserNewDetailsRequest{
     string newEmail = 1;
     string oldEmail = 2;
@@ -301,3 +305,26 @@ message AccountNewBaseRateRequest{
 }
 
 message AccountNewBaseRateResponse{}
+
+
+message UserNewEmailRequest{
+    int32 userId = 1;
+    string email = 2;
+}
+
+message UserNewEmailResponse{}
+
+message UserNewPasswordRequest{
+    int32 userId = 1;
+    string password = 2;
+}
+
+message UserNewPasswordResponse{}
+
+message UserNewPlanRequest
+{
+    int32 userId = 1;
+    string plan = 2;
+}
+
+message UserNewPlanResponse{}

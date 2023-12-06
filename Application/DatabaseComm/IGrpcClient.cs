@@ -29,10 +29,17 @@ public interface IGrpcClient
 
    Task<int> getUserID(UserEmailDTO userEmailDto);
    Task CreateUserAccountNumber(AccountCreateRequestDto accountCreateRequestDto);
-   Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
+   Task UpdateBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
    Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto);
    Task SendMessage(SendMessageDTO sendMessageDto);
    Task<IEnumerable<Message>> GetMessagesForIssue(GetMessagesDTO dto);
    Task CreateIssue(IssueCreationDTO dto);
    Task<IEnumerable<Issue>> GetIssues();
+   
+   //
+
+   Task UpdateEmail(UserNewEmailDTO userNewEmailDto);
+   Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto);
+   Task UpdatePlan(UserNewPlanDTO userNewPlanDto);
+
 }

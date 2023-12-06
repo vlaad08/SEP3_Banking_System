@@ -122,6 +122,18 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.AccountNewBaseRateResponse> __Marshaller_Database_AccountNewBaseRateResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AccountNewBaseRateResponse.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewEmailRequest> __Marshaller_Database_UserNewEmailRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewEmailRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewEmailResponse> __Marshaller_Database_UserNewEmailResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewEmailResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewPasswordRequest> __Marshaller_Database_UserNewPasswordRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewPasswordRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewPasswordResponse> __Marshaller_Database_UserNewPasswordResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewPasswordResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewPlanRequest> __Marshaller_Database_UserNewPlanRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewPlanRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.UserNewPlanResponse> __Marshaller_Database_UserNewPlanResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.UserNewPlanResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.CreateIssueRequest> __Marshaller_Database_CreateIssueRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.CreateIssueRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.CreateIssueResponse> __Marshaller_Database_CreateIssueResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.CreateIssueResponse.Parser));
@@ -293,6 +305,30 @@ namespace Database {
         "ChangeBaseRate",
         __Marshaller_Database_AccountNewBaseRateRequest,
         __Marshaller_Database_AccountNewBaseRateResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserNewEmailRequest, global::Database.UserNewEmailResponse> __Method_UpdateEmail = new grpc::Method<global::Database.UserNewEmailRequest, global::Database.UserNewEmailResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateEmail",
+        __Marshaller_Database_UserNewEmailRequest,
+        __Marshaller_Database_UserNewEmailResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserNewPasswordRequest, global::Database.UserNewPasswordResponse> __Method_UpdatePassword = new grpc::Method<global::Database.UserNewPasswordRequest, global::Database.UserNewPasswordResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdatePassword",
+        __Marshaller_Database_UserNewPasswordRequest,
+        __Marshaller_Database_UserNewPasswordResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.UserNewPlanRequest, global::Database.UserNewPlanResponse> __Method_UpdatePlan = new grpc::Method<global::Database.UserNewPlanRequest, global::Database.UserNewPlanResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdatePlan",
+        __Marshaller_Database_UserNewPlanRequest,
+        __Marshaller_Database_UserNewPlanResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.CreateIssueRequest, global::Database.CreateIssueResponse> __Method_CreateIssue = new grpc::Method<global::Database.CreateIssueRequest, global::Database.CreateIssueResponse>(
@@ -746,6 +782,66 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.AccountNewBaseRateResponse> ChangeBaseRateAsync(global::Database.AccountNewBaseRateRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ChangeBaseRate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewEmailResponse UpdateEmail(global::Database.UserNewEmailRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateEmail(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewEmailResponse UpdateEmail(global::Database.UserNewEmailRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateEmail, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewEmailResponse> UpdateEmailAsync(global::Database.UserNewEmailRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateEmailAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewEmailResponse> UpdateEmailAsync(global::Database.UserNewEmailRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateEmail, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewPasswordResponse UpdatePassword(global::Database.UserNewPasswordRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdatePassword(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewPasswordResponse UpdatePassword(global::Database.UserNewPasswordRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdatePassword, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewPasswordResponse> UpdatePasswordAsync(global::Database.UserNewPasswordRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdatePasswordAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewPasswordResponse> UpdatePasswordAsync(global::Database.UserNewPasswordRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdatePassword, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewPlanResponse UpdatePlan(global::Database.UserNewPlanRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdatePlan(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.UserNewPlanResponse UpdatePlan(global::Database.UserNewPlanRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdatePlan, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewPlanResponse> UpdatePlanAsync(global::Database.UserNewPlanRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdatePlanAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.UserNewPlanResponse> UpdatePlanAsync(global::Database.UserNewPlanRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdatePlan, null, options, request);
       }
       /// <summary>
       ///chat

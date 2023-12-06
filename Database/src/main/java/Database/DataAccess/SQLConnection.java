@@ -632,6 +632,46 @@ public class SQLConnection implements SQLConnectionInterface {
         return messages;
     }
 
+    @Override public void updateEmail(UserNewEmailDTO userNewEmailDTO)
+        throws SQLException
+    {
+        try (Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "UPDATE \"user\" SET email = ? WHERE user_id = ?"
+        ))
+        {
+            statement.setString(1, userNewEmailDTO.getEmail());
+            statement.setInt(2, userNewEmailDTO.getUserID());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public void updatePassword(UserNewPasswordDTO userNewPasswordDTO) throws SQLException
+    {
+        try (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                "UPDATE \"user\" SET password = ? WHERE user_id = ?"
+            ))
+        {
+            statement.setString(1, userNewPasswordDTO.getPassword());
+            statement.setInt(2, userNewPasswordDTO.getUserID());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public void updatePlan(UserNewPlanDTO userNewPlanDTO) throws SQLException
+    {
+        try (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                "UPDATE \"user\" SET plan = ? WHERE user_id = ?"
+            ))
+        {
+            statement.setString(1, userNewPlanDTO.getPlan());
+            statement.setInt(2, userNewPlanDTO.getUserID());
+            statement.executeUpdate();
+        }
+    }
+
     @Override
     public int getUserID(UserAccountRequestDTO userAccountRequestDTO)
             throws SQLException {
