@@ -10,6 +10,9 @@ public class AuthorizationPolicies
         {
             options.AddPolicy("MustBeCorrectUser", a => 
                 a.RequireAuthenticatedUser().RequireClaim("Role", "Client", "Employee"));
+            
+            options.AddPolicy("MustBeEmployee",e=>e.RequireRole("Employee"));
+            options.AddPolicy("MustBeClient",e=>e.RequireRole("Client"));
         });
     }
 }

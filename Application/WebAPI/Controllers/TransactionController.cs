@@ -53,6 +53,20 @@ public class TransactionController : ControllerBase
             return BadRequest();
         }
     }
+    [HttpGet, Route("")]
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions()
+    {
+        try
+        {
+            var transactions = await transferLogic.GetTransactions();
+            return Ok(transactions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
+        }
+    }
 
     [HttpPost, Route("Deposit")]
     public async Task<IActionResult> DepositMoney([FromBody] DepositRequestDTO depositRequest)
@@ -73,7 +87,6 @@ public class TransactionController : ControllerBase
     {
         try
         {
-            Console.WriteLine("Atjott kocsog");
             double calculatedInterest = await loanLogic.CalculateLoan(dto);
             return Ok(calculatedInterest);
         }
@@ -90,6 +103,20 @@ public class TransactionController : ControllerBase
         {
             await loanLogic.RequestLoan(dto);
             return Ok("Loan accepted!");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPatch, Route("Flag")]
+    public async Task<IActionResult> FlagUser([FromBody] FlagUserDTO flagUserDto)
+    {
+        try
+        {
+            await transferLogic.FlagUser(flagUserDto);
+            return Ok("User Flagged");
         }
         catch (Exception e)
         {

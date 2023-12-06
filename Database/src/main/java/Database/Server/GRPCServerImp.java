@@ -210,6 +210,27 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     }
 
     @Override
+    public void getTransactionsForEmployee(GetTransactionsForEmployeeRequest request, StreamObserver<GetTransactionsForEmployeeResponse> responseObserver) {
+        try {
+            List<Transactions> transactions = transactionDao.getAllTransactionsForEmployee();
+            GetTransactionsForEmployeeResponse response = GetTransactionsForEmployeeResponse.newBuilder().addAllTransactions(transactions).build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void flagUser(FlagUserRequest request, StreamObserver<FlagUserResponse> responseObserver) {
+        FlagUserDTO dto = new FlagUserDTO(request.getSenderId());
+        transactionDao.flagUser(dto);
+        FlagUserResponse response = FlagUserResponse.newBuilder().build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void registerUser(RegisterRequest request, StreamObserver<RegisterResponse> responseStreamObserver) {
         try {
             RegisterRequestDTO registerUserDTO = new RegisterRequestDTO(
@@ -304,6 +325,18 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             IssueCreationDTO issueDTO = new IssueCreationDTO(request.getTitle(), request.getBody(), request.getOwner());
             chatDao.createIssue(issueDTO);
             CreateIssueResponse response = CreateIssueResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public void updateIssue(UpdateIssueRequest request, StreamObserver<UpdateIssueResponse> responseStreamObserver) {
+        try {
+            IssueUpdateDTO issueDTO = new IssueUpdateDTO(request.getId());
+            chatDao.updateIssue(issueDTO);
+            UpdateIssueResponse response = UpdateIssueResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         } catch (SQLException e) {

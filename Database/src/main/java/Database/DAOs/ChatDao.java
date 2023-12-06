@@ -2,6 +2,7 @@ package Database.DAOs;
 
 import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DTOs.IssueCreationDTO;
+import Database.DTOs.IssueUpdateDTO;
 import Database.DTOs.IssueinfoDTO;
 import Database.DTOs.MessageDTO;
 import Database.DataAccess.SQLConnection;
@@ -25,6 +26,10 @@ public class ChatDao implements ChatDaoInterface {
     @Override
     public void createIssue(IssueCreationDTO issueDTO) throws SQLException {
         connection.createIssue(issueDTO);
+    }
+    @Override
+    public void updateIssue(IssueUpdateDTO issueDTO) throws SQLException {
+        connection.updateIssue(issueDTO);
     }
 
     @Override

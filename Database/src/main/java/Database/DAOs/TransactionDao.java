@@ -63,5 +63,13 @@ public class TransactionDao implements TransactionDaoInterface
     public List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException {
         return connection.getAllTransactions(userInfoEmailDTO);
     }
+    @Override
+    public List<Transactions> getAllTransactionsForEmployee() throws SQLException {
+        return connection.getAllTransactionsForEmployee();
+    }
 
+    @Override
+    public void flagUser(FlagUserDTO flagUserDTO) {
+        connection.flagUser(flagUserDTO);
+    }
 }

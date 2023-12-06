@@ -52,4 +52,13 @@ public class TransferLogic : ITransferLogic
     {
         return await transferDao.GetTransactions(getTransactionsDto);
     }
+
+    public async Task<IEnumerable<Transaction>> GetTransactions()
+    {
+        return await transferDao.GetTransactions();
+    }
+    public async Task FlagUser(FlagUserDTO dto)
+    {
+        await transferDao.FlagUser(dto);
+    }
 }

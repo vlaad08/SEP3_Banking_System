@@ -1,8 +1,9 @@
-﻿@using global::Shared.DAO
-@using Blazor.Components
+﻿@using Blazor.Components
 @using Blazor.Services.Http
 @using System.Security.Claims
 @inject ITransactionService transactionService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
 
 <!-- Maybe have a search bar over here, to look for some transactions made to/from a specific person/merchant -->
 
@@ -22,7 +23,8 @@
                                  Sender="@transaction.SenderName"
                                  Message="@transaction.Message"
                                  Amount="@transaction.Amount"
-                                 Date="@transaction.Date"></Transaction>
+                                 Date="@transaction.Date"
+                                 SenderId="@transaction.SenderId"></Transaction>
                 }
             }
         </div>
@@ -33,20 +35,37 @@
 @code {
     [Parameter]public LoadingBox Loading { get; set; }
     [Parameter] public string Email { get; set; }
-    public List<TransactionDao> transactions = new List<TransactionDao>(); 
+    [Parameter] public ClaimsPrincipal User { get; set; }
+    private string role = "";
+    public List<global::Shared.Models.Transaction> transactions = new List<global::Shared.Models.Transaction>(); 
 
     private async Task RequestInformation()
     {
-        transactions = await GetTransactions(Email) ?? new List<TransactionDao>(); 
+        if (role.Equals("Employee"))
+        {
+            transactions = await GetTransactions() ?? new List<global::Shared.Models.Transaction>();
+
+        }
+        if (role.Equals("Client"))
+        {
+            transactions = await GetTransactions(Email) ?? new List<global::Shared.Models.Transaction>(); 
+        }
     }
 
-    private async Task<List<TransactionDao>> GetTransactions(string email)
+    private async Task<List<global::Shared.Models.Transaction>> GetTransactions(string email)
     {
         return await transactionService.GetTransactions(email);
+    }
+    private async Task<List<global::Shared.Models.Transaction>> GetTransactions()
+    {
+        return (List<global::Shared.Models.Transaction>)await transactionService.GetTransactions();
     }
 
     protected override async Task OnInitializedAsync()
     {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        role = user.FindFirst(ClaimTypes.Role).Value;
         Loading.ShowLoading();
         await RequestInformation();
         Loading.CloseLoading();

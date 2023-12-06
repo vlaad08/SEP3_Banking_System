@@ -880,7 +880,7 @@ select option[b-o1ibr4neq7]{
 
 .card[b-3cu29tzlu1]{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-content: center;
     background-color: rgb(27, 27, 27);
     border-radius: 2px;

@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.Text;
 using Newtonsoft.Json;
-using Shared.DAO;
 using Shared.DTOs;
 using Shared.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;

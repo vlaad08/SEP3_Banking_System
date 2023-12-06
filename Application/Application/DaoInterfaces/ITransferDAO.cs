@@ -10,4 +10,6 @@ public interface ITransferDAO
     Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequest);
     Task<double> GetTransferAmountsByDayForUser(TransferRequestDTO transferRequest);
     Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
+    Task<IEnumerable<Transaction>> GetTransactions();
+    Task FlagUser(FlagUserDTO flagUserDto);
 }

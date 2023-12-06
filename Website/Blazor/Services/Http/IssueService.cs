@@ -28,6 +28,24 @@ public class IssueService : IIssueService
         }
     }
 
+    public async Task UpdateIssue(IssueUpdateDto dto)
+    {
+        try
+        {
+            HttpResponseMessage response = await client.PatchAsJsonAsync("https://localhost:7257/Issue/Issue", dto);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+
     public async Task SendMessage(SendMessageDto dto)
     {
         try
@@ -100,7 +118,7 @@ public class IssueService : IIssueService
         try
         {
             int userId = dto.UserId;
-             HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Client/Issues/{userId}");
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Client/Issues/{userId}");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {

@@ -1,4 +1,7 @@
-﻿
+﻿@using Blazor.Services.Http
+@using global::Shared.DTOs
+@inject ITransactionService transactionService
+
 
 <div class="transaction-box">
     <div class="leftPart">
@@ -21,6 +24,9 @@
         {
             <p style="color: red;">@sign@Amount DKK</p>
         }
+        <AuthorizeView Policy="MustBeEmployee">
+            <button @onclick="() => FlagUser(SenderId)">Flag Sender</button>
+        </AuthorizeView>
     </div>
 </div>
 
@@ -30,6 +36,7 @@
     [Parameter] public double Amount { get; set; }
     [Parameter] public string Message { get; set; }
     [Parameter] public DateTime Date { get; set; }
+    [Parameter] public int SenderId { get; set; }
 
     private string senderName;
     private string sign;
@@ -54,6 +61,16 @@
         sign = "-";
         return "Transfer";
     }
+
+    protected async Task FlagUser(int id)
+    {
+        FlagUserDto dto = new FlagUserDto
+        {
+            SenderId = id
+        };
+        await transactionService.FlagUser(dto);
+    }
+    
     
     
     

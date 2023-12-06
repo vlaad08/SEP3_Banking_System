@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.Text;
 using Newtonsoft.Json;
-using Shared.DAO;
 using Shared.DTOs;
 using Shared.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -72,7 +71,7 @@ public class TransactionService : ITransactionService
 
     }
 
-    public async Task<List<TransactionDao>> GetTransactions(string email)
+    public async Task<List<Transaction>> GetTransactions(string email)
     {
         try
         {
@@ -83,12 +82,49 @@ public class TransactionService : ITransactionService
             {
                 throw new Exception(responseBody);
             }
-
-            List<TransactionDao> list = JsonConvert.DeserializeObject<IEnumerable<TransactionDao>>(responseBody)
-                .ToList();
-
-            
+            List<Transaction> list = JsonConvert.DeserializeObject<IEnumerable<Transaction>>(responseBody).ToList();
             return list;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<Transaction>> GetTransactions()
+    {
+        try
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/");
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+            List<Transaction> list = JsonConvert.DeserializeObject<IEnumerable<Transaction>>(responseBody).ToList();
+            return list;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task FlagUser(FlagUserDto flagUserDto)
+    {
+        try
+        {
+            HttpResponseMessage responseMessage = await client.PatchAsJsonAsync($"http://localhost:5054/api/Transaction/Flag/",flagUserDto);
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+
         }
         catch (Exception e)
         {

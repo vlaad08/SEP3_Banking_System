@@ -434,6 +434,78 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
+    public List<Transactions> getAllTransactionsForEmployee() {
+        List<Transactions> transactionsList = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName,u1.user_id AS senderId\n" +
+                    "FROM transactions t\n" +
+                    "JOIN account a1 ON t.senderAccount_id = a1.account_id\n" +
+                    "JOIN account a2 ON t.recipientAccount_id = a2.account_id\n" +
+                    "JOIN \"user\" u1 ON a1.user_id = u1.user_id\n" +
+                    "JOIN \"user\" u2 ON a2.user_id = u2.user_id\n" +
+                    "ORDER BY t.dateTime DESC;;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    String senderAccountNumber = resultSet.getString("senderAccount_id");
+                    String recipientAccountNumber = resultSet.getString("recipientAccount_id");
+                    double amount = resultSet.getDouble("amount");
+                    String message = resultSet.getString("message");
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("dateTime");
+                    String senderFirstName = resultSet.getString("senderFirstName");
+                    String senderLastName = resultSet.getString("senderLastName");
+                    String receiverFirstName = resultSet.getString("receiverFirstName");
+                    String receiverLastName = resultSet.getString("receiverLastName");
+                    int senderId = resultSet.getInt("senderId");
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                            .setSeconds(sqlTimestamp.getTime() / 1000)
+                            .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                            .build();
+
+                    Transactions transaction = Transactions.newBuilder()
+                            .setSenderAccountNumber(senderAccountNumber)
+                            .setRecipientAccountNumber(recipientAccountNumber)
+                            .setAmount(amount)
+                            .setMessage(message)
+                            .setDate(date)
+                            .setSenderName(senderFirstName + " " + senderLastName)
+                            .setReceiverName(receiverFirstName + " " + receiverLastName)
+                            .setSenderId(senderId)
+                            .build();
+
+                    transactionsList.add(transaction);
+                }
+            }
+        } catch (SQLException e) {
+
+            throw new RuntimeException("Error executing statements", e);
+        }
+
+        return transactionsList;
+    }
+
+    @Override
+    public void flagUser(FlagUserDTO flagUserDTO) {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                PreparedStatement insertIssueStatement = connection.prepareStatement(
+                        "UPDATE \"user\" SET flag=true WHERE user_id=?;");
+                insertIssueStatement.setInt(1, flagUserDTO.getSenderId());
+                insertIssueStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing statements", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
+
+    @Override
     public void registerUser(RegisterRequestDTO registerUserDTO)
             throws SQLException {
         try (Connection connection = getConnection();
@@ -473,6 +545,25 @@ public class SQLConnection implements SQLConnectionInterface {
 
                 insertIssueStatement.executeUpdate();
 
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Error executing statements", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error opening/closing connection", e);
+        }
+    }
+
+    @Override
+    public void updateIssue(IssueUpdateDTO issueDTO) throws SQLException {
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                PreparedStatement insertIssueStatement = connection.prepareStatement(
+                        "UPDATE issues SET flagged=true WHERE issue_id=?;");
+                insertIssueStatement.setInt(1, issueDTO.getId());
+                insertIssueStatement.executeUpdate();
                 connection.commit();
             } catch (SQLException e) {
                 connection.rollback();

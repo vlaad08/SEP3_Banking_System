@@ -45,4 +45,13 @@ public class TransferDAO : ITransferDAO
     {
         return await grpcClient.GetTransactions(getTransactionsDto);
     }
+    public async Task<IEnumerable<Transaction>> GetTransactions()
+    {
+        return await grpcClient.GetTransactions();
+    }
+
+    public async Task FlagUser(FlagUserDTO dto)
+    {
+        await grpcClient.FlagUser(dto);
+    }
 }
