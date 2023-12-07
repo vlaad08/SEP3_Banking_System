@@ -149,6 +149,40 @@ public class TransferLogicTests
         transferDaoMock.Verify(d=>d.GetTransactions(getTransactionsDTO));
     }
 
+    [Fact]
+    public async Task GetTransactionsForEmployee_Calls_Dao()
+    {
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetTransactions())
+            .ReturnsAsync(new List<Transaction>());
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+        await transferLogic.GetTransactions();
+        transferDaoMock.Verify(d=>d.GetTransactions());
+    }
+    [Fact]
+    public async Task GetTransactionsForEmployee_Returns_A_List()
+    {
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetTransactions())
+            .ReturnsAsync(new List<Transaction>());
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+        IEnumerable<Transaction> transactions = await transferLogic.GetTransactions();
+        Assert.IsAssignableFrom<IEnumerable<Transaction>>(transactions);
+    }
+
+    [Fact]
+    public async Task FlagUser_Calls_For_Dao()
+    {
+        FlagUserDTO dto = new FlagUserDTO
+        {
+            SenderId = 1
+        };
+        var transferDaoMock = new Mock<ITransferDAO>();
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+        await transferLogic.FlagUser(dto);
+        transferDaoMock.Verify(d=>d.FlagUser(dto));
+    }
+
     
     
 }

@@ -78,4 +78,17 @@ public class IssueLogicTest
         IEnumerable<Message> messages = await issueLogic.GetMessagesForIssue(dto);
         Assert.Equal(messages.GetType(), typeof(Message[]));
     }
+
+    [Fact]
+    public async Task UpdateIssue_Calls_Dao()
+    {
+        IssueUpdateDTO dto = new IssueUpdateDTO
+        {
+            Id = 1
+        };
+        var issueDao = new Mock<IIssueDAO>();
+        var issueLogic = new IssueLogic(issueDao.Object);
+        await issueLogic.UpdateIssue(dto);
+        issueDao.Verify(d=>d.UpdateIssue(dto));
+    }
 }
