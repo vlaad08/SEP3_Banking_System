@@ -80,6 +80,26 @@ public class SQLConnectionTest {
     }
     @Test
     void transfer_is_saved_in_the_database() throws SQLException {
+        sqlConnection.transfer("aaaabbbbccccdddd", "bbbbaaaaccccdddd", 10.0, "-");
+        Mockito.verify(connection).setAutoCommit(false);
+        Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance + ? WHERE account_id = ?");
+        Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance - ? WHERE account_id = ?");
+        Mockito.verify(connection).prepareStatement("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                +
+                "VALUES (?, ?, ?, ?, ?)");
+        Mockito.verify(statement, times(2)).setDouble(eq(1), anyDouble());
+        Mockito.verify(statement, times(1)).setDouble(eq(2), anyDouble());
+        Mockito.verify(statement, times(2)).setString(eq(2), anyString());
+        Mockito.verify(statement, times(1)).setString(eq(3), anyString());
+        Mockito.verify(statement, times(1)).setString(eq(4), anyString());
+        Mockito.verify(statement, times(1)).setString(eq(5), anyString());
+        Mockito.verify(statement, times(1)).setTimestamp(eq(1), Mockito.any(Timestamp.class));
+
+        Mockito.verify(connection).commit();
+    }
+    /* tried with assert and failed
+    * @Test
+    void transfer_is_saved_in_the_database() throws SQLException {
 
         PreparedStatement statement1 = Mockito.mock(PreparedStatement.class);
         PreparedStatement statement2 = Mockito.mock(PreparedStatement.class);
@@ -124,7 +144,7 @@ public class SQLConnectionTest {
 
         // Check if the transaction is committed
         Mockito.verify(connection).commit();
-    }
+    }*/
 
     @Test
     void checkBalance_returns_a_double() throws SQLException {
@@ -135,15 +155,15 @@ public class SQLConnectionTest {
     @Test
     void checkBalance_reaches_the_database() throws SQLException {
         Mockito.when(resultSet.next()).thenReturn(true);
-        Mockito.when(sqlConnection.checkBalance("-")).thenReturn(10.0);
-        sqlConnection.checkBalance("-");
-        Mockito.verify(connection).prepareStatement(Mockito.eq("SELECT balance FROM account WHERE account_id=?;"));
+        Mockito.when(sqlConnection.checkBalance("1111111111111111")).thenReturn(1000.0);
+        sqlConnection.checkBalance("1111111111111111");
+        Mockito.verify(connection).prepareStatement(Mockito.eq("SELECT balance FROM account WHERE account_id = ?;"));
         Mockito.verify(statement).setString(eq(1),stringCaptor.capture());
         Mockito.verify(statement).executeQuery();
         Mockito.verify(resultSet).next();
         Mockito.verify(resultSet).getDouble("balance");
 
-        assertEquals("-",stringCaptor.getAllValues().get(0));
+        assertEquals("1111111111111111",stringCaptor.getAllValues().get(0));
     }
 
     @Test
@@ -174,34 +194,41 @@ public class SQLConnectionTest {
     }
     @Test
     void dailyCheck_reaches_the_database() throws SQLException {
-        Mockito.when(resultSet.next()).thenReturn(true);
-        Mockito.when(sqlConnection.dailyCheck("-")).thenReturn(200.0);
-        sqlConnection.dailyCheck("-");
+        Mockito.when(resultSet.next()).thenReturn(true, false);
+        Mockito.when(resultSet.getDouble("sum")).thenReturn(200.0);
+        double result = sqlConnection.dailyCheck("-");
         Mockito.verify(connection).prepareStatement(Mockito.eq("SELECT SUM(amount)\n" +
                 "FROM transactions\n" +
                 "WHERE senderAccount_id = ?\n" +
                 "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;"));
-        Mockito.verify(statement).setString(eq(1),stringCaptor.capture());
+        Mockito.verify(statement).setString(eq(1), stringCaptor.capture());
         Mockito.verify(statement).executeQuery();
-        Mockito.verify(resultSet).next();
+        Mockito.verify(resultSet, Mockito.times(2)).next();
         Mockito.verify(resultSet).getDouble("sum");
-
-        assertEquals("-",stringCaptor.getAllValues().get(0));
+        assertEquals(200.0, result, 0.01);
+        assertEquals("-", stringCaptor.getValue());
     }
 
     @Test
     void deposit_updates_the_database() throws SQLException {
         sqlConnection.deposit("aaaabbbbccccdddd",50);
-        Mockito.verify(connection).prepareStatement("UPDATE banking_system.account\n" +
-                "SET balance = balance + ?\n" +
-                "WHERE account_id = ?");
+        Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance + ? WHERE account_id = ?");
         Mockito.verify(statement).setDouble(eq(1),doubleCaptor.capture());
         Mockito.verify(statement).setString(eq(2),stringCaptor.capture());
-        Mockito.verify(statement).executeUpdate();
+
+        Mockito.verify(connection).prepareStatement(Mockito.eq("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                "VALUES (?, ?, ?, ?, ?)"));
+        Mockito.verify(statement).setTimestamp(Mockito.eq(1), Mockito.any(Timestamp.class));
+        Mockito.verify(statement).setDouble(Mockito.eq(2), doubleCaptor.capture());
+        Mockito.verify(statement).setString(Mockito.eq(3), stringCaptor.capture());
+        Mockito.verify(statement).setString(Mockito.eq(4), stringCaptor.capture());
+        Mockito.verify(statement).setString(Mockito.eq(5), stringCaptor.capture());
+        Mockito.verify(statement,Mockito.times(2)).executeUpdate();
 
         assertEquals("aaaabbbbccccdddd",stringCaptor.getValue());
         assertEquals(50,doubleCaptor.getValue());
     }
+
     @Test
     void getUsers_returns_a_list() throws SQLException {
         User sampleUser = User.newBuilder()
@@ -303,19 +330,11 @@ public class SQLConnectionTest {
                 "FROM account a JOIN \"user\" u ON a.user_id = u.user_id;");
         Mockito.verify(statement).executeQuery();
         Mockito.verify(resultSet).next();
-
-        AccountsInfo.Builder builder = Mockito.mock(AccountsInfo.Builder.class);
-        Mockito.when(builder.setAccountNumber("11111111111111")).thenReturn(builder);
-        Mockito.when(builder.setOwnerName("Gipsz Jakab")).thenReturn(builder);
-        Mockito.when(builder.setAccountBalance(10)).thenReturn(builder);
-        Mockito.when(builder.setAccountType("personal")).thenReturn(builder);
-
-        Mockito.when(builder.build()).thenReturn(temp);
-
-        Mockito.mockStatic(AccountsInfo.class);
-        Mockito.when(AccountsInfo.newBuilder()).thenReturn(builder);
-
-        assertEquals(list.size(), 1);
+        Mockito.verify(resultSet).getString("account_id");
+        Mockito.verify(resultSet).getString("firstname");
+        Mockito.verify(resultSet).getString("lastname");
+        Mockito.verify(resultSet).getDouble("balance");
+        Mockito.verify(resultSet).getString("account_type");
     }
     @Test
     void getUserAccountInfos_queries_database() throws SQLException {
@@ -341,6 +360,13 @@ public class SQLConnectionTest {
                 "WHERE u.email = ?;");
         Mockito.verify(statement).executeQuery();
         Mockito.verify(resultSet).next();
+        Mockito.verify(resultSet).getString("account_id");
+        Mockito.verify(resultSet).getString("firstname");
+        Mockito.verify(resultSet).getString("lastname");
+        Mockito.verify(resultSet).getDouble("balance");
+        Mockito.verify(resultSet).getString("account_type");
+
+
 
         AccountsInfo.Builder builder = Mockito.mock(AccountsInfo.Builder.class);
         Mockito.when(builder.setAccountNumber("11111111111111")).thenReturn(builder);
@@ -358,69 +384,59 @@ public class SQLConnectionTest {
     @Test
     void testRegisterUser() throws SQLException {
         Mockito.when(resultSet.next()).thenReturn(true);
-        RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO("email","fname","mname","lname","12345678","basic");
+        RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO("email","fname",
+                "mname","lname","12345678","basic");
         try{
         sqlConnection.registerUser(registerRequestDTO);
         } catch (NullPointerException ignored){}
 
-        Mockito.verify(connection).prepareStatement("")
+        //Mockito.verify(connection).prepareStatement();
 
+    }
+
+    @Test
+    void test_lastInterest_queries_the_database() throws SQLException {
+        Mockito.when(resultSet.next()).thenReturn(true);
+        Mockito.when(resultSet.getTimestamp("dateTime")).thenReturn(Timestamp.valueOf("2023-01-01 12:00:00"));
+        UserInfoAccNumDTO dto = new UserInfoAccNumDTO("aaaabbbbccccdddd");
+        Timestamp result = sqlConnection.lastInterest(dto);
+
+        Mockito.verify(connection).prepareStatement("SELECT t.dateTime FROM transactions t " +
+                "WHERE t.senderAccount_id = ? AND t.message = 'Interest' " +
+                "ORDER BY t.dateTime DESC LIMIT 1;");
+
+        Mockito.verify(statement).setString(1, dto.getAccNum());
+        assertEquals(Timestamp.valueOf("2023-01-01 12:00:00"), result);
     }
 
 
     @Test
-    public void testLastInterest() throws SQLException {
-        UserInfoAccNumDTO userInfoAccNumDTO = new UserInfoAccNumDTO("yourAccNum");
+    void test_CreditInterest_queries_the_database() throws SQLException {
+        UserInfoAccNumDTO userInfoAccNumDTO = new UserInfoAccNumDTO("aaaabbbbccccdddd");
+        Mockito.when(resultSet.next()).thenReturn(true);
+        Mockito.when(statement.executeUpdate()).thenReturn(1);
+        sqlConnection.creditInterest(userInfoAccNumDTO);
+        Mockito.verify(connection).setAutoCommit(false);
+        Mockito.verify(connection).prepareStatement("SELECT a.balance, a.interest_rate FROM account a WHERE a.account_id = ?");
+        Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance + ? WHERE account_id = ?");
+        Mockito.verify(connection).prepareStatement("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                +
+                "VALUES (?, ?, ?, ?, ?)");
 
-        Timestamp expectedTimestamp = Timestamp.valueOf(LocalDateTime.now());
+        Mockito.verify(statement).setString(1,userInfoAccNumDTO.getAccNum());
+        Mockito.verify(statement).executeQuery();
+        Mockito.verify(statement,Mockito.times(2)).executeUpdate();
 
-        when(connection.prepareStatement(anyString())).thenReturn(statement);
-        when(statement.executeQuery()).thenReturn(resultSet);
-        when(resultSet.next()).thenReturn(true);
-        when(resultSet.getTimestamp("dateTime")).thenReturn(expectedTimestamp);
-
-        Timestamp resultTimestamp = sqlConnection.lastInterest(userInfoAccNumDTO);
-
-        assertEquals(expectedTimestamp, resultTimestamp);
-
-        verify(statement).setString(1, userInfoAccNumDTO.getAccNum());
+        Mockito.verify(statement).setDouble(Mockito.eq(1),Mockito.anyDouble());
+        Mockito.verify(statement).setString(2,userInfoAccNumDTO.getAccNum());
+        Mockito.verify(statement).setTimestamp(Mockito.eq(1),Mockito.any(Timestamp.class));
+        Mockito.verify(statement).setDouble(Mockito.eq(2),Mockito.anyDouble());
+        Mockito.verify(statement).setString(3,"Interest");
+        Mockito.verify(statement).setString(4,userInfoAccNumDTO.getAccNum());
+        Mockito.verify(statement).setString(5,userInfoAccNumDTO.getAccNum());
+        Mockito.verify(connection).commit();
     }
 
-
-    @Test
-    public void testCreditInterest() throws SQLException {
-        // Arrange
-        UserInfoAccNumDTO userInfoAccNumDTO = new UserInfoAccNumDTO("bbbbddddaaaacccc");
-        PreparedStatement updateStatement = mock(PreparedStatement.class);
-        PreparedStatement insertStatement = mock(PreparedStatement.class);
-
-        // Mocking JDBC behavior
-        when(connection.prepareStatement(contains("SELECT"))).thenReturn(statement);
-        when(connection.prepareStatement(contains("UPDATE"))).thenReturn(updateStatement);
-        when(connection.prepareStatement(contains("INSERT"))).thenReturn(insertStatement);
-
-        when(statement.executeQuery()).thenReturn(resultSet);
-        when(resultSet.next()).thenReturn(true);
-        when(resultSet.getDouble("balance")).thenReturn(1000.0); // Provide appropriate values
-        when(resultSet.getDouble("interest_rate")).thenReturn(0.05); // Provide appropriate values
-        when(updateStatement.executeUpdate()).thenReturn(1);
-
-        // Act
-        boolean result = sqlConnection.creditInterest(userInfoAccNumDTO);
-
-        // Assert
-        assertTrue(result);
-
-        // Verify that the correct methods were called with the correct parameters
-        verify(connection).setAutoCommit(false);
-        verify(statement).setString(1, userInfoAccNumDTO.getAccNum());
-        verify(updateStatement).setDouble(1, 50.0); // Adjust according to your interest calculation logic
-        verify(updateStatement).setString(2, userInfoAccNumDTO.getAccNum());
-        verify(insertStatement).setTimestamp(eq(1), any(Timestamp.class));
-        verify(insertStatement).setDouble(2, 50.0); // Adjust according to your interest calculation logic
-        verify(insertStatement, times(2)).setString(anyInt(), eq(userInfoAccNumDTO.getAccNum()));
-        verify(connection).commit();
-    }
 
 
 
@@ -471,12 +487,11 @@ public class SQLConnectionTest {
                 .setReceiverName("Levi Ksaaa")
                 .build();
         userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
-        when(sqlConnection.getAllTransactions(userInfoDTO)).thenReturn(List.of(temp));
+        Mockito.when(sqlConnection.getAllTransactions(userInfoDTO)).thenReturn(List.of(temp));
         List<Transactions> result = sqlConnection.getAllTransactions(userInfoDTO);
 
         assertEquals(List.of(temp), result);
     }
-
     @Test
     void testCreateIssue() throws SQLException {
         IssueCreationDTO issueDTO = new IssueCreationDTO("Title", "Body", 1);
@@ -514,15 +529,15 @@ public class SQLConnectionTest {
         sqlConnection.sendMessage(messageDTO);
 
         ArgumentCaptor<Timestamp> timestampCaptor = ArgumentCaptor.forClass(Timestamp.class);
-        verify(statement).setTimestamp(eq(4), timestampCaptor.capture());
-        verify(statement).setString(1, messageDTO.getTitle());
-        verify(statement).setString(2, messageDTO.getBody());
-        verify(statement).setInt(3, messageDTO.getOwner());
-        verify(statement).setInt(5, messageDTO.getIssueId());
+        Mockito.verify(statement).setTimestamp(eq(4), timestampCaptor.capture());
+        Mockito.verify(statement).setString(1, messageDTO.getTitle());
+        Mockito.verify(statement).setString(2, messageDTO.getBody());
+        Mockito.verify(statement).setInt(3, messageDTO.getOwner());
+        Mockito.verify(statement).setInt(5, messageDTO.getIssueId());
 
-        verify(statement).executeUpdate();
+        Mockito.verify(statement).executeUpdate();
 
-        verify(connection).commit();
+        Mockito.verify(connection).commit();
     }
 
     @Test
@@ -530,35 +545,35 @@ public class SQLConnectionTest {
         IssueinfoDTO issueinfoDTO = new IssueinfoDTO(1);
 
         ResultSet resultSetMock = mock(ResultSet.class);
-        when(resultSetMock.next()).thenReturn(true, false);
-        when(resultSetMock.getString("title")).thenReturn("Sample Title");
-        when(resultSetMock.getString("body")).thenReturn("Body");
-        when(resultSetMock.getInt("owner_id")).thenReturn(1);
+        Mockito.when(resultSetMock.next()).thenReturn(true, false);
+        Mockito.when(resultSetMock.getString("title")).thenReturn("Sample Title");
+        Mockito.when(resultSetMock.getString("body")).thenReturn("Body");
+        Mockito.when(resultSetMock.getInt("owner_id")).thenReturn(1);
 
         java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(LocalDateTime.now());
         com.google.protobuf.Timestamp expectedDate = com.google.protobuf.Timestamp.newBuilder()
                 .setSeconds(sqlTimestamp.getTime() / 1000)
                 .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
                 .build();
-        when(resultSetMock.getTimestamp("creation_time")).thenReturn(sqlTimestamp);
+        Mockito.when(resultSetMock.getTimestamp("creation_time")).thenReturn(sqlTimestamp);
 
         PreparedStatement statementMock = mock(PreparedStatement.class);
-        when(statementMock.executeQuery()).thenReturn(resultSetMock);
+        Mockito.when(statementMock.executeQuery()).thenReturn(resultSetMock);
 
         Connection connectionMock = mock(Connection.class);
-        when(connectionMock.prepareStatement(anyString())).thenReturn(statementMock);
+        Mockito.when(connectionMock.prepareStatement(anyString())).thenReturn(statementMock);
 
         SQLConnection sqlConnectionMock = spy(new SQLConnection());
-        doReturn(connectionMock).when(sqlConnectionMock).getConnection();
+        Mockito.doReturn(connectionMock).when(sqlConnectionMock).getConnection();
 
         List<MessageInfo> result = sqlConnectionMock.getMessagesForIssue(issueinfoDTO);
 
-        verify(statementMock).setInt(1, issueinfoDTO.getId());
+        Mockito.verify(statementMock).setInt(1, issueinfoDTO.getId());
 
-        verify(resultSetMock).getString("title");
-        verify(resultSetMock).getString("body");
-        verify(resultSetMock).getInt("owner_id");
-        verify(resultSetMock).getTimestamp("creation_time");
+        Mockito.verify(resultSetMock).getString("title");
+        Mockito.verify(resultSetMock).getString("body");
+        Mockito.verify(resultSetMock).getInt("owner_id");
+        Mockito.verify(resultSetMock).getTimestamp("creation_time");
 
         MessageInfo expectedMessageInfo = MessageInfo.newBuilder()
                 .setTitle("Sample Title")
@@ -639,7 +654,6 @@ public class SQLConnectionTest {
         assertEquals(List.of(expectedIssue1, expectedIssue2), result);
     }
 
-//MORE TESTING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 

@@ -126,10 +126,10 @@ public class GRPCServerImpTest {
         AccountCheckRequest accountCheckRequest = AccountCheckRequest.newBuilder()
                 .setRecipientAccountId("bbbbaaaaccccdddd")
                 .build();
-        try {
-            grpcServerImp.checkAccount(accountCheckRequest, responseObserver);
-        } catch (NullPointerException e) {
-        }
+
+        Mockito.when(transactionDao.checkAccountId(Mockito.any())).thenReturn("bbbbaaaaccccdddd");
+
+        grpcServerImp.checkAccount(accountCheckRequest, responseObserver);
         Mockito.verify(transactionDao).checkAccountId(accountCheckCaptor.capture());
         Mockito.verify(responseObserver).onNext(Mockito.any());
         Mockito.verify(responseObserver).onCompleted();
@@ -291,11 +291,13 @@ public class GRPCServerImpTest {
         assertEquals("Nita",registerRequestDto.getValue().getLastname());
     }
 
-    ///FUCK
     @Test
     void getUserByEmail_calls_dao_sends_response() throws SQLException {
         StreamObserver<UserEmailResponse> response = Mockito.mock(StreamObserver.class);
         UserEmailRequest request = UserEmailRequest.newBuilder().setEmail("email@email.com").build();
+
+        Mockito.when(registerDao.getUserEmail(Mockito.any())).thenReturn("email@email.colm");
+
         grpcServerImp.getUserByEmail(request, response);
 
         Mockito.verify(registerDao).getUserEmail(userAccountRequestDto.capture());
@@ -303,7 +305,6 @@ public class GRPCServerImpTest {
         Mockito.verify(response).onCompleted();
         assertEquals("email@email.com", userAccountRequestDto.getValue().getEmail());
     }
-    //YOU
 
     @Test
     void getUserId_calls_dao_and_sends_response() throws SQLException {
