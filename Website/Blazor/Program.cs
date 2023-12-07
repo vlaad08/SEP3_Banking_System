@@ -15,6 +15,7 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<IIssueService, IssueService>();
+builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped(
     sp =>
         new HttpClient
