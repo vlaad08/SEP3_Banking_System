@@ -54,8 +54,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        AccountCheckResponse response = AccountCheckResponse.newBuilder().setRecipientAccountId(recipientAccount_id)
-                .build();
+        AccountCheckResponse response = AccountCheckResponse.newBuilder().setRecipientAccountId(recipientAccount_id).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
