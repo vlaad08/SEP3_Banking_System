@@ -156,10 +156,9 @@ public class SQLConnection implements SQLConnectionInterface {
 
                     insertStatement.setTimestamp(1, now);
                     insertStatement.setDouble(2, amount);
-                    // insertStatement.setNull(3, Types.VARCHAR); //message will be null
-                    insertStatement.setString(3, "deposit");// actully no this s better
+                    insertStatement.setString(3, "deposit");
                     insertStatement.setString(4, account_id);
-                    insertStatement.setString(5, account_id); // deposit to himself?
+                    insertStatement.setString(5, account_id);
                     insertStatement.executeUpdate();
 
                     connection.commit();
@@ -444,7 +443,7 @@ public class SQLConnection implements SQLConnectionInterface {
                     "JOIN account a2 ON t.recipientAccount_id = a2.account_id\n" +
                     "JOIN \"user\" u1 ON a1.user_id = u1.user_id\n" +
                     "JOIN \"user\" u2 ON a2.user_id = u2.user_id\n" +
-                    "ORDER BY t.dateTime DESC;;";
+                    "ORDER BY t.dateTime DESC;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 ResultSet resultSet = statement.executeQuery();
@@ -687,24 +686,16 @@ public class SQLConnection implements SQLConnectionInterface {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, issueinfoDTO.getId());
                 ResultSet resultSet = statement.executeQuery();
-                System.out.println("GECI6");
                 while (resultSet.next()) {
-                    System.out.println("GECI7");
                     String title = resultSet.getString("title");
-                    System.out.println("GECI8");
                     String body = resultSet.getString("body");
-                    System.out.println("GECI9");
                     int ownerId = resultSet.getInt("owner_id");
-                    System.out.println("GECI10");
                     java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("creation_time");
-                    System.out.println("GECI11");
                     com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
                             .setSeconds(sqlTimestamp.getTime() / 1000)
                             .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
                             .build();
-                    System.out.println("GECI12");
                     System.out.println(title);
-                    System.out.println("FOOOOS");
 
                     MessageInfo messageInfo = MessageInfo.newBuilder()
                             .setTitle(title)

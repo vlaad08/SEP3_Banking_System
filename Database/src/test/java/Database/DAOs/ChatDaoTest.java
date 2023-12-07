@@ -2,10 +2,7 @@ package Database.DAOs;
 
 import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DAOs.Interfaces.LoginDaoInterface;
-import Database.DTOs.IssueCreationDTO;
-import Database.DTOs.IssueinfoDTO;
-import Database.DTOs.MessageDTO;
-import Database.DTOs.UserInfoEmailDTO;
+import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +24,8 @@ public class ChatDaoTest {
     @InjectMocks
     private IssueinfoDTO issueinfoDTO;
     @InjectMocks
+    private IssueUpdateDTO issueUpdateDTO;
+    @InjectMocks
     private MessageDTO messageDTO;
 
     @BeforeEach
@@ -36,6 +35,7 @@ public class ChatDaoTest {
         connection = Mockito.mock(SQLConnection.class);
         issueCreationDTO = Mockito.mock(IssueCreationDTO.class);
         issueinfoDTO = Mockito.mock(IssueinfoDTO.class);
+        issueUpdateDTO = Mockito.mock(IssueUpdateDTO.class);
         messageDTO = Mockito.mock(MessageDTO.class);
         MockitoAnnotations.openMocks(this);
     }
@@ -44,6 +44,11 @@ public class ChatDaoTest {
     void createIssue_calls_SQLConnection() throws SQLException {
         dao.createIssue(issueCreationDTO);
         Mockito.verify(connection).createIssue(issueCreationDTO);
+    }
+    @Test
+    void updateIssue_calls_SQLConnection() throws SQLException {
+        dao.updateIssue(issueUpdateDTO);
+        Mockito.verify(connection).updateIssue(issueUpdateDTO);
     }
 
     @Test

@@ -23,6 +23,7 @@ public class TransactionDAOTest {
     private UserInfoAccNumDTO userInfoAccNumDTO;
     private LoanRequestDTO loanRequestDTO;
     private UserInfoEmailDTO userInfoEmailDTO;
+    private FlagUserDTO flagUserDTO;
 
     @BeforeEach
     void setup()
@@ -35,6 +36,7 @@ public class TransactionDAOTest {
         userInfoAccNumDTO = Mockito.mock(UserInfoAccNumDTO.class);
         loanRequestDTO = Mockito.mock(LoanRequestDTO.class);
         userInfoEmailDTO = Mockito.mock(UserInfoEmailDTO.class);
+        flagUserDTO = Mockito.mock(FlagUserDTO.class);
         MockitoAnnotations.openMocks(this);
     }
 
@@ -83,8 +85,6 @@ public class TransactionDAOTest {
         Mockito.verify(connection).deposit(depositRequestDTO.getAccount_id(),depositRequestDTO.getAmount());
     }
 
-    //4
-
     @Test
     void creditInterest_connection_called() throws SQLException {
         dao.creditInterest(userInfoAccNumDTO);
@@ -125,5 +125,17 @@ public class TransactionDAOTest {
     void getAllTransactions_connection_called() throws SQLException {
         dao.getAllTransactions(userInfoEmailDTO);
         Mockito.verify(connection).getAllTransactions(userInfoEmailDTO);
+    }
+    @Test
+    void getAllTransactionsForEmployee_connection_called() throws SQLException {
+        dao.getAllTransactionsForEmployee();
+        Mockito.verify(connection).getAllTransactionsForEmployee();
+    }
+
+    @Test
+    void flagUser_connection_called()
+    {
+        dao.flagUser(flagUserDTO);
+        Mockito.verify(connection).flagUser(flagUserDTO);
     }
 }
