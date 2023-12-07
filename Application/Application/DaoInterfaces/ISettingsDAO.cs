@@ -10,4 +10,5 @@ public interface ISettingsDAO
     Task UpdateEmail(UserNewEmailDTO userNewEmailDto);
     Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto);
     Task UpdatePlan(UserNewPlanDTO userNewPlanDto);
+    
 }

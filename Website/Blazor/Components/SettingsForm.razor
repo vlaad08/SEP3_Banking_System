@@ -8,8 +8,12 @@
 @using Domain.DTOs
 @using global::Shared.DTOs
 @using Newtonsoft.Json
+@using Blazor.Pages
 @inject ITransactionService transactionService
 @inject ISettingsService settingsService
+@inject IAuthService AuthService
+@inject NavigationManager NavMgr
+
 
 <div class="content">
     <div class="card">
@@ -73,7 +77,7 @@
                 <li>Secure account in the system</li>
                 <li>Base interest rate: 1.7%</li>
             </ul>
-            <button @onclick="">Select this plan</button>
+            <button @onclick="UpdatePlanDefault">Select this plan</button>
         </div>
         
         <div class="plan">
@@ -84,7 +88,7 @@
                 <li>Base interest rate: 3.7%</li>
                 <li>Fast response time from employees</li>
             </ul>
-            <button @onclick="">Select this plan</button>
+            <button @onclick="UpdatePlanPremium">Select this plan</button>
         </div>
     </div>
 }
@@ -103,7 +107,9 @@
     private string newemail1;
     private string rolepremium="Premium";
     private string roledefault = "Default";
-    private string Password = "12345678";
+    [Parameter] public string Id { get; set; }
+    private Notification errorRef;
+
   
 
 
@@ -115,7 +121,8 @@
         Users = await GetUserAccounts(User);
         Email = User.FindFirst("Email").Value;
         Role = User.FindFirst(ClaimTypes.Role).Value;
-        
+        Id = User.FindFirst("Id").Value;
+
 
     }
 
@@ -164,25 +171,55 @@
 
     private async Task UpdateEmail()
     {
+        if (newemail.Equals(newemail1))
+        {
+            try
+            {
+                UserNewEmailDTO newEmailDto = new UserNewEmailDTO(int.Parse(Id), newemail, Email);
+                await settingsService.UpdateEmail(newEmailDto);
+                await AuthService.LogoutAsync();
+                NavMgr.NavigateTo("/");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        else
+        {
+            await errorRef.ShowErrorNotification("Please fill out all the fields correctly");
+
+        }
+        
+        
+    }
+    
+    
+    private async Task UpdatePlanDefault()
+    {
         try
         {
-            
+            UserNewPlanDTO newPlanDto = new UserNewPlanDTO(int.Parse(Id), roledefault);
+            await settingsService.UpdatePlan(newPlanDto);
+            await AuthService.LogoutAsync();
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-        
     }
     
-    
-    private async Task UpdatePlan()
+    private async Task UpdatePlanPremium()
     {
         try
-        {   
-        
-            settingsService.UpdatePlan()
+        {
+            UserNewPlanDTO newPlanDto = new UserNewPlanDTO(int.Parse(Id), rolepremium);
+            await settingsService.UpdatePlan(newPlanDto);
+            await AuthService.LogoutAsync();
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {

@@ -5,7 +5,7 @@
 <PageTitle>Settings</PageTitle>
 <LoadingBox @ref="loadingRef"></LoadingBox>
 <AuthorizeView>
-    <Blazor.Components.SettingsForm User="@context.User" Loading="loadingRef" Email="@context.User.FindFirst("Email").Value" Role="@ClaimTypes.Role"></Blazor.Components.SettingsForm>
+    <Blazor.Components.SettingsForm User="@context.User" Loading="loadingRef" Email="@context.User.FindFirst("Email").Value" Role="@ClaimTypes.Role" Id="@context.User.FindFirst("Id").Value"></Blazor.Components.SettingsForm>
 </AuthorizeView>
 
 @code{

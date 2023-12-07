@@ -225,3 +225,6 @@ C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/blazor/obj/De
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Pages/CustomerService.razor.rz.scp.css
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Pages/Deposit.razor.rz.scp.css
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Pages/Register.razor.rz.scp.css
+/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Components/IssueContainer.razor.rz.scp.css
+/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Components/PopUp.razor.rz.scp.css
+/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/obj/Debug/net7.0/scopedcss/Pages/CustomerService.razor.rz.scp.css
