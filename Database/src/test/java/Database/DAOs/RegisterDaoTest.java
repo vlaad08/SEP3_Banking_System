@@ -128,4 +128,5 @@ public class RegisterDaoTest {
     });
     Mockito.verify(connection).generateAccountNumber(userAccountDTO);
   }
+
 }

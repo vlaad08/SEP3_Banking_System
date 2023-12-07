@@ -1,16 +1,11 @@
 package Database.DAOs;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
-import Database.DTOs.CheckAccountDTO;
-import Database.DTOs.DepositRequestDTO;
-import Database.DTOs.TransferRequestDTO;
+import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.sql.SQLException;
 
@@ -25,6 +20,9 @@ public class TransactionDAOTest {
     private TransferRequestDTO transferRequestDTO;
     private CheckAccountDTO checkAccountDTO;
     private DepositRequestDTO depositRequestDTO;
+    private UserInfoAccNumDTO userInfoAccNumDTO;
+    private LoanRequestDTO loanRequestDTO;
+    private UserInfoEmailDTO userInfoEmailDTO;
 
     @BeforeEach
     void setup()
@@ -34,6 +32,9 @@ public class TransactionDAOTest {
         transferRequestDTO = Mockito.mock(TransferRequestDTO.class);
         checkAccountDTO = Mockito.mock(CheckAccountDTO.class);
         depositRequestDTO = Mockito.mock(DepositRequestDTO.class);
+        userInfoAccNumDTO = Mockito.mock(UserInfoAccNumDTO.class);
+        loanRequestDTO = Mockito.mock(LoanRequestDTO.class);
+        userInfoEmailDTO = Mockito.mock(UserInfoEmailDTO.class);
         MockitoAnnotations.openMocks(this);
     }
 
@@ -80,5 +81,49 @@ public class TransactionDAOTest {
     void makeDeposit_connection_called() throws SQLException {
         dao.makeDeposit(depositRequestDTO);
         Mockito.verify(connection).deposit(depositRequestDTO.getAccount_id(),depositRequestDTO.getAmount());
+    }
+
+    //4
+
+    @Test
+    void creditInterest_connection_called() throws SQLException {
+        dao.creditInterest(userInfoAccNumDTO);
+        Mockito.verify(connection).creditInterest(userInfoAccNumDTO);
+    }
+
+    @Test
+    void creditInterest_throws_SQLException() throws SQLException {
+        Mockito.when(connection.creditInterest(userInfoAccNumDTO)).thenThrow(SQLException.class);
+        assertThrows(SQLException.class, ()->dao.creditInterest(userInfoAccNumDTO));
+    }
+
+    @Test
+    void lastInterest_connection_called() throws SQLException {
+        dao.lastInterest(userInfoAccNumDTO);
+        Mockito.verify(connection).lastInterest(userInfoAccNumDTO);
+    }
+
+    @Test
+    void lastInterest_throws_SQLException() throws SQLException {
+        Mockito.when(connection.lastInterest(userInfoAccNumDTO)).thenThrow(SQLException.class);
+        assertThrows(SQLException.class, ()->dao.lastInterest(userInfoAccNumDTO));
+    }
+
+    @Test
+    void logLoan_connection_called() throws SQLException {
+        dao.logLoan(loanRequestDTO);
+        Mockito.verify(connection).logLoan(loanRequestDTO);
+    }
+
+    @Test
+    void logLoan_throws_SQLException() throws SQLException {
+        Mockito.doThrow(SQLException.class).when(connection).logLoan(loanRequestDTO);
+        assertThrows(SQLException.class, () -> dao.logLoan(loanRequestDTO));
+    }
+
+    @Test
+    void getAllTransactions_connection_called() throws SQLException {
+        dao.getAllTransactions(userInfoEmailDTO);
+        Mockito.verify(connection).getAllTransactions(userInfoEmailDTO);
     }
 }

@@ -14,6 +14,7 @@ import Database.DAOs.CredentialChangerDao;
 import Database.DAOs.ChatDao;
 import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DAOs.Interfaces.LoginDaoInterface;
+import Database.DAOs.Interfaces.RegisterDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
 import Database.DAOs.RegisterDao;
@@ -28,7 +29,7 @@ import java.util.List;
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
-    RegisterDao registerDao = new RegisterDao();
+    RegisterDaoInterface registerDao = new RegisterDao();
     CredentialChangerDao credentialChangerDao = new CredentialChangerDao();
     ChatDaoInterface chatDao = new ChatDao();
 
@@ -161,13 +162,10 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             Timestamp date = transactionDao.lastInterest(userInfoDTO);
             LastInterestResponse response;
             if (date != null) {
-                // Convert Java Timestamp to Google's Timestamp
                 com.google.protobuf.Timestamp timestampProto = com.google.protobuf.Timestamp.newBuilder()
-                        .setSeconds(date.getTime() / 1000) // Convert milliseconds to seconds
-                        .setNanos((int) ((date.getTime() % 1000) * 1000000)) // Convert remaining milliseconds to
-                                                                             // nanoseconds
+                        .setSeconds(date.getTime() / 1000)
+                        .setNanos((int) ((date.getTime() % 1000) * 1000000))
                         .build();
-
                 response = LastInterestResponse.newBuilder().setDate(timestampProto).build();
             } else {
                 response = null;
@@ -178,7 +176,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             throw new RuntimeException(e);
         }
     }
-
+    //test  below
     @Override
     public void logLoan(LogLoanRequest request, StreamObserver<LogLoanResponse> responseStreamObserver) {
         try {
