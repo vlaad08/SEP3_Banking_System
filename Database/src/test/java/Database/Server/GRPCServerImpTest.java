@@ -126,10 +126,10 @@ public class GRPCServerImpTest {
         AccountCheckRequest accountCheckRequest = AccountCheckRequest.newBuilder()
                 .setRecipientAccountId("bbbbaaaaccccdddd")
                 .build();
-        try {
-            grpcServerImp.checkAccount(accountCheckRequest, responseObserver);
-        } catch (NullPointerException e) {
-        }
+
+        Mockito.when(transactionDao.checkAccountId(Mockito.any())).thenReturn("bbbbaaaaccccdddd");
+
+        grpcServerImp.checkAccount(accountCheckRequest, responseObserver);
         Mockito.verify(transactionDao).checkAccountId(accountCheckCaptor.capture());
         Mockito.verify(responseObserver).onNext(Mockito.any());
         Mockito.verify(responseObserver).onCompleted();
