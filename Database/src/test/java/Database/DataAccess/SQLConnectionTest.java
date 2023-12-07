@@ -2,7 +2,9 @@ package Database.DataAccess;
 
 import Database.*;
 import Database.DTOs.*;
+import com.google.protobuf.Any;
 import com.google.protobuf.Message;
+import com.google.type.DateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -374,14 +376,22 @@ public class SQLConnectionTest {
     @Test
     void testRegisterUser() throws SQLException {
         Mockito.when(resultSet.next()).thenReturn(true);
-        RegisterRequestDTO registerRequestDTO = new RegisterRequestDTO("email", "fname", "mname", "lname", "12345678", "basic");
+        RegisterRequestDTO dto = new RegisterRequestDTO("email", "fname", "mname", "lname", "12345678", "basic");
         try {
-            sqlConnection.registerUser(registerRequestDTO);
-        } catch (NullPointerException ignored) {
-        }
-
-        Mockito.verify(connection).prepareStatement("");
-
+            sqlConnection.registerUser(dto);
+        } catch (NullPointerException ignored) {}
+        Mockito.verify(connection).prepareStatement("INSERT INTO \"user\" (email, firstName, middleName, "
+                + "lastName, password, role, plan)\n"
+                + "VALUES\n"
+                + "  (?, ?, ?, ?, ?, ?, ?);");
+        Mockito.verify(statement).setString(1, dto.getEmail());
+        Mockito.verify(statement).setString(2, dto.getFirstname());
+        Mockito.verify(statement).setString(3, dto.getMiddlename());
+        Mockito.verify(statement).setString(4, dto.getLastname());
+        Mockito.verify(statement).setString(5, dto.getPassword());
+        Mockito.verify(statement).setString(6, "Client");
+        Mockito.verify(statement).setString(7, dto.getPlan());
+        Mockito.verify(statement).executeUpdate();
     }
 
 
@@ -441,56 +451,91 @@ public class SQLConnectionTest {
 
 
     @Test
-    void testLogLoan() throws SQLException {
-        LoanRequestDTO loanRequestDTO = new LoanRequestDTO(
-                "123456",
-                1000.0,
-                0.05,
-                100.0,
-                com.google.protobuf.Timestamp.newBuilder().setSeconds(LocalDateTime.now().getSecond()).build(),
-                5000.0
-        );
-
-        try {
-            sqlConnection.logLoan(loanRequestDTO);
-
-            PreparedStatement selectStatement = connection.prepareStatement(
-                    "SELECT * FROM loan WHERE account_id = ?");
-            selectStatement.setString(1, loanRequestDTO.getAccountId());
-            ResultSet resultSet = selectStatement.executeQuery();
-
-            if (resultSet.next()) {
-                assertEquals(loanRequestDTO.getRemainingAmount(), resultSet.getDouble("remaining_amount"));
-                assertEquals(loanRequestDTO.getInterestRate(), resultSet.getDouble("interest_rate"));
-                assertEquals(loanRequestDTO.getMonthlyPayment(), resultSet.getDouble("monthly_payment"));
-                assertEquals(loanRequestDTO.getLoanAmount(), resultSet.getDouble("loan_amount"));
-            }
-
-        } catch (RuntimeException e) {
-            assertEquals(1, 0, "Exception occurred: " + e.getMessage());
-        }
+    void logLoan_updates_the_db() throws SQLException {
+        java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(LocalDateTime.now());
+        com.google.protobuf.Timestamp currentTimestamp = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                .build();
+        LoanRequestDTO dto = new LoanRequestDTO("-",124.5,1.12,12,currentTimestamp,1000);
+        java.sql.Timestamp sqlEndDate = new java.sql.Timestamp(dto.getEndDate().getSeconds() * 1000);
+        sqlConnection.logLoan(dto);
+        Mockito.verify(connection).setAutoCommit(false);
+        Mockito.verify(connection).prepareStatement("INSERT INTO loan(account_id, remaining_amount, interest_rate, monthly_payment, end_date, loan_amount) "
+                +
+                "VALUES (?, ?, ?, ?, ?, ?)");
+        Mockito.verify(statement).setString(1, dto.getAccountId());
+        Mockito.verify(statement).setDouble(2, dto.getRemainingAmount());
+        Mockito.verify(statement).setDouble(3, dto.getInterestRate());
+        Mockito.verify(statement).setDouble(4, dto.getMonthlyPayment());
+        Mockito.verify(statement).setTimestamp(5, sqlEndDate);
+        Mockito.verify(statement).setDouble(6, dto.getLoanAmount());
+        Mockito.verify(connection).prepareStatement("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                "VALUES (?, ?, ?, ?, ?)");
+        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+        Mockito.verify(statement).setTimestamp(Mockito.eq(1),Mockito.any(Timestamp.class));
+        Mockito.verify(statement).setDouble(2,dto.getLoanAmount());
+        Mockito.verify(statement).setString(3,"Loan");
+        Mockito.verify(statement).setString(4,dto.getAccountId());
+        Mockito.verify(statement).setString(4,dto.getAccountId());
+        Mockito.verify(statement,Mockito.times(2)).executeUpdate();
+        Mockito.verify(connection).commit();
     }
 
     @Test
-    void getAllTransactions_returns_a_list() throws SQLException {
-        com.google.protobuf.Timestamp timestamp = com.google.protobuf.Timestamp.newBuilder()
-                .setSeconds(System.currentTimeMillis() / 1000)
-                .setNanos(0)
+    void getAllTransactions_returns_a_list_and_queries_a_database() throws SQLException {
+        Mockito.when(resultSet.next()).thenReturn(true);
+        UserInfoEmailDTO dto =new UserInfoEmailDTO("-");
+        java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(LocalDateTime.now().minusDays(1));
+        com.google.protobuf.Timestamp currentTimestamp = com.google.protobuf.Timestamp.newBuilder()
+                .setSeconds(sqlTimestamp.getTime() / 1000)
+                .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
                 .build();
-        Transactions temp = Transactions.newBuilder().
-                setSenderAccountNumber("testmessage")
-                .setRecipientAccountNumber("11111111111111")
-                .setAmount(200)
-                .setMessage("Name")
-                .setDate(timestamp)
-                .setSenderName("Alin Maaa")
-                .setReceiverName("Levi Ksaaa")
+        Transactions transaction1 = Transactions.newBuilder()
+                .setSenderAccountNumber("aaaabbbbccccdddd")
+                .setRecipientAccountNumber("bbbbaaaaccccdddd")
+                .setAmount(100)
+                .setMessage("-")
+                .setDate(currentTimestamp)
+                .setSenderName("-")
+                .setReceiverName("-")
+                .setSenderId(2)
                 .build();
-        userInfoDTO = new UserInfoEmailDTO("testmail@test.test");
-        when(sqlConnection.getAllTransactions(userInfoDTO)).thenReturn(List.of(temp));
-        List<Transactions> result = sqlConnection.getAllTransactions(userInfoDTO);
-
-        assertEquals(List.of(temp), result);
+        List<Transactions> transactions = new ArrayList<>();
+        transactions.add(transaction1);
+        List<Transactions> gotten = new ArrayList<>();
+        try {
+            Mockito.when(sqlConnection.getAllTransactions(dto)).thenReturn(transactions);
+            gotten = sqlConnection.getAllTransactions(dto);
+        } catch (NullPointerException ignored) {
+        }
+        Mockito.verify(connection).prepareStatement("SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName "
+                +
+                "FROM transactions t " +
+                "JOIN account a1 ON t.senderAccount_id = a1.account_id " +
+                "JOIN account a2 ON t.recipientAccount_id = a2.account_id " +
+                "JOIN \"user\" u1 ON a1.user_id = u1.user_id " +
+                "JOIN \"user\" u2 ON a2.user_id = u2.user_id " +
+                "WHERE u1.email = ? OR u2.email = ? " +
+                "ORDER BY t.dateTime DESC;");
+        Mockito.verify(statement).setString(1,dto.getEmail());
+        Mockito.verify(statement).setString(2,dto.getEmail());
+        Mockito.verify(statement).executeQuery();
+        Mockito.verify(resultSet).next();
+        Mockito.verify(resultSet).getString("senderAccount_id");
+        Mockito.verify(resultSet).getString("recipientAccount_id");
+        Mockito.verify(resultSet).getDouble("amount");
+        Mockito.verify(resultSet).getString("message");
+        Mockito.verify(resultSet).getTimestamp("dateTime");
+        Mockito.verify(resultSet).getString("senderFirstName");
+        Mockito.verify(resultSet).getString("senderLastName");
+        Mockito.verify(resultSet).getString("receiverFirstName");
+        Mockito.verify(resultSet).getString("receiverLastName");
+        Transactions.Builder builder = Mockito.mock(Transactions.Builder.class);
+        try {
+            Mockito.verify(builder.setSenderAccountNumber("aaaabbbbccccdddd").setRecipientAccountNumber("bbbbaaaaccccdddd").setAmount(100).setDate(currentTimestamp).setSenderName("-").setReceiverName("-").setSenderId(2)).build();
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Test

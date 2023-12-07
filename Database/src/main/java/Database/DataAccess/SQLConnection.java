@@ -252,7 +252,6 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
-    // gpt enhanced code not tested
     public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
@@ -277,7 +276,7 @@ public class SQLConnection implements SQLConnectionInterface {
                     updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
                     int updatedRows = updateStatement.executeUpdate();
 
-                    if (updatedRows > 0) { // Check if the update was successful
+                    if (updatedRows > 0) {
                         PreparedStatement insertStatement = connection.prepareStatement(
                                 "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
                                         +
@@ -293,7 +292,7 @@ public class SQLConnection implements SQLConnectionInterface {
                         insertStatement.executeUpdate();
 
                         connection.commit();
-                        return true; // Return true indicating success
+                        return true;
                     } else {
                         throw new RuntimeException("Update failed. No rows affected.");
                     }
@@ -305,7 +304,7 @@ public class SQLConnection implements SQLConnectionInterface {
                 throw new RuntimeException("Error executing statements", e);
             }
         } catch (SQLException e) {
-            return false; // Return false in case of an exception while opening/closing connection
+            return false;
         }
     }
 
