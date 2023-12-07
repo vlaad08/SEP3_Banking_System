@@ -18,4 +18,5 @@ public interface TransactionDaoInterface {
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException;
+    List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException;
 }

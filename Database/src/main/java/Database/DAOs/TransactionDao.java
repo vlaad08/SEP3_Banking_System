@@ -64,4 +64,10 @@ public class TransactionDao implements TransactionDaoInterface
         return connection.getAllTransactions(userInfoEmailDTO);
     }
 
+    @Override public List<Transactions> getAllSubscriptions(
+        UserInfoEmailDTO userInfoEmailDTO) throws SQLException
+    {
+         return connection.getAllSubscriptions(userInfoEmailDTO);
+    }
+
 }

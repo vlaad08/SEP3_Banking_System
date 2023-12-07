@@ -9,137 +9,145 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Blazor
 build_property.RootNamespace = Blazor
-build_property.ProjectDir = /Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/
+build_property.ProjectDir = C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Website\Blazor\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor
+build_property.MSBuildProjectDirectory = C:\Users\vlada\Documents\Portfolio\SEP3\SEP3_Banking_Sytem\Website\Blazor
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/RecentTransactions.razor]
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/RecentTransactions.razor]
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9SZWNlbnRUcmFuc2FjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSZWNlbnRUcmFuc2FjdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = b-j9zj3dox54
+build_metadata.AdditionalFiles.CssScope = b-dpjxzb1cre
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/UserDetails.razor]
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/UserDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Vc2VyRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVc2VyRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
-build_metadata.AdditionalFiles.CssScope = b-o1ibr4neq7
+build_metadata.AdditionalFiles.CssScope = b-vtfvhyjmbz
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/App.razor]
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Changepassword.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hhbmdlcGFzc3dvcmQucmF6b3I=
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Changepassword.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhbmdlcGFzc3dvcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Loan.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9hbi5yYXpvcg==
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Loan.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9hbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Shared/SurveyPrompt.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/_Imports.razor]
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/Changepasswordform.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9DaGFuZ2VwYXNzd29yZGZvcm0ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-638owfp8gd
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/Changepasswordform.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDaGFuZ2VwYXNzd29yZGZvcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-wq5svwh4sw
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/DepositForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9EZXBvc2l0Rm9ybS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-sec5sa2xsu
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/DepositForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXBvc2l0Rm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-lxtg0tg21b
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/IssueContainer.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Jc3N1ZUNvbnRhaW5lci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-53fj11847i
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/IssueContainer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJc3N1ZUNvbnRhaW5lci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-kp5grrtshn
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/LoadingBox.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Mb2FkaW5nQm94LnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-jg5guto5ts
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/LoadingBox.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2FkaW5nQm94LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-q3s9eh4698
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/LoanForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Mb2FuRm9ybS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-7z0tjk0njp
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/LoanForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2FuRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-pmbt19zrla
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/Notification.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Ob3RpZmljYXRpb24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-amt7uxjkk8
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/Notification.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xOb3RpZmljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-tzo2c5zty5
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/PopUp.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Qb3BVcC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-wdyjovh819
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/PopUp.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQb3BVcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-61t3wftd6x
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/SettingsForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TZXR0aW5nc0Zvcm0ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-w89net84z8
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/SettingsForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZXR0aW5nc0Zvcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-mphao8gzl8
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/Transaction.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9UcmFuc2FjdGlvbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-nfvptgmvgz
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/Subscription.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdWJzY3JpcHRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-adivkjueqt
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/TransactionsList.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9UcmFuc2FjdGlvbnNMaXN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-g29z3ljlja
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/SubscriptionsList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdWJzY3JpcHRpb25zTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ztx92rjmy4
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Components/TransferForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9UcmFuc2ZlckZvcm0ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-rejosl2h7o
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/Transaction.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUcmFuc2FjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-59oc609pok
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/CustomerService.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3VzdG9tZXJTZXJ2aWNlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-3cu29tzlu1
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/TransactionsList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUcmFuc2FjdGlvbnNMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-ylofeshq0j
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Deposit.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwb3NpdC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-2xtas1x04e
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Components/TransferForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUcmFuc2ZlckZvcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rprs6danod
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-kocgbznukq
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/CustomerService.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJTZXJ2aWNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-btpfqzbffu
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-yc7mlmln1x
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Deposit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVwb3NpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-nea9afi7k9
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/LoginButtons.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW5CdXR0b25zLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-sejvdau62l
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-6me2utdfn1
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Register.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-8xlal766b8
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ci4vf3jic1
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Settings.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-twdoeqsa9b
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/LoginButtons.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5CdXR0b25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-8pweul6p7d
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Transactions.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNhY3Rpb25zLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-2rc8x72get
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-be1upc63yq
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Transfer.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhbnNmZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-ka0uien0w6
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hbjkjnrvj8
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-qt6tgh2907
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Transactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-pxs5efj3sx
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-32xpj7b96w
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Transfer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNmZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8knyd3924t
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-r0yqwuvdyg
+
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-6hj6azdo60
+
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Pages/_Host.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+[C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Website/Blazor/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

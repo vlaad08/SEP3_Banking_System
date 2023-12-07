@@ -36,13 +36,13 @@ public class TransactionController : ControllerBase
         }
     }
     [HttpGet, Route("{Email}")]
-    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string Email)
     {
         try
         {
             GetTransactionsDTO dto = new GetTransactionsDTO
             {
-                Email = email
+                Email = Email
             };
             var transactions = await transferLogic.GetTransactions(dto);
             return Ok(transactions);
@@ -95,5 +95,24 @@ public class TransactionController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpGet, Route("Subscriptions/{Email}")]
+    public async Task<IActionResult> GetSubscriptions([FromRoute] string Email)
+    {
+        try
+        {
+            GetTransactionsDTO dto = new GetTransactionsDTO
+            {
+                Email = Email
+            };
+            var subscriptions = await transferLogic.GetSubscriptions(dto);
+            return Ok(subscriptions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
+        }   
     }
 }

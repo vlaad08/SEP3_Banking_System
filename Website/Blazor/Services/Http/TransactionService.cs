@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using Domain.Models;
 using Newtonsoft.Json;
 using Shared.DAO;
 using Shared.DTOs;
@@ -89,6 +90,31 @@ public class TransactionService : ITransactionService
 
             
             return list;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string Email)
+    {
+        try
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+            Dictionary<string, SubscriptionDao> dictionary =
+                JsonConvert.DeserializeObject<Dictionary<string, SubscriptionDao>>(responseBody);
+
+            
+            
+            return dictionary;
         }
         catch (Exception e)
         {

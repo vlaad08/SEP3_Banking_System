@@ -14,7 +14,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/Issue/Issue", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/Issue/Issue", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -32,7 +32,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/Issue/Message", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/Issue/Message", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -50,7 +50,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Message/{getMessagesDto.Id}");
+            HttpResponseMessage response = await client.GetAsync($"http://localhost:5054/Issue/Message/{getMessagesDto.Id}");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -75,7 +75,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.GetAsync("https://localhost:7257/Issue/Employee/Issues");
+            HttpResponseMessage response = await client.GetAsync("http://localhost:5054/Issue/Employee/Issues");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -100,7 +100,7 @@ public class IssueService : IIssueService
         try
         {
             int userId = dto.UserId;
-             HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Client/Issues/{userId}");
+             HttpResponseMessage response = await client.GetAsync($"http://localhost:5054/Issue/Client/Issues/{userId}");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {

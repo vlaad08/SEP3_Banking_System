@@ -56,9 +56,9 @@ public class SQLConnection implements SQLConnectionInterface {
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
-                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) "
                                     +
-                                    "VALUES (?, ?, ?, ?, ?)")) {
+                                    "VALUES (?, ?, ?, ?, ?, 'Transfer')")) {
 
                         insertStatement.setTimestamp(1, now);
                         insertStatement.setDouble(2, amount);
@@ -125,7 +125,7 @@ public class SQLConnection implements SQLConnectionInterface {
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT SUM(amount)\n" +
                     "FROM transactions\n" +
-                    "WHERE senderAccount_id = ?\n" +
+                    "WHERE senderAccount_id = ? AND transaction_type = 'Transfer'\n" +
                     "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;");
             statement.setString(1, account_id);
             ResultSet result = statement.executeQuery();
@@ -151,15 +151,14 @@ public class SQLConnection implements SQLConnectionInterface {
                 updateStatement.executeUpdate();
 
                 try (PreparedStatement insertStatement = connection.prepareStatement(
-                        "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
-                                "VALUES (?, ?, ?, ?, ?)")) {
+                        "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) " +
+                                "VALUES (?, ?,  ?, ?, 'Deposit')")) {
 
                     insertStatement.setTimestamp(1, now);
                     insertStatement.setDouble(2, amount);
                     // insertStatement.setNull(3, Types.VARCHAR); //message will be null
-                    insertStatement.setString(3, "deposit");// actully no this s better
-                    insertStatement.setString(4, account_id);
-                    insertStatement.setString(5, account_id); // deposit to himself?
+                    insertStatement.setString(3, account_id);
+                    insertStatement.setString(4, account_id); // deposit to himself?
                     insertStatement.executeUpdate();
 
                     connection.commit();
@@ -280,17 +279,16 @@ public class SQLConnection implements SQLConnectionInterface {
 
                     if (updatedRows > 0) { // Check if the update was successful
                         PreparedStatement insertStatement = connection.prepareStatement(
-                                "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                                "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) "
                                         +
-                                        "VALUES (?, ?, ?, ?, ?)");
+                                        "VALUES (?, ?, ?, ?, 'Interest')");
 
                         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
                         insertStatement.setTimestamp(1, now);
                         insertStatement.setDouble(2, interest);
-                        insertStatement.setString(3, "Interest");
+                        insertStatement.setString(3, userInfoAccNumDTO.getAccNum());
                         insertStatement.setString(4, userInfoAccNumDTO.getAccNum());
-                        insertStatement.setString(5, userInfoAccNumDTO.getAccNum());
                         insertStatement.executeUpdate();
 
                         connection.commit();
@@ -353,16 +351,15 @@ public class SQLConnection implements SQLConnectionInterface {
                 insertAccountStatement.executeUpdate();
 
                 PreparedStatement insertTransactionStatement = connection.prepareStatement(
-                        "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
-                                "VALUES (?, ?, ?, ?, ?)");
+                        "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) " +
+                                "VALUES (?, ?, ?, ?, 'Loan')");
 
                 Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
                 insertTransactionStatement.setTimestamp(1, now);
                 insertTransactionStatement.setDouble(2, loanRequestDTO.getLoanAmount());
-                insertTransactionStatement.setString(3, "Loan");
+                insertTransactionStatement.setString(3, loanRequestDTO.getAccountId());
                 insertTransactionStatement.setString(4, loanRequestDTO.getAccountId());
-                insertTransactionStatement.setString(5, loanRequestDTO.getAccountId());
 
                 insertTransactionStatement.executeUpdate();
 
@@ -381,7 +378,7 @@ public class SQLConnection implements SQLConnectionInterface {
         List<Transactions> transactionsList = new ArrayList<>();
 
         try (Connection connection = getConnection()) {
-            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName "
+            String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName, t.transaction_type "
                     +
                     "FROM transactions t " +
                     "JOIN account a1 ON t.senderAccount_id = a1.account_id " +
@@ -395,8 +392,8 @@ public class SQLConnection implements SQLConnectionInterface {
                 statement.setString(1, userInfoEmailDTO.getEmail());
                 statement.setString(2, userInfoEmailDTO.getEmail());
 
-                ResultSet resultSet = statement.executeQuery();
 
+                ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     String senderAccountNumber = resultSet.getString("senderAccount_id");
                     String recipientAccountNumber = resultSet.getString("recipientAccount_id");
@@ -411,6 +408,7 @@ public class SQLConnection implements SQLConnectionInterface {
                             .setSeconds(sqlTimestamp.getTime() / 1000)
                             .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
                             .build();
+                    String transactionType = resultSet.getString("transaction_type");
 
                     Transactions transaction = Transactions.newBuilder()
                             .setSenderAccountNumber(senderAccountNumber)
@@ -420,7 +418,67 @@ public class SQLConnection implements SQLConnectionInterface {
                             .setDate(date)
                             .setSenderName(senderFirstName + " " + senderLastName)
                             .setReceiverName(receiverFirstName + " " + receiverLastName)
+                            .setTransactionType(transactionType)
                             .build();
+
+                    transactionsList.add(transaction);
+                }
+            }
+        } catch (SQLException e) {
+
+            throw new RuntimeException("Error executing statements", e);
+        }
+
+        return transactionsList;
+    }
+
+    @Override
+    public List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO)
+    {
+        List<Transactions> transactionsList = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+            String query =
+                "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName, t.transaction_type\n"
+                    + "FROM transactions t\n"
+                    + "JOIN account a1 ON t.senderAccount_id = a1.account_id\n"
+                    + "JOIN account a2 ON t.recipientAccount_id = a2.account_id\n"
+                    + "JOIN \"user\" u1 ON a1.user_id = u1.user_id\n"
+                    + "JOIN \"user\" u2 ON a2.user_id = u2.user_id\n"
+                    + "WHERE transaction_type = 'Subscription' and u1.email = ?\n"
+                    + "ORDER BY t.dateTime DESC;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, userInfoEmailDTO.getEmail());
+
+
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    String senderAccountNumber = resultSet.getString("senderAccount_id");
+                    String recipientAccountNumber = resultSet.getString("recipientAccount_id");
+                    double amount = resultSet.getDouble("amount");
+                    String message = resultSet.getString("message");
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("dateTime");
+                    String senderFirstName = resultSet.getString("senderFirstName");
+                    String senderLastName = resultSet.getString("senderLastName");
+                    String receiverFirstName = resultSet.getString("receiverFirstName");
+                    String receiverLastName = resultSet.getString("receiverLastName");
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                        .setSeconds(sqlTimestamp.getTime() / 1000)
+                        .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
+                        .build();
+                    String transactionType = resultSet.getString("transaction_type");
+
+                    Transactions transaction = Transactions.newBuilder()
+                        .setSenderAccountNumber(senderAccountNumber)
+                        .setRecipientAccountNumber(recipientAccountNumber)
+                        .setAmount(amount)
+                        .setMessage(message)
+                        .setDate(date)
+                        .setSenderName(senderFirstName + " " + senderLastName)
+                        .setReceiverName(receiverFirstName + " " + receiverLastName)
+                        .setTransactionType(transactionType)
+                        .build();
 
                     transactionsList.add(transaction);
                 }

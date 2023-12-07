@@ -45,4 +45,9 @@ public class TransferDAO : ITransferDAO
     {
         return await grpcClient.GetTransactions(getTransactionsDto);
     }
+
+    public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+    {
+        return await grpcClient.GetSubscriptions(getTransactionsDto);
+    }
 }

@@ -42,4 +42,5 @@ public interface IGrpcClient
    Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto);
    Task UpdatePlan(UserNewPlanDTO userNewPlanDto);
 
+   Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto);
 }

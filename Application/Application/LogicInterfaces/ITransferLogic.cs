@@ -7,4 +7,5 @@ public interface ITransferLogic
 {
     Task TransferMoney(TransferRequestDTO transferRequest);
     Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
+    Task<Dictionary<string, Subscription>> GetSubscriptions(GetTransactionsDTO getTransactionsDto);
 }

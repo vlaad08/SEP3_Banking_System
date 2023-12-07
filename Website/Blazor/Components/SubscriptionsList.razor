@@ -1,0 +1,44 @@
+﻿@using Domain.Models
+@using Blazor.Services.Http
+@inject ITransactionService transactionService
+
+
+<div class="box">
+    <p class="">Subscriptions</p>
+    <div class="subscription-list">
+        @foreach (var s in subscriptions)
+        {
+            <Subscription
+                ServiceName="@s.Value.ServiceName"
+                Amount="@s.Value.Amount"
+                Date="@s.Value.Date"></Subscription>
+        }   
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string Email { get; set; }
+
+    private Dictionary<string, SubscriptionDao> subscriptions = new Dictionary<string, SubscriptionDao>();
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RequestInformation();
+    }
+
+    private async Task RequestInformation()
+    {
+        subscriptions = await GetSubscriptions(Email);
+    }
+    
+    private async Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string Email)
+    {
+        return await transactionService.GetSubscriptions(Email);
+    }
+
+}

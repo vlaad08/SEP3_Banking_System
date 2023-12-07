@@ -63,71 +63,74 @@ namespace Database {
             "C2xvYW5fYW1vdW50GAYgASgBIiMKD0xvZ0xvYW5SZXNwb25zZRIQCghyZXNw",
             "b25zZRgBIAEoCSInChZHZXRUcmFuc2FjdGlvbnNSZXF1ZXN0Eg0KBWVtYWls",
             "GAEgASgJIkcKF0dldFRyYW5zYWN0aW9uc1Jlc3BvbnNlEiwKDHRyYW5zYWN0",
-            "aW9ucxgBIAMoCzIWLkRhdGFiYXNlLlRyYW5zYWN0aW9ucyLAAQoMVHJhbnNh",
+            "aW9ucxgBIAMoCzIWLkRhdGFiYXNlLlRyYW5zYWN0aW9ucyLZAQoMVHJhbnNh",
             "Y3Rpb25zEhsKE3NlbmRlckFjY291bnROdW1iZXIYASABKAkSHgoWcmVjaXBp",
             "ZW50QWNjb3VudE51bWJlchgCIAEoCRIOCgZhbW91bnQYAyABKAESDwoHbWVz",
             "c2FnZRgEIAEoCRIoCgRkYXRlGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRp",
             "bWVzdGFtcBISCgpzZW5kZXJOYW1lGAYgASgJEhQKDHJlY2VpdmVyTmFtZRgH",
-            "IAEoCSJ5Cg9SZWdpc3RlclJlcXVlc3QSDQoFZW1haWwYASABKAkSEQoJZmly",
-            "c3RuYW1lGAIgASgJEhIKCm1pZGRsZW5hbWUYAyABKAkSEAoIbGFzdG5hbWUY",
-            "BCABKAkSEAoIcGFzc3dvcmQYBSABKAkSDAoEcGxhbhgGIAEoCSISChBSZWdp",
-            "c3RlclJlc3BvbnNlIiMKElVzZXJBY2NvdW50UmVxdWVzdBINCgVlbWFpbBgB",
-            "IAEoCSImChNVc2VyQWNjb3VudFJlc3BvbnNlEg8KB3VzZXJfaWQYASABKAUi",
-            "IQoQVXNlckVtYWlsUmVxdWVzdBINCgVlbWFpbBgBIAEoCSIiChFVc2VyRW1h",
-            "aWxSZXNwb25zZRINCgVlbWFpbBgCIAEoCSJYChRBY2NvdW50Q3JlYXRlUmVx",
-            "dWVzdBIPCgd1c2VyX2lkGAEgASgFEhkKEXVzZXJBY2NvdW50TnVtYmVyGAIg",
-            "ASgJEhQKDGludGVyZXN0UmF0ZRgDIAEoASIXChVBY2NvdW50Q3JlYXRlUmVz",
-            "cG9uc2UiQAoSQ3JlYXRlSXNzdWVSZXF1ZXN0Eg0KBXRpdGxlGAEgASgJEgwK",
-            "BGJvZHkYAiABKAkSDQoFb3duZXIYAyABKAUiFQoTQ3JlYXRlSXNzdWVSZXNw",
-            "b25zZSJSChJTZW5kTWVzc2FnZVJlcXVlc3QSDQoFdGl0bGUYASABKAkSDQoF",
-            "b3duZXIYAiABKAUSDAoEYm9keRgDIAEoCRIQCghpc3N1ZV9pZBgEIAEoBSIV",
-            "ChNTZW5kTWVzc2FnZVJlc3BvbnNlIi4KGkdldE1lc3NhZ2VzRm9ySXNzdWVS",
-            "ZXF1ZXN0EhAKCGlzc3VlX2lkGAEgASgFIkkKG0dldE1lc3NhZ2VzRm9ySXNz",
-            "dWVSZXNwb25zZRIqCgttZXNzYWdlSW5mbxgBIAMoCzIVLkRhdGFiYXNlLk1l",
-            "c3NhZ2VJbmZvIn4KC01lc3NhZ2VJbmZvEg0KBXRpdGxlGAEgASgJEg0KBW93",
-            "bmVyGAIgASgFEgwKBGJvZHkYAyABKAkSEAoIaXNzdWVfaWQYBCABKAUSMQoN",
-            "Y3JlYXRpb25fdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
-            "bXAiFQoTR2V0QWxsSXNzdWVzUmVxdWVzdCI3ChRHZXRBbGxJc3N1ZXNSZXNw",
-            "b25zZRIfCgZpc3N1ZXMYASADKAsyDy5EYXRhYmFzZS5Jc3N1ZSK1AQoFSXNz",
-            "dWUSEAoIaXNzdWVfaWQYASABKAUSDQoFdGl0bGUYAiABKAkSDAoEYm9keRgD",
-            "IAEoCRIQCghvd25lcl9pZBgEIAEoBRIxCg1jcmVhdGlvbl90aW1lGAUgASgL",
-            "MhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIPCgdmbGFnZ2VkGAYgASgI",
-            "EicKCG1lc3NhZ2VzGAcgAygLMhUuRGF0YWJhc2UuTWVzc2FnZUluZm8iLwob",
-            "R2V0TWVzc2FnZXNCeUlzc3VlSWRSZXF1ZXN0EhAKCGlzc3VlX2lkGAEgASgF",
-            "IkoKHEdldE1lc3NhZ2VzQnlJc3N1ZUlkUmVzcG9uc2USKgoLbWVzc2FnZUlu",
-            "Zm8YASADKAsyFS5EYXRhYmFzZS5NZXNzYWdlSW5mbyJbChVVc2VyTmV3RGV0",
-            "YWlsc1JlcXVlc3QSEAoIbmV3RW1haWwYASABKAkSEAoIb2xkRW1haWwYAiAB",
-            "KAkSEAoIcGFzc3dvcmQYAyABKAkSDAoEcGxhbhgEIAEoCSIYChZVc2VyTmV3",
-            "RGV0YWlsc1Jlc3BvbnNlIj4KGUFjY291bnROZXdCYXNlUmF0ZVJlcXVlc3QS",
-            "DwoHdXNlcl9pZBgBIAEoBRIQCghiYXNlUmF0ZRgCIAEoASIcChpBY2NvdW50",
-            "TmV3QmFzZVJhdGVSZXNwb25zZSI0ChNVc2VyTmV3RW1haWxSZXF1ZXN0Eg4K",
-            "BnVzZXJJZBgBIAEoBRINCgVlbWFpbBgCIAEoCSIWChRVc2VyTmV3RW1haWxS",
-            "ZXNwb25zZSI6ChZVc2VyTmV3UGFzc3dvcmRSZXF1ZXN0Eg4KBnVzZXJJZBgB",
-            "IAEoBRIQCghwYXNzd29yZBgCIAEoCSIZChdVc2VyTmV3UGFzc3dvcmRSZXNw",
-            "b25zZSIyChJVc2VyTmV3UGxhblJlcXVlc3QSDgoGdXNlcklkGAEgASgFEgwK",
-            "BHBsYW4YAiABKAkiFQoTVXNlck5ld1BsYW5SZXNwb25zZTKbEQoPRGF0YWJh",
-            "c2VTZXJ2aWNlEkMKCFRyYW5zZmVyEhkuRGF0YWJhc2UuVHJhbnNmZXJSZXF1",
-            "ZXN0GhouRGF0YWJhc2UuVHJhbnNmZXJSZXNwb25zZSIAEk8KDENoZWNrQWNj",
-            "b3VudBIdLkRhdGFiYXNlLkFjY291bnRDaGVja1JlcXVlc3QaHi5EYXRhYmFz",
-            "ZS5BY2NvdW50Q2hlY2tSZXNwb25zZSIAEk8KDENoZWNrQmFsYW5jZRIdLkRh",
-            "dGFiYXNlLkJhbGFuY2VDaGVja1JlcXVlc3QaHi5EYXRhYmFzZS5CYWxhbmNl",
-            "Q2hlY2tSZXNwb25zZSIAElMKFkRhaWx5Q2hlY2tUcmFuc2FjdGlvbnMSGy5E",
-            "YXRhYmFzZS5EYWlseUNoZWNrUmVxdWVzdBocLkRhdGFiYXNlLkRhaWx5Q2hl",
-            "Y2tSZXNwb25zZRI+CgdEZXBvc2l0EhguRGF0YWJhc2UuRGVwb3NpdFJlcXVl",
-            "c3QaGS5EYXRhYmFzZS5EZXBvc2l0UmVzcG9uc2USOAoFTG9naW4SFi5EYXRh",
-            "YmFzZS5Mb2dpblJlcXVlc3QaFy5EYXRhYmFzZS5Mb2dpblJlc3BvbnNlElYK",
-            "D0xvZ2luVmFsaWRhdGlvbhIgLkRhdGFiYXNlLkxvZ2luVmFsaWRhdGlvblJl",
-            "cXVlc3QaIS5EYXRhYmFzZS5Mb2dpblZhbGlkYXRpb25SZXNwb25zZRJWCg9B",
-            "bGxBY2NvdW50c0luZm8SIC5EYXRhYmFzZS5BbGxBY2NvdW50c0luZm9SZXF1",
-            "ZXN0GiEuRGF0YWJhc2UuQWxsQWNjb3VudHNJbmZvUmVzcG9uc2USVwoQVXNl",
-            "ckFjY291bnRzSW5mbxIgLkRhdGFiYXNlLlVzZXJBY2NvdW50SW5mb1JlcXVl",
-            "c3QaIS5EYXRhYmFzZS5Vc2VyQWNjb3VudEluZm9SZXNwb25zZRJTCg5DcmVk",
-            "aXRJbnRlcmVzdBIfLkRhdGFiYXNlLkNyZWRpdEludGVyZXN0UmVxdWVzdBog",
-            "LkRhdGFiYXNlLkNyZWRpdEludGVyZXN0UmVzcG9uc2USTQoMTGFzdEludGVy",
-            "ZXN0Eh0uRGF0YWJhc2UuTGFzdEludGVyZXN0UmVxdWVzdBoeLkRhdGFiYXNl",
-            "Lkxhc3RJbnRlcmVzdFJlc3BvbnNlEj4KB0xvZ0xvYW4SGC5EYXRhYmFzZS5M",
-            "b2dMb2FuUmVxdWVzdBoZLkRhdGFiYXNlLkxvZ0xvYW5SZXNwb25zZRJWCg9H",
-            "ZXRUcmFuc2FjdGlvbnMSIC5EYXRhYmFzZS5HZXRUcmFuc2FjdGlvbnNSZXF1",
+            "IAEoCRIXCg90cmFuc2FjdGlvblR5cGUYCCABKAkieQoPUmVnaXN0ZXJSZXF1",
+            "ZXN0Eg0KBWVtYWlsGAEgASgJEhEKCWZpcnN0bmFtZRgCIAEoCRISCgptaWRk",
+            "bGVuYW1lGAMgASgJEhAKCGxhc3RuYW1lGAQgASgJEhAKCHBhc3N3b3JkGAUg",
+            "ASgJEgwKBHBsYW4YBiABKAkiEgoQUmVnaXN0ZXJSZXNwb25zZSIjChJVc2Vy",
+            "QWNjb3VudFJlcXVlc3QSDQoFZW1haWwYASABKAkiJgoTVXNlckFjY291bnRS",
+            "ZXNwb25zZRIPCgd1c2VyX2lkGAEgASgFIiEKEFVzZXJFbWFpbFJlcXVlc3QS",
+            "DQoFZW1haWwYASABKAkiIgoRVXNlckVtYWlsUmVzcG9uc2USDQoFZW1haWwY",
+            "AiABKAkibQoUQWNjb3VudENyZWF0ZVJlcXVlc3QSDwoHdXNlcl9pZBgBIAEo",
+            "BRITCgthY2NvdW50VHlwZRgCIAEoCRIZChF1c2VyQWNjb3VudE51bWJlchgD",
+            "IAEoCRIUCgxpbnRlcmVzdFJhdGUYBCABKAEiFwoVQWNjb3VudENyZWF0ZVJl",
+            "c3BvbnNlIkAKEkNyZWF0ZUlzc3VlUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIM",
+            "CgRib2R5GAIgASgJEg0KBW93bmVyGAMgASgFIhUKE0NyZWF0ZUlzc3VlUmVz",
+            "cG9uc2UiUgoSU2VuZE1lc3NhZ2VSZXF1ZXN0Eg0KBXRpdGxlGAEgASgJEg0K",
+            "BW93bmVyGAIgASgFEgwKBGJvZHkYAyABKAkSEAoIaXNzdWVfaWQYBCABKAUi",
+            "FQoTU2VuZE1lc3NhZ2VSZXNwb25zZSIuChpHZXRNZXNzYWdlc0Zvcklzc3Vl",
+            "UmVxdWVzdBIQCghpc3N1ZV9pZBgBIAEoBSJJChtHZXRNZXNzYWdlc0Zvcklz",
+            "c3VlUmVzcG9uc2USKgoLbWVzc2FnZUluZm8YASADKAsyFS5EYXRhYmFzZS5N",
+            "ZXNzYWdlSW5mbyJ+CgtNZXNzYWdlSW5mbxINCgV0aXRsZRgBIAEoCRINCgVv",
+            "d25lchgCIAEoBRIMCgRib2R5GAMgASgJEhAKCGlzc3VlX2lkGAQgASgFEjEK",
+            "DWNyZWF0aW9uX3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0",
+            "YW1wIhUKE0dldEFsbElzc3Vlc1JlcXVlc3QiNwoUR2V0QWxsSXNzdWVzUmVz",
+            "cG9uc2USHwoGaXNzdWVzGAEgAygLMg8uRGF0YWJhc2UuSXNzdWUitQEKBUlz",
+            "c3VlEhAKCGlzc3VlX2lkGAEgASgFEg0KBXRpdGxlGAIgASgJEgwKBGJvZHkY",
+            "AyABKAkSEAoIb3duZXJfaWQYBCABKAUSMQoNY3JlYXRpb25fdGltZRgFIAEo",
+            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDwoHZmxhZ2dlZBgGIAEo",
+            "CBInCghtZXNzYWdlcxgHIAMoCzIVLkRhdGFiYXNlLk1lc3NhZ2VJbmZvIi8K",
+            "G0dldE1lc3NhZ2VzQnlJc3N1ZUlkUmVxdWVzdBIQCghpc3N1ZV9pZBgBIAEo",
+            "BSJKChxHZXRNZXNzYWdlc0J5SXNzdWVJZFJlc3BvbnNlEioKC21lc3NhZ2VJ",
+            "bmZvGAEgAygLMhUuRGF0YWJhc2UuTWVzc2FnZUluZm8iWwoVVXNlck5ld0Rl",
+            "dGFpbHNSZXF1ZXN0EhAKCG5ld0VtYWlsGAEgASgJEhAKCG9sZEVtYWlsGAIg",
+            "ASgJEhAKCHBhc3N3b3JkGAMgASgJEgwKBHBsYW4YBCABKAkiGAoWVXNlck5l",
+            "d0RldGFpbHNSZXNwb25zZSI+ChlBY2NvdW50TmV3QmFzZVJhdGVSZXF1ZXN0",
+            "Eg8KB3VzZXJfaWQYASABKAUSEAoIYmFzZVJhdGUYAiABKAEiHAoaQWNjb3Vu",
+            "dE5ld0Jhc2VSYXRlUmVzcG9uc2UiNAoTVXNlck5ld0VtYWlsUmVxdWVzdBIO",
+            "CgZ1c2VySWQYASABKAUSDQoFZW1haWwYAiABKAkiFgoUVXNlck5ld0VtYWls",
+            "UmVzcG9uc2UiOgoWVXNlck5ld1Bhc3N3b3JkUmVxdWVzdBIOCgZ1c2VySWQY",
+            "ASABKAUSEAoIcGFzc3dvcmQYAiABKAkiGQoXVXNlck5ld1Bhc3N3b3JkUmVz",
+            "cG9uc2UiMgoSVXNlck5ld1BsYW5SZXF1ZXN0Eg4KBnVzZXJJZBgBIAEoBRIM",
+            "CgRwbGFuGAIgASgJIhUKE1VzZXJOZXdQbGFuUmVzcG9uc2Uy9BEKD0RhdGFi",
+            "YXNlU2VydmljZRJDCghUcmFuc2ZlchIZLkRhdGFiYXNlLlRyYW5zZmVyUmVx",
+            "dWVzdBoaLkRhdGFiYXNlLlRyYW5zZmVyUmVzcG9uc2UiABJPCgxDaGVja0Fj",
+            "Y291bnQSHS5EYXRhYmFzZS5BY2NvdW50Q2hlY2tSZXF1ZXN0Gh4uRGF0YWJh",
+            "c2UuQWNjb3VudENoZWNrUmVzcG9uc2UiABJPCgxDaGVja0JhbGFuY2USHS5E",
+            "YXRhYmFzZS5CYWxhbmNlQ2hlY2tSZXF1ZXN0Gh4uRGF0YWJhc2UuQmFsYW5j",
+            "ZUNoZWNrUmVzcG9uc2UiABJTChZEYWlseUNoZWNrVHJhbnNhY3Rpb25zEhsu",
+            "RGF0YWJhc2UuRGFpbHlDaGVja1JlcXVlc3QaHC5EYXRhYmFzZS5EYWlseUNo",
+            "ZWNrUmVzcG9uc2USPgoHRGVwb3NpdBIYLkRhdGFiYXNlLkRlcG9zaXRSZXF1",
+            "ZXN0GhkuRGF0YWJhc2UuRGVwb3NpdFJlc3BvbnNlEjgKBUxvZ2luEhYuRGF0",
+            "YWJhc2UuTG9naW5SZXF1ZXN0GhcuRGF0YWJhc2UuTG9naW5SZXNwb25zZRJW",
+            "Cg9Mb2dpblZhbGlkYXRpb24SIC5EYXRhYmFzZS5Mb2dpblZhbGlkYXRpb25S",
+            "ZXF1ZXN0GiEuRGF0YWJhc2UuTG9naW5WYWxpZGF0aW9uUmVzcG9uc2USVgoP",
+            "QWxsQWNjb3VudHNJbmZvEiAuRGF0YWJhc2UuQWxsQWNjb3VudHNJbmZvUmVx",
+            "dWVzdBohLkRhdGFiYXNlLkFsbEFjY291bnRzSW5mb1Jlc3BvbnNlElcKEFVz",
+            "ZXJBY2NvdW50c0luZm8SIC5EYXRhYmFzZS5Vc2VyQWNjb3VudEluZm9SZXF1",
+            "ZXN0GiEuRGF0YWJhc2UuVXNlckFjY291bnRJbmZvUmVzcG9uc2USUwoOQ3Jl",
+            "ZGl0SW50ZXJlc3QSHy5EYXRhYmFzZS5DcmVkaXRJbnRlcmVzdFJlcXVlc3Qa",
+            "IC5EYXRhYmFzZS5DcmVkaXRJbnRlcmVzdFJlc3BvbnNlEk0KDExhc3RJbnRl",
+            "cmVzdBIdLkRhdGFiYXNlLkxhc3RJbnRlcmVzdFJlcXVlc3QaHi5EYXRhYmFz",
+            "ZS5MYXN0SW50ZXJlc3RSZXNwb25zZRI+CgdMb2dMb2FuEhguRGF0YWJhc2Uu",
+            "TG9nTG9hblJlcXVlc3QaGS5EYXRhYmFzZS5Mb2dMb2FuUmVzcG9uc2USVgoP",
+            "R2V0VHJhbnNhY3Rpb25zEiAuRGF0YWJhc2UuR2V0VHJhbnNhY3Rpb25zUmVx",
+            "dWVzdBohLkRhdGFiYXNlLkdldFRyYW5zYWN0aW9uc1Jlc3BvbnNlElcKEEdl",
+            "dFN1YnNjcmlwdGlvbnMSIC5EYXRhYmFzZS5HZXRUcmFuc2FjdGlvbnNSZXF1",
             "ZXN0GiEuRGF0YWJhc2UuR2V0VHJhbnNhY3Rpb25zUmVzcG9uc2USRQoMUmVn",
             "aXN0ZXJVc2VyEhkuRGF0YWJhc2UuUmVnaXN0ZXJSZXF1ZXN0GhouRGF0YWJh",
             "c2UuUmVnaXN0ZXJSZXNwb25zZRJJCg5HZXRVc2VyQnlFbWFpbBIaLkRhdGFi",
@@ -187,14 +190,14 @@ namespace Database {
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.LogLoanResponse), global::Database.LogLoanResponse.Parser, new[]{ "Response" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.GetTransactionsRequest), global::Database.GetTransactionsRequest.Parser, new[]{ "Email" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.GetTransactionsResponse), global::Database.GetTransactionsResponse.Parser, new[]{ "Transactions" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Database.Transactions), global::Database.Transactions.Parser, new[]{ "SenderAccountNumber", "RecipientAccountNumber", "Amount", "Message", "Date", "SenderName", "ReceiverName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Database.Transactions), global::Database.Transactions.Parser, new[]{ "SenderAccountNumber", "RecipientAccountNumber", "Amount", "Message", "Date", "SenderName", "ReceiverName", "TransactionType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.RegisterRequest), global::Database.RegisterRequest.Parser, new[]{ "Email", "Firstname", "Middlename", "Lastname", "Password", "Plan" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.RegisterResponse), global::Database.RegisterResponse.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.UserAccountRequest), global::Database.UserAccountRequest.Parser, new[]{ "Email" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.UserAccountResponse), global::Database.UserAccountResponse.Parser, new[]{ "UserId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.UserEmailRequest), global::Database.UserEmailRequest.Parser, new[]{ "Email" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.UserEmailResponse), global::Database.UserEmailResponse.Parser, new[]{ "Email" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Database.AccountCreateRequest), global::Database.AccountCreateRequest.Parser, new[]{ "UserId", "UserAccountNumber", "InterestRate" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Database.AccountCreateRequest), global::Database.AccountCreateRequest.Parser, new[]{ "UserId", "AccountType", "UserAccountNumber", "InterestRate" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.AccountCreateResponse), global::Database.AccountCreateResponse.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.CreateIssueRequest), global::Database.CreateIssueRequest.Parser, new[]{ "Title", "Body", "Owner" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Database.CreateIssueResponse), global::Database.CreateIssueResponse.Parser, null, null, null, null, null),
@@ -6345,6 +6348,7 @@ namespace Database {
       date_ = other.date_ != null ? other.date_.Clone() : null;
       senderName_ = other.senderName_;
       receiverName_ = other.receiverName_;
+      transactionType_ = other.transactionType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6438,6 +6442,18 @@ namespace Database {
       }
     }
 
+    /// <summary>Field number for the "transactionType" field.</summary>
+    public const int TransactionTypeFieldNumber = 8;
+    private string transactionType_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TransactionType {
+      get { return transactionType_; }
+      set {
+        transactionType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6460,6 +6476,7 @@ namespace Database {
       if (!object.Equals(Date, other.Date)) return false;
       if (SenderName != other.SenderName) return false;
       if (ReceiverName != other.ReceiverName) return false;
+      if (TransactionType != other.TransactionType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6474,6 +6491,7 @@ namespace Database {
       if (date_ != null) hash ^= Date.GetHashCode();
       if (SenderName.Length != 0) hash ^= SenderName.GetHashCode();
       if (ReceiverName.Length != 0) hash ^= ReceiverName.GetHashCode();
+      if (TransactionType.Length != 0) hash ^= TransactionType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6520,6 +6538,10 @@ namespace Database {
         output.WriteRawTag(58);
         output.WriteString(ReceiverName);
       }
+      if (TransactionType.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(TransactionType);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6558,6 +6580,10 @@ namespace Database {
         output.WriteRawTag(58);
         output.WriteString(ReceiverName);
       }
+      if (TransactionType.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(TransactionType);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -6588,6 +6614,9 @@ namespace Database {
       }
       if (ReceiverName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ReceiverName);
+      }
+      if (TransactionType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TransactionType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6624,6 +6653,9 @@ namespace Database {
       }
       if (other.ReceiverName.Length != 0) {
         ReceiverName = other.ReceiverName;
+      }
+      if (other.TransactionType.Length != 0) {
+        TransactionType = other.TransactionType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6671,6 +6703,10 @@ namespace Database {
             ReceiverName = input.ReadString();
             break;
           }
+          case 66: {
+            TransactionType = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -6715,6 +6751,10 @@ namespace Database {
           }
           case 58: {
             ReceiverName = input.ReadString();
+            break;
+          }
+          case 66: {
+            TransactionType = input.ReadString();
             break;
           }
         }
@@ -8041,6 +8081,7 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AccountCreateRequest(AccountCreateRequest other) : this() {
       userId_ = other.userId_;
+      accountType_ = other.accountType_;
       userAccountNumber_ = other.userAccountNumber_;
       interestRate_ = other.interestRate_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -8064,8 +8105,20 @@ namespace Database {
       }
     }
 
+    /// <summary>Field number for the "accountType" field.</summary>
+    public const int AccountTypeFieldNumber = 2;
+    private string accountType_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AccountType {
+      get { return accountType_; }
+      set {
+        accountType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "userAccountNumber" field.</summary>
-    public const int UserAccountNumberFieldNumber = 2;
+    public const int UserAccountNumberFieldNumber = 3;
     private string userAccountNumber_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -8077,7 +8130,7 @@ namespace Database {
     }
 
     /// <summary>Field number for the "interestRate" field.</summary>
-    public const int InterestRateFieldNumber = 3;
+    public const int InterestRateFieldNumber = 4;
     private double interestRate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -8104,6 +8157,7 @@ namespace Database {
         return true;
       }
       if (UserId != other.UserId) return false;
+      if (AccountType != other.AccountType) return false;
       if (UserAccountNumber != other.UserAccountNumber) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(InterestRate, other.InterestRate)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -8114,6 +8168,7 @@ namespace Database {
     public override int GetHashCode() {
       int hash = 1;
       if (UserId != 0) hash ^= UserId.GetHashCode();
+      if (AccountType.Length != 0) hash ^= AccountType.GetHashCode();
       if (UserAccountNumber.Length != 0) hash ^= UserAccountNumber.GetHashCode();
       if (InterestRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(InterestRate);
       if (_unknownFields != null) {
@@ -8138,12 +8193,16 @@ namespace Database {
         output.WriteRawTag(8);
         output.WriteInt32(UserId);
       }
-      if (UserAccountNumber.Length != 0) {
+      if (AccountType.Length != 0) {
         output.WriteRawTag(18);
+        output.WriteString(AccountType);
+      }
+      if (UserAccountNumber.Length != 0) {
+        output.WriteRawTag(26);
         output.WriteString(UserAccountNumber);
       }
       if (InterestRate != 0D) {
-        output.WriteRawTag(25);
+        output.WriteRawTag(33);
         output.WriteDouble(InterestRate);
       }
       if (_unknownFields != null) {
@@ -8160,12 +8219,16 @@ namespace Database {
         output.WriteRawTag(8);
         output.WriteInt32(UserId);
       }
-      if (UserAccountNumber.Length != 0) {
+      if (AccountType.Length != 0) {
         output.WriteRawTag(18);
+        output.WriteString(AccountType);
+      }
+      if (UserAccountNumber.Length != 0) {
+        output.WriteRawTag(26);
         output.WriteString(UserAccountNumber);
       }
       if (InterestRate != 0D) {
-        output.WriteRawTag(25);
+        output.WriteRawTag(33);
         output.WriteDouble(InterestRate);
       }
       if (_unknownFields != null) {
@@ -8180,6 +8243,9 @@ namespace Database {
       int size = 0;
       if (UserId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserId);
+      }
+      if (AccountType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountType);
       }
       if (UserAccountNumber.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserAccountNumber);
@@ -8201,6 +8267,9 @@ namespace Database {
       }
       if (other.UserId != 0) {
         UserId = other.UserId;
+      }
+      if (other.AccountType.Length != 0) {
+        AccountType = other.AccountType;
       }
       if (other.UserAccountNumber.Length != 0) {
         UserAccountNumber = other.UserAccountNumber;
@@ -8228,10 +8297,14 @@ namespace Database {
             break;
           }
           case 18: {
+            AccountType = input.ReadString();
+            break;
+          }
+          case 26: {
             UserAccountNumber = input.ReadString();
             break;
           }
-          case 25: {
+          case 33: {
             InterestRate = input.ReadDouble();
             break;
           }
@@ -8255,10 +8328,14 @@ namespace Database {
             break;
           }
           case 18: {
+            AccountType = input.ReadString();
+            break;
+          }
+          case 26: {
             UserAccountNumber = input.ReadString();
             break;
           }
-          case 25: {
+          case 33: {
             InterestRate = input.ReadDouble();
             break;
           }

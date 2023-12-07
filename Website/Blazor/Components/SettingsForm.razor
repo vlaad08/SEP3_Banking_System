@@ -9,6 +9,18 @@
 @using global::Shared.DTOs
 @using Newtonsoft.Json
 @using Blazor.Pages
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
 @inject ITransactionService transactionService
 @inject ISettingsService settingsService
 @inject IAuthService AuthService
@@ -99,6 +111,8 @@
     [Parameter] public string Email { get; set; }
     [Parameter] public string Role { get; set; }
     [Parameter]public LoadingBox Loading { get; set; }
+    
+    
     private List<AccountsInfo> Users { get; set; }
     private string SelectedAccount { get; set; }
     private bool isMenuVisible = false;
@@ -214,19 +228,11 @@
     
     private async Task UpdatePlanPremium()
     {
-        try
-        {
-            UserNewPlanDTO newPlanDto = new UserNewPlanDTO(int.Parse(Id), rolepremium);
-            await settingsService.UpdatePlan(newPlanDto);
-            await AuthService.LogoutAsync();
-            NavMgr.NavigateTo("/");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      
     }
+    
+    
+    
 }
 
 

@@ -14,13 +14,17 @@
     <div class="transactions-list">
         @if (transactions != null)
         {
+            int max = 0;
             @foreach(var transaction in transactions)
             {
+                max++;
                 <Transaction Recipient="@transaction.RecipientName"
                              Sender="@transaction.SenderName"
                              Message="@transaction.Message"
                              Amount="@transaction.Amount"
                              Date="@transaction.Date"></Transaction>
+                if (max == 3)
+                    break;
             }
         }
     </div>

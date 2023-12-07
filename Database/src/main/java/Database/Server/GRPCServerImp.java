@@ -210,6 +210,21 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     }
 
     @Override
+    public void getSubscriptions(GetTransactionsRequest request,
+        StreamObserver<GetTransactionsResponse> responseStreamObserver) {
+        try {
+            UserInfoEmailDTO userInfoEmailDTO = new UserInfoEmailDTO(request.getEmail());
+            List<Transactions> subscriptions = transactionDao.getAllSubscriptions(userInfoEmailDTO);
+            GetTransactionsResponse response = GetTransactionsResponse.newBuilder().addAllTransactions(subscriptions)
+                .build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void registerUser(RegisterRequest request, StreamObserver<RegisterResponse> responseStreamObserver) {
         try {
             RegisterRequestDTO registerUserDTO = new RegisterRequestDTO(
@@ -257,7 +272,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             StreamObserver<AccountCreateResponse> responseStreamObserver) {
         try {
             UserAccountDTO userAccountDTO = new UserAccountDTO(
-                    request.getUserId(), request.getUserAccountNumber(), /*request.getAccountType(),*/
+                    request.getUserId(), request.getUserAccountNumber(), request.getAccountType(),
                     request.getInterestRate());
             registerDao.generateAccountNumber(userAccountDTO);
             AccountCreateResponse response = AccountCreateResponse.newBuilder().build();

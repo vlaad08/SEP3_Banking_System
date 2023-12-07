@@ -35,6 +35,7 @@ public interface SQLConnectionInterface {
     void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException;
 
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO);
+    List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO);
 
     void registerUser(RegisterRequestDTO registerUserDTO) throws SQLException;
 

@@ -9,5 +9,5 @@ public class TransactionDao
     public double Amount { get; set; }
     public string Message { get; set; }
     public DateTime Date { get; set; }
-
+    public string transactionType { get; set; }
 }

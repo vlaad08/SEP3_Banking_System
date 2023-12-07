@@ -4,7 +4,6 @@
 @using Blazor.Services.Http
 @inject IAuthService authService
 @inject NavigationManager navMgr
-@inject PasswordService passwordService
 
 
 <Blazor.Components.LoadingBox @ref="loading"></Blazor.Components.LoadingBox>
@@ -60,7 +59,6 @@
         {
             loading.ShowLoading();
             await authService.LoginAsync(email, password);
-            passwordService.Password = password; // Set the password in the service
 
             navMgr.NavigateTo("/home");
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Security.AccessControl;
 using System.Threading.Channels;
 using Application.DaoInterfaces;
@@ -51,5 +52,34 @@ public class TransferLogic : ITransferLogic
     public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
     {
         return await transferDao.GetTransactions(getTransactionsDto);
+    }
+
+    public async Task<Dictionary<string, Subscription>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+    {
+        IEnumerable<Transaction> listFromDataBase = await transferDao.GetSubscriptions(getTransactionsDto);
+
+        List<Transaction> list = listFromDataBase.ToList();
+
+        Dictionary<string, Subscription> dictionary = new Dictionary<string, Subscription>();
+        
+        
+        foreach (var l in list)
+        {
+            if (!dictionary.ContainsKey(l.RecipientAccountNumber))
+            {
+                DateTime dateTime = l.Date.AddMonths(1);
+                var subs = new Subscription()
+                {
+                    ServiceName = l.RecipientName,
+                    Amount = l.Amount,
+                    Date = dateTime
+                };
+                dictionary.TryAdd(l.RecipientAccountNumber, subs);
+            }
+        }
+        
+        
+        
+        return dictionary;
     }
 }

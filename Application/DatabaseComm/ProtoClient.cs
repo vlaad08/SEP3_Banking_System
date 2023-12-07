@@ -226,7 +226,8 @@ public class ProtoClient : IGrpcClient
                 RecipientAccountNumber = t.RecipientAccountNumber,
                 Amount = t.Amount,
                 Message = t.Message,
-                Date = t.Date.ToDateTime()
+                Date = t.Date.ToDateTime(),
+                transactionType = t.TransactionType
             };
             transactions.Add(transaction);
         }
@@ -426,6 +427,34 @@ public class ProtoClient : IGrpcClient
                 Plan = userNewPlanDto.Plan
             };
             var response = await databaseClient.UpdatePlanAsync(request);
+        }
+
+        public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new GetTransactionsRequest
+            {
+                Email = getTransactionsDto.Email
+            };
+            var response = await databaseClient.GetSubscriptionsAsync(request);
+            List<Transaction> transactions = new List<Transaction>();
+            foreach (var t in response.Transactions)
+            {
+                Transaction transaction = new Transaction
+                {
+                    SenderName = t.SenderName,
+                    RecipientName = t.ReceiverName,
+                    SenderAccountNumber = t.SenderAccountNumber,
+                    RecipientAccountNumber = t.RecipientAccountNumber,
+                    Amount = t.Amount,
+                    Message = t.Message,
+                    Date = t.Date.ToDateTime(),
+                    transactionType = t.TransactionType
+                };
+                transactions.Add(transaction);
+            }
+            return transactions;
         }
 }
     

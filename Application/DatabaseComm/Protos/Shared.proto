@@ -18,6 +18,7 @@ service DatabaseService{
     rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
     rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
     rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+    rpc GetSubscriptions(GetTransactionsRequest) returns (GetTransactionsResponse);
 
 
     //Added by vlad for register and changing credentials
@@ -185,6 +186,7 @@ message Transactions {
     google.protobuf.Timestamp date = 5;
     string senderName = 6;
     string receiverName = 7;
+    string transactionType = 8;
 }
 
 
@@ -217,8 +219,9 @@ message UserEmailResponse{
 
 message AccountCreateRequest{
     int32 user_id = 1;
-    string userAccountNumber = 2;
-    double interestRate = 3;
+    string accountType = 2;
+    string userAccountNumber = 3;
+    double interestRate = 4;
 }
 
 message AccountCreateResponse{

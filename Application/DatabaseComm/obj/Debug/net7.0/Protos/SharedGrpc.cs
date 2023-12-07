@@ -259,6 +259,14 @@ namespace Database {
         __Marshaller_Database_GetTransactionsResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse> __Method_GetSubscriptions = new grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSubscriptions",
+        __Marshaller_Database_GetTransactionsRequest,
+        __Marshaller_Database_GetTransactionsResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.RegisterRequest, global::Database.RegisterResponse> __Method_RegisterUser = new grpc::Method<global::Database.RegisterRequest, global::Database.RegisterResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -662,6 +670,26 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetTransactionsAsync(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetTransactions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetTransactionsResponse GetSubscriptions(global::Database.GetTransactionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSubscriptions(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.GetTransactionsResponse GetSubscriptions(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSubscriptions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetSubscriptionsAsync(global::Database.GetTransactionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSubscriptionsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.GetTransactionsResponse> GetSubscriptionsAsync(global::Database.GetTransactionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSubscriptions, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Database.RegisterResponse RegisterUser(global::Database.RegisterRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
