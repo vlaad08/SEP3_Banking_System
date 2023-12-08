@@ -236,8 +236,8 @@ public class SQLConnectionTest {
         Mockito.verify(statement).setDouble(eq(1),doubleCaptor.capture());
         Mockito.verify(statement).setString(eq(2),stringCaptor.capture());
 
-        Mockito.verify(connection).prepareStatement(Mockito.eq("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
-                "VALUES (?, ?, ?, ?, ?)"));
+        Mockito.verify(connection).prepareStatement(Mockito.eq("INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) " +
+                "VALUES (?, ?, ?, ?, ?, 'Deposit')"));
         Mockito.verify(statement).setTimestamp(Mockito.eq(1), Mockito.any(Timestamp.class));
         Mockito.verify(statement).setDouble(Mockito.eq(2), doubleCaptor.capture());
         Mockito.verify(statement).setString(Mockito.eq(3), stringCaptor.capture());

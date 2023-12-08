@@ -56,9 +56,9 @@ public class SQLConnection implements SQLConnectionInterface {
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
-                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
+                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) "
                                     +
-                                    "VALUES (?, ?, ?, ?, ?)")) {
+                                    "VALUES (?, ?, ?, ?, ?, 'Transaction')")) {
 
                         insertStatement.setTimestamp(1, now);
                         insertStatement.setDouble(2, transferRequestDTO.getAmount());
