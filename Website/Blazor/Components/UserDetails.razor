@@ -5,42 +5,43 @@
 
 <!-- User information: Full name + the account balance
     +Buttons for making a new Transfer -->
-
-<div class="box">
-    <div class="box-info">
-        <select @bind="SelectedAccount">
-            @foreach (var account in Accounts)
-            {
-                if (account.AccountType.Equals("personal"))
+<AuthorizeView Policy="MustBeClient" Context="Context">
+    <div class="box">
+        <div class="box-info">
+            <select @bind="SelectedAccount">
+                @foreach (var account in Accounts)
                 {
-                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    if (account.AccountType.Equals("personal"))
+                    {
+                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
                 }
-            }
-            @foreach (var account in Accounts)
-            {
-                if (account.AccountType.Equals("savings"))
+                @foreach (var account in Accounts)
                 {
-                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    if (account.AccountType.Equals("savings"))
+                    {
+                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
                 }
-            }
-            @foreach (var account in Accounts)
-            {
-                if (account.AccountType.Equals("business"))
+                @foreach (var account in Accounts)
                 {
-                    <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    if (account.AccountType.Equals("business"))
+                    {
+                        <option>@account.Balance DKK - @account.AccountType.ToUpperInvariant()</option>     
+                    }
                 }
-            }
-        </select>
-    </div>
-    <div class="buttons-content">
-        <div class="box-buttons">
-            <button class="userDetailsButton" @onclick="NewTransfer">New Transfer</button>
+            </select>
         </div>
-        <div class="box-buttons">
-            <button class="userDetailsButton" @onclick="Deposit">Deposit</button>
+        <div class="buttons-content">
+            <div class="box-buttons">
+                <button class="userDetailsButton" @onclick="NewTransfer">New Transfer</button>
+            </div>
+            <div class="box-buttons">
+                <button class="userDetailsButton" @onclick="Deposit">Deposit</button>
+            </div>
         </div>
     </div>
-</div>
+</AuthorizeView>
 
 
 @code {

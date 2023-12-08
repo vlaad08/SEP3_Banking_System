@@ -31,11 +31,13 @@
                     </svg>  Transactions
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="loan">
-                    Loan
-                </NavLink>
-            </div>
+            <AuthorizeView Policy="MustBeClient" Context="Context">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="loan">
+                        Loan
+                    </NavLink>
+                </div>
+            </AuthorizeView>
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="settings">
                     Settings
