@@ -92,7 +92,8 @@ public class SQLConnectionTest {
 
     @Test
     void transfer_is_saved_in_the_database() throws SQLException {
-        sqlConnection.transfer("aaaabbbbccccdddd", "bbbbaaaaccccdddd", 10.0, "-");
+        TransferRequestDTO transferRequestDTO = new TransferRequestDTO("aaaabbbbccccdddd", "bbbbaaaaccccdddd", 10.0, "-");
+        sqlConnection.transfer(transferRequestDTO);
         Mockito.verify(connection).setAutoCommit(false);
         Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance + ? WHERE account_id = ?");
         Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance - ? WHERE account_id = ?");
@@ -160,15 +161,17 @@ public class SQLConnectionTest {
 
     @Test
     void checkBalance_returns_a_double() throws SQLException {
-        Mockito.when(sqlConnection.checkBalance(Mockito.anyString())).thenReturn(10.0);
-        assertEquals(10.0, sqlConnection.checkBalance(Mockito.anyString()));
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO("-");
+        Mockito.when(sqlConnection.checkBalance(checkAccountDTO)).thenReturn(10.0);
+        assertEquals(10.0, sqlConnection.checkBalance(checkAccountDTO));
     }
 
     @Test
     void checkBalance_reaches_the_database() throws SQLException {
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO("1111111111111111");
         Mockito.when(resultSet.next()).thenReturn(true);
-        Mockito.when(sqlConnection.checkBalance("1111111111111111")).thenReturn(1000.0);
-        sqlConnection.checkBalance("1111111111111111");
+        Mockito.when(sqlConnection.checkBalance(checkAccountDTO)).thenReturn(1000.0);
+        sqlConnection.checkBalance(checkAccountDTO);
         Mockito.verify(connection).prepareStatement(Mockito.eq("SELECT balance FROM account WHERE account_id = ?;"));
         Mockito.verify(statement).setString(eq(1),stringCaptor.capture());
         Mockito.verify(statement).executeQuery();
@@ -180,8 +183,9 @@ public class SQLConnectionTest {
 
     @Test
     void checkAccountId_returns_a_String() throws SQLException {
-        Mockito.when(sqlConnection.checkAccountId(Mockito.anyString())).thenReturn("-");
-        assertEquals(sqlConnection.checkAccountId("-"), "-");
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO("-");
+        Mockito.when(sqlConnection.checkAccountId(checkAccountDTO)).thenReturn("-");
+        assertEquals(sqlConnection.checkAccountId(checkAccountDTO), "-");
     }
 
     //infinitly running???
@@ -201,15 +205,17 @@ public class SQLConnectionTest {
 
     @Test
     void dailyCheck_returns_a_double() throws SQLException {
-        Mockito.when(sqlConnection.dailyCheck(Mockito.anyString())).thenReturn(200.0);
-        assertEquals(200.0, sqlConnection.dailyCheck("-"));
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO("-");
+        Mockito.when(sqlConnection.dailyCheck(checkAccountDTO)).thenReturn(200.0);
+        assertEquals(200.0, sqlConnection.dailyCheck(checkAccountDTO));
     }
 
     @Test
     void dailyCheck_reaches_the_database() throws SQLException {
+        CheckAccountDTO checkAccountDTO = new CheckAccountDTO("-");
         Mockito.when(resultSet.next()).thenReturn(true, false);
         Mockito.when(resultSet.getDouble("sum")).thenReturn(200.0);
-        double result = sqlConnection.dailyCheck("-");
+        double result = sqlConnection.dailyCheck(checkAccountDTO);
         Mockito.verify(connection).prepareStatement(Mockito.eq("SELECT SUM(amount)\n" +
                 "FROM transactions\n" +
                 "WHERE senderAccount_id = ?\n" +
@@ -224,7 +230,8 @@ public class SQLConnectionTest {
 
     @Test
     void deposit_updates_the_database() throws SQLException {
-        sqlConnection.deposit("aaaabbbbccccdddd",50);
+        DepositRequestDTO depositRequestDTO = new DepositRequestDTO("aaaabbbbccccdddd",50);
+        sqlConnection.deposit(depositRequestDTO);
         Mockito.verify(connection).prepareStatement("UPDATE account SET balance = balance + ? WHERE account_id = ?");
         Mockito.verify(statement).setDouble(eq(1),doubleCaptor.capture());
         Mockito.verify(statement).setString(eq(2),stringCaptor.capture());

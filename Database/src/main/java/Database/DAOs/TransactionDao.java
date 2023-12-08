@@ -22,27 +22,27 @@ public class TransactionDao implements TransactionDaoInterface
     }
     @Override
     public void makeTransfer(TransferRequestDTO transferRequestDTO) {
-        connection.transfer(transferRequestDTO.getSenderAccount_id(),transferRequestDTO.getRecipientAccount_id(),transferRequestDTO.getAmount(),transferRequestDTO.getMessage());
+        connection.transfer(transferRequestDTO);
     }
 
     @Override
     public String checkAccountId(CheckAccountDTO checkAccountIdDTO) throws SQLException {
-        return connection.checkAccountId(checkAccountIdDTO.getRecipientAccount_id());
+        return connection.checkAccountId(checkAccountIdDTO);
     }
 
     @Override
     public double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException {
-        return connection.checkBalance(checkAccountDTO.getRecipientAccount_id());
+        return connection.checkBalance(checkAccountDTO);
     }
 
     @Override
     public double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException {
-        return connection.dailyCheck(checkAccountDTO.getRecipientAccount_id());
+        return connection.dailyCheck(checkAccountDTO);
     }
 
     @Override
     public void makeDeposit(DepositRequestDTO depositRequestDTO) throws SQLException {
-        connection.deposit(depositRequestDTO.getAccount_id(), depositRequestDTO.getAmount());
+        connection.deposit(depositRequestDTO);
     }
 
     @Override

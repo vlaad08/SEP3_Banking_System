@@ -44,45 +44,45 @@ public class TransactionDAOTest {
     void makeTransfer_connection_called()
     {
         dao.makeTransfer(transferRequestDTO);
-        Mockito.verify(connection).transfer(transferRequestDTO.getSenderAccount_id(),transferRequestDTO.getRecipientAccount_id(),transferRequestDTO.getAmount(),transferRequestDTO.getMessage());
+        Mockito.verify(connection).transfer(transferRequestDTO);
     }
     @Test
     void checkAccountId_connection_called() throws SQLException {
         dao.checkAccountId(checkAccountDTO);
-        Mockito.verify(connection).checkAccountId(checkAccountDTO.getRecipientAccount_id());
+        Mockito.verify(connection).checkAccountId(checkAccountDTO);
     }
 
     @Test
     void checkAccountId_throws_SQLException() throws SQLException {
-        Mockito.when(connection.checkAccountId(checkAccountDTO.getRecipientAccount_id())).thenThrow(SQLException.class);
+        Mockito.when(connection.checkAccountId(checkAccountDTO)).thenThrow(SQLException.class);
         assertThrows(SQLException.class, () -> dao.checkAccountId(checkAccountDTO));
     }
     @Test
     void checkBalance_connection_called() throws SQLException {
         dao.checkBalance(checkAccountDTO);
-        Mockito.verify(connection).checkBalance(checkAccountDTO.getRecipientAccount_id());
+        Mockito.verify(connection).checkBalance(checkAccountDTO);
     }
     @Test
     void checkBalance_throws_SQLException() throws SQLException
     {
-        Mockito.when(connection.checkBalance(checkAccountDTO.getRecipientAccount_id())).thenThrow(SQLException.class);
+        Mockito.when(connection.checkBalance(checkAccountDTO)).thenThrow(SQLException.class);
         assertThrows(SQLException.class, ()->dao.checkBalance(checkAccountDTO));
     }
     @Test
     void dailyCheck_connection_called() throws SQLException {
         dao.dailyCheck(checkAccountDTO);
-        Mockito.verify(connection).dailyCheck(checkAccountDTO.getRecipientAccount_id());
+        Mockito.verify(connection).dailyCheck(checkAccountDTO);
     }
     @Test
     void dailyCheck_throws_SQLException() throws SQLException
     {
-        Mockito.when(connection.dailyCheck(checkAccountDTO.getRecipientAccount_id())).thenThrow(SQLException.class);
+        Mockito.when(connection.dailyCheck(checkAccountDTO)).thenThrow(SQLException.class);
         assertThrows(SQLException.class, ()->dao.dailyCheck(checkAccountDTO));
     }
     @Test
     void makeDeposit_connection_called() throws SQLException {
         dao.makeDeposit(depositRequestDTO);
-        Mockito.verify(connection).deposit(depositRequestDTO.getAccount_id(),depositRequestDTO.getAmount());
+        Mockito.verify(connection).deposit(depositRequestDTO);
     }
 
     @Test
