@@ -10,8 +10,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class TransactionDao implements TransactionDaoInterface
-{
+public class TransactionDao implements TransactionDaoInterface {
     SQLConnectionInterface connection;
     {
         try {
@@ -20,9 +19,11 @@ public class TransactionDao implements TransactionDaoInterface
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public void makeTransfer(TransferRequestDTO transferRequestDTO) {
-        connection.transfer(transferRequestDTO.getSenderAccount_id(),transferRequestDTO.getRecipientAccount_id(),transferRequestDTO.getAmount(),transferRequestDTO.getMessage());
+        connection.transfer(transferRequestDTO.getSenderAccount_id(), transferRequestDTO.getRecipientAccount_id(),
+                transferRequestDTO.getAmount(), transferRequestDTO.getMessage());
     }
 
     @Override
@@ -46,7 +47,7 @@ public class TransactionDao implements TransactionDaoInterface
     }
 
     @Override
-    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException{
+    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
         return connection.creditInterest(userInfoAccNumDTO);
     }
 
@@ -54,6 +55,7 @@ public class TransactionDao implements TransactionDaoInterface
     public Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
         return connection.lastInterest(userInfoAccNumDTO);
     }
+
     @Override
     public void logLoan(LoanRequestDTO loanRequestDTO) throws SQLException {
         connection.logLoan(loanRequestDTO);
@@ -63,6 +65,7 @@ public class TransactionDao implements TransactionDaoInterface
     public List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException {
         return connection.getAllTransactions(userInfoEmailDTO);
     }
+
     @Override
     public List<Transactions> getAllTransactionsForEmployee() throws SQLException {
         return connection.getAllTransactionsForEmployee();
@@ -72,4 +75,11 @@ public class TransactionDao implements TransactionDaoInterface
     public void flagUser(FlagUserDTO flagUserDTO) {
         connection.flagUser(flagUserDTO);
     }
+
+    @Override
+    public List<Transactions> getAllSubscriptions(
+            UserInfoEmailDTO userInfoEmailDTO) throws SQLException {
+        return connection.getAllSubscriptions(userInfoEmailDTO);
+    }
+
 }

@@ -20,6 +20,8 @@ service DatabaseService{
     rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
     rpc GetTransactionsForEmployee(GetTransactionsForEmployeeRequest) returns (GetTransactionsForEmployeeResponse);
     rpc FlagUser(FlagUserRequest) returns (FlagUserResponse);
+    rpc GetSubscriptions(GetTransactionsRequest) returns (GetTransactionsResponse);
+
 
     //Added by vlad for register and changing credentials
 
@@ -31,6 +33,12 @@ service DatabaseService{
 
     rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
     rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
+
+    rpc UpdateEmail(UserNewEmailRequest) returns (UserNewEmailResponse);
+    rpc UpdatePassword(UserNewPasswordRequest) returns (UserNewPasswordResponse);
+    rpc UpdatePlan(UserNewPlanRequest) returns (UserNewPlanResponse);
+
+
     //chat
     rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
     rpc UpdateIssue(UpdateIssueRequest) returns (UpdateIssueResponse);
@@ -186,6 +194,7 @@ message Transactions {
     string senderName = 6;
     string receiverName = 7;
     int32 senderId = 8;
+    string transactionType = 8;
 }
 message FlagUserResponse{}
 message FlagUserRequest{
@@ -223,8 +232,9 @@ message UserEmailResponse{
 
 message AccountCreateRequest{
     int32 user_id = 1;
-    string userAccountNumber = 2;
-    double interestRate = 3;
+    string accountType = 2;
+    string userAccountNumber = 3;
+    double interestRate = 4;
 }
 
 message AccountCreateResponse{
@@ -297,8 +307,6 @@ message GetMessagesByIssueIdResponse {
 }
 
 
-
-
 message UserNewDetailsRequest{
     string newEmail = 1;
     string oldEmail = 2;
@@ -316,3 +324,26 @@ message AccountNewBaseRateRequest{
 }
 
 message AccountNewBaseRateResponse{}
+
+
+message UserNewEmailRequest{
+    int32 userId = 1;
+    string email = 2;
+}
+
+message UserNewEmailResponse{}
+
+message UserNewPasswordRequest{
+    int32 userId = 1;
+    string password = 2;
+}
+
+message UserNewPasswordResponse{}
+
+message UserNewPlanRequest
+{
+    int32 userId = 1;
+    string plan = 2;
+}
+
+message UserNewPlanResponse{}

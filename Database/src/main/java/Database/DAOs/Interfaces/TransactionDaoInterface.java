@@ -20,4 +20,5 @@ public interface TransactionDaoInterface {
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException;
     List<Transactions> getAllTransactionsForEmployee() throws SQLException;
     void flagUser(FlagUserDTO flagUserDTO);
+    List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO) throws SQLException;
 }

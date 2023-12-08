@@ -226,7 +226,8 @@ public class ProtoClient : IGrpcClient
                 RecipientAccountNumber = t.RecipientAccountNumber,
                 Amount = t.Amount,
                 Message = t.Message,
-                Date = t.Date.ToDateTime()
+                Date = t.Date.ToDateTime(),
+                transactionType = t.TransactionType
             };
             transactions.Add(transaction);
         }
@@ -323,7 +324,7 @@ public class ProtoClient : IGrpcClient
         var response = await databaseClient.CreateUserAccountNumberAsync(request);
     }
 
-    public async Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto)
+    public async Task UpdateBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
@@ -436,5 +437,70 @@ public class ProtoClient : IGrpcClient
             }
             return issues;
         }
-    }
+
+        public async Task UpdateEmail(UserNewEmailDTO userNewEmailDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new UserNewEmailRequest()
+            {
+                UserId = userNewEmailDto.UserID,
+                Email = userNewEmailDto.NewEmail
+            };
+            var response = await databaseClient.UpdateEmailAsync(request);
+            
+        }
+
+        public async Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new UserNewPasswordRequest()
+            {
+                UserId = userNewPasswordDto.UserID,
+                Password = userNewPasswordDto.newPassword
+            };
+            var response = await databaseClient.UpdatePasswordAsync(request);
+        }
+
+        public async Task UpdatePlan(UserNewPlanDTO userNewPlanDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new UserNewPlanRequest()
+            {
+                UserId = userNewPlanDto.UserID,
+                Plan = userNewPlanDto.Plan
+            };
+            var response = await databaseClient.UpdatePlanAsync(request);
+        }
+
+        public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+        {
+            using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+            var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+            var request = new GetTransactionsRequest
+            {
+                Email = getTransactionsDto.Email
+            };
+            var response = await databaseClient.GetSubscriptionsAsync(request);
+            List<Transaction> transactions = new List<Transaction>();
+            foreach (var t in response.Transactions)
+            {
+                Transaction transaction = new Transaction
+                {
+                    SenderName = t.SenderName,
+                    RecipientName = t.ReceiverName,
+                    SenderAccountNumber = t.SenderAccountNumber,
+                    RecipientAccountNumber = t.RecipientAccountNumber,
+                    Amount = t.Amount,
+                    Message = t.Message,
+                    Date = t.Date.ToDateTime(),
+                    transactionType = t.TransactionType
+                };
+                transactions.Add(transaction);
+            }
+            return transactions;
+        }
+}
     

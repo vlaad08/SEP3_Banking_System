@@ -1,5 +1,5 @@
 /* This code has been copied from our DNP Assignment, as we need this functionality here */
-.modal-background[b-wdyjovh819] { /* This style class makes the background darker, and un-clickable */
+.modal-background[b-61t3wftd6x] { /* This style class makes the background darker, and un-clickable */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -13,7 +13,7 @@
 }
 
 /* Modal Content/Box */
-.modal-box[b-wdyjovh819] {
+.modal-box[b-61t3wftd6x] {
     position: relative;
     left: 15%;
     background-color: black;
@@ -26,10 +26,10 @@
     border-radius: 25px;
     box-shadow: 0 5px 30px 15px #3f3f3f;
 }
-p[b-wdyjovh819]{
+p[b-61t3wftd6x]{
     color: white;
 }
-h1[b-wdyjovh819], h2[b-wdyjovh819], h3[b-wdyjovh819], h4[b-wdyjovh819], h5[b-wdyjovh819], h6[b-wdyjovh819]
+h1[b-61t3wftd6x], h2[b-61t3wftd6x], h3[b-61t3wftd6x], h4[b-61t3wftd6x], h5[b-61t3wftd6x], h6[b-61t3wftd6x]
 {
     color: white;
 }

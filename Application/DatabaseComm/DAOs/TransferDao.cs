@@ -17,14 +17,14 @@ public class TransferDAO : ITransferDAO
     {
         Console.WriteLine("DAO");
         Console.WriteLine("DAO TransferMoney");
-        await  grpcClient.MakeTransfer(transferRequestDto);
+        await grpcClient.MakeTransfer(transferRequestDto);
     }
 
     public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequest)
     {
         double balance = await grpcClient.GetBalanceByAccountNumber(transferRequest);
         Console.WriteLine(balance);
-        
+
         return balance;
     }
 
@@ -32,7 +32,7 @@ public class TransferDAO : ITransferDAO
     {
         string account = await grpcClient.GetAccountNumberByAccountNumber(transferRequest);
         return account;
-        
+
     }
 
     public async Task<double> GetTransferAmountsByDayForUser(TransferRequestDTO transferRequest)
@@ -40,7 +40,7 @@ public class TransferDAO : ITransferDAO
         double amount = await grpcClient.DailyCheck(transferRequest);
         return amount;
     }
-    
+
     public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)
     {
         return await grpcClient.GetTransactions(getTransactionsDto);
@@ -53,5 +53,9 @@ public class TransferDAO : ITransferDAO
     public async Task FlagUser(FlagUserDTO dto)
     {
         await grpcClient.FlagUser(dto);
+
+        public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+        {
+            return await grpcClient.GetSubscriptions(getTransactionsDto);
+        }
     }
-}

@@ -1,8 +1,7 @@
 package Database.DAOs;
 
 import Database.DAOs.Interfaces.CredentialChangerDaoInterface;
-import Database.DTOs.AccountNewBaseRateDTO;
-import Database.DTOs.UserNewDetailsRequestDTO;
+import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 
@@ -19,7 +18,7 @@ public class CredentialChangerDao implements CredentialChangerDaoInterface
     }
   }
 
-  @Override public void UpdateNewBaseRate(
+  @Override public void UpdateBaseRate(
       AccountNewBaseRateDTO accountNewBaseRateDTO) throws SQLException
   {
       connection.updateNewBaseRate(accountNewBaseRateDTO);
@@ -29,5 +28,23 @@ public class CredentialChangerDao implements CredentialChangerDaoInterface
       UserNewDetailsRequestDTO userNewDetailsRequestDTO) throws SQLException
   {
       connection.updateUserInformation(userNewDetailsRequestDTO);
+  }
+
+  @Override public void UpdateEmail(UserNewEmailDTO userNewEmailDTO)
+      throws SQLException
+  {
+    connection.updateEmail(userNewEmailDTO);
+  }
+
+  @Override public void UpdatePassword(UserNewPasswordDTO userNewPasswordDTO)
+      throws SQLException
+  {
+    connection.updatePassword(userNewPasswordDTO);
+  }
+
+  @Override public void UpdatePlan(UserNewPlanDTO userNewPlanDTO)
+      throws SQLException
+  {
+    connection.updatePlan(userNewPlanDTO);
   }
 }

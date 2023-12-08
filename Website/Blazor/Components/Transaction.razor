@@ -10,13 +10,10 @@
         <p class="date">@Date.Day/@Date.Month/@Date.Year</p>
     </div>
     <div class="midPart">
-        @if (!Message.Equals("deposit") || !Message.Equals("interest"))
-        {
-            <p class="message">@Message</p>
-        }
+        <p class="message">@Message</p>
     </div>
     <div class="rightPart">
-        @if (senderName.Equals("Deposit") || senderName.Equals("Interest"))
+        @if (sign.Equals("+"))
         {
             <p style="color: green">@sign@Amount DKK</p>
         }
@@ -34,32 +31,39 @@
     [Parameter] public string Recipient { get; set; }
     [Parameter] public string Sender { get; set; }
     [Parameter] public double Amount { get; set; }
-    [Parameter] public string Message { get; set; }
+    [Parameter] public string Message { get; set;}
     [Parameter] public DateTime Date { get; set; }
     [Parameter] public int SenderId { get; set; }
+    [Parameter] public string SenderAccountNumber { get; set; }
+    [Parameter] public string TransactionType { get; set; }
 
     private string senderName;
+    private string type = "";
     private string sign;
     
-    protected override async void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         senderName = await CheckName();
     }
 
     private async Task<string> CheckName()
     {
-        if (Sender.Equals(Recipient) && Message.Equals("deposit"))
+        if (TransactionType != null)
         {
-            sign = "+";
-            return "Deposit";
+            if (TransactionType.Equals("Deposit"))
+            {
+                sign = "+";
+                return "Deposit";
+            }
+            if (TransactionType.Equals("Interest"))
+            {
+                sign = "+";
+                return "Interest";
+            }
         }
-        if (Sender.Equals(Recipient) && Message.Equals("interest"))
-        {
-            sign = "+";
-            return "Interest";
-        }
+    
         sign = "-";
-        return "Transfer";
+        return $"To {Recipient}";
     }
 
     protected async Task FlagUser(int id)

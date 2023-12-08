@@ -42,7 +42,7 @@ public class SettingsLogic : ISettingsLogic
             };
 
 
-            await settingsDao.ChangeBaseRate(accountNewBaseRateDto);
+            await settingsDao.UpdateBaseRate(accountNewBaseRateDto);
 
             await settingsDao.ChangeUserDetails(userNewDetailsRequestDto);
         }
@@ -51,5 +51,32 @@ public class SettingsLogic : ISettingsLogic
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task UpdateEmail(UserNewEmailDTO userNewEmailDto)
+    {
+        await settingsDao.UpdateEmail(userNewEmailDto);
+    }
+
+    public async Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto)
+    {
+        await settingsDao.UpdatePassword(userNewPasswordDto);
+    }
+
+    public async Task UpdatePlan(UserNewPlanDTO userNewPlanDto)
+    {
+        double newBaseRate = 1.7;
+        if (userNewPlanDto.Plan == "Premium")
+        {
+            newBaseRate = 3.7;
+        }
+        AccountNewBaseRateDTO accountNewBaseRateDto = new AccountNewBaseRateDTO()
+        {
+            UserID = userNewPlanDto.UserID,
+            BaseRate = newBaseRate
+        };
+
+        await settingsDao.UpdateBaseRate(accountNewBaseRateDto);
+        await settingsDao.UpdatePlan(userNewPlanDto);
     }
 }

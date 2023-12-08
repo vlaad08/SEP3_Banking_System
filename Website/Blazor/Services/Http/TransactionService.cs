@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using Domain.Models;
 using Newtonsoft.Json;
 using Shared.DTOs;
 using Shared.Models;
@@ -8,12 +9,12 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace Blazor.Services.Http;
 
 public class TransactionService : ITransactionService
-{   
-    private readonly HttpClient client = new ();
+{
+    private readonly HttpClient client = new();
     public async Task Transfer(String senderAccount_id, String recipientAccount_id, double amount, String message)
     {
-        
-        
+
+
         TransferDto transfer = new TransferDto()
         {
             SenderAccountNumber = senderAccount_id,
@@ -21,8 +22,8 @@ public class TransactionService : ITransactionService
             Amount = amount,
             Message = message,
         };
-        
-        
+
+
         try
         {
             string transferJson = JsonSerializer.Serialize(transfer);
@@ -37,7 +38,7 @@ public class TransactionService : ITransactionService
             Console.WriteLine("Transfer successful");
         }
         catch (Exception e)
-        { 
+        {
             throw new Exception($"Transfer failed: {e.Message}");
         }
     }
@@ -77,7 +78,7 @@ public class TransactionService : ITransactionService
         {
             HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/{email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
-            
+
             if (!responseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
@@ -98,7 +99,7 @@ public class TransactionService : ITransactionService
         {
             HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
-            
+
             if (!responseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
@@ -113,23 +114,43 @@ public class TransactionService : ITransactionService
         }
     }
 
-    public async Task FlagUser(FlagUserDto flagUserDto)
+
+    public async Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string Email)
     {
         try
         {
-            HttpResponseMessage responseMessage = await client.PatchAsJsonAsync($"http://localhost:5054/api/Transaction/Flag/",flagUserDto);
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
-            
+
             if (!responseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
 
+            Dictionary<string, SubscriptionDao> dictionary =
+                JsonConvert.DeserializeObject<Dictionary<string, SubscriptionDao>>(responseBody);
+
+
+            return dictionary;
+
         }
-        catch (Exception e)
+
+    public async Task FlagUser(FlagUserDto flagUserDto)
         {
-            Console.WriteLine(e);
-            throw;
+            try
+            {
+                HttpResponseMessage responseMessage = await client.PatchAsJsonAsync($"http://localhost:5054/api/Transaction/Flag/", flagUserDto);
+                string responseBody = await responseMessage.Content.ReadAsStringAsync();
+
+                if (!responseMessage.IsSuccessStatusCode)
+                {
+                    throw new Exception(responseBody);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
-}

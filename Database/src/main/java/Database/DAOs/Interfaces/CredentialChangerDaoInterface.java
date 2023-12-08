@@ -1,14 +1,18 @@
 package Database.DAOs.Interfaces;
 
-import Database.DTOs.AccountNewBaseRateDTO;
-import Database.DTOs.UserNewDetailsRequestDTO;
+import Database.DTOs.*;
 
 import java.sql.SQLException;
 
 public interface CredentialChangerDaoInterface
 {
-  void UpdateNewBaseRate(AccountNewBaseRateDTO accountNewBaseRateDTO)
+  void UpdateBaseRate(AccountNewBaseRateDTO accountNewBaseRateDTO)
       throws SQLException;
   void UpdateUserInformation(UserNewDetailsRequestDTO userNewDetailsRequestDTO)
       throws SQLException;
+
+
+  void UpdateEmail(UserNewEmailDTO userNewEmailDTO) throws SQLException;
+  void UpdatePassword(UserNewPasswordDTO userNewPasswordDTO) throws SQLException;
+  void UpdatePlan(UserNewPlanDTO userNewPlanDTO) throws SQLException;
 }

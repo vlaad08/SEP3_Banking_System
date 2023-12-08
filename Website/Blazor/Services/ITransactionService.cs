@@ -1,5 +1,7 @@
 using Shared.DTOs;
 using Shared.Models;
+using Domain.Models;
+using Shared.DAO;
 
 namespace Blazor.Services.Http;
 
@@ -14,4 +16,6 @@ public interface ITransactionService
     public Task<IEnumerable<Transaction>> GetTransactions();
 
     public Task FlagUser(FlagUserDto flagUserDto);
+    public Task<List<TransactionDao>> GetTransactions(string email);
+    public Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string email);
 }

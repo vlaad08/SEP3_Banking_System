@@ -13,7 +13,7 @@ public class LoanService : ILoanService
         try
         {
             Console.WriteLine(dto.AccountNumber+" "+dto.Principal+" "+dto.Tenure);
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/api/Transaction/Loan/calculation", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/api/Transaction/Loan/calculation", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -31,7 +31,7 @@ public class LoanService : ILoanService
     {
         try
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/api/Transaction/Loan", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/api/Transaction/Loan", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
