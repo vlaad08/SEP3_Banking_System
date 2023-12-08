@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Blazor.Services
 @using Blazor.Components
+@using Blazor.Services.Http
 @inject IAuthService authService
 @inject NavigationManager navMgr
 
@@ -58,6 +59,7 @@
         {
             loading.ShowLoading();
             await authService.LoginAsync(email, password);
+
             navMgr.NavigateTo("/home");
         }
         catch (Exception e)

@@ -1,5 +1,5 @@
-.box[b-j9zj3dox54]{
-    margin-top: 5%;
+.box[b-dpjxzb1cre]{
+    margin-top: 10px;
     height: auto;
     display: flex;
     align-self: center;
@@ -9,21 +9,21 @@
     flex-direction: column;
 }
 
-.box-options[b-j9zj3dox54]{
+.box-options[b-dpjxzb1cre]{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2% 0 0 2%;
 }
 
-.optionsText[b-j9zj3dox54] {
+.optionsText[b-dpjxzb1cre] {
     text-align: center;
     font-size: calc(18px + 0.3vh);
     width: 50%;
     justify-self: flex-start;
 }
 
-.optionsButton[b-j9zj3dox54] {
+.optionsButton[b-dpjxzb1cre] {
     color: white;
     background-color: inherit;
     border: none;
@@ -33,12 +33,12 @@
     justify-self: flex-end;
 }
 
-.optionsButton:hover[b-j9zj3dox54]{
+.optionsButton:hover[b-dpjxzb1cre]{
     background-color: rgba(255, 255, 255, 0.1);
     transition: 0.2s;
 }
 
-.transactions-list[b-j9zj3dox54]{
+.transactions-list[b-dpjxzb1cre]{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -48,14 +48,14 @@
     margin: 0;
 }
 
-.box-transactions[b-j9zj3dox54]{
+.box-transactions[b-dpjxzb1cre]{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.transactionsButton[b-j9zj3dox54]{
+.transactionsButton[b-dpjxzb1cre]{
     color: white;
     border: none;
     background-color: inherit;
@@ -64,19 +64,19 @@
     font-size: calc(15px + 0.4vh);
 }
 
-.transactionsButton:hover[b-j9zj3dox54]{
+.transactionsButton:hover[b-dpjxzb1cre]{
     background-color: rgba(255, 255, 255, 0.1);
     transition: 0.2s;
 }
 
-.empty-block[b-j9zj3dox54]{
+.empty-block[b-dpjxzb1cre]{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.emptyText[b-j9zj3dox54]{
+.emptyText[b-dpjxzb1cre]{
     font-size: calc(14px + 00.3vh);
     color: grey;
     margin: 0;
@@ -84,13 +84,13 @@
 }
 
 @media (min-width: 1441px) {
-    .box[b-j9zj3dox54]{
+    .box[b-dpjxzb1cre]{
         width: 50%;
     }
 }
 
 @media (max-width: 1440px) {
-    .box[b-j9zj3dox54]{
+    .box[b-dpjxzb1cre]{
         width: 98%;
     }
 }

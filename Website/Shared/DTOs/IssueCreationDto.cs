@@ -7,7 +7,6 @@ public class IssueCreationDto
     public string Body { get; set; }
 
     public int Owner { get; set; }
-
     public IssueCreationDto(string title, string body, int owner)
     {
         Title = title;

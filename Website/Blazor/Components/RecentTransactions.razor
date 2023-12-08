@@ -1,4 +1,3 @@
-@using global::Shared.DAO
 @using Blazor.Services.Http
 @inject ITransactionService transactionService
 @inject NavigationManager NavMgr
@@ -9,18 +8,21 @@
     <div class="box-options">
         <p class="optionsText">Transactions</p>
         
-        <!-- Select how many transactions you would like to see. Min 3 Max 7 -->
     </div>
     <div class="transactions-list">
         @if (transactions != null)
         {
+            int max = 0;
             @foreach(var transaction in transactions)
             {
+                max++;
                 <Transaction Recipient="@transaction.RecipientName"
                              Sender="@transaction.SenderName"
                              Message="@transaction.Message"
                              Amount="@transaction.Amount"
                              Date="@transaction.Date"></Transaction>
+                if (max == 3)
+                    break;
             }
         }
     </div>
@@ -39,14 +41,14 @@ the results in the components-->
     
     
 
-    public List<TransactionDao> transactions = new List<TransactionDao>(); 
+    public List<global::Shared.Models.Transaction> transactions = new List<global::Shared.Models.Transaction>(); 
 
     private async Task RequestInformation()
     {
-        transactions = await GetTransactions(Email) ?? new List<TransactionDao>(); 
+        transactions = await GetTransactions(Email) ?? new List<global::Shared.Models.Transaction>(); 
     }
 
-    private async Task<List<TransactionDao>> GetTransactions(string email)
+    private async Task<List<global::Shared.Models.Transaction>> GetTransactions(string email)
     {
         return await transactionService.GetTransactions(email);
     }

@@ -4,6 +4,11 @@ namespace Application.DaoInterfaces;
 
 public interface ISettingsDAO
 {
-    Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
+    Task UpdateBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto);
     Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto);
+
+    Task UpdateEmail(UserNewEmailDTO userNewEmailDto);
+    Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto);
+    Task UpdatePlan(UserNewPlanDTO userNewPlanDto);
+    
 }

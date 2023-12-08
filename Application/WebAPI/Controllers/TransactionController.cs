@@ -14,7 +14,7 @@ public class TransactionController : ControllerBase
     private readonly IDepositLogic depositLogic;
     private readonly ILoanLogic loanLogic;
 
-    public TransactionController(ITransferLogic transferLogic, IDepositLogic depositLogic,ILoanLogic loanLogic)
+    public TransactionController(ITransferLogic transferLogic, IDepositLogic depositLogic, ILoanLogic loanLogic)
     {
         this.transferLogic = transferLogic;
         this.depositLogic = depositLogic;
@@ -35,16 +35,32 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
     [HttpGet, Route("{Email}")]
-    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string email)
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions([FromRoute] string Email)
     {
         try
         {
             GetTransactionsDTO dto = new GetTransactionsDTO
             {
-                Email = email
+                Email = Email
             };
             var transactions = await transferLogic.GetTransactions(dto);
+            return Ok(transactions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
+        }
+    }
+
+    [HttpGet, Route("")]
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions()
+    {
+        try
+        {
+            var transactions = await transferLogic.GetTransactions();
             return Ok(transactions);
         }
         catch (Exception e)
@@ -63,8 +79,9 @@ public class TransactionController : ControllerBase
             return Ok("Deposit successful");
         }
         catch (Exception e)
-        {   
-            return BadRequest(e.Message);;
+        {
+            return BadRequest(e.Message);
+            ;
         }
     }
 
@@ -73,7 +90,6 @@ public class TransactionController : ControllerBase
     {
         try
         {
-            Console.WriteLine("Atjott kocsog");
             double calculatedInterest = await loanLogic.CalculateLoan(dto);
             return Ok(calculatedInterest);
         }
@@ -83,6 +99,7 @@ public class TransactionController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
     [HttpPost, Route("Loan")]
     public async Task<IActionResult> RequestLoan([FromBody] LoanCalculationDTO dto)
     {
@@ -94,6 +111,39 @@ public class TransactionController : ControllerBase
         catch (Exception e)
         {
             return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPatch, Route("Flag")]
+    public async Task<IActionResult> FlagUser([FromBody] FlagUserDTO flagUserDto)
+    {
+        try
+        {
+            await transferLogic.FlagUser(flagUserDto);
+            return Ok("User Flagged");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet, Route("Subscriptions/{Email}")]
+    public async Task<IActionResult> GetSubscriptions([FromRoute] string Email)
+    {
+        try
+        {
+            GetTransactionsDTO dto = new GetTransactionsDTO
+            {
+                Email = Email
+            };
+            var subscriptions = await transferLogic.GetSubscriptions(dto);
+            return Ok(subscriptions);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return BadRequest();
         }
     }
 }

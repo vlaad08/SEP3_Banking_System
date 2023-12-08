@@ -12,13 +12,28 @@ public class SettingsDao : ISettingsDAO
         this.grpcClient = grpcClient;
     }
     
-    public async Task ChangeBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto)
+    public async Task UpdateBaseRate(AccountNewBaseRateDTO accountNewBaseRateDto)
     {
-        await grpcClient.ChangeBaseRate(accountNewBaseRateDto);
+        await grpcClient.UpdateBaseRate(accountNewBaseRateDto);
     }
 
     public async Task ChangeUserDetails(UserNewDetailsRequestDTO userNewDetailsRequestDto)
     {
         await grpcClient.ChangeUserDetails(userNewDetailsRequestDto);
+    }
+
+    public async Task UpdateEmail(UserNewEmailDTO userNewEmailDto)
+    {
+        await grpcClient.UpdateEmail(userNewEmailDto);
+    }
+
+    public async Task UpdatePassword(UserNewPasswordDTO userNewPasswordDto)
+    {
+        await grpcClient.UpdatePassword(userNewPasswordDto);
+    }
+
+    public async Task UpdatePlan(UserNewPlanDTO userNewPlanDto)
+    {
+        await grpcClient.UpdatePlan(userNewPlanDto);
     }
 }

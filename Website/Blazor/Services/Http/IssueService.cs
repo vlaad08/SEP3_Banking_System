@@ -9,12 +9,30 @@ namespace Blazor.Services.Http;
 
 public class IssueService : IIssueService
 {
-    private readonly HttpClient client = new ();
+    private readonly HttpClient client = new();
     public async Task CreateIssue(IssueCreationDto dto)
     {
         try
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/Issue/Issue", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/Issue/Issue", dto);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async Task UpdateIssue(IssueUpdateDto dto)
+    {
+        try
+        {
+            HttpResponseMessage response = await client.PatchAsJsonAsync("https://localhost:7257/Issue/Issue", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -32,7 +50,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7257/Issue/Message", dto);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:5054/Issue/Message", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
@@ -50,13 +68,13 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Message/{getMessagesDto.Id}");
+            HttpResponseMessage response = await client.GetAsync($"http://localhost:5054/Issue/Message/{getMessagesDto.Id}");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-            
+
             IEnumerable<Message> messages = JsonSerializer.Deserialize<IEnumerable<Message>>(responseBody, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -66,22 +84,22 @@ public class IssueService : IIssueService
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
-            throw new Exception(e.Message); 
+            throw new Exception(e.Message);
         }
-           
+
     }
 
     public async Task<IEnumerable<Issue>> GetIssues()
     {
         try
         {
-            HttpResponseMessage response = await client.GetAsync("https://localhost:7257/Issue/Employee/Issues");
+            HttpResponseMessage response = await client.GetAsync("http://localhost:5054/Issue/Employee/Issues");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-            
+
             IEnumerable<Issue> issues = JsonSerializer.Deserialize<IEnumerable<Issue>>(responseBody, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -91,7 +109,7 @@ public class IssueService : IIssueService
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
-            throw new Exception(e.Message); 
+            throw new Exception(e.Message);
         }
     }
 
@@ -100,13 +118,13 @@ public class IssueService : IIssueService
         try
         {
             int userId = dto.UserId;
-             HttpResponseMessage response = await client.GetAsync($"https://localhost:7257/Issue/Client/Issues/{userId}");
+            HttpResponseMessage response = await client.GetAsync($"http://localhost:5054/Issue/Client/Issues/{userId}");
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-            
+
             IEnumerable<Issue> issues = JsonSerializer.Deserialize<IEnumerable<Issue>>(responseBody, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

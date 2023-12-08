@@ -1,4 +1,4 @@
-using System.IdentityModel.Tokens.Jwt;
+using  System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
@@ -43,7 +43,7 @@ public class AuthController : ControllerBase
      {
          User user = await _authLogic.Login(userLoginRequestDto);
          List<Domain.Models.AccountsInfo> accountsInfos = await _authLogic.GetUserAccounts(userLoginRequestDto);
-         user.AccountsInfos = accountsInfos;    
+         user.AccountsInfos = accountsInfos;
          string token = GenerateJwt(user);
          return Ok(token);
      }

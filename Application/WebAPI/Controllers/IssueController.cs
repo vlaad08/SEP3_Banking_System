@@ -33,6 +33,20 @@ public class IssueController : ControllerBase
             throw new Exception(e.Message);
         }
     }
+    [HttpPatch, Route("Issue/")]
+    public async Task<ActionResult> UpdateIssue([FromBody] IssueUpdateDTO dto)
+    {
+        try
+        {
+            await issueLogic.UpdateIssue(dto);
+            return Ok("Message sent");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
+        }
+    }
     
     [HttpGet, Route("Employee/Issues")]
     public async Task<ActionResult> GetIssues()

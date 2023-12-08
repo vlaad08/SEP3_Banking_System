@@ -2,13 +2,29 @@
 @using Blazor.Components
 @using Blazor.Services.Http
 @using System.Security.Claims
-@using global::Shared.DAO
 @using System.Reflection.Metadata
 @using Blazor.Services
+@using Domain.DTOs
 @using global::Shared.DTOs
 @using Newtonsoft.Json
+@using Blazor.Pages
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
+@using Blazor.Services
+@using Blazor.Services.Http
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Components
 @inject ITransactionService transactionService
 @inject ISettingsService settingsService
+@inject IAuthService AuthService
+@inject NavigationManager NavMgr
+
 
 <div class="content">
     <div class="card">
@@ -72,7 +88,7 @@
                 <li>Secure account in the system</li>
                 <li>Base interest rate: 1.7%</li>
             </ul>
-            <button @onclick="UpdatePlanToDefault">Select this plan</button>
+            <button @onclick="UpdatePlanDefault">Select this plan</button>
         </div>
         
         <div class="plan">
@@ -83,7 +99,7 @@
                 <li>Base interest rate: 3.7%</li>
                 <li>Fast response time from employees</li>
             </ul>
-            <button @onclick="UpdatePlanToPremium">Select this plan</button>
+            <button @onclick="UpdatePlanPremium">Select this plan</button>
         </div>
     </div>
 }
@@ -94,6 +110,8 @@
     [Parameter] public string Email { get; set; }
     [Parameter] public string Role { get; set; }
     [Parameter]public LoadingBox Loading { get; set; }
+    
+    
     private List<AccountsInfo> Users { get; set; }
     private string SelectedAccount { get; set; }
     private bool isMenuVisible = false;
@@ -102,7 +120,9 @@
     private string newemail1;
     private string rolepremium="Premium";
     private string roledefault = "Default";
-    private string Password = "12345678";
+    [Parameter] public string Id { get; set; }
+    private Notification errorRef;
+
   
 
 
@@ -114,7 +134,8 @@
         Users = await GetUserAccounts(User);
         Email = User.FindFirst("Email").Value;
         Role = User.FindFirst(ClaimTypes.Role).Value;
-        
+        Id = User.FindFirst("Id").Value;
+
 
     }
 
@@ -167,34 +188,35 @@
         {
             try
             {
-                await settingsService.UpdateUserDetails(newemail,Email, Password, Role );
+                UserNewEmailDTO newEmailDto = new UserNewEmailDTO(int.Parse(Id), newemail, Email);
+                await settingsService.UpdateEmail(newEmailDto);
+                await AuthService.LogoutAsync();
+                NavMgr.NavigateTo("/");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
         }
+        else
+        {
+            await errorRef.ShowErrorNotification("Please fill out all the fields correctly");
+
+        }
+        
+        
     }
     
-    private async Task UpdatePlanToDefault()
-    {
-            try
-            {
-                await settingsService.UpdateUserDetails(Email, Email, Password,roledefault);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-    }
-    private async Task UpdatePlanToPremium()
+    
+    private async Task UpdatePlanDefault()
     {
         try
         {
-            await settingsService.UpdateUserDetails(Email, Email, Password, rolepremium);
+            UserNewPlanDTO newPlanDto = new UserNewPlanDTO(int.Parse(Id), roledefault);
+            await settingsService.UpdatePlan(newPlanDto);
+            await AuthService.LogoutAsync();
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
@@ -202,6 +224,14 @@
             throw;
         }
     }
+    
+    private async Task UpdatePlanPremium()
+    {
+      
+    }
+    
+    
+    
 }
 
 

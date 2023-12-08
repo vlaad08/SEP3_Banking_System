@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using System.Text;
+using Domain.Models;
 using Newtonsoft.Json;
-using Shared.DAO;
 using Shared.DTOs;
 using Shared.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -9,12 +9,12 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace Blazor.Services.Http;
 
 public class TransactionService : ITransactionService
-{   
-    private readonly HttpClient client = new ();
+{
+    private readonly HttpClient client = new();
     public async Task Transfer(String senderAccount_id, String recipientAccount_id, double amount, String message)
     {
-        
-        
+
+
         TransferDto transfer = new TransferDto()
         {
             SenderAccountNumber = senderAccount_id,
@@ -22,8 +22,8 @@ public class TransactionService : ITransactionService
             Amount = amount,
             Message = message,
         };
-        
-        
+
+
         try
         {
             string transferJson = JsonSerializer.Serialize(transfer);
@@ -38,7 +38,7 @@ public class TransactionService : ITransactionService
             Console.WriteLine("Transfer successful");
         }
         catch (Exception e)
-        { 
+        {
             throw new Exception($"Transfer failed: {e.Message}");
         }
     }
@@ -72,22 +72,18 @@ public class TransactionService : ITransactionService
 
     }
 
-    public async Task<List<TransactionDao>> GetTransactions(string email)
+    public async Task<List<Transaction>> GetTransactions(string email)
     {
         try
         {
             HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/{email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
-            
+
             if (!responseMessage.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-
-            List<TransactionDao> list = JsonConvert.DeserializeObject<IEnumerable<TransactionDao>>(responseBody)
-                .ToList();
-
-            
+            List<Transaction> list = JsonConvert.DeserializeObject<IEnumerable<Transaction>>(responseBody).ToList();
             return list;
         }
         catch (Exception e)
@@ -96,4 +92,72 @@ public class TransactionService : ITransactionService
             throw;
         }
     }
-}
+
+    public async Task<IEnumerable<Transaction>> GetTransactions()
+    {
+        try
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/");
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+            List<Transaction> list = JsonConvert.DeserializeObject<IEnumerable<Transaction>>(responseBody).ToList();
+            return list;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+
+    public async Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string Email)
+    {
+        try
+        {
+            HttpResponseMessage responseMessage =
+                await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+
+            Dictionary<string, SubscriptionDao> dictionary =
+                JsonConvert.DeserializeObject<Dictionary<string, SubscriptionDao>>(responseBody);
+
+
+            return dictionary;
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task FlagUser(FlagUserDto flagUserDto)
+        {
+            try
+            {
+                HttpResponseMessage responseMessage = await client.PatchAsJsonAsync($"http://localhost:5054/api/Transaction/Flag/", flagUserDto);
+                string responseBody = await responseMessage.Content.ReadAsStringAsync();
+
+                if (!responseMessage.IsSuccessStatusCode)
+                {
+                    throw new Exception(responseBody);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+    }

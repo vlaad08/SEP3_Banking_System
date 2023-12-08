@@ -14,6 +14,7 @@ import Database.DAOs.CredentialChangerDao;
 import Database.DAOs.ChatDao;
 import Database.DAOs.Interfaces.ChatDaoInterface;
 import Database.DAOs.Interfaces.LoginDaoInterface;
+import Database.DAOs.Interfaces.RegisterDaoInterface;
 import Database.DAOs.Interfaces.TransactionDaoInterface;
 import Database.DAOs.LoginDao;
 import Database.DAOs.RegisterDao;
@@ -28,7 +29,7 @@ import java.util.List;
 public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
-    RegisterDao registerDao = new RegisterDao();
+    RegisterDaoInterface registerDao = new RegisterDao();
     CredentialChangerDao credentialChangerDao = new CredentialChangerDao();
     ChatDaoInterface chatDao = new ChatDao();
 
@@ -161,13 +162,10 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             Timestamp date = transactionDao.lastInterest(userInfoDTO);
             LastInterestResponse response;
             if (date != null) {
-                // Convert Java Timestamp to Google's Timestamp
                 com.google.protobuf.Timestamp timestampProto = com.google.protobuf.Timestamp.newBuilder()
-                        .setSeconds(date.getTime() / 1000) // Convert milliseconds to seconds
-                        .setNanos((int) ((date.getTime() % 1000) * 1000000)) // Convert remaining milliseconds to
-                                                                             // nanoseconds
+                        .setSeconds(date.getTime() / 1000)
+                        .setNanos((int) ((date.getTime() % 1000) * 1000000))
                         .build();
-
                 response = LastInterestResponse.newBuilder().setDate(timestampProto).build();
             } else {
                 response = null;
@@ -179,6 +177,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
+    // test below
     @Override
     public void logLoan(LogLoanRequest request, StreamObserver<LogLoanResponse> responseStreamObserver) {
         try {
@@ -207,6 +206,43 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+//    @Override
+//    public void getTransactionsForEmployee(GetTransactionsForEmployeeRequest request,
+//            StreamObserver<GetTransactionsForEmployeeResponse> responseObserver) {
+//        try {
+//            List<Transactions> transactions = transactionDao.getAllTransactionsForEmployee();
+//            GetTransactionsForEmployeeResponse response = GetTransactionsForEmployeeResponse.newBuilder()
+//                    .addAllTransactions(transactions).build();
+//            responseObserver.onNext(response);
+//            responseObserver.onCompleted();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    public void getSubscriptions(GetTransactionsRequest request,
+            StreamObserver<GetTransactionsResponse> responseStreamObserver) {
+        try {
+            UserInfoEmailDTO userInfoEmailDTO = new UserInfoEmailDTO(request.getEmail());
+            List<Transactions> subscriptions = transactionDao.getAllSubscriptions(userInfoEmailDTO);
+            GetTransactionsResponse response = GetTransactionsResponse.newBuilder().addAllTransactions(subscriptions)
+                    .build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void flagUser(FlagUserRequest request, StreamObserver<FlagUserResponse> responseObserver) {
+        FlagUserDTO dto = new FlagUserDTO(request.getSenderId());
+        transactionDao.flagUser(dto);
+        FlagUserResponse response = FlagUserResponse.newBuilder().build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 
     @Override
@@ -257,7 +293,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             StreamObserver<AccountCreateResponse> responseStreamObserver) {
         try {
             UserAccountDTO userAccountDTO = new UserAccountDTO(
-                    request.getUserId(), request.getUserAccountNumber(), /*request.getAccountType(),*/
+                    request.getUserId(), request.getUserAccountNumber(), request.getAccountType(),
                     request.getInterestRate());
             registerDao.generateAccountNumber(userAccountDTO);
             AccountCreateResponse response = AccountCreateResponse.newBuilder().build();
@@ -289,7 +325,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         try {
             AccountNewBaseRateDTO accountNewBaseRateDTO = new AccountNewBaseRateDTO(
                     request.getUserId(), request.getBaseRate());
-            credentialChangerDao.UpdateNewBaseRate(accountNewBaseRateDTO);
+            credentialChangerDao.UpdateBaseRate(accountNewBaseRateDTO);
             AccountNewBaseRateResponse response = AccountNewBaseRateResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
@@ -304,6 +340,19 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             IssueCreationDTO issueDTO = new IssueCreationDTO(request.getTitle(), request.getBody(), request.getOwner());
             chatDao.createIssue(issueDTO);
             CreateIssueResponse response = CreateIssueResponse.newBuilder().build();
+            responseStreamObserver.onNext(response);
+            responseStreamObserver.onCompleted();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateIssue(UpdateIssueRequest request, StreamObserver<UpdateIssueResponse> responseStreamObserver) {
+        try {
+            IssueUpdateDTO issueDTO = new IssueUpdateDTO(request.getId());
+            chatDao.updateIssue(issueDTO);
+            UpdateIssueResponse response = UpdateIssueResponse.newBuilder().build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
         } catch (SQLException e) {
@@ -371,6 +420,55 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void updateEmail(UserNewEmailRequest request, StreamObserver<UserNewEmailResponse> responseStreamObserver)
+
+    {
+        UserNewEmailDTO userNewEmailDTO = new UserNewEmailDTO(
+                request.getUserId(), request.getEmail());
+        try {
+            credentialChangerDao.UpdateEmail(userNewEmailDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        UserNewEmailResponse response = UserNewEmailResponse.newBuilder().build();
+        responseStreamObserver.onNext(response);
+        responseStreamObserver.onCompleted();
+    }
+
+    @Override
+    public void updatePassword(UserNewPasswordRequest request,
+            StreamObserver<UserNewPasswordResponse> responseStreamObserver)
+
+    {
+        UserNewPasswordDTO userNewPasswordDTO = new UserNewPasswordDTO(
+                request.getUserId(), request.getPassword());
+        try {
+            credentialChangerDao.UpdatePassword(userNewPasswordDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        UserNewPasswordResponse response = UserNewPasswordResponse.newBuilder().build();
+        responseStreamObserver.onNext(response);
+        responseStreamObserver.onCompleted();
+    }
+
+    @Override
+    public void updatePlan(UserNewPlanRequest request, StreamObserver<UserNewPlanResponse> responseStreamObserver)
+
+    {
+        UserNewPlanDTO userNewPlanDTO = new UserNewPlanDTO(
+                request.getUserId(), request.getPlan());
+        try {
+            credentialChangerDao.UpdatePlan(userNewPlanDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        UserNewPlanResponse response = UserNewPlanResponse.newBuilder().build();
+        responseStreamObserver.onNext(response);
+        responseStreamObserver.onCompleted();
     }
 
 }

@@ -1,0 +1,18 @@
+﻿<div class="subs-box">
+    <div class="leftPart">
+        <p class="title">@ServiceName</p>
+    </div>
+    <div class="midPart">
+        <p class="date">@Date.Day/@Date.Month/@Date.Year</p>
+    </div>
+    <div class="rightPart">
+        <p class="amount">-@Amount DKK</p>
+    </div>
+</div>
+
+@code {
+    
+    [Parameter] public string ServiceName { get; set; }
+    [Parameter] public double Amount { get; set; }
+    [Parameter] public DateTime Date { get; set; }
+}

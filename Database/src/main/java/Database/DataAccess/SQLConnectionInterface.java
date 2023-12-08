@@ -36,6 +36,12 @@ public interface SQLConnectionInterface {
 
     List<Transactions> getAllTransactions(UserInfoEmailDTO userInfoEmailDTO);
 
+    List<Transactions> getAllTransactionsForEmployee();
+
+    void flagUser(FlagUserDTO flagUserDTO);
+
+    List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO);
+
     void registerUser(RegisterRequestDTO registerUserDTO) throws SQLException;
 
     int getUserID(UserAccountRequestDTO userAccountRequestDTO) throws SQLException;
@@ -50,6 +56,8 @@ public interface SQLConnectionInterface {
 
     void createIssue(IssueCreationDTO issueDTO) throws SQLException;
 
+    void updateIssue(IssueUpdateDTO issueDTO) throws SQLException;
+
     void sendMessage(MessageDTO messageDTO) throws SQLException;
 
     List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException;
@@ -58,4 +66,9 @@ public interface SQLConnectionInterface {
 
     List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException;
 
+    void updateEmail(UserNewEmailDTO userNewEmailDTO) throws SQLException;
+
+    void updatePassword(UserNewPasswordDTO userNewPasswordDTO) throws SQLException;
+
+    void updatePlan(UserNewPlanDTO userNewPlanDTO) throws SQLException;
 }

@@ -1,4 +1,4 @@
-.content[b-jg5guto5ts] {
+.content[b-q3s9eh4698] {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7,7 +7,7 @@
 }
 
 
-.card[b-jg5guto5ts]{
+.card[b-q3s9eh4698]{
     background-color: rgba(0,0,0, 0.8);
     display: flex;
     flex-direction: column;
@@ -18,12 +18,12 @@
     border-radius: 10px;
 }
 
-.LoadingText[b-jg5guto5ts]{
+.LoadingText[b-q3s9eh4698]{
     font-size: calc(30px + 0.34vh);
     color: white;
 }
 
-.loadingCircle[b-jg5guto5ts]
+.loadingCircle[b-q3s9eh4698]
 {
     width: 100px;
     height: 100px;
@@ -33,13 +33,13 @@
     border-bottom: 2px solid white;
     border-left: 2px solid white;
     border-radius: 50%;
-    animation-name: circleRotate-b-jg5guto5ts;
+    animation-name: circleRotate-b-q3s9eh4698;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
-@keyframes circleRotate-b-jg5guto5ts {
+@keyframes circleRotate-b-q3s9eh4698 {
     0%{
         transform: rotate(0deg);
     }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/update")]
 
 public class SettingsController : ControllerBase
 {
@@ -16,13 +16,42 @@ public class SettingsController : ControllerBase
     {
         this.settingsLogic = settingsLogic;
     }
+    
 
-    [HttpPost, Route("updateUser")]
-    public void UpdateUser([FromBody] UserNewDetailsRequestDTO userNewDetailsRequestDto)
+    [HttpPost, Route("email")]
+    public void UpdateEmail([FromBody] UserNewEmailDTO userNewEmailDto)
     {
         try
         {
-            settingsLogic.UpdateUser(userNewDetailsRequestDto);
+            settingsLogic.UpdateEmail(userNewEmailDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpPost, Route("password")]
+    public void UpdatePassword([FromBody] UserNewPasswordDTO userNewPasswordDto)
+    {
+        try
+        {
+            settingsLogic.UpdatePassword(userNewPasswordDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpPost, Route("plan")]
+    public void UpdatePlan([FromBody] UserNewPlanDTO userNewPlanDto)
+    {
+        try
+        {
+            settingsLogic.UpdatePlan(userNewPlanDto);
         }
         catch (Exception e)
         {

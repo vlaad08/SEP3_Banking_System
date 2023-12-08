@@ -48,7 +48,7 @@ public class SettingsLogicTests
             Plan = "Premium"
         };
 
-        settingsDao.Setup(dao => dao.ChangeBaseRate(rateDto));
+        settingsDao.Setup(dao => dao.UpdateBaseRate(rateDto));
         settingsDao.Setup(dao => dao.ChangeUserDetails(userNewDetailsRequestDto));
 
         await settingsLogic.UpdateUser(userNewDetailsRequestDto);

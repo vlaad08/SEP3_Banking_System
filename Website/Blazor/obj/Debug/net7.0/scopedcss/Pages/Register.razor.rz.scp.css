@@ -1,11 +1,11 @@
-.content[b-8xlal766b8] {
+.content[b-be1upc63yq] {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.card[b-8xlal766b8] {
+.card[b-be1upc63yq] {
     color: white;
     padding: 1%;
     background: none;
@@ -20,20 +20,20 @@
     -webkit-backdrop-filter: blur(10px);
 }
 
-.card h1[b-8xlal766b8]{
+.card h1[b-be1upc63yq]{
     color: white;
     font-weight: 700;
 }
 
-.field[b-8xlal766b8] {
+.field[b-be1upc63yq] {
     width: 80%;
 }
 
-.field input:-webkit-autofill[b-8xlal766b8]{
+.field input:-webkit-autofill[b-be1upc63yq]{
     font-size: calc(15px + 0.4vh);
 }
 
-.field input[b-8xlal766b8]
+.field input[b-be1upc63yq]
 {
     padding: 2%;
     width: 100%;
@@ -42,13 +42,13 @@
     outline: none;
 }
 
-.plansBox[b-8xlal766b8]{
+.plansBox[b-be1upc63yq]{
     display: flex;
     flex-direction: row;
     margin: 2%;
 }
 
-.plan[b-8xlal766b8]{
+.plan[b-be1upc63yq]{
     position: static;
     display: flex;
     flex-direction: column;
@@ -63,16 +63,16 @@
     transition: 0.2s ease-in-out;
 }
 
-.plan p[b-8xlal766b8]{
+.plan p[b-be1upc63yq]{
     align-self: center;
     font-size: calc(14px + 0.4vw);
 }
 
-ul[b-8xlal766b8]{
+ul[b-be1upc63yq]{
     list-style-type: none;
 }
 
-.plan button[b-8xlal766b8]{
+.plan button[b-be1upc63yq]{
     border: 1px solid white;
     border-radius: 10px;
     font-size: calc(12px + 0.4vw);
@@ -81,18 +81,18 @@ ul[b-8xlal766b8]{
     transition: 0.2s ease-in-out;
 }
 
-.plan button:hover[b-8xlal766b8]{
+.plan button:hover[b-be1upc63yq]{
     color: black;
     background-color: white;
 }
 
-.plan:hover[b-8xlal766b8]{
+.plan:hover[b-be1upc63yq]{
     transform: scale(1.2);
     box-shadow: 0px 0px 15px white;
     z-index: 2;
 }
 
-.registerButton[b-8xlal766b8]{
+.registerButton[b-be1upc63yq]{
     width: 80%;
     font-size: calc(17px + 0.4vw);
     font-weight: 500;
@@ -104,6 +104,6 @@ ul[b-8xlal766b8]{
     transition: all .5s ease-out;
 }
 
-.registerButton:hover[b-8xlal766b8]{
+.registerButton:hover[b-be1upc63yq]{
     background-position: right bottom;
 }

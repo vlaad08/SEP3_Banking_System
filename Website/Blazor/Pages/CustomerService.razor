@@ -9,18 +9,20 @@
 @inject NavigationManager navManager;
 <div class="content">
     <div class="card">
-        <h3>Open new Issue</h3>
-        <div>
-            <div>
-                <label>Issue title</label>
-                <input type="text" @bind="title">
-            </div>
-            <div>
-                <label>Description</label>
-                <input class="description" type="text" @bind="body">
-            </div>
-            <button @onclick="Create">Send Issue</button>
-        </div>
+        <AuthorizeView Policy="MustBeClient">
+          <h3>Open new Issue</h3>
+          <div>
+              <div>
+                  <label>Issue title</label>
+                  <input type="text" @bind="title">
+              </div>
+              <div>
+                  <label>Description</label>
+                  <input class="description" type="text" @bind="body">
+              </div>
+              <button @onclick="Create">Send Issue</button>
+          </div>  
+        </AuthorizeView>
         @if (issues == null)
         {
             <p>No issues</p>
@@ -29,24 +31,31 @@
         {
             foreach (var i in issues)
             {
-                <div @onclick="()=>DisplayPopUp(i)">
+                <div @onclick="() => DisplayPopUp(i)">
                     <IssueContainer
                         Title="@i.Title"
                         Body="@i.Body"
                         Name="@i.Owner"
-                        CreationTime="@i.CreationTime">
-                    </IssueContainer> 
+                        CreationTime="@i.CreationTime"
+                        Solved="@i.Flagged">
+                    </IssueContainer>
                 </div>
-                
+
             }
-            
+
         }
     </div>
     <PopUp ShowPopUp="showPopUp">
         <h2>@issue.Title</h2>
         <p id="body">@issue.Body</p>
+        <AuthorizeView Policy="MustBeEmployee">
+             @if (!issue.Flagged)
+            {
+                <button @onclick="()=>UpdateIssue(issue.Id)">Make issue solved</button>
+            }
+        </AuthorizeView>
         <h5>Messages:</h5>
-        @if (issue.Messages != null)
+        @if (issue.Messages.Count!=0)
         {
             @foreach (var m in issue.Messages)
             {
@@ -94,6 +103,7 @@
     [Parameter] public ClaimsPrincipal User { get; set; }
     private string? owner = "";
     private string role = "";
+    private bool checkbox;
     private Issue? issue;
     private IEnumerable<Issue>? issues = null;
     private IEnumerable<Message>? messages = null;
@@ -114,7 +124,6 @@
         try
         {
             IssueCreationDto dto = new IssueCreationDto(title, body, int.Parse(owner));
-            Console.WriteLine(dto.Title+" "+dto.Body+" "+dto.Owner);
             await IssueService.CreateIssue(dto);
             navManager.NavigateTo("/customerService", true);
         }
@@ -125,12 +134,22 @@
         }
     }
 
+    private async Task UpdateIssue(int id)
+    {
+        IssueUpdateDto dto = new IssueUpdateDto(id);
+        await IssueService.UpdateIssue(dto);
+        Back();
+        navManager.NavigateTo("/customerService", true);
+    }
+
     private async Task SendMessage()
     {
         try
         {
             SendMessageDto dto = new SendMessageDto(messageTitle, messageBody, int.Parse(owner),issue.Id);
             await IssueService.SendMessage(dto);
+            title = "";
+            body = "";
             Back();
         }
         catch (Exception e)
@@ -169,7 +188,6 @@
         }
         if (role.Equals("Client"))
         {
-            Console.WriteLine(int.Parse(owner));
             issues = await IssueService.GetIssuesForClient(new GetIssuesDto { UserId = int.Parse(owner) });
         }
     }

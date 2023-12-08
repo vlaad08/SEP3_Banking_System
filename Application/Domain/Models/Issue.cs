@@ -7,4 +7,5 @@ public class Issue
     public string Body { get; set; }
     public int Owner { get; set; }
     public DateTime CreationTime { get; set; }
+    public bool Flagged { get; set; }
 }

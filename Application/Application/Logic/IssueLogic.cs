@@ -28,6 +28,10 @@ public class IssueLogic : IIssueLogic
     {
          await issueDao.CreateIssue(dto);
     }
+    public async Task UpdateIssue(IssueUpdateDTO dto)
+    {
+        await issueDao.UpdateIssue(dto);
+    }
 
     public async Task<IEnumerable<Issue>> GetIssues()
     {

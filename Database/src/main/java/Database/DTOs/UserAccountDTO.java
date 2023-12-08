@@ -8,11 +8,11 @@ public class UserAccountDTO
   private double interestRate;
 
   public UserAccountDTO(int user_id, String userAccountNumber,
-      /*String accountType,*/ double interestRate)
+      String accountType, double interestRate)
   {
     this.user_id = user_id;
     this.userAccountNumber = userAccountNumber;
-    /*this.accountType = accountType;*/
+    this.accountType = accountType;
     this.interestRate = interestRate;
   }
 

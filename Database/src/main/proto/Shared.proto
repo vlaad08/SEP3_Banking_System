@@ -18,6 +18,9 @@ service DatabaseService{
   rpc LastInterest (LastInterestRequest) returns (LastInterestResponse);
   rpc LogLoan (LogLoanRequest) returns (LogLoanResponse);
   rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+  rpc GetTransactionsForEmployee(GetTransactionsForEmployeeRequest) returns (GetTransactionsForEmployeeResponse);
+  rpc FlagUser(FlagUserRequest) returns (FlagUserResponse);
+  rpc GetSubscriptions(GetTransactionsRequest) returns (GetTransactionsResponse);
 
 
   //Added by vlad for register and changing credentials
@@ -30,8 +33,15 @@ service DatabaseService{
 
   rpc ChangeUserDetails(UserNewDetailsRequest) returns (UserNewDetailsResponse);
   rpc ChangeBaseRate(AccountNewBaseRateRequest) returns (AccountNewBaseRateResponse);
+
+  rpc UpdateEmail(UserNewEmailRequest) returns (UserNewEmailResponse);
+  rpc UpdatePassword(UserNewPasswordRequest) returns (UserNewPasswordResponse);
+  rpc UpdatePlan(UserNewPlanRequest) returns (UserNewPlanResponse);
+
+
   //chat
   rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse);
+  rpc UpdateIssue(UpdateIssueRequest) returns (UpdateIssueResponse);
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
   rpc GetMessagesForIssue(GetMessagesForIssueRequest) returns (GetMessagesForIssueResponse);
   rpc GetAllIssues(GetAllIssuesRequest) returns (GetAllIssuesResponse);
@@ -171,6 +181,10 @@ message GetTransactionsRequest {
 message GetTransactionsResponse {
   repeated Transactions transactions = 1;
 }
+message GetTransactionsForEmployeeRequest{}
+message GetTransactionsForEmployeeResponse{
+  repeated Transactions transactions = 1;
+}
 message Transactions {
   string senderAccountNumber =1;
   string recipientAccountNumber = 2;
@@ -179,7 +193,15 @@ message Transactions {
   google.protobuf.Timestamp date = 5;
   string senderName = 6;
   string receiverName = 7;
+  int32 senderId = 8;
+  string transactionType = 9;
+
 }
+message FlagUserResponse{}
+message FlagUserRequest{
+  int32 senderId = 1;
+}
+
 
 
 //added by vlad for register
@@ -206,13 +228,14 @@ message UserEmailRequest{
 }
 
 message UserEmailResponse{
-  string email = 2;
+  string email = 1;
 }
 
 message AccountCreateRequest{
   int32 user_id = 1;
-  string userAccountNumber = 2;
-  double interestRate = 3;
+  string accountType = 2;
+  string userAccountNumber = 3;
+  double interestRate = 4;
 }
 
 message AccountCreateResponse{
@@ -222,17 +245,20 @@ message CreateIssueRequest {
   string title = 1;
   string body = 2;
   int32 owner = 3;
+  bool flagged = 4;
 }
 
-message CreateIssueResponse {
-
+message UpdateIssueRequest {
+  int32 id = 5;
 }
+message CreateIssueResponse {}
+message UpdateIssueResponse {}
 
 message SendMessageRequest{
-   string title = 1;
-   int32 owner = 2;
-   string body = 3;
-   int32 issue_id = 4;
+  string title = 1;
+  int32 owner = 2;
+  string body = 3;
+  int32 issue_id = 4;
 }
 
 message SendMessageResponse{
@@ -282,8 +308,6 @@ message GetMessagesByIssueIdResponse {
 }
 
 
-
-
 message UserNewDetailsRequest{
   string newEmail = 1;
   string oldEmail = 2;
@@ -301,3 +325,26 @@ message AccountNewBaseRateRequest{
 }
 
 message AccountNewBaseRateResponse{}
+
+
+message UserNewEmailRequest{
+  int32 userId = 1;
+  string email = 2;
+}
+
+message UserNewEmailResponse{}
+
+message UserNewPasswordRequest{
+  int32 userId = 1;
+  string password = 2;
+}
+
+message UserNewPasswordResponse{}
+
+message UserNewPlanRequest
+{
+  int32 userId = 1;
+  string plan = 2;
+}
+
+message UserNewPlanResponse{}

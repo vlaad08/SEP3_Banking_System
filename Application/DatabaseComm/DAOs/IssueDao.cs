@@ -24,6 +24,10 @@ public class IssueDao : IIssueDAO
     {
         await grpcClient.CreateIssue(dto);
     }
+    public async Task UpdateIssue(IssueUpdateDTO dto)
+    {
+        await grpcClient.UpdateIssue(dto);
+    }
 
     public async Task<IEnumerable<Issue>> GetIssues()
     {
