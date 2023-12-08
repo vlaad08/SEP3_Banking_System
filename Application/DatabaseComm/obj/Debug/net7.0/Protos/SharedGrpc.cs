@@ -7,8 +7,7 @@
 
 using grpc = global::Grpc.Core;
 
-namespace Database
-{
+namespace Database {
   public static partial class DatabaseService
   {
     static readonly string __ServiceName = "Database.DatabaseService";
@@ -16,7 +15,7 @@ namespace Database
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
     {
-#if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
       if (message is global::Google.Protobuf.IBufferMessage)
       {
         context.SetPayloadLength(message.CalculateSize());
@@ -24,7 +23,7 @@ namespace Database
         context.Complete();
         return;
       }
-#endif
+      #endif
       context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
     }
 
@@ -37,12 +36,12 @@ namespace Database
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
     {
-#if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
       if (__Helper_MessageCache<T>.IsBufferMessage)
       {
         return parser.ParseFrom(context.PayloadAsReadOnlySequence());
       }
-#endif
+      #endif
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
@@ -286,6 +285,8 @@ namespace Database
         "FlagUser",
         __Marshaller_Database_FlagUserRequest,
         __Marshaller_Database_FlagUserResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse> __Method_GetSubscriptions = new grpc::Method<global::Database.GetTransactionsRequest, global::Database.GetTransactionsResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -745,6 +746,8 @@ namespace Database
       public virtual grpc::AsyncUnaryCall<global::Database.FlagUserResponse> FlagUserAsync(global::Database.FlagUserRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_FlagUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Database.GetTransactionsResponse GetSubscriptions(global::Database.GetTransactionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetSubscriptions(request, new grpc::CallOptions(headers, deadline, cancellationToken));

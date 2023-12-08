@@ -8,6 +8,7 @@ namespace DataAccess.DAOs;
 public class TransferDAO : ITransferDAO
 {
     private readonly IGrpcClient grpcClient;
+
     public TransferDAO(IGrpcClient grpcClient)
     {
         this.grpcClient = grpcClient;
@@ -45,6 +46,7 @@ public class TransferDAO : ITransferDAO
     {
         return await grpcClient.GetTransactions(getTransactionsDto);
     }
+
     public async Task<IEnumerable<Transaction>> GetTransactions()
     {
         return await grpcClient.GetTransactions();
@@ -53,9 +55,10 @@ public class TransferDAO : ITransferDAO
     public async Task FlagUser(FlagUserDTO dto)
     {
         await grpcClient.FlagUser(dto);
-
-        public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
-        {
-            return await grpcClient.GetSubscriptions(getTransactionsDto);
-        }
     }
+
+    public async Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
+    {
+        return await grpcClient.GetSubscriptions(getTransactionsDto);
+    }
+}

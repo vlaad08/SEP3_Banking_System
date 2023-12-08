@@ -850,7 +850,7 @@ public class SQLConnectionTest {
 
     @Test
     public void generateAccountNumber_updates_and_call_the_db() throws SQLException {
-        UserAccountDTO dto = new UserAccountDTO(1,"-",1.12);
+        UserAccountDTO dto = new UserAccountDTO(1,"-","personal", 1.12);
         sqlConnection.generateAccountNumber(dto);
         Mockito.verify(connection).prepareStatement("INSERT INTO account "
                 + "(account_id, user_id, balance, account_type, interest_rate)\n"

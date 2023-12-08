@@ -119,7 +119,8 @@ public class TransactionService : ITransactionService
     {
         try
         {
-            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
+            HttpResponseMessage responseMessage =
+                await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
 
             if (!responseMessage.IsSuccessStatusCode)
@@ -134,6 +135,12 @@ public class TransactionService : ITransactionService
             return dictionary;
 
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
     public async Task FlagUser(FlagUserDto flagUserDto)
         {

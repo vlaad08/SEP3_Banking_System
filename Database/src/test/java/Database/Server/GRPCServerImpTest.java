@@ -348,7 +348,7 @@ public class GRPCServerImpTest {
         AccountNewBaseRateRequest request = AccountNewBaseRateRequest.newBuilder().setBaseRate(10.2).setUserId(1).build();
         grpcServerImp.changeBaseRate(request,response);
 
-        Mockito.verify(credentialChangerDao).UpdateNewBaseRate(accountNewBaseRateDto.capture());
+        Mockito.verify(credentialChangerDao).UpdateBaseRate(accountNewBaseRateDto.capture());
         Mockito.verify(response).onNext(Mockito.any());
         Mockito.verify(response).onCompleted();
         assertEquals(10.2,accountNewBaseRateDto.getValue().getBaseRate());

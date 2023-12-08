@@ -194,7 +194,7 @@ message Transactions {
   string senderName = 6;
   string receiverName = 7;
   int32 senderId = 8;
-  string transactionType = 8;
+  string transactionType = 9;
 
 }
 message FlagUserResponse{}
