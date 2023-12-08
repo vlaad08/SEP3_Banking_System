@@ -12,15 +12,15 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface SQLConnectionInterface {
-    void transfer(String id_1, String id_2, double amount, String message);
+    void transfer(TransferRequestDTO transferRequestDTO);
 
-    double checkBalance(String account_id) throws SQLException;
+    double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException;
 
-    String checkAccountId(String account_id) throws SQLException;
+    String checkAccountId(CheckAccountDTO checkAccountDTO) throws SQLException;
 
-    double dailyCheck(String account_id) throws SQLException;
+    double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException;
 
-    void deposit(String account_id, double amount) throws SQLException;
+    void deposit(DepositRequestDTO depositRequestDTO) throws SQLException;
 
     List<User> getUsers() throws SQLException;
 

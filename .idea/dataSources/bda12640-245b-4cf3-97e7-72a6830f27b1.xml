@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <IntrospectionStateNumber>1091</IntrospectionStateNumber>
@@ -4372,9 +4372,9 @@ false Zulu
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41464</ObjectId>
-      <RefColNames>user_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1084</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>user_id</RefKeyColNames>
       <RefTableId>41445</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4471,9 +4471,9 @@ default</CollationNames>
       <ColNames>owner_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41511</ObjectId>
-      <RefColNames>user_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1087</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>user_id</RefKeyColNames>
       <RefTableId>41445</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4544,9 +4544,9 @@ default</CollationNames>
       <ColNames>account_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41497</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1086</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>41454</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4613,9 +4613,9 @@ default</CollationNames>
       <ColNames>owner_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41525</ObjectId>
-      <RefColNames>user_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1088</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>user_id</RefKeyColNames>
       <RefTableId>41445</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4624,9 +4624,9 @@ default</CollationNames>
       <ColNames>issue_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41530</ObjectId>
-      <RefColNames>issue_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1088</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>issue_id</RefKeyColNames>
       <RefTableId>41503</RefTableId>
       <RefTableName>issues</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4699,9 +4699,9 @@ default</CollationNames>
       <ColNames>senderaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41477</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1085</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>41454</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4710,9 +4710,9 @@ default</CollationNames>
       <ColNames>recipientaccount_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>41482</ObjectId>
-      <RefColNames>account_id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>1085</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>account_id</RefKeyColNames>
       <RefTableId>41454</RefTableId>
       <RefTableName>account</RefTableName>
       <RefTableKind>table</RefTableKind>

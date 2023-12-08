@@ -36,7 +36,7 @@ public class SQLConnection implements SQLConnectionInterface {
      * given details
      **/
     @Override
-    public void transfer(String id_1, String id_2, double amount, String message) {
+    public void transfer(TransferRequestDTO transferRequestDTO) {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
@@ -44,27 +44,27 @@ public class SQLConnection implements SQLConnectionInterface {
             try (PreparedStatement updateStatement1 = connection.prepareStatement(
                     "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
 
-                updateStatement1.setDouble(1, amount);
-                updateStatement1.setString(2, id_2);
+                updateStatement1.setDouble(1, transferRequestDTO.getAmount());
+                updateStatement1.setString(2, transferRequestDTO.getRecipientAccount_id());
                 updateStatement1.executeUpdate();
 
                 try (PreparedStatement updateStatement2 = connection.prepareStatement(
                         "UPDATE account SET balance = balance - ? WHERE account_id = ?")) {
 
-                    updateStatement2.setDouble(1, amount);
-                    updateStatement2.setString(2, id_1);
+                    updateStatement2.setDouble(1, transferRequestDTO.getAmount());
+                    updateStatement2.setString(2, transferRequestDTO.getSenderAccount_id());
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
-                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) "
+                            "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) "
                                     +
-                                    "VALUES (?, ?, ?, ?, ?, 'Transfer')")) {
+                                    "VALUES (?, ?, ?, ?, ?)")) {
 
                         insertStatement.setTimestamp(1, now);
-                        insertStatement.setDouble(2, amount);
-                        insertStatement.setString(3, message);
-                        insertStatement.setString(4, id_1);
-                        insertStatement.setString(5, id_2);
+                        insertStatement.setDouble(2, transferRequestDTO.getAmount());
+                        insertStatement.setString(3, transferRequestDTO.getMessage());
+                        insertStatement.setString(4, transferRequestDTO.getSenderAccount_id());
+                        insertStatement.setString(5, transferRequestDTO.getRecipientAccount_id());
                         insertStatement.executeUpdate();
 
                         connection.commit();
@@ -90,12 +90,12 @@ public class SQLConnection implements SQLConnectionInterface {
      * given account_id
      */
     @Override
-    public double checkBalance(String account_id) throws SQLException {
+    public double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException {
         double balance = 0;
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement("SELECT balance FROM account WHERE account_id = ?;");
-            statement.setString(1, account_id);
+            statement.setString(1, checkAccountDTO.getRecipientAccount_id());
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 balance = result.getDouble("balance");
@@ -105,12 +105,12 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
-    public String checkAccountId(String account_id) throws SQLException {
+    public String checkAccountId(CheckAccountDTO checkAccountDTO) throws SQLException {
         String recipientAccount_id = "-";
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement("SELECT account_id FROM account WHERE account_id = ?;");
-            statement.setString(1, account_id);
+            statement.setString(1, checkAccountDTO.getRecipientAccount_id());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 recipientAccount_id = result.getString("account_id");
@@ -120,14 +120,14 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
-    public double dailyCheck(String account_id) throws SQLException {
+    public double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException {
         double amount = 0;
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT SUM(amount)\n" +
                     "FROM transactions\n" +
-                    "WHERE senderAccount_id = ? AND transaction_type = 'Transfer'\n" +
+                    "WHERE senderAccount_id = ?\n" +
                     "  AND DATE_TRUNC('day', dateTime) = CURRENT_DATE;");
-            statement.setString(1, account_id);
+            statement.setString(1, checkAccountDTO.getRecipientAccount_id());
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 amount = result.getDouble("sum");
@@ -137,7 +137,7 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
-    public void deposit(String account_id, double amount) throws SQLException {
+    public void deposit(DepositRequestDTO depositRequestDTO) throws SQLException {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
         try (Connection connection = getConnection()) {
@@ -146,20 +146,19 @@ public class SQLConnection implements SQLConnectionInterface {
             try (PreparedStatement updateStatement = connection.prepareStatement(
                     "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
 
-                updateStatement.setDouble(1, amount);
-                updateStatement.setString(2, account_id);
+                updateStatement.setDouble(1, depositRequestDTO.getAmount());
+                updateStatement.setString(2, depositRequestDTO.getAccount_id());
                 updateStatement.executeUpdate();
 
                 try (PreparedStatement insertStatement = connection.prepareStatement(
-                        "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) "
-                                +
-                                "VALUES (?, ?,  ?, ?, 'Deposit')")) {
+                        "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id) " +
+                                "VALUES (?, ?, ?, ?, ?)")) {
 
                     insertStatement.setTimestamp(1, now);
-                    insertStatement.setDouble(2, amount);
-                    // insertStatement.setNull(3, Types.VARCHAR); //message will be null
-                    insertStatement.setString(3, account_id);
-                    insertStatement.setString(4, account_id); // deposit to himself?
+                    insertStatement.setDouble(2, depositRequestDTO.getAmount());
+                    insertStatement.setString(3, "deposit");
+                    insertStatement.setString(4, depositRequestDTO.getAccount_id());
+                    insertStatement.setString(5, depositRequestDTO.getAccount_id());
                     insertStatement.executeUpdate();
 
                     connection.commit();
