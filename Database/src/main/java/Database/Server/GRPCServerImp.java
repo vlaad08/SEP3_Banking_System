@@ -12,10 +12,7 @@ import Database.CreditInterestRequest;
 import Database.CreditInterestResponse;
 import Database.DAOs.CredentialChangerDao;
 import Database.DAOs.ChatDao;
-import Database.DAOs.Interfaces.ChatDaoInterface;
-import Database.DAOs.Interfaces.LoginDaoInterface;
-import Database.DAOs.Interfaces.RegisterDaoInterface;
-import Database.DAOs.Interfaces.TransactionDaoInterface;
+import Database.DAOs.Interfaces.*;
 import Database.DAOs.LoginDao;
 import Database.DAOs.RegisterDao;
 import Database.DAOs.TransactionDao;
@@ -30,7 +27,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     TransactionDaoInterface transactionDao = new TransactionDao();
     LoginDaoInterface loginDao = new LoginDao();
     RegisterDaoInterface registerDao = new RegisterDao();
-    CredentialChangerDao credentialChangerDao = new CredentialChangerDao();
+    CredentialChangerDaoInterface credentialChangerDao = new CredentialChangerDao();
     ChatDaoInterface chatDao = new ChatDao();
 
     @Override
