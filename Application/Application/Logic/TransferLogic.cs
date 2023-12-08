@@ -46,13 +46,28 @@ public class TransferLogic : ITransferLogic
 
     public async Task TransferMoney(TransferRequestDTO transferRequest)
     {
-        Console.WriteLine("Logic 1");
         await ValidateTransfer(transferRequest);
-        Console.WriteLine("Logic 2");
-       // await transferDao.GiveBackNewBalance(transferRequest);
-        Console.WriteLine("Logic 2.5");
-        await transferDao.TransferMoney(transferRequest);
-        Console.WriteLine("Logic 3");
+        double oldSenderBalance = await transferDao.GetBalanceByAccountNumber(transferRequest);
+        TransferRequestDTO temp = new TransferRequestDTO()
+        {
+            Amount = transferRequest.Amount,
+            Message = transferRequest.Message,
+            RecipientAccountNumber = transferRequest.SenderAccountNumber,
+            SenderAccountNumber = transferRequest.RecipientAccountNumber
+        };
+        double oldRecipientBalance = await transferDao.GetBalanceByAccountNumber(temp);
+        double newSenderBalance = oldSenderBalance - transferRequest.Amount;
+        double newRecipientBalance = oldRecipientBalance + transferRequest.Amount;
+        UpdatedBalancesForTransferDTO dto = new UpdatedBalancesForTransferDTO()
+        {
+            newReceiverBalance = newRecipientBalance,
+            newSenderBalance = newSenderBalance,
+            Message = transferRequest.Message,
+            senderId = transferRequest.SenderAccountNumber,
+            receiverId = transferRequest.RecipientAccountNumber,
+            amount = transferRequest.Amount
+        };
+        await transferDao.TransferMoney(dto);
     }
 
     public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto)

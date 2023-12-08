@@ -34,12 +34,16 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     ChatDaoInterface chatDao = new ChatDao();
 
     @Override
-    public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) throws SQLException {
+    public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         System.out.println("TRANSFER");
         UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO = new UpdatedBalancesForTransferDTO(request.getSenderNewBalance(),request.getReceiverNewBalance(),request.getMessage(),request.getSenderId(),request.getReceiverId(),request.getAmount());
         /*TransferRequestDTO transferRequestDTO = new TransferRequestDTO(request.getSenderAccountId(),
                 request.getRecipientAccountId(), request.getBalance(), request.getMessage());*/
-        transactionDao.makeTransfer(updatedBalancesForTransferDTO);
+        try {
+            transactionDao.makeTransfer(updatedBalancesForTransferDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         String resp = "Transfer happened";
         TransferResponse response = TransferResponse.newBuilder().setResp(resp).build();
         responseObserver.onNext(response);
@@ -92,7 +96,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     @Override
     public void deposit(DepositRequest request, StreamObserver<DepositResponse> responseObserver) {
         try {
-            DepositRequestDTO depositRequestDTO = new DepositRequestDTO(request.getAccountId(), request.getAmount());
+            DepositRequestDTO depositRequestDTO = new DepositRequestDTO(request.getAccountId(), request.getAmount(), request.getNewBalance());
             transactionDao.makeDeposit(depositRequestDTO);
         } catch (SQLException e) {
             throw new RuntimeException(e);

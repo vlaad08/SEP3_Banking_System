@@ -11,10 +11,10 @@ namespace Grpc;
 public interface IGrpcClient
 {
    Task MakeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto);
-   Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto);
+   Task<double> GetBalanceByAccountNumber(GetBalanceDTO getBalanceDto);
    Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequestDto);
    Task<double> DailyCheck(TransferRequestDTO transferRequestDto);
-   Task MakeDeposit(DepositRequestDTO depositRequestDto);
+   Task MakeDeposit(UpdatedDepositDTO updatedDepositDto);
    Task<List<global::Domain.Models.User>> GetAllUserInfo();
    Task<List<AccountsInfo>> GetAllAccountsInfo();
    Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto);

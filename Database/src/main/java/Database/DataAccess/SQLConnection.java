@@ -144,7 +144,7 @@ public class SQLConnection implements SQLConnectionInterface {
             connection.setAutoCommit(false);
 
             try (PreparedStatement updateStatement = connection.prepareStatement(
-                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+                    "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
                 updateStatement.setDouble(1, depositRequestDTO.getAmount());
                 updateStatement.setString(2, depositRequestDTO.getAccount_id());

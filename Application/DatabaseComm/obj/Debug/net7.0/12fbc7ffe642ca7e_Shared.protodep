@@ -1,3 +1,0 @@
-obj\Debug\net7.0\Protos/Shared.cs \
-obj\Debug\net7.0\Protos/SharedGrpc.cs: C:/Users/tothl/.nuget/packages/grpc.tools/2.59.0/build/native/include/google/protobuf/timestamp.proto\
- Protos/Shared.proto

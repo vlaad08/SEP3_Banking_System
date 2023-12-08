@@ -34,14 +34,13 @@ public class ProtoClient : IGrpcClient
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
     }
 
-    public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto)
+    public async Task<double> GetBalanceByAccountNumber(GetBalanceDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-        Console.WriteLine("OKOKOKOKOKO");
         var request = new BalanceCheckRequest()
         {
-            AccountId = transferRequestDto.SenderAccountNumber
+            AccountId = dto.AccountId
         };
 
         var response = await databaseClient.CheckBalanceAsync(request);
@@ -75,16 +74,16 @@ public class ProtoClient : IGrpcClient
         return response.Amount;
     }
 
-    public async Task MakeDeposit(DepositRequestDTO depositRequestDto)
+    public async Task MakeDeposit(UpdatedDepositDTO updatedDepositDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var request = new DepositRequest()
         {
-            AccountId = depositRequestDto.ToppedUpAccountNumber,
-            Amount = depositRequestDto.Amount
-
+            AccountId = updatedDepositDto.AccountId,
+            Amount = updatedDepositDto.Amount,
+            NewBalance = updatedDepositDto.UpdatedBalance
         };
         var response = await databaseClient.DepositAsync(request);
     }

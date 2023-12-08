@@ -1,16 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/AgostonBabicz/Library/Caches/JetBrains/Rider2023.2/resharper-host/temp/Rider/vAny/CoverageData/_Application.895088517/Snapshot/snapshot.utdcvr</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4f622044_002D381e_002D4c5c_002D99ec_002D62b8ab8134ee/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBalanceByAccountNumber_ValidAccountNumber_ShouldCallGrpcClient" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4f622044_002D381e_002D4c5c_002D99ec_002D62b8ab8134ee/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBalanceByAccountNumber_ValidAccountNumber_ShouldCallGrpcClient" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=599972ff_002D5b8f_002D4fc6_002D9830_002D543f67ec49ad/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=599972ff_002D5b8f_002D4fc6_002D9830_002D543f67ec49ad/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3f6d90c_002D1241_002D48dc_002D8487_002D7497b01868cf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetUserAccounts_Calls_For_CheckInterest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3f6d90c_002D1241_002D48dc_002D8487_002D7497b01868cf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetUserAccounts_Calls_For_CheckInterest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e485f066_002De40e_002D41de_002D9c80_002D188ba74bb9e6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="LoginDaoTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e485f066_002De40e_002D41de_002D9c80_002D188ba74bb9e6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="LoginDaoTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="\Users\AgostonBabicz\Documents\GitHub\SEP3_Banking_Sytem\Application\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>

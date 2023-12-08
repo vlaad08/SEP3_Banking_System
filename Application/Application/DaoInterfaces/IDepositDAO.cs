@@ -4,5 +4,6 @@ namespace Application.DaoInterfaces;
 
 public interface IDepositDAO
 {
-    Task DepositMoney(DepositRequestDTO depositRequestDto);
+    Task DepositMoney(UpdatedDepositDTO updatedDepositDto);
+    Task<double> GetBalanceByAccountNumber(DepositRequestDTO updatedDepositDto);
 }
