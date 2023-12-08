@@ -1,45 +1,45 @@
-.transaction-box[b-59oc609pok]{
+.transaction-box[b-nfvptgmvgz]{
     display: flex;
     border-bottom: 1px solid black;
     margin-bottom: 2%;
 }
 
-.leftPart[b-59oc609pok]{
+.leftPart[b-nfvptgmvgz]{
     display: flex;
     width: 30%;
     flex-direction: column;
 }
 
-.midPart[b-59oc609pok]{
+.midPart[b-nfvptgmvgz]{
     display: flex;
     width: 40%;
     justify-content: center;
 }
 
-.rightPart[b-59oc609pok]{
+.rightPart[b-nfvptgmvgz]{
     display: flex;
     justify-content: flex-end;
     width: 30%;
     font-size: calc(12px + 0.4vw);
 }
-.title[b-59oc609pok]{
+.title[b-nfvptgmvgz]{
     calc(15px + 0.4vw);
     margin: 0;
 }
 
-.time[b-59oc609pok]{
+.time[b-nfvptgmvgz]{
     margin: 0;
     font-size: calc(9px + 0.4vw);
     color: rgb(128,128,128);
 }
 
-.date[b-59oc609pok]{
+.date[b-nfvptgmvgz]{
     font-size: calc(9px + 0.4vw);
     color: rgb(128,128,128);
     margin: 0;
 }
 
-.transaction-box:hover[b-59oc609pok]{
+.transaction-box:hover[b-nfvptgmvgz]{
     
 }
 

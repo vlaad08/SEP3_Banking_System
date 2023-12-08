@@ -1,39 +1,39 @@
-.subs-box[b-adivkjueqt]{
+.subs-box[b-dwm08g00md]{
     display: flex;
     border-bottom: 1px solid black;
     margin-bottom: 2%;
 }
 
-.leftPart[b-adivkjueqt]{
+.leftPart[b-dwm08g00md]{
     display: flex;
     width: 30%;
     flex-direction: column;
 }
 
-.midPart[b-adivkjueqt]{
+.midPart[b-dwm08g00md]{
     display: flex;
     width: 40%;
     justify-content: center;
 }
 
-.rightPart[b-adivkjueqt]{
+.rightPart[b-dwm08g00md]{
     display: flex;
     justify-content: flex-end;
     width: 30%;
     font-size: calc(12px + 0.4vw);
 }
-.title[b-adivkjueqt]{
+.title[b-dwm08g00md]{
 calc(15px + 0.4vw);
     margin: 0;
 }
 
-.time[b-adivkjueqt]{
+.time[b-dwm08g00md]{
     margin: 0;
     font-size: calc(9px + 0.4vw);
     color: rgb(128,128,128);
 }
 
-.date[b-adivkjueqt]{
+.date[b-dwm08g00md]{
     font-size: calc(9px + 0.4vw);
     color: rgb(128,128,128);
     margin: 0;
