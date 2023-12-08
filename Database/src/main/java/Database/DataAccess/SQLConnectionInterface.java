@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface SQLConnectionInterface {
-    void transfer(TransferRequestDTO transferRequestDTO);
+    void transfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) throws SQLException;
 
     double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException;
 

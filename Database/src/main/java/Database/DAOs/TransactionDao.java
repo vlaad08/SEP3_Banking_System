@@ -21,8 +21,8 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     @Override
-    public void makeTransfer(TransferRequestDTO transferRequestDTO) {
-        connection.transfer(transferRequestDTO);
+    public void makeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) throws SQLException {
+        connection.transfer(updatedBalancesForTransferDTO);
     }
 
     @Override

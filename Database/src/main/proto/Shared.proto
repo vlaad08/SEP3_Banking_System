@@ -50,10 +50,12 @@ service DatabaseService{
 }
 
 message TransferRequest{
-  string senderAccount_id = 1;
-  string recipientAccount_id =2;
-  double balance = 3;
-  string message = 4;
+  double sender_new_balance = 1;
+  double receiver_new_balance = 2;
+  string message = 3;
+  string sender_id = 4;
+  string receiver_id = 5;
+  double amount = 6;
 }
 
 message TransferResponse{

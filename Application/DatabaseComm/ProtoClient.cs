@@ -17,17 +17,19 @@ public class ProtoClient : IGrpcClient
     public static async Task Main(string[] args) { }
     private string serverAddress = "localhost:9090";
 
-    public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
+    public async Task MakeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var transferRequest = new TransferRequest
         {
-            SenderAccountId = transferRequestDto.SenderAccountNumber,
-            RecipientAccountId = transferRequestDto.RecipientAccountNumber,
-            Balance = transferRequestDto.Amount,
-            Message = transferRequestDto.Message
+            SenderNewBalance = updatedBalancesForTransferDto.newSenderBalance,
+            ReceiverNewBalance = updatedBalancesForTransferDto.newReceiverBalance,
+            Message = updatedBalancesForTransferDto.Message,
+            ReceiverId = updatedBalancesForTransferDto.receiverId,
+            SenderId = updatedBalancesForTransferDto.senderId,
+            Amount = updatedBalancesForTransferDto.amount
         };
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
     }

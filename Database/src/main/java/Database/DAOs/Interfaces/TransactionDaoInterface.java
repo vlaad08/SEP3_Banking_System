@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface TransactionDaoInterface {
-    void makeTransfer(TransferRequestDTO transferRequestDTO);
+    void makeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) throws SQLException;
     String checkAccountId(CheckAccountDTO checkAccountDTO) throws SQLException;
     double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException;
     double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException;

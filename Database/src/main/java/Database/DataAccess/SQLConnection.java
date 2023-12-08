@@ -36,23 +36,23 @@ public class SQLConnection implements SQLConnectionInterface {
      * given details
      **/
     @Override
-    public void transfer(TransferRequestDTO transferRequestDTO) {
+    public void transfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
 
             try (PreparedStatement updateStatement1 = connection.prepareStatement(
-                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+                    "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
-                updateStatement1.setDouble(1, transferRequestDTO.getAmount());
-                updateStatement1.setString(2, transferRequestDTO.getRecipientAccount_id());
+                updateStatement1.setDouble(1, updatedBalancesForTransferDTO.getNewReceiverBalance());
+                updateStatement1.setString(2, updatedBalancesForTransferDTO.receiverId);
                 updateStatement1.executeUpdate();
 
                 try (PreparedStatement updateStatement2 = connection.prepareStatement(
-                        "UPDATE account SET balance = balance - ? WHERE account_id = ?")) {
+                        "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
-                    updateStatement2.setDouble(1, transferRequestDTO.getAmount());
-                    updateStatement2.setString(2, transferRequestDTO.getSenderAccount_id());
+                    updateStatement2.setDouble(1, updatedBalancesForTransferDTO.newSenderBalance);
+                    updateStatement2.setString(2, updatedBalancesForTransferDTO.senderId);
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
@@ -61,10 +61,10 @@ public class SQLConnection implements SQLConnectionInterface {
                                     "VALUES (?, ?, ?, ?, ?, 'Transaction')")) {
 
                         insertStatement.setTimestamp(1, now);
-                        insertStatement.setDouble(2, transferRequestDTO.getAmount());
-                        insertStatement.setString(3, transferRequestDTO.getMessage());
-                        insertStatement.setString(4, transferRequestDTO.getSenderAccount_id());
-                        insertStatement.setString(5, transferRequestDTO.getRecipientAccount_id());
+                        insertStatement.setDouble(2, updatedBalancesForTransferDTO.getAmount());
+                        insertStatement.setString(3, updatedBalancesForTransferDTO.getMessage());
+                        insertStatement.setString(4, updatedBalancesForTransferDTO.senderId);
+                        insertStatement.setString(5, updatedBalancesForTransferDTO.receiverId);
                         insertStatement.executeUpdate();
 
                         connection.commit();

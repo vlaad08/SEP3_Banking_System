@@ -14,11 +14,40 @@ public class TransferDAO : ITransferDAO
         this.grpcClient = grpcClient;
     }
 
+    public async Task<UpdatedBalancesForTransferDTO> GiveBackNewBalance(TransferRequestDTO transferRequestDto)
+    {
+        var currentBalanceOfSender = await grpcClient.GetBalanceByAccountNumber(transferRequestDto);
+        TransferRequestDTO temp = new TransferRequestDTO()
+        {
+            Amount = transferRequestDto.Amount,
+            Message = transferRequestDto.Message,
+            RecipientAccountNumber = transferRequestDto.SenderAccountNumber,
+            SenderAccountNumber = transferRequestDto.RecipientAccountNumber
+        };
+        var currentBalanceOfReceiver = await grpcClient.GetBalanceByAccountNumber(temp);
+
+        double newSenderBalance = currentBalanceOfSender - transferRequestDto.Amount;
+        double newReceiverBalance = currentBalanceOfReceiver + transferRequestDto.Amount;
+
+        UpdatedBalancesForTransferDTO dto = new UpdatedBalancesForTransferDTO()
+        {
+            newReceiverBalance = newReceiverBalance,
+            newSenderBalance = newSenderBalance,
+            Message = transferRequestDto.Message,
+            senderId = transferRequestDto.SenderAccountNumber,
+            receiverId = transferRequestDto.RecipientAccountNumber,
+            amount = transferRequestDto.Amount
+        };
+
+        return dto;
+    }
+
     public async Task TransferMoney(TransferRequestDTO transferRequestDto)
     {
         Console.WriteLine("DAO");
         Console.WriteLine("DAO TransferMoney");
-        await grpcClient.MakeTransfer(transferRequestDto);
+        UpdatedBalancesForTransferDTO dto = await GiveBackNewBalance(transferRequestDto);
+        await grpcClient.MakeTransfer(dto);
     }
 
     public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequest)

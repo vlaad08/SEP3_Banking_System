@@ -49,6 +49,8 @@ public class TransferLogic : ITransferLogic
         Console.WriteLine("Logic 1");
         await ValidateTransfer(transferRequest);
         Console.WriteLine("Logic 2");
+       // await transferDao.GiveBackNewBalance(transferRequest);
+        Console.WriteLine("Logic 2.5");
         await transferDao.TransferMoney(transferRequest);
         Console.WriteLine("Logic 3");
     }

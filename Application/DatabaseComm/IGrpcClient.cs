@@ -10,7 +10,7 @@ namespace Grpc;
 
 public interface IGrpcClient
 {
-   Task MakeTransfer(TransferRequestDTO transferRequestDto);
+   Task MakeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto);
    Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto);
    Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequestDto);
    Task<double> DailyCheck(TransferRequestDTO transferRequestDto);

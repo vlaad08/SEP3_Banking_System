@@ -14,4 +14,5 @@ public interface ITransferDAO
     Task FlagUser(FlagUserDTO flagUserDto);
 
     Task<IEnumerable<Transaction>> GetSubscriptions(GetTransactionsDTO getTransactionsDto);
+    Task<UpdatedBalancesForTransferDTO> GiveBackNewBalance(TransferRequestDTO transferRequestDto);
 }
