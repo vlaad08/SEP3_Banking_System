@@ -58,7 +58,7 @@ public class SQLConnection implements SQLConnectionInterface {
                     try (PreparedStatement insertStatement = connection.prepareStatement(
                             "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) "
                                     +
-                                    "VALUES (?, ?, ?, ?, ?, 'Transaction')")) {
+                                    "VALUES (?, ?, ?, ?, ?, 'Transfer')")) {
 
                         insertStatement.setTimestamp(1, now);
                         insertStatement.setDouble(2, updatedBalancesForTransferDTO.getAmount());
@@ -313,7 +313,7 @@ public class SQLConnection implements SQLConnectionInterface {
         try (Connection connection = getConnection()) {
             String query = "SELECT t.dateTime " +
                     "FROM transactions t " +
-                    "WHERE t.senderAccount_id = ? AND t.message = 'Interest' " +
+                    "WHERE t.senderAccount_id = ? AND t.transaction_type = 'Interest' " +
                     "ORDER BY t.dateTime DESC LIMIT 1;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
