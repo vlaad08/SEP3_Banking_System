@@ -76,10 +76,27 @@ public class SettingsDaoTests
             Password = "testPassword",
             Plan = "Premium"
         };
-        
-        
         grpcClient.Setup(client => client.ChangeUserDetails(userDetails)).Throws<Exception>();
 
         await Assert.ThrowsAsync<Exception>(() => settingDao.ChangeUserDetails(userDetails));
+    }
+
+    [Fact]
+    public async Task UpdateEmail_Calls_For_Grpc()
+    {
+        await settingDao.UpdateEmail(It.IsAny<UserNewEmailDTO>());
+        grpcClient.Verify(g=>g.UpdateEmail(It.IsAny<UserNewEmailDTO>()));
+    }
+    [Fact]
+    public async Task UpdatePassword_Calls_For_Grpc()
+    {
+        await settingDao.UpdatePassword(It.IsAny<UserNewPasswordDTO>());
+        grpcClient.Verify(g=>g.UpdatePassword(It.IsAny<UserNewPasswordDTO>()));
+    }
+    [Fact]
+    public async Task UpdatePlan_Calls_For_Grpc()
+    {
+        await settingDao.UpdatePlan(It.IsAny<UserNewPlanDTO>());
+        grpcClient.Verify(g=>g.UpdatePlan(It.IsAny<UserNewPlanDTO>()));
     }
 }

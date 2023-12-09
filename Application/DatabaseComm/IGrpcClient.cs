@@ -13,13 +13,14 @@ public interface IGrpcClient
    Task MakeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto);
    Task<double> GetBalanceByAccountNumber(GetBalanceDTO getBalanceDto);
    Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequestDto);
+   Task<double> GetInterestRateByAccountNumber(GetBalanceDTO getBalanceDto);
    Task<double> DailyCheck(TransferRequestDTO transferRequestDto);
    Task MakeDeposit(UpdatedDepositDTO updatedDepositDto);
    Task<List<global::Domain.Models.User>> GetAllUserInfo();
    Task<List<AccountsInfo>> GetAllAccountsInfo();
    Task<List<AccountsInfo>> GetUserAccounts(UserLoginRequestDto userLoginRequestDto);
    Task<DateTime?> CheckInterest(InterestCheckDTO loanRequestDto);
-   Task<bool> CreditInterest(InterestCheckDTO loanRequestDto);
+   Task<bool> CreditInterest(CreditInterestDTO loanRequestDto);
    Task RequestLoan(LoanRequestDTO dto);
    Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsDTO getTransactionsDto);
    Task<IEnumerable<Transaction>> GetTransactions();

@@ -55,7 +55,7 @@ public class TransferLogic : ITransferLogic
             RecipientAccountNumber = transferRequest.SenderAccountNumber,
             SenderAccountNumber = transferRequest.RecipientAccountNumber
         };
-        double oldRecipientBalance = await transferDao.GetBalanceByAccountNumber(temp);
+        double oldRecipientBalance = await transferDao.GetBalanceByAccountNumber(transferRequest);
         double newSenderBalance = oldSenderBalance - transferRequest.Amount;
         double newRecipientBalance = oldRecipientBalance + transferRequest.Amount;
         UpdatedBalancesForTransferDTO dto = new UpdatedBalancesForTransferDTO()

@@ -68,7 +68,9 @@ public class LoginLogicTest
     }
     
     [Fact]
-    public async Task GetUserAccounts_Calls_For_CreditInterest() //This test was written (and passed) on 1/12, and the CreditInterest has been called, meaning the method will grant the interest if it is the first day of the month today
+    //This test was written (and passed) on 1/12, and the CreditInterest has been called, meaning the method will grant the interest if it is the first day of the month today
+    //This test will run on 1st January, 2024
+    public async Task GetUserAccounts_Calls_For_CreditInterest() 
     {
         UserLoginRequestDto dto = new UserLoginRequestDto
         {
@@ -91,13 +93,13 @@ public class LoginLogicTest
                 }
             });
         //DateTime today = new DateTime(2023, 11, 1);
-        DateTime interestTimestamp = new DateTime(2022, 12, 1);
+        DateTime interestTimestamp = new DateTime(2024, 1, 1);
         interestDao.Setup(i => i.CheckInterest(It.IsAny<InterestCheckDTO>()))
             .ReturnsAsync(interestTimestamp);
 
         await auth.GetUserAccounts(dto);
 
-        interestDao.Verify(i => i.CreditInterest(It.IsAny<InterestCheckDTO>()), Times.Once);
+        interestDao.Verify(i => i.CreditInterest(It.IsAny<CreditInterestDTO>()), Times.Once);
     }
     
     [Fact]

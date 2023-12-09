@@ -15,4 +15,14 @@ public class LoanDao : ILoanDAO
     {
         await grpcClient.RequestLoan(dto);
     }
+
+    public async Task<double> GetBalanceByAccountNumber(DepositRequestDTO dto)
+    {
+        GetBalanceDTO getBalanceDto = new GetBalanceDTO()
+        {
+            AccountId = dto.ToppedUpAccountNumber
+        };
+        double balance = await grpcClient.GetBalanceByAccountNumber(getBalanceDto);
+        return balance;
+    }
 }

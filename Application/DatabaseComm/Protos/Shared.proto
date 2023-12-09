@@ -8,6 +8,7 @@ service DatabaseService{
     rpc Transfer(TransferRequest) returns (TransferResponse){};
     rpc CheckAccount(AccountCheckRequest) returns (AccountCheckResponse){};
     rpc CheckBalance(BalanceCheckRequest) returns (BalanceCheckResponse){};
+    rpc CheckInterestRate(InterestRateCheckRequest) returns (InterestRateCheckResponse){};
     rpc DailyCheckTransactions(DailyCheckRequest) returns (DailyCheckResponse);
     rpc Deposit(DepositRequest) returns (DepositResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
@@ -72,6 +73,14 @@ message AccountCheckResponse{
 
 message BalanceCheckRequest{
     string account_id = 1;
+}
+message InterestRateCheckRequest
+{
+    string account_id = 1;
+}
+message InterestRateCheckResponse
+{
+    double interestRate = 1;
 }
 message BalanceCheckResponse{
     double balance = 1;
@@ -152,6 +161,8 @@ message UserAccountInfoResponse
 message CreditInterestRequest
 {
     string accountNumber = 1;
+    double amount = 2;
+    double balance = 3;
 }
 message CreditInterestResponse
 {

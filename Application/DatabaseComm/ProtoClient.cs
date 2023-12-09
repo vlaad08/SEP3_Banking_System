@@ -61,6 +61,19 @@ public class ProtoClient : IGrpcClient
         return response.RecipientAccountId;
     }
 
+    public async Task<double> GetInterestRateByAccountNumber(GetBalanceDTO getBalanceDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+
+        var request = new InterestRateCheckRequest()
+        {
+            AccountId = getBalanceDto.AccountId
+        };
+        var response = await databaseClient.CheckInterestRateAsync(request);
+        return response.InterestRate;
+    }
+
     public async Task<double> DailyCheck(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
@@ -178,13 +191,15 @@ public class ProtoClient : IGrpcClient
 
     }
 
-    public async Task<bool> CreditInterest(InterestCheckDTO dto)
+    public async Task<bool> CreditInterest(CreditInterestDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new CreditInterestRequest()
         {
-            AccountNumber = dto.AccountID
+            AccountNumber = dto.AccountID,
+            Balance = dto.Balance,
+            Amount = dto.Amount
         };
         var response = await databaseClient.CreditInterestAsync(request);
         return response.Happened;

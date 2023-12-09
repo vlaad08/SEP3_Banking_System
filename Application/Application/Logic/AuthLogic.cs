@@ -69,7 +69,16 @@ public class AuthLogic : IAuthLogic
                 today = DateTime.Now.Date;
                 if ((interestTimestamp != null && !datePart.Equals(today) && DateTime.Now.Day == 1) || (interestTimestamp==null&&DateTime.Now.Day == 1))
                 {
-                    await interestDao.CreditInterest(dto);
+                    double oldBalance = await interestDao.GetBalanceByAccountNumber(dto);
+                    double interestRate = await interestDao.GetInterestRateByAccountNumber(dto);
+                    double newBalance = oldBalance * (100 + interestRate);
+                    CreditInterestDTO creditInterestDto = new CreditInterestDTO
+                    {
+                        AccountID = dto.AccountID,
+                        Balance = newBalance,
+                        Amount = oldBalance*interestRate
+                    };
+                    await interestDao.CreditInterest(creditInterestDto);
                 }
             }
         }

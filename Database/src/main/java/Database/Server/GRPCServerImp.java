@@ -80,6 +80,20 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     }
 
     @Override
+    public void checkInterestRate(InterestRateCheckRequest request, StreamObserver<InterestRateCheckResponse> responseObserver) {
+        CheckAccountDTO checkBalanceDTO = new CheckAccountDTO(request.getAccountId());
+        double interestRate;
+        try {
+            interestRate = transactionDao.checkInterestRate(checkBalanceDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        InterestRateCheckResponse response = InterestRateCheckResponse.newBuilder().setInterestRate(interestRate).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void dailyCheckTransactions(DailyCheckRequest request, StreamObserver<DailyCheckResponse> responseObserver) {
         CheckAccountDTO checkAccountDTO = new CheckAccountDTO(request.getAccountId());
         double amount = 0;
@@ -150,8 +164,8 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
     public void creditInterest(CreditInterestRequest request,
             StreamObserver<CreditInterestResponse> responseStreamObserver) {
         try {
-            UserInfoAccNumDTO userInfoDTO = new UserInfoAccNumDTO(request.getAccountNumber());
-            boolean happened = transactionDao.creditInterest(userInfoDTO);
+            CreditInterestDTO creditInterestDTO = new CreditInterestDTO(request.getAccountNumber(),request.getAmount(),request.getBalance());
+            boolean happened = transactionDao.creditInterest(creditInterestDTO);
             CreditInterestResponse response = CreditInterestResponse.newBuilder().setHappened(happened).build();
             responseStreamObserver.onNext(response);
             responseStreamObserver.onCompleted();
@@ -159,6 +173,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public void lastInterest(LastInterestRequest request, StreamObserver<LastInterestResponse> responseStreamObserver) {

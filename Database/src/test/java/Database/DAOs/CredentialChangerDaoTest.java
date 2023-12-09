@@ -1,7 +1,6 @@
 package Database.DAOs;
 
-import Database.DTOs.AccountNewBaseRateDTO;
-import Database.DTOs.UserNewDetailsRequestDTO;
+import Database.DTOs.*;
 import Database.DataAccess.SQLConnection;
 import Database.DataAccess.SQLConnectionInterface;
 import org.junit.jupiter.api.*;
@@ -19,15 +18,14 @@ public class CredentialChangerDaoTest
 {
   @InjectMocks
   private CredentialChangerDao dao;
-
   @Mock
   private SQLConnectionInterface connection;
-
-
-  @InjectMocks
   private AccountNewBaseRateDTO accountNewBaseRateDTO;
-  @InjectMocks
   private UserNewDetailsRequestDTO userNewDetailsRequestDTO;
+  private UserNewPasswordDTO userNewPasswordDTO;
+  private UserNewEmailDTO userNewEmailDTO;
+  private UserNewPlanDTO userNewPlanDTO;
+
 
 
 
@@ -39,6 +37,9 @@ public class CredentialChangerDaoTest
     accountNewBaseRateDTO = new AccountNewBaseRateDTO(1, 3.7);
     userNewDetailsRequestDTO = new UserNewDetailsRequestDTO("newemail@gmail.com", "oldemail@gmail.com", "12345678"
     , "Premium");
+    userNewPasswordDTO = Mockito.mock(UserNewPasswordDTO.class);
+    userNewEmailDTO = Mockito.mock(UserNewEmailDTO.class);
+    userNewPlanDTO = Mockito.mock(UserNewPlanDTO.class);
     MockitoAnnotations.openMocks(this);
   }
 
@@ -68,5 +69,21 @@ public class CredentialChangerDaoTest
   {
     doThrow(SQLException.class).when(connection).updateUserInformation(userNewDetailsRequestDTO);
     assertThrows(SQLException.class, () -> connection.updateUserInformation(userNewDetailsRequestDTO));
+  }
+
+  @Test
+  void updating_password_calls_connection() throws SQLException {
+    dao.UpdatePassword(userNewPasswordDTO);
+    Mockito.verify(connection).updatePassword(userNewPasswordDTO);
+  }
+  @Test
+  void updating_email_calls_connection() throws SQLException {
+    dao.UpdateEmail(userNewEmailDTO);
+    Mockito.verify(connection).updateEmail(userNewEmailDTO);
+  }
+  @Test
+  void updating_plan_calls_connection() throws SQLException {
+    dao.UpdatePlan(userNewPlanDTO);
+    Mockito.verify(connection).updatePlan(userNewPlanDTO);
   }
 }

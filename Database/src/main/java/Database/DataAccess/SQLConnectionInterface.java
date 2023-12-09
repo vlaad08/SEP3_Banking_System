@@ -15,6 +15,7 @@ public interface SQLConnectionInterface {
     void transfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) throws SQLException;
 
     double checkBalance(CheckAccountDTO checkAccountDTO) throws SQLException;
+    double checkInterestRate(CheckAccountDTO checkAccountDTO) throws SQLException;
 
     String checkAccountId(CheckAccountDTO checkAccountDTO) throws SQLException;
 
@@ -28,7 +29,7 @@ public interface SQLConnectionInterface {
 
     List<AccountsInfo> getUserAccountInfos(UserInfoEmailDTO userInfoDTO) throws SQLException;
 
-    boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
+    boolean creditInterest(CreditInterestDTO creditInterestDTO) throws SQLException;
 
     Timestamp lastInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException;
 

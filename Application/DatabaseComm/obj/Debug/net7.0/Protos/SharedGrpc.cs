@@ -58,6 +58,10 @@ namespace Database {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.BalanceCheckResponse> __Marshaller_Database_BalanceCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.BalanceCheckResponse.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.InterestRateCheckRequest> __Marshaller_Database_InterestRateCheckRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.InterestRateCheckRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Database.InterestRateCheckResponse> __Marshaller_Database_InterestRateCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.InterestRateCheckResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.DailyCheckRequest> __Marshaller_Database_DailyCheckRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Database.DailyCheckResponse> __Marshaller_Database_DailyCheckResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.DailyCheckResponse.Parser));
@@ -189,6 +193,14 @@ namespace Database {
         "CheckBalance",
         __Marshaller_Database_BalanceCheckRequest,
         __Marshaller_Database_BalanceCheckResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Database.InterestRateCheckRequest, global::Database.InterestRateCheckResponse> __Method_CheckInterestRate = new grpc::Method<global::Database.InterestRateCheckRequest, global::Database.InterestRateCheckResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CheckInterestRate",
+        __Marshaller_Database_InterestRateCheckRequest,
+        __Marshaller_Database_InterestRateCheckResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Database.DailyCheckRequest, global::Database.DailyCheckResponse> __Method_DailyCheckTransactions = new grpc::Method<global::Database.DailyCheckRequest, global::Database.DailyCheckResponse>(
@@ -506,6 +518,26 @@ namespace Database {
       public virtual grpc::AsyncUnaryCall<global::Database.BalanceCheckResponse> CheckBalanceAsync(global::Database.BalanceCheckRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_CheckBalance, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.InterestRateCheckResponse CheckInterestRate(global::Database.InterestRateCheckRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CheckInterestRate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Database.InterestRateCheckResponse CheckInterestRate(global::Database.InterestRateCheckRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CheckInterestRate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.InterestRateCheckResponse> CheckInterestRateAsync(global::Database.InterestRateCheckRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CheckInterestRateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Database.InterestRateCheckResponse> CheckInterestRateAsync(global::Database.InterestRateCheckRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CheckInterestRate, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Database.DailyCheckResponse DailyCheckTransactions(global::Database.DailyCheckRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))

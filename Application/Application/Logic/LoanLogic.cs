@@ -47,7 +47,6 @@ public class LoanLogic : ILoanLogic
 
     private Task ValidateLoan(LoanCalculationDTO loanRequestDto)
     {
-        Console.WriteLine(loanRequestDto.AccountNumber+" "+loanRequestDto.Principal+" "+loanRequestDto.Tenure);
         if (loanRequestDto.Principal>1000000)
         {
             throw new Exception("Amount exceeds loan limit!");
@@ -55,7 +54,6 @@ public class LoanLogic : ILoanLogic
 
         if (loanRequestDto.Principal < 1000)
         {
-            Console.WriteLine(loanRequestDto.Principal);
             throw new Exception("Amount doesn't reach the minimum amount for a loan!");
         }
         return Task.CompletedTask;

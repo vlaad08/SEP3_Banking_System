@@ -88,6 +88,11 @@ C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/DatabaseC
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.pdb
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.genruntimeconfig.cache
 C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/ref/DatabaseComm.dll
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.AssemblyReference.cache
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.AssemblyInfoInputs.cache
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.AssemblyInfo.cs
+/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.CoreCompileInputs.cache
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/DatabaseComm
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/DatabaseComm.deps.json
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/DatabaseComm.runtimeconfig.json
@@ -107,11 +112,6 @@ C:/Users/vlada/Documents/Portfolio/SEP3/SEP3_Banking_Sytem/Application/DatabaseC
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/Domain.dll
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/Application.pdb
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/bin/Debug/net7.0/Domain.pdb
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.AssemblyReference.cache
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.GeneratedMSBuildEditorConfig.editorconfig
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.AssemblyInfoInputs.cache
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.AssemblyInfo.cs
-/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.CoreCompileInputs.cache
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.csproj.CopyComplete
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/DatabaseComm.dll
 /Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/Debug/net7.0/refint/DatabaseComm.dll

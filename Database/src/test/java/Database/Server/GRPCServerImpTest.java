@@ -32,13 +32,26 @@ public class GRPCServerImpTest {
     @Mock
     private CredentialChangerDao credentialChangerDao;
     @Captor
-    private ArgumentCaptor<TransferRequestDTO> transferCaptor;
+    private ArgumentCaptor<UpdatedBalancesForTransferDTO> updatedBalancesForTransferDTO;
     @Captor
     private ArgumentCaptor<CheckAccountDTO> accountCheckCaptor;
     @Captor
     private ArgumentCaptor<DepositRequestDTO> depositCaptor;
     @Captor
+    private ArgumentCaptor<CreditInterestDTO> creditInterestDTO;
+    @Captor
     private ArgumentCaptor<UserInfoEmailDTO> userInfoEmailDto;
+    @Captor
+    private ArgumentCaptor<UserNewDetailsRequestDTO> userNewDetailsRequestDTO;
+    @Captor
+    private ArgumentCaptor<IssueUpdateDTO> issueUpdateDTO;
+    @Captor
+    private ArgumentCaptor<UserNewEmailDTO> userNewEmailDTO;
+    @Captor
+    private ArgumentCaptor<UserNewPasswordDTO> userNewPasswordDTO;
+    private ArgumentCaptor<UserNewPlanDTO> userNewPlanDTO;
+    @Captor
+    private ArgumentCaptor<FlagUserDTO> flagUserDTO;
     @Captor
     private ArgumentCaptor<UserInfoAccNumDTO> userInfoAccNumDto;
     @Captor
@@ -66,9 +79,10 @@ public class GRPCServerImpTest {
         registerDao = Mockito.mock(RegisterDao.class);
         credentialChangerDao = Mockito.mock(CredentialChangerDao.class);
 
-        transferCaptor = ArgumentCaptor.forClass(TransferRequestDTO.class);
+        updatedBalancesForTransferDTO = ArgumentCaptor.forClass(UpdatedBalancesForTransferDTO.class);
         accountCheckCaptor = ArgumentCaptor.forClass(CheckAccountDTO.class);
         depositCaptor = ArgumentCaptor.forClass(DepositRequestDTO.class);
+        creditInterestDTO = ArgumentCaptor.forClass(CreditInterestDTO.class);
         userInfoEmailDto = ArgumentCaptor.forClass(UserInfoEmailDTO.class);
         userInfoAccNumDto = ArgumentCaptor.forClass(UserInfoAccNumDTO.class);
         loanRequestDto = ArgumentCaptor.forClass(LoanRequestDTO.class);
@@ -79,28 +93,38 @@ public class GRPCServerImpTest {
         issueCreationDto = ArgumentCaptor.forClass(IssueCreationDTO.class);
         messageDto = ArgumentCaptor.forClass(MessageDTO.class);
         issueinfoDto = ArgumentCaptor.forClass(IssueinfoDTO.class);
+        userNewDetailsRequestDTO = ArgumentCaptor.forClass(UserNewDetailsRequestDTO.class);
+        issueUpdateDTO = ArgumentCaptor.forClass(IssueUpdateDTO.class);
+        userNewEmailDTO = ArgumentCaptor.forClass(UserNewEmailDTO.class);
+        userNewPasswordDTO = ArgumentCaptor.forClass(UserNewPasswordDTO.class);
+        userNewPlanDTO = ArgumentCaptor.forClass(UserNewPlanDTO.class);
+        flagUserDTO = ArgumentCaptor.forClass(FlagUserDTO.class);
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void transfer_calls_dao_and_sends_response() {
+    void transfer_calls_dao_and_sends_response() throws SQLException {
         StreamObserver<TransferResponse> responseObserver = Mockito.mock(StreamObserver.class);
         TransferRequest transferRequest = TransferRequest.newBuilder()
-                .setSenderAccountId("aaaabbbbccccdddd")
-                .setRecipientAccountId("bbbbaaaaccccdddd")
-                .setBalance(50)
+                .setSenderId("aaaabbbbccccdddd")
+                .setReceiverId("bbbbaaaaccccdddd")
+                .setReceiverNewBalance(1010)
+                .setSenderNewBalance(900)
+                .setAmount(10)
                 .setMessage("-")
                 .build();
 
         grpcServerImp.transfer(transferRequest, responseObserver);
 
-        Mockito.verify(transactionDao).makeTransfer(transferCaptor.capture());
+        Mockito.verify(transactionDao).makeTransfer(updatedBalancesForTransferDTO.capture());
         Mockito.verify(responseObserver).onNext(Mockito.any());
         Mockito.verify(responseObserver).onCompleted();
-        assertEquals("aaaabbbbccccdddd", transferCaptor.getValue().getSenderAccount_id());
-        assertEquals("bbbbaaaaccccdddd", transferCaptor.getValue().getRecipientAccount_id());
-        assertEquals(50, transferCaptor.getValue().getAmount());
-        assertEquals("-", transferCaptor.getValue().getMessage());
+        assertEquals("aaaabbbbccccdddd", updatedBalancesForTransferDTO.getValue().getSenderId());
+        assertEquals("bbbbaaaaccccdddd", updatedBalancesForTransferDTO.getValue().getReceiverId());
+        assertEquals(1010, updatedBalancesForTransferDTO.getValue().getNewReceiverBalance());
+        assertEquals(900, updatedBalancesForTransferDTO.getValue().getNewSenderBalance());
+        assertEquals(10, updatedBalancesForTransferDTO.getValue().getAmount());
+        assertEquals("-", updatedBalancesForTransferDTO.getValue().getMessage());
     }
 
     // @Test
@@ -149,6 +173,20 @@ public class GRPCServerImpTest {
         Mockito.verify(responseObserver).onCompleted();
         assertEquals("bbbbaaaaccccdddd", accountCheckCaptor.getValue().getRecipientAccount_id());
     }
+    @Test
+    void checkInterestRate_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<InterestRateCheckResponse> responseObserver = Mockito.mock(StreamObserver.class);
+        InterestRateCheckRequest request = InterestRateCheckRequest.newBuilder()
+                .setAccountId("bbbbaaaaccccdddd")
+                .build();
+        grpcServerImp.checkInterestRate(request, responseObserver);
+
+        Mockito.verify(transactionDao).checkInterestRate(accountCheckCaptor.capture());
+        Mockito.verify(responseObserver).onNext(Mockito.any());
+        Mockito.verify(responseObserver).onCompleted();
+        assertEquals("bbbbaaaaccccdddd", accountCheckCaptor.getValue().getRecipientAccount_id());
+    }
+
 
     @Test
     void dailyCheck_calls_dao_and_sends_response() throws SQLException {
@@ -218,13 +256,19 @@ public class GRPCServerImpTest {
     @Test
     void creditInterest_calls_dao_and_sends_response() throws SQLException {
         StreamObserver<CreditInterestResponse> response = Mockito.mock(StreamObserver.class);
-        CreditInterestRequest request = CreditInterestRequest.newBuilder().setAccountNumber("aaaabbbbccccdddd").build();
+        CreditInterestRequest request = CreditInterestRequest.newBuilder()
+                .setAccountNumber("aaaabbbbccccdddd")
+                .setAmount(100)
+                .setBalance(22000)
+                .build();
         grpcServerImp.creditInterest(request, response);
 
-        Mockito.verify(transactionDao).creditInterest(userInfoAccNumDto.capture());
+        Mockito.verify(transactionDao).creditInterest(creditInterestDTO.capture());
         Mockito.verify(response).onNext(Mockito.any());
         Mockito.verify(response).onCompleted();
-        assertEquals("aaaabbbbccccdddd", userInfoAccNumDto.getValue().getAccNum());
+        assertEquals("aaaabbbbccccdddd", creditInterestDTO.getValue().getAccount_id());
+        assertEquals(100, creditInterestDTO.getValue().getAmount());
+        assertEquals(22000, creditInterestDTO.getValue().getNewBalance());
     }
 
     @Test
@@ -419,4 +463,90 @@ public class GRPCServerImpTest {
         assertEquals(1,issueinfoDto.getValue().getId());
     }
 
+    @Test
+    void getSubscriptions_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<GetTransactionsResponse> response = Mockito.mock(StreamObserver.class);
+        GetTransactionsRequest request = GetTransactionsRequest.newBuilder().setEmail("-").build();
+        grpcServerImp.getSubscriptions(request,response);
+
+        Mockito.verify(transactionDao).getAllSubscriptions(userInfoEmailDto.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals("-",userInfoEmailDto.getValue().getEmail());
+    }
+
+    @Test
+    void changeUserDetails_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UserNewDetailsResponse> response = Mockito.mock(StreamObserver.class);
+        UserNewDetailsRequest request = UserNewDetailsRequest.newBuilder().setNewEmail("-").setOldEmail(".").setPlan("=").setPassword("-").build();
+        grpcServerImp.changeUserDetails(request,response);
+
+        Mockito.verify(credentialChangerDao).UpdateUserInformation(userNewDetailsRequestDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals("-",userNewDetailsRequestDTO.getValue().getNewEmail());
+        assertEquals(".",userNewDetailsRequestDTO.getValue().getOldEmail());
+        assertEquals("=",userNewDetailsRequestDTO.getValue().getPlan());
+        assertEquals("-",userNewDetailsRequestDTO.getValue().getPassword());
+    }
+
+    @Test
+    void updateIssue_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UpdateIssueResponse> response = Mockito.mock(StreamObserver.class);
+        UpdateIssueRequest request = UpdateIssueRequest.newBuilder().setId(1).build();
+        grpcServerImp.updateIssue(request,response);
+
+        Mockito.verify(chatDao).updateIssue(issueUpdateDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals(1,issueUpdateDTO.getValue().getId());
+    }
+
+    @Test
+    void updateEmail_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UserNewEmailResponse> response = Mockito.mock(StreamObserver.class);
+        UserNewEmailRequest request = UserNewEmailRequest.newBuilder().setUserId(1).setEmail("-").build();
+        grpcServerImp.updateEmail(request,response);
+
+        Mockito.verify(credentialChangerDao).UpdateEmail(userNewEmailDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals(1,userNewEmailDTO.getValue().getUserID());
+        assertEquals("-",userNewEmailDTO.getValue().getEmail());
+    }
+    @Test
+    void updatePassword_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UserNewPasswordResponse> response = Mockito.mock(StreamObserver.class);
+        UserNewPasswordRequest request = UserNewPasswordRequest.newBuilder().setUserId(1).setPassword("-").build();
+        grpcServerImp.updatePassword(request,response);
+
+        Mockito.verify(credentialChangerDao).UpdatePassword(userNewPasswordDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals(1,userNewPasswordDTO.getValue().getUserID());
+        assertEquals("-",userNewPasswordDTO.getValue().getPassword());
+    }
+    @Test
+    void updatePlan_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<UserNewPlanResponse> response = Mockito.mock(StreamObserver.class);
+        UserNewPlanRequest request = UserNewPlanRequest.newBuilder().setUserId(1).setPlan("-").build();
+        grpcServerImp.updatePlan(request,response);
+
+        Mockito.verify(credentialChangerDao).UpdatePlan(userNewPlanDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals(1,userNewPlanDTO.getValue().getUserID());
+        assertEquals("-",userNewPlanDTO.getValue().getPlan());
+    }
+    @Test
+    void flagUser_calls_dao_and_sends_response() throws SQLException {
+        StreamObserver<FlagUserResponse> response = Mockito.mock(StreamObserver.class);
+        FlagUserRequest request = FlagUserRequest.newBuilder().setSenderId(1).build();
+        grpcServerImp.flagUser(request,response);
+
+        Mockito.verify(transactionDao).flagUser(flagUserDTO.capture());
+        Mockito.verify(response).onNext(Mockito.any());
+        Mockito.verify(response).onCompleted();
+        assertEquals(1,flagUserDTO.getValue().getSenderId());
+    }
 }
