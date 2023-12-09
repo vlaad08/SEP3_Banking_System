@@ -57,6 +57,8 @@ public class GRPCServerImpTest {
     private ArgumentCaptor<MessageDTO> messageDto;
     @Captor
     private ArgumentCaptor<IssueinfoDTO> issueinfoDto;
+    @Captor
+    private ArgumentCaptor<UpdatedBalancesForTransferDTO> updatedBalancesForTransferDTOArgumentCaptor;
     @BeforeEach
     void setup() {
         grpcServerImp = new GRPCServerImp();
@@ -79,28 +81,25 @@ public class GRPCServerImpTest {
         issueCreationDto = ArgumentCaptor.forClass(IssueCreationDTO.class);
         messageDto = ArgumentCaptor.forClass(MessageDTO.class);
         issueinfoDto = ArgumentCaptor.forClass(IssueinfoDTO.class);
+        updatedBalancesForTransferDTOArgumentCaptor = ArgumentCaptor.forClass(UpdatedBalancesForTransferDTO.class);
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void transfer_calls_dao_and_sends_response() {
+    void transfer_calls_dao_and_sends_response() throws SQLException {
         StreamObserver<TransferResponse> responseObserver = Mockito.mock(StreamObserver.class);
-        TransferRequest transferRequest = TransferRequest.newBuilder()
-                .setSenderAccountId("aaaabbbbccccdddd")
-                .setRecipientAccountId("bbbbaaaaccccdddd")
-                .setBalance(50)
-                .setMessage("-")
-                .build();
-
+        TransferRequest transferRequest = TransferRequest.newBuilder().setAmount(10)
+                        .setMessage("msg").setReceiverId("1").setSenderNewBalance(300)
+                        .setReceiverNewBalance(600).setSenderId("1").setReceiverId("2").build();
         grpcServerImp.transfer(transferRequest, responseObserver);
 
-        Mockito.verify(transactionDao).makeTransfer(transferCaptor.capture());
+        Mockito.verify(transactionDao).makeTransfer(updatedBalancesForTransferDTOArgumentCaptor.capture());
         Mockito.verify(responseObserver).onNext(Mockito.any());
         Mockito.verify(responseObserver).onCompleted();
-        assertEquals("aaaabbbbccccdddd", transferCaptor.getValue().getSenderAccount_id());
-        assertEquals("bbbbaaaaccccdddd", transferCaptor.getValue().getRecipientAccount_id());
-        assertEquals(50, transferCaptor.getValue().getAmount());
-        assertEquals("-", transferCaptor.getValue().getMessage());
+        assertEquals("1", updatedBalancesForTransferDTOArgumentCaptor.getValue().getSenderId());
+        assertEquals("2", updatedBalancesForTransferDTOArgumentCaptor.getValue().getReceiverId());
+        assertEquals(10, updatedBalancesForTransferDTOArgumentCaptor.getValue().getAmount());
+        assertEquals("msg", updatedBalancesForTransferDTOArgumentCaptor.getValue().getMessage());
     }
 
     // @Test

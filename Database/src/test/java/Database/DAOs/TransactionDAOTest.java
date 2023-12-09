@@ -24,6 +24,7 @@ public class TransactionDAOTest {
     private LoanRequestDTO loanRequestDTO;
     private UserInfoEmailDTO userInfoEmailDTO;
     private FlagUserDTO flagUserDTO;
+    private UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO;
 
     @BeforeEach
     void setup()
@@ -37,14 +38,14 @@ public class TransactionDAOTest {
         loanRequestDTO = Mockito.mock(LoanRequestDTO.class);
         userInfoEmailDTO = Mockito.mock(UserInfoEmailDTO.class);
         flagUserDTO = Mockito.mock(FlagUserDTO.class);
+        updatedBalancesForTransferDTO = Mockito.mock(UpdatedBalancesForTransferDTO.class);
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void makeTransfer_connection_called()
-    {
-        dao.makeTransfer(transferRequestDTO);
-        Mockito.verify(connection).transfer(transferRequestDTO);
+    void makeTransfer_connection_called() throws SQLException {
+        dao.makeTransfer(updatedBalancesForTransferDTO);
+        Mockito.verify(connection).transfer(updatedBalancesForTransferDTO);
     }
     @Test
     void checkAccountId_connection_called() throws SQLException {
