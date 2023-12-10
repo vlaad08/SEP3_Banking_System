@@ -48,6 +48,20 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "BouncyCastle.NetCore": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -109,9 +123,21 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "BouncyCastle.NetCore": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

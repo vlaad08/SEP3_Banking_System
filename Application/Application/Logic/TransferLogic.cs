@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Security.AccessControl;
-using System.Threading.Channels;
 using Application.DaoInterfaces;
 using Application.LogicInterfaces;
 using Domain.DTOs;
 using Domain.Models;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 
 namespace Application.Logic;
 
@@ -97,4 +97,56 @@ public class TransferLogic : ITransferLogic
 
         return dictionary;
     }
+
+    public async Task<byte[]> GenerateBankStatement(ExportRequestDTO exportRequestDto)
+    {
+        GetTransactionsDTO getTransactionsDto = new GetTransactionsDTO()
+        {
+            Email = exportRequestDto.Email
+        };
+
+        IEnumerable<Transaction> enumerable = await GetTransactions(getTransactionsDto);
+
+        List<Transaction> list = new List<Transaction>();
+
+        foreach (var transaction in enumerable)
+        {
+            if (transaction.Date > exportRequestDto.StartDate && transaction.Date < exportRequestDto.EndDate)
+            {
+                list.Add(transaction);
+            }
+        }
+
+        using (var memoryStream = new MemoryStream())
+        {
+            using (var writer = new PdfWriter(memoryStream))
+            {
+                using (var pdf = new PdfDocument(writer))
+                {
+                    using (var document = new Document(pdf))
+                    {
+                        document.Add(new Paragraph("Bank Statement"));
+                        document.Add(new Paragraph($"Statement Period: {exportRequestDto.StartDate.ToShortDateString()} to {exportRequestDto.EndDate.ToShortDateString()}"));
+                        Table table = new Table(5);
+                        table.AddCell("Date");
+                        table.AddCell("Description");
+                        table.AddCell("Amount (DKK)");
+                        table.AddCell("Sender");
+                        table.AddCell("Type");
+                        foreach (var transaction in list)
+                        {
+                            table.AddCell(transaction.Date.ToShortDateString());
+                            table.AddCell(transaction.Message);
+                            table.AddCell(transaction.Amount.ToString());
+                            table.AddCell(!transaction.transactionType.Equals("Deposit") ? transaction.SenderName : "");
+                            table.AddCell(transaction.transactionType);
+                        }
+                        document.Add(table);
+                    }
+                }
+            }
+            return memoryStream.ToArray();
+        }
+    }
+
 }

@@ -10,4 +10,5 @@ public interface ITransferLogic
     Task<IEnumerable<Transaction>> GetTransactions();
     Task FlagUser(FlagUserDTO flagUserDto);
     Task<Dictionary<string, Subscription>> GetSubscriptions(GetTransactionsDTO getTransactionsDto);
+    Task<byte[]> GenerateBankStatement(ExportRequestDTO exportRequestDto);
 }

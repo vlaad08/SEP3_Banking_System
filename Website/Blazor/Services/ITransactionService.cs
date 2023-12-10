@@ -1,6 +1,8 @@
+using Domain.DTOs;
 using Shared.DTOs;
 using Shared.Models;
 using Domain.Models;
+using Microsoft.AspNetCore.Components;
 
 namespace Blazor.Services.Http;
 
@@ -16,4 +18,5 @@ public interface ITransactionService
 
     public Task FlagUser(FlagUserDto flagUserDto);
     public Task<Dictionary<string, SubscriptionDao>> GetSubscriptions(string email);
+    public Task ExportBankStatement(ExportRequestDTO exportRequestDto);
 }
