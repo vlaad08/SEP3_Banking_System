@@ -40,7 +40,7 @@ public class SQLConnection implements SQLConnectionInterface {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
-
+            System.out.println(updatedBalancesForTransferDTO.receiverId+" "+updatedBalancesForTransferDTO.senderId);
             try (PreparedStatement updateStatement1 = connection.prepareStatement(
                     "UPDATE account SET balance = ? WHERE account_id = ?")) {
 

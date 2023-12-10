@@ -1,11 +1,11 @@
-.content[b-btpfqzbffu]{
+.content[b-3cu29tzlu1]{
     display: flex;
     justify-content: center;
     align-content: center;
     height: 1000px;
 }
 
-.card[b-btpfqzbffu]{
+.card[b-3cu29tzlu1]{
     display: flex;
     justify-content: flex-start;
     align-content: center;
@@ -18,30 +18,30 @@
     width: 40rem;
     color: white;
 }
-[b-btpfqzbffu]::-webkit-scrollbar{
+[b-3cu29tzlu1]::-webkit-scrollbar{
     width: 9px;
 }
-[b-btpfqzbffu]::-webkit-scrollbar-track{
+[b-3cu29tzlu1]::-webkit-scrollbar-track{
     background-color: white;
     border-radius: 15px;
 }
-input[b-btpfqzbffu] {
+input[b-3cu29tzlu1] {
     border: 1px solid #ccc;
     border-radius: 2px;
     /*padding: 1rem;*/
     width: 100%;
 }
 
-label[b-btpfqzbffu] {
+label[b-3cu29tzlu1] {
     display: block;
     margin-bottom: 0.5rem;
 }
-.description[b-btpfqzbffu]{
+.description[b-3cu29tzlu1]{
     display: block;
     margin-bottom: 0.5rem;
     height: 200px;
 }
-button[b-btpfqzbffu] {
+button[b-3cu29tzlu1] {
     background-color: inherit;
     width: calc(30% + 20px);
     border: none;
@@ -50,42 +50,42 @@ button[b-btpfqzbffu] {
     transition: 0.2s ease-in-out;
 }
 
-button:hover[b-btpfqzbffu] {
+button:hover[b-3cu29tzlu1] {
     transition: 0.2s ease-in-out;
     background-color: #420000;;
     cursor: pointer;
 }
 
-p[b-btpfqzbffu]{
+p[b-3cu29tzlu1]{
     color: white;
 }
-h1[b-btpfqzbffu], h2[b-btpfqzbffu], h3[b-btpfqzbffu], h4[b-btpfqzbffu], h5[b-btpfqzbffu], h6[b-btpfqzbffu]
+h1[b-3cu29tzlu1], h2[b-3cu29tzlu1], h3[b-3cu29tzlu1], h4[b-3cu29tzlu1], h5[b-3cu29tzlu1], h6[b-3cu29tzlu1]
 {
     color: white;
 }
 
-#body[b-btpfqzbffu]{
+#body[b-3cu29tzlu1]{
     height: 200px;
     border: solid 1px white;
 }
-.flexColumn[b-btpfqzbffu]
+.flexColumn[b-3cu29tzlu1]
 {
     display: flex;
     align-content: center;
 }
 
-.messageBox[b-btpfqzbffu]{
+.messageBox[b-3cu29tzlu1]{
     margin: 40px auto;
     width: 70%;
 }
-#messageh5[b-btpfqzbffu]{
+#messageh5[b-3cu29tzlu1]{
     margin-bottom: 10px;
 }
-#messageBody[b-btpfqzbffu]
+#messageBody[b-3cu29tzlu1]
 {
     height: 100px;
 }
-#messageButton[b-btpfqzbffu]{
+#messageButton[b-3cu29tzlu1]{
     position: relative;
     right: 0;
 }

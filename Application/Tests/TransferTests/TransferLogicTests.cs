@@ -27,8 +27,6 @@ public class TransferLogicTests
             .ReturnsAsync(transferRequestDto.Amount);
         transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
-            .ReturnsAsync(transferRequestDto.Amount+1);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
 
@@ -109,6 +107,31 @@ public class TransferLogicTests
             .ReturnsAsync(transferRequestDto.Amount + 1);
         transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(200000);
+
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+
+        // Assert
+        await Assert.ThrowsAsync<Exception>(() => transferLogic.TransferMoney(transferRequestDto));
+    }
+    [Fact]
+    public async Task ValidateTransfer_CannotSendToSameAccount_ShouldThrowException()
+    {
+        // Arrange
+        var transferRequestDto = new TransferRequestDTO
+        {
+            SenderAccountNumber = "1111111111111111",
+            RecipientAccountNumber = "1111111111111111",
+            Amount = 1
+        };
+
+        //Act
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
+            .ReturnsAsync(transferRequestDto.RecipientAccountNumber);
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
+            .ReturnsAsync(transferRequestDto.Amount + 1);
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
+            .ReturnsAsync(200);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
 

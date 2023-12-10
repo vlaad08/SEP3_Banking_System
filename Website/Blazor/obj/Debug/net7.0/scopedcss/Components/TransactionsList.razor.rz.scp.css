@@ -1,11 +1,11 @@
-.content[b-ylofeshq0j]{
+.content[b-g29z3ljlja]{
     display: flex;
     justify-content: center;
     align-content: center;
     
 }
 
-.card[b-ylofeshq0j]{
+.card[b-g29z3ljlja]{
     display: flex;
     justify-content: flex-start;
     align-content: center;
@@ -20,19 +20,19 @@
     overflow-y: scroll;
 }
 
-[b-ylofeshq0j]::-webkit-scrollbar{
+[b-g29z3ljlja]::-webkit-scrollbar{
     width: 9px;
 }
 
-[b-ylofeshq0j]::-webkit-scrollbar-thumb{
+[b-g29z3ljlja]::-webkit-scrollbar-thumb{
     background-color: white;
     border-radius: 15px;
 }
 
-.search-bar[b-ylofeshq0j]{
+.search-bar[b-g29z3ljlja]{
     margin: 2%;
 }
-.transactions-list[b-ylofeshq0j]{
+.transactions-list[b-g29z3ljlja]{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -40,28 +40,28 @@
     margin: 0;
 }
 
-.empty-block[b-ylofeshq0j]{
+.empty-block[b-g29z3ljlja]{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.emptyText[b-ylofeshq0j]{
+.emptyText[b-g29z3ljlja]{
     font-size: calc(14px + 00.3vh);
     color: grey;
     margin: 0;
     padding: 2%;
 }
 
-.search-bar input[b-ylofeshq0j]{
+.search-bar input[b-g29z3ljlja]{
     width: 100%;
     
 }
 
 
 @media (max-width: 1440px) {
-    .card[b-ylofeshq0j]{
+    .card[b-g29z3ljlja]{
         width: 100%;
         height: 500px;
     }

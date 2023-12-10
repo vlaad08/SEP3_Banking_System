@@ -8,7 +8,7 @@
 <div class="content">
     <div class="card">
         <div>
-             <select @onchange="OnAccountSelectionChanged">
+            <select @onchange="OnAccountSelectionChanged">
                 @foreach (var account in Accounts)
                 {
                     if (account.AccountType.Equals("personal"))
@@ -46,6 +46,7 @@
         </div>
     </div>
 </div>
+<Notification @ref="interestNotification" NotificationType="Confirmation">Your calculated interest rate: @interestRate</Notification>
 
 @code {
     private string SelectedAccount { get; set; }
@@ -54,6 +55,8 @@
     private double principle;
     private int tenure;
     private string accountNumber = "";
+    private Notification interestNotification;
+    private string interestRate;
     
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
@@ -79,8 +82,8 @@
     private async void Calculate()
     {
         LoanRequestDto dto = new LoanRequestDto(accountNumber, principle, tenure);
-        string interest = await loanService.LoanCalculation(dto);
-        Console.WriteLine(interest);
+        interestRate = await loanService.LoanCalculation(dto);
+        interestNotification.ShowNotification();
     }
 
     private async void Create()

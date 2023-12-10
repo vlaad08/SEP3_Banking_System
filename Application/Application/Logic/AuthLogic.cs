@@ -71,7 +71,7 @@ public class AuthLogic : IAuthLogic
                 {
                     double oldBalance = await interestDao.GetBalanceByAccountNumber(dto);
                     double interestRate = await interestDao.GetInterestRateByAccountNumber(dto);
-                    double newBalance = oldBalance * (100 + interestRate);
+                    double newBalance = oldBalance + (oldBalance*(interestRate/100));
                     CreditInterestDTO creditInterestDto = new CreditInterestDTO
                     {
                         AccountID = dto.AccountID,
