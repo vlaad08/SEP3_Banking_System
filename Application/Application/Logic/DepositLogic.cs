@@ -15,7 +15,10 @@ public class DepositLogic : IDepositLogic
 
     public async Task ValidateDeposit(DepositRequestDTO depositRequestDto)
     {
-        //Defend
+        if (depositRequestDto.Amount == 0)
+        {
+            throw new Exception("Amount cannot be 0");
+        }
     }
 
     public async Task DepositMoney(DepositRequestDTO depositRequestDto)

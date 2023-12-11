@@ -16,6 +16,7 @@ public class LoanLogic : ILoanLogic
 
     public async Task<double> CalculateLoan(LoanCalculationDTO dto)
     {
+        await ValidateLoan(dto);
         double P = dto.Principal;
         int T = dto.Tenure;
         double B = 7;
@@ -55,6 +56,10 @@ public class LoanLogic : ILoanLogic
         if (loanRequestDto.Principal < 1000)
         {
             throw new Exception("Amount doesn't reach the minimum amount for a loan!");
+        }
+        if (loanRequestDto.Principal == 0)
+        {
+            throw new Exception("Amount cannot be 0");
         }
         return Task.CompletedTask;
     }

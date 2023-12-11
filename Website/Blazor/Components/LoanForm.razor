@@ -47,6 +47,7 @@
     </div>
 </div>
 <Notification @ref="interestNotification" NotificationType="Confirmation">Your calculated interest rate: @interestRate</Notification>
+<Notification @ref="errorRef" NotificationType="Error">Amount cannot be 0</Notification>
 
 @code {
     private string SelectedAccount { get; set; }
@@ -56,7 +57,9 @@
     private int tenure;
     private string accountNumber = "";
     private Notification interestNotification;
+    private Notification errorRef;
     private string interestRate;
+    private string message;
     
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
@@ -82,8 +85,17 @@
     private async void Calculate()
     {
         LoanRequestDto dto = new LoanRequestDto(accountNumber, principle, tenure);
-        interestRate = await loanService.LoanCalculation(dto);
-        interestNotification.ShowNotification();
+        try
+        {
+            interestRate = await loanService.LoanCalculation(dto);
+            await interestNotification.ShowNotification();
+        }
+        catch (Exception e)
+        {
+            message = e.Message;
+            await errorRef.ShowErrorNotification(e.Message);
+        }
+        
     }
 
     private async void Create()

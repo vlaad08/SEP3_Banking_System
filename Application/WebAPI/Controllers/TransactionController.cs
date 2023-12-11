@@ -31,7 +31,6 @@ public class TransactionController : ControllerBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
             return BadRequest(e.Message);
         }
     }

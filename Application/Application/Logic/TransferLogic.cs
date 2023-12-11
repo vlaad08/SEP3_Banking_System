@@ -24,21 +24,15 @@ public class TransferLogic : ITransferLogic
         {
             throw new Exception("The account number does not exist!");
         }
-
         if (await transferDao.GetBalanceByAccountNumber(transferRequestDto) < transferRequestDto.Amount)
         {
             throw new Exception("There is not sufficient balance to make the transaction!");
         }
-
         if ((await transferDao.GetTransferAmountsByDayForUser(transferRequestDto) + transferRequestDto.Amount) >=
             200000)
         {
             throw new Exception("You have reached your daily limit!");
         }
-        /*if (await transferDao.GetBalanceByAccountNumber(transferRequestDto)<transferRequestDto.Amount)
-        {
-            throw new Exception("Transaction amount exceeds Sender account balance!");
-        }*/
         if (await transferDao.GetAccountNumberByAccountNumber(transferRequestDto) == transferRequestDto.SenderAccountNumber)
         {
             throw new Exception("Cannot transfer money to the same account!");
