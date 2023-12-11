@@ -76,7 +76,7 @@ public class TransactionService : ITransactionService
     {
         try
         {
-            HttpResponseMessage responseMessage = await client.GetAsync("http://localhost:5054/api/Transaction/{email}");
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:5054/api/Transaction/{email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
 
             if (!responseMessage.IsSuccessStatusCode)
@@ -120,7 +120,7 @@ public class TransactionService : ITransactionService
         try
         {
             HttpResponseMessage responseMessage =
-                await client.GetAsync("http://localhost:5054/api/Transaction/Subscriptions/{Email}");
+                await client.GetAsync($"http://localhost:5054/api/Transaction/Subscriptions/{Email}");
             string responseBody = await responseMessage.Content.ReadAsStringAsync();
 
             if (!responseMessage.IsSuccessStatusCode)

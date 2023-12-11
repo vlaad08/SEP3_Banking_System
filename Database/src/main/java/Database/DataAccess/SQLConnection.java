@@ -28,7 +28,7 @@ public class SQLConnection implements SQLConnectionInterface {
 
     Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=banking_system",
-                "postgres", "12345678");
+                "postgres", "password");
     }
 
     /**

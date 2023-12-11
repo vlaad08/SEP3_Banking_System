@@ -32,7 +32,7 @@ public class IssueService : IIssueService
     {
         try
         {
-            HttpResponseMessage response = await client.PatchAsJsonAsync("http://localhost:5054/Issue/Issue", dto);
+            HttpResponseMessage response = await client.PatchAsJsonAsync("https://localhost:7257/Issue/Issue", dto);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
