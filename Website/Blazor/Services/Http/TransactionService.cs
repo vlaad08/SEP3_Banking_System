@@ -158,7 +158,7 @@ public class TransactionService : ITransactionService
                 throw new Exception(responseBody);
             }
 
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "fratelemeleu.pdf");
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bank_statement.pdf");
             byte[] pdfBytes = await responseMessage.Content.ReadAsByteArrayAsync();
             await File.WriteAllBytesAsync(filePath, pdfBytes);
         }

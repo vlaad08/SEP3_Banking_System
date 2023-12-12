@@ -340,7 +340,7 @@ public class GRPCServerImpTest {
         StreamObserver<UserEmailResponse> response = Mockito.mock(StreamObserver.class);
         UserEmailRequest request = UserEmailRequest.newBuilder().setEmail("email@email.com").build();
 
-        Mockito.when(registerDao.getUserEmail(Mockito.any())).thenReturn("email@email.colm");
+        Mockito.when(registerDao.getUserEmail(Mockito.any())).thenReturn("email@email.com");
 
         grpcServerImp.getUserByEmail(request, response);
 

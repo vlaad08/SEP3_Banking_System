@@ -35,10 +35,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
 
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
-        System.out.println("TRANSFER");
         UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO = new UpdatedBalancesForTransferDTO(request.getSenderNewBalance(),request.getReceiverNewBalance(),request.getMessage(),request.getSenderId(),request.getReceiverId(),request.getAmount());
-        /*TransferRequestDTO transferRequestDTO = new TransferRequestDTO(request.getSenderAccountId(),
-                request.getRecipientAccountId(), request.getBalance(), request.getMessage());*/
         try {
             transactionDao.makeTransfer(updatedBalancesForTransferDTO);
         } catch (SQLException e) {
@@ -197,7 +194,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
-    // test below
     @Override
     public void logLoan(LogLoanRequest request, StreamObserver<LogLoanResponse> responseStreamObserver) {
         try {
@@ -228,19 +224,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
-//    @Override
-//    public void getTransactionsForEmployee(GetTransactionsForEmployeeRequest request,
-//            StreamObserver<GetTransactionsForEmployeeResponse> responseObserver) {
-//        try {
-//            List<Transactions> transactions = transactionDao.getAllTransactionsForEmployee();
-//            GetTransactionsForEmployeeResponse response = GetTransactionsForEmployeeResponse.newBuilder()
-//                    .addAllTransactions(transactions).build();
-//            responseObserver.onNext(response);
-//            responseObserver.onCompleted();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public void getSubscriptions(GetTransactionsRequest request,
             StreamObserver<GetTransactionsResponse> responseStreamObserver) {

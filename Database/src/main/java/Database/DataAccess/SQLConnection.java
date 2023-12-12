@@ -638,8 +638,7 @@ public class SQLConnection implements SQLConnectionInterface {
                     statement.setString(2, messageDTO.getBody());
                     statement.setInt(3, messageDTO.getOwner());
                     statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-                    statement.setInt(5, messageDTO.getIssueId()); // Assuming you have a getIssueId() method in
-                                                                  // MessageDTO
+                    statement.setInt(5, messageDTO.getIssueId());
 
                     statement.executeUpdate();
                 }

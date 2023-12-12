@@ -29,13 +29,6 @@ public class AuthController : ControllerBase
         this._authLogic = authLogic;
     }
 
- /*[HttpPost, Route("register")]
- public async Task<ActionResult> Register([FromBody] User user)
- {
-     await _authLogic.RegisterUser(user);
-     return Ok();
- }*/
-
  [HttpPost, Route("login")]
  public async Task<ActionResult> Login([FromBody] UserLoginRequestDto userLoginRequestDto)
  {

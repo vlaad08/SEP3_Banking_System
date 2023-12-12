@@ -22,8 +22,6 @@ public class SettingsService : ISettingsService
             {
                 throw new Exception(responseBody);
             }
-
-            Console.WriteLine("Settings work");
         }
         catch (Exception e)
         {
@@ -45,8 +43,6 @@ public class SettingsService : ISettingsService
             {
                 throw new Exception(responseBody);
             }
-
-            Console.WriteLine("Settings work");
         }
         catch (Exception e)
         {
@@ -67,8 +63,6 @@ public class SettingsService : ISettingsService
             {
                 throw new Exception(responseBody);
             }
-
-            Console.WriteLine("Settings work");
         }
         catch (Exception e)
         {
