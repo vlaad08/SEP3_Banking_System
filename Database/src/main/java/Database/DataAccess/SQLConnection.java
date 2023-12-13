@@ -349,9 +349,9 @@ public class SQLConnection implements SQLConnectionInterface {
                 insertAccountStatement.executeUpdate();
 
                 PreparedStatement insertTransactionStatement = connection.prepareStatement(
-                        "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) "
+                        "INSERT INTO transactions(dateTime, amount,message, senderAccount_id, recipientAccount_id, transaction_type) "
                                 +
-                                "VALUES (?, ?, ?, ?, 'Loan')");
+                                "VALUES (?, ?,'-', ?, ?, 'Loan')");
 
                 Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 

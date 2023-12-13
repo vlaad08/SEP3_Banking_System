@@ -746,8 +746,8 @@ calc(15px + 0.4vw);
 .content[b-g29z3ljlja]{
     display: flex;
     justify-content: center;
-    align-content: center;
-    
+    align-items: center;
+    flex-direction: column; 
 }
 
 .card[b-g29z3ljlja]{
@@ -763,6 +763,20 @@ calc(15px + 0.4vw);
     padding: 5px;
     height: 800px;
     overflow-y: scroll;
+}
+
+.export-block[b-g29z3ljlja]{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+    background-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 40rem;
+    margin: 0;
+    padding: 5px;
 }
 
 [b-g29z3ljlja]::-webkit-scrollbar{

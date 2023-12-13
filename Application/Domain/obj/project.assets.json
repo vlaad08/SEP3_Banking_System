@@ -4881,19 +4881,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/IHSSAN/.nuget/packages/": {}
+    "/Users/AgostonBabicz/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+      "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
-      "packagesPath": "/Users/IHSSAN/.nuget/packages/",
-      "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/obj/",
+      "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+      "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
+      "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
+        "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
