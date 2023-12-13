@@ -484,9 +484,9 @@ public class SQLConnection implements SQLConnectionInterface {
     }
     @Override
     public List<Transactions> getAllSubscriptions(UserInfoEmailDTO userInfoEmailDTO) {
-        List<Transactions> transactionsList = new ArrayList<>();
+        List<Transactions> transactionsList = new ArrayList<>(); // Takes 1
 
-        try (Connection connection = getConnection()) {
+        try (Connection connection = getConnection()) { //Takes 1
             String query = "SELECT t.senderAccount_id, t.recipientAccount_id, t.amount, t.message, t.dateTime, u1.firstName AS senderFirstName, u1.lastName AS senderLastName, u2.firstName AS receiverFirstName, u2.lastName AS receiverLastName, t.transaction_type\n"
                     + "FROM transactions t\n"
                     + "JOIN account a1 ON t.senderAccount_id = a1.account_id\n"
@@ -494,40 +494,40 @@ public class SQLConnection implements SQLConnectionInterface {
                     + "JOIN \"user\" u1 ON a1.user_id = u1.user_id\n"
                     + "JOIN \"user\" u2 ON a2.user_id = u2.user_id\n"
                     + "WHERE transaction_type = 'Subscription' and u1.email = ?\n"
-                    + "ORDER BY t.dateTime DESC;";
+                    + "ORDER BY t.dateTime DESC;"; //Takes 1
 
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, userInfoEmailDTO.getEmail());
+            try (PreparedStatement statement = connection.prepareStatement(query)) { //Takes 1
+                statement.setString(1, userInfoEmailDTO.getEmail()); //Takes 1
 
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    String senderAccountNumber = resultSet.getString("senderAccount_id");
-                    String recipientAccountNumber = resultSet.getString("recipientAccount_id");
-                    double amount = resultSet.getDouble("amount");
-                    String message = resultSet.getString("message");
-                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("dateTime");
-                    String senderFirstName = resultSet.getString("senderFirstName");
-                    String senderLastName = resultSet.getString("senderLastName");
-                    String receiverFirstName = resultSet.getString("receiverFirstName");
-                    String receiverLastName = resultSet.getString("receiverLastName");
-                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder()
+                ResultSet resultSet = statement.executeQuery(); //Takes 1
+                while (resultSet.next()) { //Takes: (1+1+1+1+1+1+1+1+1+4+1+1+1+1+1+1+1+1+1+1+1+1) * n = O(n)
+                    String senderAccountNumber = resultSet.getString("senderAccount_id"); //Takes 1
+                    String recipientAccountNumber = resultSet.getString("recipientAccount_id"); //Takes 1
+                    double amount = resultSet.getDouble("amount"); //Takes 1
+                    String message = resultSet.getString("message"); //Takes 1
+                    java.sql.Timestamp sqlTimestamp = resultSet.getTimestamp("dateTime"); //Takes 1
+                    String senderFirstName = resultSet.getString("senderFirstName"); //Takes 1
+                    String senderLastName = resultSet.getString("senderLastName");//Takes 1
+                    String receiverFirstName = resultSet.getString("receiverFirstName"); //Takes 1
+                    String receiverLastName = resultSet.getString("receiverLastName"); //Takes 1
+                    com.google.protobuf.Timestamp date = com.google.protobuf.Timestamp.newBuilder() //Takes 4
                             .setSeconds(sqlTimestamp.getTime() / 1000)
                             .setNanos((int) ((sqlTimestamp.getTime() % 1000) * 1_000_000))
                             .build();
-                    String transactionType = resultSet.getString("transaction_type");
+                    String transactionType = resultSet.getString("transaction_type"); //Takes 1
 
-                    Transactions transaction = Transactions.newBuilder()
-                            .setSenderAccountNumber(senderAccountNumber)
-                            .setRecipientAccountNumber(recipientAccountNumber)
-                            .setAmount(amount)
-                            .setMessage(message)
-                            .setDate(date)
-                            .setSenderName(senderFirstName + " " + senderLastName)
-                            .setReceiverName(receiverFirstName + " " + receiverLastName)
-                            .setTransactionType(transactionType)
-                            .build();
+                    Transactions transaction = Transactions.newBuilder() //Takes 1
+                            .setSenderAccountNumber(senderAccountNumber) //Takes 1
+                            .setRecipientAccountNumber(recipientAccountNumber) //Takes 1
+                            .setAmount(amount) //Takes 1
+                            .setMessage(message) //Takes 1
+                            .setDate(date) //Takes 1
+                            .setSenderName(senderFirstName + " " + senderLastName) //Takes 1
+                            .setReceiverName(receiverFirstName + " " + receiverLastName) //Takes 1
+                            .setTransactionType(transactionType) //Takes 1
+                            .build(); //Takes 1
 
-                    transactionsList.add(transaction);
+                    transactionsList.add(transaction); //Takes 1
                 }
             }
         } catch (SQLException e) {
@@ -535,8 +535,10 @@ public class SQLConnection implements SQLConnectionInterface {
             throw new RuntimeException("Error executing statements", e);
         }
 
-        return transactionsList;
+        return transactionsList; // Takes 1
     }
+    //This method's time complexity: (After eliminating all the constants)
+    // T(n) = 1 + 1 + 1 + 1 + 1 + 1 + O(n) + 1 = O(n)
 
     @Override
     public void flagUser(FlagUserDTO flagUserDTO) {

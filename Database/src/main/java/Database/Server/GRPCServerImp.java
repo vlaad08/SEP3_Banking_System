@@ -35,10 +35,7 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
 
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
-        System.out.println("TRANSFER");
         UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO = new UpdatedBalancesForTransferDTO(request.getSenderNewBalance(),request.getReceiverNewBalance(),request.getMessage(),request.getSenderId(),request.getReceiverId(),request.getAmount());
-        /*TransferRequestDTO transferRequestDTO = new TransferRequestDTO(request.getSenderAccountId(),
-                request.getRecipientAccountId(), request.getBalance(), request.getMessage());*/
         try {
             transactionDao.makeTransfer(updatedBalancesForTransferDTO);
         } catch (SQLException e) {

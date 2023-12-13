@@ -83,30 +83,28 @@ public class TransferLogic : ITransferLogic
 
     public async Task<Dictionary<string, Subscription>> GetSubscriptions(GetTransactionsDTO getTransactionsDto)
     {
-        IEnumerable<Transaction> listFromDataBase = await transferDao.GetSubscriptions(getTransactionsDto);
+        IEnumerable<Transaction> listFromDataBase = await transferDao.GetSubscriptions(getTransactionsDto); // Takes O(n)
 
-        List<Transaction> list = listFromDataBase.ToList();
+        List<Transaction> list = listFromDataBase.ToList(); //Takes O(n)
 
-        Dictionary<string, Subscription> dictionary = new Dictionary<string, Subscription>();
-
-
-        foreach (var l in list)
+        Dictionary<string, Subscription> dictionary = new Dictionary<string, Subscription>(); //Takes 1
+        
+        foreach (var l in list) //Takes: (1+1+1+1+1+2)*n = O(n)
         {
-            if (!dictionary.ContainsKey(l.RecipientAccountNumber))
+            if (!dictionary.ContainsKey(l.RecipientAccountNumber)) //Takes 1
             {
-                DateTime dateTime = l.Date.AddMonths(1);
+                DateTime dateTime = l.Date.AddMonths(1); //Takes 1
                 var subs = new Subscription()
                 {
-                    ServiceName = l.RecipientName,
-                    Amount = l.Amount,
+                    ServiceName = l.RecipientName, // Takes 1
+                    Amount = l.Amount, //Takes 1
                     Date = dateTime
-                };
-                dictionary.TryAdd(l.RecipientAccountNumber, subs);
+                }; //Takes 1
+                dictionary.TryAdd(l.RecipientAccountNumber, subs); //Takes 2
             }
         }
-
-
-
-        return dictionary;
+        return dictionary; // Takes 1
+        //The time complexity of the method: (After the elimination of constants)
+        // T(n) = O(n) + O(n) + 1 + O(n) + 1 = O(n)
     }
 }

@@ -23,13 +23,11 @@ public class IssueController : ControllerBase
     {
         try
         {
-            Console.WriteLine(dto.Title+" "+dto.Body+" "+dto.Owner);
             await issueLogic.CreateIssue(dto);
             return Ok("Message sent");
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
             throw new Exception(e.Message);
         }
     }
