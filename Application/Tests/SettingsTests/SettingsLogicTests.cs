@@ -52,6 +52,30 @@ public class SettingsLogicTests
         settingsDao.Setup(dao => dao.ChangeUserDetails(userNewDetailsRequestDto));
 
         await settingsLogic.UpdateUser(userNewDetailsRequestDto);
-        
+    }
+
+    [Fact]
+    public async Task UpdateEmail_Calls_For_Dao()
+    {
+        await settingsLogic.UpdateEmail(It.IsAny<UserNewEmailDTO>());
+        settingsDao.Verify(d=>d.UpdateEmail(It.IsAny<UserNewEmailDTO>()));
+    }
+    [Fact]
+    public async Task UpdatePassword_Calls_For_Dao()
+    {
+        await settingsLogic.UpdatePassword(It.IsAny<UserNewPasswordDTO>());
+        settingsDao.Verify(d=>d.UpdatePassword(It.IsAny<UserNewPasswordDTO>()));
+    }
+    [Fact]
+    public async Task UpdatePlan_Calls_For_Dao()
+    {
+        UserNewPlanDTO userNewPlanDto = new UserNewPlanDTO
+        {
+            Plan = "Premium",
+            UserID = 1
+        };
+        await settingsLogic.UpdatePlan(userNewPlanDto);
+        settingsDao.Verify(d=>d.UpdateBaseRate(It.IsAny<AccountNewBaseRateDTO>()));
+        settingsDao.Verify(d=>d.UpdatePlan(It.IsAny<UserNewPlanDTO>()));
     }
 }

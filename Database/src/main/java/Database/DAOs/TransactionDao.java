@@ -21,8 +21,8 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     @Override
-    public void makeTransfer(TransferRequestDTO transferRequestDTO) {
-        connection.transfer(transferRequestDTO);
+    public void makeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) throws SQLException {
+        connection.transfer(updatedBalancesForTransferDTO);
     }
 
     @Override
@@ -36,6 +36,11 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     @Override
+    public double checkInterestRate(CheckAccountDTO checkAccountDTO) throws SQLException {
+        return connection.checkInterestRate(checkAccountDTO);
+    }
+
+    @Override
     public double dailyCheck(CheckAccountDTO checkAccountDTO) throws SQLException {
         return connection.dailyCheck(checkAccountDTO);
     }
@@ -46,8 +51,8 @@ public class TransactionDao implements TransactionDaoInterface {
     }
 
     @Override
-    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) throws SQLException {
-        return connection.creditInterest(userInfoAccNumDTO);
+    public boolean creditInterest(CreditInterestDTO creditInterestDTO) throws SQLException {
+        return connection.creditInterest(creditInterestDTO);
     }
 
     @Override

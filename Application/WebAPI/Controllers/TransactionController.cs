@@ -2,7 +2,9 @@
 using Application.LogicInterfaces;
 using Domain.DTOs;
 using Domain.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Application.Controllers;
 
@@ -31,7 +33,6 @@ public class TransactionController : ControllerBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
             return BadRequest(e.Message);
         }
     }
@@ -146,4 +147,21 @@ public class TransactionController : ControllerBase
             return BadRequest();
         }
     }
+
+    [HttpPost, Route("Export/Statement/{Email}")]
+    public async Task<IActionResult> GenerateBankStatement([FromBody] ExportRequestDTO exportRequestDto)
+    {
+        
+        try
+        {
+            var pdfBytes = await transferLogic.GenerateBankStatement(exportRequestDto);
+            return Ok(pdfBytes);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest();
+        }
+    }
+
 }

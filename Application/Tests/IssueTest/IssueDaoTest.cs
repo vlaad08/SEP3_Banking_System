@@ -53,4 +53,14 @@ public class IssueDaoTest
         await issueDao.GetIssues();
         grpcClient.Verify(g =>g.GetIssues());
     }
+
+    [Fact]
+    public async Task UpdateIssue_Calls_for_Grpc()
+    {
+        var grpcClient = new Mock<IGrpcClient>();
+        var issueDao = new IssueDao(grpcClient.Object);
+        await issueDao.UpdateIssue(It.IsAny<IssueUpdateDTO>());
+        grpcClient.Verify(g =>g.UpdateIssue(It.IsAny<IssueUpdateDTO>()));
+
+    }
 }

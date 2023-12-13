@@ -13,17 +13,20 @@ public class TransferDAO : ITransferDAO
     {
         this.grpcClient = grpcClient;
     }
+    
 
-    public async Task TransferMoney(TransferRequestDTO transferRequestDto)
+    public async Task TransferMoney(UpdatedBalancesForTransferDTO dto)
     {
-        Console.WriteLine("DAO");
-        Console.WriteLine("DAO TransferMoney");
-        await grpcClient.MakeTransfer(transferRequestDto);
+        await grpcClient.MakeTransfer(dto);
     }
 
     public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequest)
     {
-        double balance = await grpcClient.GetBalanceByAccountNumber(transferRequest);
+        GetBalanceDTO getBalanceDto = new GetBalanceDTO()
+        {
+            AccountId = transferRequest.SenderAccountNumber
+        };
+        double balance = await grpcClient.GetBalanceByAccountNumber(getBalanceDto);
         Console.WriteLine(balance);
 
         return balance;

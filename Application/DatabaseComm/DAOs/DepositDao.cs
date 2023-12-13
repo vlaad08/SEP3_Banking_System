@@ -12,8 +12,18 @@ public class DepositDao : IDepositDAO
         this.grpcClient = grpcClient;
     }
 
-    public async Task DepositMoney(DepositRequestDTO depositRequestDto)
+    public async Task DepositMoney(UpdatedDepositDTO updatedDepositDto)
     {
-        await grpcClient.MakeDeposit(depositRequestDto);    
+        await grpcClient.MakeDeposit(updatedDepositDto);    
+    }
+    
+    public async Task<double> GetBalanceByAccountNumber(DepositRequestDTO dto)
+    {
+        GetBalanceDTO getBalanceDto = new GetBalanceDTO()
+        {
+            AccountId = dto.ToppedUpAccountNumber
+        };
+        double balance = await grpcClient.GetBalanceByAccountNumber(getBalanceDto);
+        return balance;
     }
 }

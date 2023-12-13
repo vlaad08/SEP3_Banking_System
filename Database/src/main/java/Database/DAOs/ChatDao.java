@@ -49,7 +49,6 @@ public class ChatDao implements ChatDaoInterface {
 
     @Override
     public List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException{
-        System.out.println("BUZI");
         return connection.getMessagesByIssueId(issueinfoDTO);
     }
 

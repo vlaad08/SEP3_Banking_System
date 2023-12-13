@@ -1,8 +1,10 @@
 ﻿@using Blazor.Components
 @using Blazor.Services.Http
 @using System.Security.Claims
+@using Domain.DTOs
 @inject ITransactionService transactionService
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavMgr
 
 
 <!-- Maybe have a search bar over here, to look for some transactions made to/from a specific person/merchant -->
@@ -31,6 +33,13 @@
             }
         </div>
     </div>
+    
+    
+    <div class="export-block">
+        <input type="date" placeholder="Start Date" @bind="startDateExport">
+        <input type="date" placeholder="End Date" @bind="endDateExport">
+        <button @onclick="ExportBankStatement">Export Bank Statement</button>
+    </div>
 </div>
 
 
@@ -38,6 +47,10 @@
     [Parameter]public LoadingBox Loading { get; set; }
     [Parameter] public string Email { get; set; }
     [Parameter] public ClaimsPrincipal User { get; set; }
+
+    private DateTime startDateExport = DateTime.Today;
+    private DateTime endDateExport = DateTime.Today;
+    
     private string role = "";
     public List<global::Shared.Models.Transaction> transactions = new List<global::Shared.Models.Transaction>(); 
 
@@ -58,6 +71,18 @@
     {
         return await transactionService.GetTransactions(email);
     }
+
+    private async Task ExportBankStatement()
+    {
+        ExportRequestDTO exportRequestDto = new ExportRequestDTO()
+        {
+            Email = Email,
+            StartDate = startDateExport,
+            EndDate = endDateExport
+        };
+        await transactionService.ExportBankStatement(exportRequestDto);
+    }
+    
     private async Task<List<global::Shared.Models.Transaction>> GetTransactions()
     {
         return (List<global::Shared.Models.Transaction>)await transactionService.GetTransactions();

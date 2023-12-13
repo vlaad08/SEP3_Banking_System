@@ -17,29 +17,30 @@ public class ProtoClient : IGrpcClient
     public static async Task Main(string[] args) { }
     private string serverAddress = "localhost:9090";
 
-    public async Task MakeTransfer(TransferRequestDTO transferRequestDto)
+    public async Task MakeTransfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var transferRequest = new TransferRequest
         {
-            SenderAccountId = transferRequestDto.SenderAccountNumber,
-            RecipientAccountId = transferRequestDto.RecipientAccountNumber,
-            Balance = transferRequestDto.Amount,
-            Message = transferRequestDto.Message
+            SenderNewBalance = updatedBalancesForTransferDto.newSenderBalance,
+            ReceiverNewBalance = updatedBalancesForTransferDto.newReceiverBalance,
+            Message = updatedBalancesForTransferDto.Message,
+            ReceiverId = updatedBalancesForTransferDto.receiverId,
+            SenderId = updatedBalancesForTransferDto.senderId,
+            Amount = updatedBalancesForTransferDto.amount
         };
         var transferResponse = await databaseClient.TransferAsync(transferRequest);
     }
 
-    public async Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequestDto)
+    public async Task<double> GetBalanceByAccountNumber(GetBalanceDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
-        Console.WriteLine("OKOKOKOKOKO");
         var request = new BalanceCheckRequest()
         {
-            AccountId = transferRequestDto.SenderAccountNumber
+            AccountId = dto.AccountId
         };
 
         var response = await databaseClient.CheckBalanceAsync(request);
@@ -60,6 +61,19 @@ public class ProtoClient : IGrpcClient
         return response.RecipientAccountId;
     }
 
+    public async Task<double> GetInterestRateByAccountNumber(GetBalanceDTO getBalanceDto)
+    {
+        using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
+        var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
+
+        var request = new InterestRateCheckRequest()
+        {
+            AccountId = getBalanceDto.AccountId
+        };
+        var response = await databaseClient.CheckInterestRateAsync(request);
+        return response.InterestRate;
+    }
+
     public async Task<double> DailyCheck(TransferRequestDTO transferRequestDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
@@ -73,16 +87,16 @@ public class ProtoClient : IGrpcClient
         return response.Amount;
     }
 
-    public async Task MakeDeposit(DepositRequestDTO depositRequestDto)
+    public async Task MakeDeposit(UpdatedDepositDTO updatedDepositDto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
 
         var request = new DepositRequest()
         {
-            AccountId = depositRequestDto.ToppedUpAccountNumber,
-            Amount = depositRequestDto.Amount
-
+            AccountId = updatedDepositDto.AccountId,
+            Amount = updatedDepositDto.Amount,
+            NewBalance = updatedDepositDto.UpdatedBalance
         };
         var response = await databaseClient.DepositAsync(request);
     }
@@ -177,13 +191,15 @@ public class ProtoClient : IGrpcClient
 
     }
 
-    public async Task<bool> CreditInterest(InterestCheckDTO dto)
+    public async Task<bool> CreditInterest(CreditInterestDTO dto)
     {
         using var channel = GrpcChannel.ForAddress($"http://{serverAddress}");
         var databaseClient = new DatabaseService.DatabaseServiceClient(channel);
         var request = new CreditInterestRequest()
         {
-            AccountNumber = dto.AccountID
+            AccountNumber = dto.AccountID,
+            Balance = dto.Balance,
+            Amount = dto.Amount
         };
         var response = await databaseClient.CreditInterestAsync(request);
         return response.Happened;

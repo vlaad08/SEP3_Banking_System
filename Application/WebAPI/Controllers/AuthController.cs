@@ -29,13 +29,6 @@ public class AuthController : ControllerBase
         this._authLogic = authLogic;
     }
 
- /*[HttpPost, Route("register")]
- public async Task<ActionResult> Register([FromBody] User user)
- {
-     await _authLogic.RegisterUser(user);
-     return Ok();
- }*/
-
  [HttpPost, Route("login")]
  public async Task<ActionResult> Login([FromBody] UserLoginRequestDto userLoginRequestDto)
  {
@@ -65,45 +58,7 @@ public class AuthController : ControllerBase
              
              await _authLogic.RegisterUser(userRegisterDto);
              
-             var userEmail = new UserEmailDTO()
-             {
-                 Email = userRegisterDto.Email
-             };
-             int newUserID =  await _authLogic.GetUserId(userEmail);
-
-             string accountNumber = GenerateAccountNumber();
-
-
-             TransferRequestDTO transferRequestDto = new TransferRequestDTO()
-             {
-                 RecipientAccountNumber = accountNumber
-             };
-             
-             while (await _authLogic.VerifyAccountNumber(transferRequestDto) == false)
-             {
-                 accountNumber = GenerateAccountNumber();
-                 transferRequestDto = new TransferRequestDTO()
-                 {
-                     RecipientAccountNumber = accountNumber
-                 };
-             }
-
-             double baseInterestRate = 1.7;
-             if (userRegisterDto.Plan == "Premium")
-             {
-                 baseInterestRate = 3.7;
-             }
-
-             AccountCreateRequestDto accountCreateRequestDto = new AccountCreateRequestDto()
-             {
-                 User_id = newUserID,
-                 AccountType = "personal",
-                 UserAccountNumber = accountNumber,
-                 InterestRate = baseInterestRate
-             };
-
-             await _authLogic.CreateUserAccountNumber(accountCreateRequestDto);
-             
+            
              
              return Ok("User created");
          }
@@ -118,18 +73,6 @@ public class AuthController : ControllerBase
      }
  }
  
- static string GenerateAccountNumber()
- {
-     Random random = new Random();
-     string accountNumber = "";
-
-     for (int i = 0; i < 14; i++)
-     {
-         accountNumber += random.Next(0, 10).ToString();
-     }
-
-     return accountNumber;
- }
 
  private string GenerateJwt(User user)
  {

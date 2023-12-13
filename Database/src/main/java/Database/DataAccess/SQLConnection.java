@@ -36,35 +36,35 @@ public class SQLConnection implements SQLConnectionInterface {
      * given details
      **/
     @Override
-    public void transfer(TransferRequestDTO transferRequestDTO) {
+    public void transfer(UpdatedBalancesForTransferDTO updatedBalancesForTransferDTO) {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
-
+            System.out.println(updatedBalancesForTransferDTO.receiverId+" "+updatedBalancesForTransferDTO.senderId);
             try (PreparedStatement updateStatement1 = connection.prepareStatement(
-                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+                    "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
-                updateStatement1.setDouble(1, transferRequestDTO.getAmount());
-                updateStatement1.setString(2, transferRequestDTO.getRecipientAccount_id());
+                updateStatement1.setDouble(1, updatedBalancesForTransferDTO.getNewReceiverBalance());
+                updateStatement1.setString(2, updatedBalancesForTransferDTO.receiverId);
                 updateStatement1.executeUpdate();
 
                 try (PreparedStatement updateStatement2 = connection.prepareStatement(
-                        "UPDATE account SET balance = balance - ? WHERE account_id = ?")) {
+                        "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
-                    updateStatement2.setDouble(1, transferRequestDTO.getAmount());
-                    updateStatement2.setString(2, transferRequestDTO.getSenderAccount_id());
+                    updateStatement2.setDouble(1, updatedBalancesForTransferDTO.newSenderBalance);
+                    updateStatement2.setString(2, updatedBalancesForTransferDTO.senderId);
                     updateStatement2.executeUpdate();
 
                     try (PreparedStatement insertStatement = connection.prepareStatement(
                             "INSERT INTO transactions(dateTime, amount, message, senderAccount_id, recipientAccount_id, transaction_type) "
                                     +
-                                    "VALUES (?, ?, ?, ?, ?, 'Transaction')")) {
+                                    "VALUES (?, ?, ?, ?, ?, 'Transfer')")) {
 
                         insertStatement.setTimestamp(1, now);
-                        insertStatement.setDouble(2, transferRequestDTO.getAmount());
-                        insertStatement.setString(3, transferRequestDTO.getMessage());
-                        insertStatement.setString(4, transferRequestDTO.getSenderAccount_id());
-                        insertStatement.setString(5, transferRequestDTO.getRecipientAccount_id());
+                        insertStatement.setDouble(2, updatedBalancesForTransferDTO.getAmount());
+                        insertStatement.setString(3, updatedBalancesForTransferDTO.getMessage());
+                        insertStatement.setString(4, updatedBalancesForTransferDTO.senderId);
+                        insertStatement.setString(5, updatedBalancesForTransferDTO.receiverId);
                         insertStatement.executeUpdate();
 
                         connection.commit();
@@ -102,6 +102,22 @@ public class SQLConnection implements SQLConnectionInterface {
             }
         }
         return balance;
+    }
+
+    @Override
+    public double checkInterestRate(CheckAccountDTO checkAccountDTO) throws SQLException {
+        double interestRate = 0;
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT interest_rate FROM account WHERE account_id = ?;");
+            statement.setString(1,checkAccountDTO.getRecipientAccount_id());
+            ResultSet result = statement.executeQuery();
+            if (result.next())
+            {
+                interestRate = result.getDouble("interest_rate");
+            }
+        }
+        return interestRate;
     }
 
     @Override
@@ -144,9 +160,9 @@ public class SQLConnection implements SQLConnectionInterface {
             connection.setAutoCommit(false);
 
             try (PreparedStatement updateStatement = connection.prepareStatement(
-                    "UPDATE account SET balance = balance + ? WHERE account_id = ?")) {
+                    "UPDATE account SET balance = ? WHERE account_id = ?")) {
 
-                updateStatement.setDouble(1, depositRequestDTO.getAmount());
+                updateStatement.setDouble(1, depositRequestDTO.getUpdatedBalance());
                 updateStatement.setString(2, depositRequestDTO.getAccount_id());
                 updateStatement.executeUpdate();
 
@@ -252,52 +268,35 @@ public class SQLConnection implements SQLConnectionInterface {
     }
 
     @Override
-    public boolean creditInterest(UserInfoAccNumDTO userInfoAccNumDTO) {
+    public boolean creditInterest(CreditInterestDTO creditInterestDTO) {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
-
             try {
-                PreparedStatement selectStatement = connection.prepareStatement(
-                        "SELECT a.balance, a.interest_rate FROM account a WHERE a.account_id = ?");
+                PreparedStatement updateStatement = connection.prepareStatement(
+                        "UPDATE account SET balance = ? WHERE account_id = ?");
+                updateStatement.setDouble(1, creditInterestDTO.getNewBalance());
+                updateStatement.setString(2, creditInterestDTO.getAccount_id());
+                int updatedRows = updateStatement.executeUpdate();
+                if (updatedRows > 0) {
+                    PreparedStatement insertStatement = connection.prepareStatement(
+                            "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) "
+                                    +
+                                    "VALUES (?, ?, ?, ?, 'Interest')");
 
-                selectStatement.setString(1, userInfoAccNumDTO.getAccNum());
-                ResultSet resultSet = selectStatement.executeQuery();
+                    Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
-                if (resultSet.next()) {
-                    double balance = resultSet.getDouble("balance");
-                    double interestRate = resultSet.getDouble("interest_rate");
+                    insertStatement.setTimestamp(1, now);
+                    insertStatement.setDouble(2, creditInterestDTO.getAmount());
+                    insertStatement.setString(3, creditInterestDTO.getAccount_id());
+                    insertStatement.setString(4, creditInterestDTO.getAccount_id());
+                    insertStatement.executeUpdate();
 
-                    double interest = balance * interestRate;
-
-                    PreparedStatement updateStatement = connection.prepareStatement(
-                            "UPDATE account SET balance = balance + ? WHERE account_id = ?");
-
-                    updateStatement.setDouble(1, interest);
-                    updateStatement.setString(2, userInfoAccNumDTO.getAccNum());
-                    int updatedRows = updateStatement.executeUpdate();
-
-                    if (updatedRows > 0) {
-                        PreparedStatement insertStatement = connection.prepareStatement(
-                                "INSERT INTO transactions(dateTime, amount, senderAccount_id, recipientAccount_id, transaction_type) "
-                                        +
-                                        "VALUES (?, ?, ?, ?, 'Interest')");
-
-                        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
-
-                        insertStatement.setTimestamp(1, now);
-                        insertStatement.setDouble(2, interest);
-                        insertStatement.setString(3, userInfoAccNumDTO.getAccNum());
-                        insertStatement.setString(4, userInfoAccNumDTO.getAccNum());
-                        insertStatement.executeUpdate();
-
-                        connection.commit();
-                        return true;
-                    } else {
-                        throw new RuntimeException("Update failed. No rows affected.");
-                    }
+                    connection.commit();
+                    return true;
                 } else {
-                    throw new RuntimeException("Account not found");
+                    throw new RuntimeException("Update failed. No rows affected.");
                 }
+
             } catch (SQLException e) {
                 connection.rollback();
                 throw new RuntimeException("Error executing statements", e);
@@ -314,7 +313,7 @@ public class SQLConnection implements SQLConnectionInterface {
         try (Connection connection = getConnection()) {
             String query = "SELECT t.dateTime " +
                     "FROM transactions t " +
-                    "WHERE t.senderAccount_id = ? AND t.message = 'Interest' " +
+                    "WHERE t.senderAccount_id = ? AND t.transaction_type = 'Interest' " +
                     "ORDER BY t.dateTime DESC LIMIT 1;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -639,8 +638,7 @@ public class SQLConnection implements SQLConnectionInterface {
                     statement.setString(2, messageDTO.getBody());
                     statement.setInt(3, messageDTO.getOwner());
                     statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-                    statement.setInt(5, messageDTO.getIssueId()); // Assuming you have a getIssueId() method in
-                                                                  // MessageDTO
+                    statement.setInt(5, messageDTO.getIssueId());
 
                     statement.executeUpdate();
                 }

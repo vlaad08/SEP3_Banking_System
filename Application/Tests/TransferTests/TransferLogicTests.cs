@@ -27,8 +27,6 @@ public class TransferLogicTests
             .ReturnsAsync(transferRequestDto.Amount);
         transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
             .ReturnsAsync(0);
-        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
-            .ReturnsAsync(transferRequestDto.Amount+1);
 
         var transferLogic = new TransferLogic(transferDaoMock.Object);
 
@@ -36,7 +34,7 @@ public class TransferLogicTests
         await transferLogic.TransferMoney(transferRequestDto);
 
         // Assert
-        transferDaoMock.Verify(d => d.TransferMoney(transferRequestDto), Times.Once);
+        transferDaoMock.Verify(d => d.TransferMoney(It.IsAny<UpdatedBalancesForTransferDTO>()), Times.Once);
     }
     
     [Fact]
@@ -115,6 +113,31 @@ public class TransferLogicTests
         // Assert
         await Assert.ThrowsAsync<Exception>(() => transferLogic.TransferMoney(transferRequestDto));
     }
+    [Fact]
+    public async Task ValidateTransfer_CannotSendToSameAccount_ShouldThrowException()
+    {
+        // Arrange
+        var transferRequestDto = new TransferRequestDTO
+        {
+            SenderAccountNumber = "1111111111111111",
+            RecipientAccountNumber = "1111111111111111",
+            Amount = 1
+        };
+
+        //Act
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetAccountNumberByAccountNumber(transferRequestDto))
+            .ReturnsAsync(transferRequestDto.RecipientAccountNumber);
+        transferDaoMock.Setup(d => d.GetBalanceByAccountNumber(transferRequestDto))
+            .ReturnsAsync(transferRequestDto.Amount + 1);
+        transferDaoMock.Setup(d => d.GetTransferAmountsByDayForUser(transferRequestDto))
+            .ReturnsAsync(200);
+
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+
+        // Assert
+        await Assert.ThrowsAsync<Exception>(() => transferLogic.TransferMoney(transferRequestDto));
+    }
 
     [Fact]
     public async Task GetTransactions_Returns_A_List()
@@ -182,6 +205,35 @@ public class TransferLogicTests
         await transferLogic.FlagUser(dto);
         transferDaoMock.Verify(d=>d.FlagUser(dto));
     }
+
+    [Fact]
+    public async Task GetSubscriptions_Returns_A_Dictionary()
+    {
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetSubscriptions(It.IsAny<GetTransactionsDTO>()))
+            .ReturnsAsync(new List<Transaction>());
+    
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+
+        var result = await transferLogic.GetSubscriptions(It.IsAny<GetTransactionsDTO>());
+
+        Assert.IsType<Dictionary<string, Subscription>>(result);
+    }
+
+    [Fact]
+    public async Task GetSubscriptions_Calls_For_Dao()
+    {
+        var transferDaoMock = new Mock<ITransferDAO>();
+        transferDaoMock.Setup(d => d.GetSubscriptions(It.IsAny<GetTransactionsDTO>()))
+            .ReturnsAsync(new List<Transaction>());
+        var transferLogic = new TransferLogic(transferDaoMock.Object);
+        transferLogic.GetSubscriptions(It.IsAny<GetTransactionsDTO>());
+        transferDaoMock.Verify(d => d.GetSubscriptions(It.IsAny<GetTransactionsDTO>()));
+    }
+    
+    
+    
+    
 
     
     

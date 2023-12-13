@@ -8,7 +8,7 @@
 <div class="content">
     <div class="card">
         <div>
-             <select @onchange="OnAccountSelectionChanged">
+            <select @onchange="OnAccountSelectionChanged">
                 @foreach (var account in Accounts)
                 {
                     if (account.AccountType.Equals("personal"))
@@ -46,6 +46,8 @@
         </div>
     </div>
 </div>
+<Notification @ref="interestNotification" NotificationType="Confirmation">Your calculated interest rate: @interestRate</Notification>
+<Notification @ref="errorRef" NotificationType="Error">Amount cannot be 0</Notification>
 
 @code {
     private string SelectedAccount { get; set; }
@@ -54,6 +56,10 @@
     private double principle;
     private int tenure;
     private string accountNumber = "";
+    private Notification interestNotification;
+    private Notification errorRef;
+    private string interestRate;
+    private string message;
     
     private Task OnAccountSelectionChanged(ChangeEventArgs e)
     {
@@ -79,8 +85,17 @@
     private async void Calculate()
     {
         LoanRequestDto dto = new LoanRequestDto(accountNumber, principle, tenure);
-        string interest = await loanService.LoanCalculation(dto);
-        Console.WriteLine(interest);
+        try
+        {
+            interestRate = await loanService.LoanCalculation(dto);
+            await interestNotification.ShowNotification();
+        }
+        catch (Exception e)
+        {
+            message = e.Message;
+            await errorRef.ShowErrorNotification(e.Message);
+        }
+        
     }
 
     private async void Create()

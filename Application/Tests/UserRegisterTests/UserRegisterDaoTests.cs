@@ -49,8 +49,6 @@ public class UserRegisterDaoTests
 
         mockGrpcClient.Verify(client => client.RegisterUser(userRegisterDto), Times.Once());
     }
-    
-    
     [Fact]
     public async Task getting_user_id_by_email_returns_user_id()
     {
@@ -61,6 +59,19 @@ public class UserRegisterDaoTests
         var result = await userRegisterDao.GetUserId(userEmailDto);
 
         Assert.Equal(123, result);
+    }
+
+    [Fact]
+    public async Task CreateUserAccountNumber_Calls_For_Grpc()
+    {
+        await userRegisterDao.CreateUserAccountNumber(It.IsAny<AccountCreateRequestDto>());
+        mockGrpcClient.Verify(g=>g.CreateUserAccountNumber(It.IsAny<AccountCreateRequestDto>()));
+    }
+    [Fact]
+    public async Task VerifyAccountNumber_Calls_For_Grpc()
+    {
+        await userRegisterDao.VerifyAccountNumber(It.IsAny<TransferRequestDTO>());
+        mockGrpcClient.Verify(g=>g.GetAccountNumberByAccountNumber(It.IsAny<TransferRequestDTO>()));
     }
 
 }

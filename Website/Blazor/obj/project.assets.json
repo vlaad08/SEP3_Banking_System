@@ -366,19 +366,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/IHSSAN/.nuget/packages/": {}
+    "C:\\Users\\tothl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj",
+      "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
       "projectName": "Blazor",
-      "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/Blazor.csproj",
-      "packagesPath": "/Users/IHSSAN/.nuget/packages/",
-      "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Blazor/obj/",
+      "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Blazor\\Blazor.csproj",
+      "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Blazor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -390,8 +390,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
-              "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj"
+            "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj"
             }
           }
         }
@@ -430,7 +430,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

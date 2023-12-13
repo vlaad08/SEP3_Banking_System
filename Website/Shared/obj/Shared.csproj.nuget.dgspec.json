@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {}
+    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj": {}
   },
   "projects": {
-    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj": {
+    "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
+        "projectUniqueName": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/Shared.csproj",
-        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
-        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Website/Shared/obj/",
+        "projectPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\tothl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tothl\\Documents\\GitHub\\SEP3_Banking_Sytem\\Website\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\tothl\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

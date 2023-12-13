@@ -5,7 +5,7 @@ namespace Application.DaoInterfaces;
 
 public interface ITransferDAO
 {
-    Task TransferMoney(TransferRequestDTO transferRequest);
+    Task TransferMoney(UpdatedBalancesForTransferDTO updatedBalancesForTransferDto);
     Task<double> GetBalanceByAccountNumber(TransferRequestDTO transferRequest);
     Task<string> GetAccountNumberByAccountNumber(TransferRequestDTO transferRequest);
     Task<double> GetTransferAmountsByDayForUser(TransferRequestDTO transferRequest);

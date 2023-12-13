@@ -17,9 +17,8 @@ public class DepositLogicTest
         };
         var dao = new Mock<IDepositDAO>();
         var depositLogic = new DepositLogic(dao.Object);
-
-        await depositLogic.DepositMoney(dto);
         
-        dao.Verify(d => d.DepositMoney(dto));
+        await depositLogic.DepositMoney(dto);
+        dao.Verify(d => d.DepositMoney(It.IsAny<UpdatedDepositDTO>()));
     }
 }

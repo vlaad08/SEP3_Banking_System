@@ -23,7 +23,21 @@ public class LoanDaoTest
         };
         var grpcClient = new Mock<IGrpcClient>();
         var loanDao = new LoanDao(grpcClient.Object);
-        loanDao.RequestLoan(dto);
+        await loanDao.RequestLoan(dto);
         grpcClient.Verify(g=>g.RequestLoan(dto));
+    }
+
+    [Fact]
+    public async Task GetBalanceByAccountNumber_Calls_For_Grpc()
+    {
+        DepositRequestDTO dto = new DepositRequestDTO
+        {
+            Amount = 1000,
+            ToppedUpAccountNumber = "-"
+        };
+        var grpcClient = new Mock<IGrpcClient>();
+        var loanDao = new LoanDao(grpcClient.Object);
+        await loanDao.GetBalanceByAccountNumber(dto);
+        grpcClient.Verify(g=>g.GetBalanceByAccountNumber(It.IsAny<GetBalanceDTO>()));
     }
 }

@@ -1,6 +1,9 @@
+using System.Runtime.InteropServices.JavaScript;
 using System.Security.Claims;
 using System.Text;
+using Domain.DTOs;
 using Domain.Models;
+using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Shared.DTOs;
 using Shared.Models;
@@ -13,8 +16,6 @@ public class TransactionService : ITransactionService
     private readonly HttpClient client = new();
     public async Task Transfer(String senderAccount_id, String recipientAccount_id, double amount, String message)
     {
-
-
         TransferDto transfer = new TransferDto()
         {
             SenderAccountNumber = senderAccount_id,
@@ -22,20 +23,17 @@ public class TransactionService : ITransactionService
             Amount = amount,
             Message = message,
         };
-
-
+        
         try
         {
             string transferJson = JsonSerializer.Serialize(transfer);
             StringContent content = new(transferJson, Encoding.UTF8, "application/json");
-            Console.WriteLine(content);
-            HttpResponseMessage response = await client.PostAsync("http://localhost:5054/api/Transaction/Transfer", content);
+            HttpResponseMessage response = await client.PostAsync("https://localhost:7257/api/Transaction/Transfer", content);
             string responseBody = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(responseBody);
             }
-            Console.WriteLine("Transfer successful");
         }
         catch (Exception e)
         {
@@ -134,6 +132,35 @@ public class TransactionService : ITransactionService
 
             return dictionary;
 
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task ExportBankStatement(ExportRequestDTO exportRequestDto)
+    {
+        try
+        {
+
+            string Email = exportRequestDto.Email;
+            
+            string Json = JsonSerializer.Serialize(exportRequestDto);
+            StringContent content = new(Json, Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage responseMessage = await client.PostAsync($"http://localhost:5054/api/Transaction/Export/Statement/{Email}", content);
+            string responseBody = await responseMessage.Content.ReadAsStringAsync();
+            
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseBody);
+            }
+
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bank_statement.pdf");
+            byte[] pdfBytes = await responseMessage.Content.ReadAsByteArrayAsync();
+            await File.WriteAllBytesAsync(filePath, pdfBytes);
         }
         catch (Exception e)
         {
