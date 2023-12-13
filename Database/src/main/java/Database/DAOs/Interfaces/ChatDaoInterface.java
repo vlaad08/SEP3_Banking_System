@@ -15,7 +15,6 @@ public interface ChatDaoInterface {
     void updateIssue(IssueUpdateDTO issueDTO) throws SQLException;
     void sendMessage(MessageDTO messageDTO) throws SQLException;
     List<MessageInfo> getMessagesForIssue(IssueinfoDTO issueinfoDTO) throws SQLException;
-    /*void getIssueByUserId() throws SQLException;*/
     List<Issue> getAllIssues() throws  SQLException;
     List<MessageInfo> getMessagesByIssueId(IssueinfoDTO issueinfoDTO) throws SQLException;
 }

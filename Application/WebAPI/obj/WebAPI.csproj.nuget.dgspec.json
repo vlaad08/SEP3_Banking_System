@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {}
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {}
   },
   "projects": {
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/obj/",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }
@@ -41,6 +41,20 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "BouncyCastle.NetCore": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,17 +75,17 @@
         }
       }
     },
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
         "projectName": "DatabaseComm",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/obj/",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -83,11 +97,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj"
               },
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }
@@ -137,17 +151,17 @@
         }
       }
     },
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/obj/",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -171,9 +185,21 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "BouncyCastle.NetCore": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [
@@ -196,17 +222,17 @@
         }
       }
     },
-    "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {
+    "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
+        "projectUniqueName": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
-        "packagesPath": "/Users/AgostonBabicz/.nuget/packages/",
-        "outputPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/WebAPI/obj/",
+        "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/WebAPI.csproj",
+        "packagesPath": "/Users/IHSSAN/.nuget/packages/",
+        "outputPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/WebAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/AgostonBabicz/.nuget/NuGet/NuGet.Config"
+          "/Users/IHSSAN/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -218,14 +244,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Application/Application.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Application/Application.csproj"
               },
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/DatabaseComm/DatabaseComm.csproj"
               },
-              "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
-                "projectPath": "/Users/AgostonBabicz/Documents/GitHub/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
+              "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj": {
+                "projectPath": "/Users/IHSSAN/IdeaProjects/SEP3_Banking_Sytem/Application/Domain/Domain.csproj"
               }
             }
           }

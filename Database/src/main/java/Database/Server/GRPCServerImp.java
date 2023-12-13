@@ -194,7 +194,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
-    // test below
     @Override
     public void logLoan(LogLoanRequest request, StreamObserver<LogLoanResponse> responseStreamObserver) {
         try {
@@ -225,19 +224,6 @@ public class GRPCServerImp extends DatabaseServiceGrpc.DatabaseServiceImplBase {
         }
     }
 
-//    @Override
-//    public void getTransactionsForEmployee(GetTransactionsForEmployeeRequest request,
-//            StreamObserver<GetTransactionsForEmployeeResponse> responseObserver) {
-//        try {
-//            List<Transactions> transactions = transactionDao.getAllTransactionsForEmployee();
-//            GetTransactionsForEmployeeResponse response = GetTransactionsForEmployeeResponse.newBuilder()
-//                    .addAllTransactions(transactions).build();
-//            responseObserver.onNext(response);
-//            responseObserver.onCompleted();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public void getSubscriptions(GetTransactionsRequest request,
             StreamObserver<GetTransactionsResponse> responseStreamObserver) {
