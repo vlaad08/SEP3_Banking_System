@@ -107,6 +107,45 @@ public class AuthLogic : IAuthLogic
     public async Task RegisterUser(UserRegisterDto userRegisterDto)
     {
         await registerDao.RegisterUser(userRegisterDto);
+        
+        var userEmail = new UserEmailDTO()
+        {
+            Email = userRegisterDto.Email
+        };
+        int newUserID =  await GetUserId(userEmail);
+
+        string accountNumber = GenerateAccountNumber();
+
+
+        TransferRequestDTO transferRequestDto = new TransferRequestDTO()
+        {
+            RecipientAccountNumber = accountNumber
+        };
+             
+        while (await VerifyAccountNumber(transferRequestDto) == false)
+        {
+            accountNumber = GenerateAccountNumber();
+            transferRequestDto = new TransferRequestDTO()
+            {
+                RecipientAccountNumber = accountNumber
+            };
+        }
+
+        double baseInterestRate = 1.7;
+        if (userRegisterDto.Plan == "Premium")
+        {
+            baseInterestRate = 3.7;
+        }
+
+        AccountCreateRequestDto accountCreateRequestDto = new AccountCreateRequestDto()
+        {
+            User_id = newUserID,
+            AccountType = "personal",
+            UserAccountNumber = accountNumber,
+            InterestRate = baseInterestRate
+        };
+
+        await CreateUserAccountNumber(accountCreateRequestDto);
     }
 
     public async Task<int> GetUserId(UserEmailDTO userEmailDto)
@@ -131,5 +170,17 @@ public class AuthLogic : IAuthLogic
         await registerDao.CreateUserAccountNumber(accountCreateRequestDto);
     }
     
+    static string GenerateAccountNumber()
+    {
+        Random random = new Random();
+        string accountNumber = "";
+
+        for (int i = 0; i < 14; i++)
+        {
+            accountNumber += random.Next(0, 10).ToString();
+        }
+
+        return accountNumber;
+    }
     
 }
