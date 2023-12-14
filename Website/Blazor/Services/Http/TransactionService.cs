@@ -48,7 +48,7 @@ public class TransactionService : ITransactionService
             ToppedUpAccountNumber = toppedUpAccountNumber,
             Amount = amount
         };
-
+        Console.WriteLine(amount);
         try
         {
             string depositJson = JsonSerializer.Serialize(deposit);

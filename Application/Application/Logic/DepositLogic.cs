@@ -13,8 +13,9 @@ public class DepositLogic : IDepositLogic
         this.depositDao = depositDao;
     }
 
-    public async Task ValidateDeposit(DepositRequestDTO depositRequestDto)
+    private async Task ValidateDeposit(DepositRequestDTO depositRequestDto)
     {
+        Console.WriteLine("VALIDATION"+depositRequestDto.Amount);
         if (depositRequestDto.Amount == 0)
         {
             throw new Exception("Amount cannot be 0");

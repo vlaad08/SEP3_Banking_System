@@ -48,6 +48,7 @@
     </div>
 </div>
 <Notification @ref="errorRef" NotificationType="Error">Amount cannot be 0</Notification>
+<Notification @ref="confirmationRef" NotificationType="Confirmation">Deposit happened</Notification>
 @code
 {
     private string SelectedAccount { get; set; }
@@ -56,14 +57,15 @@
     private double amount;
     private List<AccountsInfo> Accounts = new List<AccountsInfo>();
     private Notification errorRef;
+    private Notification confirmationRef;
     
     private async Task Create()
     {
-        await errorRef.ShowNotification();
         try
         {
             await transactionService.Deposit(accountNumber, amount);
-            
+            await confirmationRef.ShowNotification();
+
         }
         catch (Exception e)
         {

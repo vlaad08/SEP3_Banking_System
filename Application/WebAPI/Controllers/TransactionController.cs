@@ -74,6 +74,7 @@ public class TransactionController : ControllerBase
     [HttpPost, Route("Deposit")]
     public async Task<IActionResult> DepositMoney([FromBody] DepositRequestDTO depositRequest)
     {
+        Console.WriteLine(depositRequest.Amount);
         try
         {
             await depositLogic.DepositMoney(depositRequest);
